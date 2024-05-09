@@ -12,8 +12,9 @@ const nextConfig = {
     return config
   },
 
-  output:"export",
-  basePath:"/tour"
+  output:process.env.MODE === "local" ? "standalone" : "export",
+  basePath:process.env.MODE === "local" ? "" : "/tour"
+
   
 
 };
