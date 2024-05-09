@@ -12,8 +12,8 @@ const nextConfig = {
     return config
   },
 
-  output:process.env.HOST !=="GitHub" ? "standalone" : "export",
-  basePath:process.env.HOST !== "GitHub" ? "" : "/tour"
+  output:"export",
+  basePath:"/tour"
   
 
 };
