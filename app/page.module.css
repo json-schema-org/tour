@@ -1,51 +1,51 @@
 .main {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	gap: 64px;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  gap: 64px;
+  justify-content: center;
+  align-items: center;
 }
 
 .wrapper {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	gap: 64px;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 64px;
+  justify-content: center;
+  align-items: center;
 }
 .title {
-	font-size: xx-large;
-	font-weight: bold;
-	display: flex;
-	flex-direction: column;
-	gap: 0px;
+  font-size: xx-large;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .title > div {
-	line-height: 90%;
+  line-height: 90%;
 }
 .iconAndTitle {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-	gap: 8px;
-	justify-content: center;
-	align-items: center;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
 }
 .subtitle {
-	font-size: large;
-	font-weight: bold;
-	display: flex;
-	flex-direction: column;
-	gap: 0px;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .subtitleWrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
 }
