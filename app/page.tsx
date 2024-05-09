@@ -1,5 +1,6 @@
 "use client";
-import styles from "./page.module.css";
+import { Button } from "@chakra-ui/react";
+import styles from "./styles/page.module.css";
 import JsonIcon from "@/public/icons/json-schema-blue.png";
 
 export default function Home() {

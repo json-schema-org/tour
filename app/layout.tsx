@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 // import { Providers } from "./providers";
-import "./globals.css";
+import "./styles/globals.css";
+import { Providers } from "./providers";
 const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,9 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        {/* <Providers> */}
-        <main>{children}</main>
-        {/* </Providers> */}
+        <Providers>
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
