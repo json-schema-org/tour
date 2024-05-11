@@ -8,7 +8,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // see https://github.com/chakra-ui/chakra-ui/issues/107 for more info
 
     h1: ({ children }) => {
-      return <Heading as="h1">{children}</Heading>;
+      return (
+        <Heading as="h1" lineHeight={"tall"}>
+          {children}
+        </Heading>
+      );
     },
     h2: ({ children }) => {
       return (

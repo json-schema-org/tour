@@ -38,15 +38,10 @@ const Button = {
   },
 };
 
-const Heading = {
-  baseStyle: {
-    lineHeight: "150%",
-  },
-};
 export const theme = extendTheme({
   styles: {
     global: {},
   },
-  components: { Button, Heading },
+  components: { Button },
   fonts: {},
 });
