@@ -1,22 +1,20 @@
 /** @type {import('next').NextConfig} */
+
+import createMDX from "@next/mdx";
+
+/** @type {import('next').NextConfig} */
+
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+});
+
+// Merge MDX config with Next.js config
+
 const nextConfig = {
-	
-    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.module.rules.push(
-      {
-        test: /\.md$/,
-        // This is the asset module.
-        type: 'asset/source',
-      }
-    )
-    return config
-  },
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
-  output:process.env.MODE === "local" ? "standalone" : "export",
-  basePath:process.env.MODE === "local" ? "" : "/tour"
-
-  
-
+  output: process.env.MODE === "local" ? "standalone" : "export",
+  basePath: process.env.MODE === "local" ? "" : "/tour",
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);

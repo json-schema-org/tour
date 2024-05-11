@@ -1,5 +1,9 @@
 "use client";
-import { theme as chakraTheme, extendTheme } from "@chakra-ui/react";
+import {
+  background,
+  theme as chakraTheme,
+  extendTheme,
+} from "@chakra-ui/react";
 
 const Button = {
   variants: {
@@ -33,10 +37,16 @@ const Button = {
     },
   },
 };
+
+const Heading = {
+  baseStyle: {
+    lineHeight: "150%",
+  },
+};
 export const theme = extendTheme({
   styles: {
     global: {},
   },
-  components: { Button },
+  components: { Button, Heading },
   fonts: {},
 });
