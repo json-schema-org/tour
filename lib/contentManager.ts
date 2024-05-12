@@ -92,7 +92,7 @@ export default class ContentManager {
         contentOutline.push(chapter);
       }
     });
-    console.log(contentOutline[0].steps);
+
     return contentOutline;
   }
 }
