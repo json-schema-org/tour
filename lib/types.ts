@@ -2,6 +2,8 @@ export type ChapterStep = {
   title: string;
   fileName: string;
   fullPath: string;
+  nextStepFullPath?: string;
+  previousStepFullPath?: string;
 };
 
 export type Chapter = {

@@ -10,10 +10,10 @@ import {
   OrderedList,
   UnorderedList,
 } from "@chakra-ui/react";
+import Link from "next/link";
 export default function Test() {
   const cm = new ContentManager();
   const outline = cm.outline;
-  console.log(outline);
   return (
     <div>
       <OrderedList>
@@ -23,7 +23,14 @@ export default function Test() {
               {item.title}
               <UnorderedList>
                 {item.steps.map((step) => (
-                  <ListItem key={step.fileName}>{step.title}</ListItem>
+                  <ListItem key={step.fileName}>
+                    <Link
+                      href={"content/" + step.fullPath.replace(".mdx", "")}
+                      style={{ color: "blue", textDecoration: "underline" }}
+                    >
+                      {step.title}
+                    </Link>
+                  </ListItem>
                 ))}
               </UnorderedList>
             </ListItem>

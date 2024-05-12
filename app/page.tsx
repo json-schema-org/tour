@@ -2,6 +2,7 @@
 import { Button } from "@chakra-ui/react";
 import styles from "./styles/page.module.css";
 import JsonIcon from "@/public/icons/json-schema-blue.png";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -23,6 +24,12 @@ export default function Home() {
           <div className={styles.subtitle}>Learn JSON Schema by Examples.</div>
           Work in progress ...
         </div>
+        <Link href="/outline">
+          <Button variant={"default"} size="lg">
+            {" "}
+            View draft outline{" "}
+          </Button>
+        </Link>
       </div>
     </div>
   );

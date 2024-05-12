@@ -1,9 +1,31 @@
 import { contentManager } from "@/lib/contentManager";
+
 import React from "react";
 
-export default function Content({ params }: { params: { path: string[] } }) {
-  const { Page } = contentManager.parseMdxFile(params.path.join("/") + ".mdx");
-  return <Page />;
+export default async function Content({
+  params,
+}: {
+  params: { path: string[] };
+}) {
+  const { Page, metadata } = contentManager.parseMdxFile(
+    params.path.join("/") + ".mdx"
+  );
+
+  // const folderName = contentManager.contentFolderName;
+  // const file = await import(
+  //   `./../../../${folderName}/${params.path.join("/")}.mdx`
+  // );
+  // console.log(file.data);
+  console.log(
+    contentManager.getNextStep(params.path.join("/") + ".mdx"),
+    "next step"
+  );
+
+  return (
+    <>
+      <Page />
+    </>
+  );
 }
 export async function generateStaticParams() {
   const outline = contentManager.outline;
@@ -16,6 +38,5 @@ export async function generateStaticParams() {
       });
     });
   });
-  console.log(pathList);
   return pathList;
 }
