@@ -44,16 +44,23 @@ export default class ContentManager {
     this.outline = this.generateOutline();
   }
 
-  public parseMdxFile(relativeFilePath: string) {
+  public parseMdxFile(
+    relativeFilePath: string,
+    parseMode: "metaOnly" | "contentOnly" | "both"
+  ) {
     const file = fs.readFileSync(
       this.contentFolderPath + "/" + relativeFilePath,
       "utf-8"
     );
     const { content, data } = matter(file);
-    const Page = () => CustomMDX({ source: content });
+    if (parseMode === "metaOnly") {
+      return { metadata: data as Metadata };
+    } else if (parseMode === "contentOnly") {
+      const Page = () => CustomMDX({ source: content });
+      return { Page };
+    }
     return { Page, metadata: data as Metadata };
   }
-
   private generateOutline(): ContentOutline {
     const contentOutline: ContentOutline = { chapters: [] };
     const files = fs.readdirSync(this.contentFolderPath, {
