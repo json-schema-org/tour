@@ -1,5 +1,5 @@
 import { CustomMDX } from "@/app/components/mdx";
-import { ContentOutline } from "./types";
+import { Chapter, ContentOutline } from "./types";
 import fs from "fs";
 import matter from "gray-matter";
 import { Metadata } from "./types";
@@ -62,7 +62,7 @@ export default class ContentManager {
     return { Page, metadata: data as Metadata };
   }
   private generateOutline(): ContentOutline {
-    const contentOutline: ContentOutline = { chapters: [] };
+    const contentOutline: ContentOutline = [];
     const files = fs.readdirSync(this.contentFolderPath, {
       withFileTypes: true,
     });
@@ -73,7 +73,7 @@ export default class ContentManager {
           `${file.name}/${this.indexFileName}`
         );
 
-        const chapter = {
+        const chapter: Chapter = {
           title: metadata.title,
           folderName: file.name,
           steps: [],
@@ -96,10 +96,10 @@ export default class ContentManager {
           };
           chapter.steps.push(step);
         });
-        contentOutline.chapters.push(chapter);
+        contentOutline.push(chapter);
       }
     });
-    console.log(contentOutline.chapters[0].steps);
+
     return contentOutline;
   }
 }
