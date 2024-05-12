@@ -1,4 +1,3 @@
-import { Heading } from "@chakra-ui/react";
 import type { MDXComponents } from "mdx/types";
 import { components as MDXComponentsModified } from "@/app/components/mdx";
 
