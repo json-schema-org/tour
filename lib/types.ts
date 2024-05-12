@@ -1,18 +1,16 @@
-type ChapterStep = {
+export type ChapterStep = {
   title: string;
   fileName: string;
   fullPath: string;
 };
 
-type Chapter = {
+export type Chapter = {
   title: string;
   folderName: string;
   steps: ChapterStep[];
 };
 
-export type ContentOutline = {
-  chapters: Chapter[];
-};
+export type ContentOutline = Chapter[];
 
 export type Metadata = {
   title: string;
