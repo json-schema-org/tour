@@ -96,3 +96,6 @@ export default class ContentManager {
     return contentOutline;
   }
 }
+
+const contentManager = new ContentManager();
+export { contentManager };
