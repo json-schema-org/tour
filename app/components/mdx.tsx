@@ -1,7 +1,7 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import { Heading } from "@chakra-ui/react";
 import { MDXComponents } from "mdx/types";
-const components: MDXComponents = {
+export const components: MDXComponents = {
   // chakra-ui overrides heading styles so we need to use the Heading component
   // see https://github.com/chakra-ui/chakra-ui/issues/107 for more info
 
