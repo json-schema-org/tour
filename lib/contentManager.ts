@@ -2,6 +2,7 @@ import { CustomMDX } from "@/app/components/mdx";
 import { ContentOutline } from "./types";
 import fs from "fs";
 import matter from "gray-matter";
+import { Metadata } from "./types";
 
 /* 
 
@@ -37,6 +38,7 @@ export default class ContentManager {
   public outline: ContentOutline;
   public activeChapterIndex: number = 0;
   public activeStepIndex: number = 0;
+  private indexFileName = "index.mdx";
 
   constructor() {
     this.outline = this.generateOutline();
@@ -49,7 +51,7 @@ export default class ContentManager {
     );
     const { content, data } = matter(file);
     const Page = () => CustomMDX({ source: content });
-    return { Page, metadata: data };
+    return { Page, metadata: data as Metadata };
   }
 
   private generateOutline(): ContentOutline {
@@ -60,15 +62,37 @@ export default class ContentManager {
 
     files.forEach((file) => {
       if (file.isDirectory()) {
-        const chapter = { title: file.name, folderName: file.name, steps: [] };
+        const { metadata } = this.parseMdxFile(
+          `${file.name}/${this.indexFileName}`
+        );
+
+        const chapter = {
+          title: metadata.title,
+          folderName: file.name,
+          steps: [],
+        };
         const chapterPath = `${this.contentFolderPath}/${file.name}`;
-        const chapterFiles = fs.readdirSync(chapterPath, {
+        let chapterFiles = fs.readdirSync(chapterPath, {
           withFileTypes: true,
+        });
+        chapterFiles = chapterFiles.filter(
+          (file) => file.name !== this.indexFileName
+        );
+        chapterFiles.forEach((chapterFile) => {
+          const { metadata } = this.parseMdxFile(
+            `${file.name}/${chapterFile.name}`
+          );
+          const step = {
+            title: metadata.title,
+            fileName: chapterFile.name,
+            fullPath: `${file.name}/${chapterFile.name}`,
+          };
+          chapter.steps.push(step);
         });
         contentOutline.chapters.push(chapter);
       }
     });
-
+    console.log(contentOutline.chapters[0].steps);
     return contentOutline;
   }
 }
