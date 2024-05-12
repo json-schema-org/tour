@@ -17,7 +17,7 @@ const withMDX = createMDX({
 const nextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
-  output: process.env.MODE === "local" ? "standalone" : "export",
+  output: "export",
   basePath: process.env.MODE === "local" ? "" : "/tour",
 };
 

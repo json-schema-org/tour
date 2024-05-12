@@ -13,3 +13,7 @@ type Chapter = {
 export type ContentOutline = {
   chapters: Chapter[];
 };
+
+export type metadata = {
+  title: string;
+};
