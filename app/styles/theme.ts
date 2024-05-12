@@ -1,5 +1,9 @@
 "use client";
-import { theme as chakraTheme, extendTheme } from "@chakra-ui/react";
+import {
+  background,
+  theme as chakraTheme,
+  extendTheme,
+} from "@chakra-ui/react";
 
 const Button = {
   variants: {
@@ -33,6 +37,7 @@ const Button = {
     },
   },
 };
+
 export const theme = extendTheme({
   styles: {
     global: {},
