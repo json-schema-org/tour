@@ -5,10 +5,10 @@ import React from "react";
 export default async function Content({
   params,
 }: {
-  params: { path: string[] };
+  params: { markdownPath: string[] };
 }) {
   const { Page, metadata } = contentManager.parseMdxFile(
-    params.path.join("/") + ".mdx"
+    params.markdownPath.join("/") + ".mdx"
   );
 
   // const folderName = contentManager.contentFolderName;
@@ -17,7 +17,7 @@ export default async function Content({
   // );
   // console.log(file.data);
   console.log(
-    contentManager.getNextStep(params.path.join("/") + ".mdx"),
+    contentManager.getNextStep(params.markdownPath.join("/") + ".mdx"),
     "next step"
   );
 
@@ -29,12 +29,12 @@ export default async function Content({
 }
 export async function generateStaticParams() {
   const outline = contentManager.outline;
-  const pathList: { path: string[] }[] = [];
+  const pathList: { markdownPath: string[] }[] = [];
 
   outline.map((item) => {
     item.steps.map((step) => {
       pathList.push({
-        path: [item.folderName, step.fileName.replaceAll(".mdx", "")],
+        markdownPath: [item.folderName, step.fileName.replaceAll(".mdx", "")],
       });
     });
   });

@@ -25,7 +25,7 @@ export default function Test() {
                 {item.steps.map((step) => (
                   <ListItem key={step.fileName}>
                     <Link
-                      href={"content/" + step.fullPath.replace(".mdx", "")}
+                      href={step.fullPath.replace(".mdx", "")}
                       style={{ color: "blue", textDecoration: "underline" }}
                     >
                       {step.title}
