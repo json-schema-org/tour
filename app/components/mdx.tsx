@@ -27,6 +27,7 @@ function createHeading(level: number): any {
         as={`h${level}` as As}
         size={headingSizes[level]}
         lineHeight={"tall"}
+        letterSpacing={"tighter"}
       >
         {children}
       </Heading>
