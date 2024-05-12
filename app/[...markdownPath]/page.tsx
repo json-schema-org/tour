@@ -16,10 +16,10 @@ export default async function Content({
   //   `./../../../${folderName}/${params.path.join("/")}.mdx`
   // );
   // console.log(file.data);
-  console.log(
-    contentManager.getNextStep(params.markdownPath.join("/") + ".mdx"),
-    "next step"
-  );
+  //   console.log(
+  //     contentManager.getNextStep(params.markdownPath.join("/") + ".mdx"),
+  //     "next step"
+  //   );
 
   return (
     <>

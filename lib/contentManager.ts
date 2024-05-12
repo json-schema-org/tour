@@ -111,10 +111,9 @@ export default class ContentManager {
 
   public getChapterAndStepIndex(activeStepPath: string): [number, number] {
     const [chapterIndex, stepIndex] = activeStepPath.split("/").map((index) => {
-      console.log(index, "index");
       return parseInt(index.slice(0, 3), 10) - 1;
     });
-    console.log(chapterIndex, stepIndex);
+
     return [chapterIndex, stepIndex];
   }
 
