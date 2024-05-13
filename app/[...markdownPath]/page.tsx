@@ -2,9 +2,10 @@ import { contentManager } from "@/lib/contentManager";
 import styles from "./page.module.css";
 
 import React from "react";
-import NavigationBtn from "../components/NavigationBtn/NavigationBtn";
+import NavigationBtn from "../components/NavigationBtn";
 import { Button } from "@chakra-ui/react";
 import Link from "next/link";
+import ContentViewer from "../components/ContentViewer/ContentViewer";
 
 export default async function Content({
   params,
@@ -49,7 +50,9 @@ export default async function Content({
           Step {stepIndex + 1}: {metadata.title}
         </span>
       </div>
-      <Page />
+      <ContentViewer>
+        <Page />
+      </ContentViewer>
       <div className={styles.navigationBtnWrapper}>
         <NavigationBtn path={previousStepPath} direction="prev" />
         <NavigationBtn path={nextStepPath} direction="next" />
