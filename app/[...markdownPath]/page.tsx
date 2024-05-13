@@ -1,11 +1,12 @@
 import { contentManager } from "@/lib/contentManager";
 import styles from "./page.module.css";
 
-import React from "react";
+import React, { Suspense } from "react";
 import NavigationBtn from "../components/NavigationBtn";
-import { Button } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import ContentViewer from "../components/ContentViewer/ContentViewer";
+import CodeEditor from "../components/CodeEditor/CodeEditor";
 
 export default async function Content({
   params,
@@ -52,12 +53,16 @@ export default async function Content({
       <div>
         <span>
           Step {stepIndex + 1}: {metadata.title} (
-          {(stepIndex / totalSteps) * 100} %)
+          {((stepIndex + 1) / totalSteps) * 100} %)
         </span>
       </div>
-      <ContentViewer>
-        <Page />
-      </ContentViewer>
+      <Flex dir="row" height={"100%"}>
+        <ContentViewer>
+          <Page />
+        </ContentViewer>
+
+        <CodeEditor mdPath={mdPath} />
+      </Flex>
       <div className={styles.navigationBtnWrapper}>
         <NavigationBtn path={previousStepPath} direction="prev" />
         <NavigationBtn path={nextStepPath} direction="next" />

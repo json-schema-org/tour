@@ -7,4 +7,5 @@
   max-width: max(50%, 800px);
   overflow-y: scroll;
   height: 100%;
+  flex: 1;
 }
