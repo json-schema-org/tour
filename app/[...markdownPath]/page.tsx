@@ -1,17 +1,18 @@
 import { contentManager } from "@/lib/contentManager";
-import { Button } from "@chakra-ui/react";
-import Link from "next/link";
+import styles from "./page.module.css";
 
 import React from "react";
+import NavigationBtn from "../components/NavigationBtn/NavigationBtn";
+import { Button } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default async function Content({
   params,
 }: {
   params: { markdownPath: string[] };
 }) {
-  const { Page, metadata } = contentManager.parseMdxFile(
-    params.markdownPath.join("/") + ".mdx"
-  );
+  const mdPath = params.markdownPath.join("/") + ".mdx";
+  const { Page, metadata } = contentManager.parseMdxFile(mdPath);
 
   // const folderName = contentManager.contentFolderName;
   // const file = await import(
@@ -23,34 +24,35 @@ export default async function Content({
   //     "next step"
   //   );
 
-  const nextStepPath = contentManager.getNextStepPath(
-    params.markdownPath.join("/") + ".mdx"
-  );
+  const nextStepPath = contentManager.getNextStepPath(mdPath);
 
-  const previousStepPath = contentManager.getPreviousStepPath(
-    params.markdownPath.join("/") + ".mdx"
-  );
+  const previousStepPath = contentManager.getPreviousStepPath(mdPath);
+  const outline = contentManager.generateOutline();
+
+  const { chapterIndex, stepIndex } = contentManager.getStepLocation(mdPath);
+  const chapterTitle = outline[chapterIndex].title;
 
   return (
-    <>
-      <Page />
+    <div className={styles.wrapper}>
+      <Button size={"sm"} variant={"default"}>
+        <Link href="/outline">Back TO OUTLINE</Link>
+      </Button>
       <div>
-        {previousStepPath && (
-          <Link href={"/" + previousStepPath}>
-            <Button variant={"default"} size={"sm"}>
-              Previous
-            </Button>
-          </Link>
-        )}
-        {nextStepPath && (
-          <Link href={"/" + nextStepPath}>
-            <Button variant={"default"} size={"sm"}>
-              Next
-            </Button>
-          </Link>
-        )}
+        <span>
+          Chapter {chapterIndex + 1}: {chapterTitle}
+        </span>
       </div>
-    </>
+      <div>
+        <span>
+          Step {stepIndex + 1}: {metadata.title}
+        </span>
+      </div>
+      <Page />
+      <div className={styles.navigationBtnWrapper}>
+        <NavigationBtn path={previousStepPath} direction="prev" />
+        <NavigationBtn path={nextStepPath} direction="next" />
+      </div>
+    </div>
   );
 }
 export async function generateStaticParams() {

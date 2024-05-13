@@ -110,7 +110,7 @@ export default class ContentManager {
 
     return contentOutline;
   }
-  private getStepLocation(fullPath: string) {
+  public getStepLocation(fullPath: string) {
     const outline = this.getOutline();
     let chapterIndex = 0;
     let stepIndex = 0;

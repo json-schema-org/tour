@@ -1,0 +1,15 @@
+.navigationBtnWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  position: absolute;
+  bottom: 4px;
+  gap: 4px;
+}
+.wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
