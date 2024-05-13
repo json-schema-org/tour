@@ -63,7 +63,7 @@ export default class ContentManager {
     // check if outline.json exists
     if (!fs.existsSync(this.outlineJSONPath)) {
       throw new Error(
-        "Outline file does not exist. Run generateOutline script to generate outline.json"
+        "outline.json file does not exist. Run generateOutline script to generate outline.json"
       );
     }
     const outline = JSON.parse(
