@@ -1,8 +1,6 @@
 import React from "react";
-// import Page1, {
-//   metadata,
-// } from "@/content/01-introduction/01-why-json-schema.mdx";
-import ContentManager from "@/lib/contentManager";
+
+import { contentManager } from "@/lib/contentManager";
 import {
   List,
   ListItem,
@@ -11,9 +9,9 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import Link from "next/link";
-export default function Test() {
-  const cm = new ContentManager();
-  const outline = cm.outline;
+export default function OutlinePage() {
+  const outline = contentManager.getOutline();
+
   return (
     <div>
       <OrderedList>

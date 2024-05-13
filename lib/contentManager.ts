@@ -3,7 +3,6 @@ import { Chapter, ContentOutline } from "./types";
 import fs from "fs";
 import matter from "gray-matter";
 import { Metadata } from "./types";
-import next from "next";
 
 /* 
 
@@ -37,12 +36,23 @@ The content folder follows this structure:
 export default class ContentManager {
   private contentFolderPath: string = "./content";
   public contentFolderName: string = this.contentFolderPath.replace("./", "");
-  public outline: ContentOutline;
+
+  public outlineJSONPath: string = "./content/outline.json";
 
   private indexFileName = "index.mdx";
 
-  constructor() {
-    this.outline = this.generateOutline();
+  public getOutline() {
+    // check if outline.json exists
+    if (!fs.existsSync(this.outlineJSONPath)) {
+      throw new Error(
+        "Outline file does not exist. Run generateOutline script to generate outline.json"
+      );
+    }
+    const outline = JSON.parse(
+      fs.readFileSync(this.outlineJSONPath, "utf-8")
+    ) as ContentOutline;
+
+    return outline;
   }
 
   public parseMdxFile(relativeFilePath: string) {
@@ -57,7 +67,7 @@ export default class ContentManager {
     return { Page, metadata: data as Metadata };
   }
 
-  private generateOutline(): ContentOutline {
+  public generateOutline(): ContentOutline {
     const contentOutline: ContentOutline = [];
     const files = fs.readdirSync(this.contentFolderPath, {
       withFileTypes: true,
@@ -100,28 +110,53 @@ export default class ContentManager {
 
     return contentOutline;
   }
-
-  public getNextStep(activeStepPath: string): string {
-    const [chapterIndex, stepIndex] =
-      this.getChapterAndStepIndex(activeStepPath);
-    const nextStep =
-      this.outline[chapterIndex].steps[stepIndex].nextStepFullPath;
-    return nextStep as string;
-  }
-
-  public getChapterAndStepIndex(activeStepPath: string): [number, number] {
-    const [chapterIndex, stepIndex] = activeStepPath.split("/").map((index) => {
-      return parseInt(index.slice(0, 3), 10) - 1;
+  private getStepLocation(fullPath: string) {
+    const outline = this.getOutline();
+    let chapterIndex = 0;
+    let stepIndex = 0;
+    outline.forEach((chapter, index) => {
+      const step = chapter.steps.find((step) => step.fullPath === fullPath);
+      if (step) {
+        chapterIndex = index;
+        stepIndex = chapter.steps.indexOf(step);
+      }
     });
-
-    return [chapterIndex, stepIndex];
+    return { chapterIndex, stepIndex };
   }
 
-  public getStepPath(chapterIndex: number, stepIndex: number): string {
-    return `${this.outline[chapterIndex].steps[stepIndex].fullPath}`;
+  private removeMdxExtension(fileName: string) {
+    return fileName.replace(".mdx", "");
   }
 
-  public async dynamicImport() {}
+  public getNextStepPath(activeStepPath: string) {
+    const outline = this.getOutline();
+    const { chapterIndex, stepIndex } = this.getStepLocation(activeStepPath);
+    const chapter = outline[chapterIndex];
+    const nextStep = chapter.steps[stepIndex + 1];
+    if (nextStep) {
+      return this.removeMdxExtension(nextStep.fullPath);
+    }
+    const nextChapter = outline[chapterIndex + 1];
+    if (nextChapter) {
+      return this.removeMdxExtension(nextChapter.steps[0].fullPath);
+    }
+  }
+
+  public getPreviousStepPath(activeStepPath: string) {
+    const outline = this.getOutline();
+    const { chapterIndex, stepIndex } = this.getStepLocation(activeStepPath);
+    const chapter = outline[chapterIndex];
+    const previousStep = chapter.steps[stepIndex - 1];
+    if (previousStep) {
+      return this.removeMdxExtension(previousStep.fullPath);
+    }
+    const previousChapter = outline[chapterIndex - 1];
+    if (previousChapter) {
+      return this.removeMdxExtension(
+        previousChapter.steps[previousChapter.steps.length - 1].fullPath
+      );
+    }
+  }
 }
 
 const contentManager = new ContentManager();

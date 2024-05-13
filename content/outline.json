@@ -1,0 +1,34 @@
+[
+  {
+    "title": "introduction",
+    "folderName": "01-introduction",
+    "steps": [
+      {
+        "title": "Why json schema?",
+        "fileName": "01-why-json-schema.mdx",
+        "fullPath": "01-introduction/01-why-json-schema.mdx"
+      },
+      {
+        "title": "Modify an array",
+        "fileName": "02-modify-an-array.mdx",
+        "fullPath": "01-introduction/02-modify-an-array.mdx"
+      }
+    ]
+  },
+  {
+    "title": "types",
+    "folderName": "02-types",
+    "steps": [
+      {
+        "title": "Strings",
+        "fileName": "01-strings.mdx",
+        "fullPath": "02-types/01-strings.mdx"
+      },
+      {
+        "title": "Objects",
+        "fileName": "02-objects.mdx",
+        "fullPath": "02-types/02-objects.mdx"
+      }
+    ]
+  }
+]

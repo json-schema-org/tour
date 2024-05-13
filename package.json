@@ -2,9 +2,10 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "tsx ./scripts/generateOutline.ts && next dev ",
+    "build": "tsx ./scripts/generateOutline.ts && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -24,7 +25,8 @@
     "react": "^18",
     "react-dom": "^18",
     "remark-frontmatter": "^5.0.0",
-    "remark-mdx-frontmatter": "^4.0.0"
+    "remark-mdx-frontmatter": "^4.0.0",
+    "tsx": "^4.10.1"
   },
   "devDependencies": {
     "@types/node": "^20",
