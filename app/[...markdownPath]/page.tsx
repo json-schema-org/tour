@@ -34,9 +34,11 @@ export default async function Content({
 
   return (
     <div className={styles.wrapper}>
-      <Button size={"sm"} variant={"default"}>
-        <Link href="/outline">Back TO OUTLINE</Link>
-      </Button>
+      <Link href="/outline">
+        <Button size={"sm"} variant={"default"}>
+          Back TO OUTLINE
+        </Button>
+      </Link>
       <div>
         <span>
           Chapter {chapterIndex + 1}: {chapterTitle}
