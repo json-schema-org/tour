@@ -1,5 +1,6 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
-import { As, Heading } from "@chakra-ui/react";
+import { As, Heading, Link } from "@chakra-ui/react";
+
 import { MDXComponents } from "mdx/types";
 
 function createHeading(level: number): any {
@@ -27,7 +28,7 @@ function createHeading(level: number): any {
         as={`h${level}` as As}
         size={headingSizes[level]}
         lineHeight={"tall"}
-        letterSpacing={"tighter"}
+        letterSpacing={"tight"}
       >
         {children}
       </Heading>
@@ -45,7 +46,9 @@ export const components: MDXComponents = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
+  a: (props) => <Link {...props} style={{ color: "blue" }} target="_" />,
 };
+
 export function CustomMDX(props: MDXRemoteProps) {
   return (
     <MDXRemote

@@ -31,6 +31,9 @@ export default async function Content({
   const outline = contentManager.generateOutline();
 
   const { chapterIndex, stepIndex } = contentManager.getStepLocation(mdPath);
+  const totalChapters = contentManager.getTotalChapters();
+  const totalSteps = contentManager.getTotalSteps(chapterIndex);
+
   const chapterTitle = outline[chapterIndex].title;
 
   return (
@@ -42,12 +45,14 @@ export default async function Content({
       </Link>
       <div>
         <span>
-          Chapter {chapterIndex + 1}: {chapterTitle}
+          Chapter {chapterIndex + 1}: {chapterTitle} (
+          {((chapterIndex + 1) / totalChapters) * 100}%)
         </span>
       </div>
       <div>
         <span>
-          Step {stepIndex + 1}: {metadata.title}
+          Step {stepIndex + 1}: {metadata.title} (
+          {(stepIndex / totalSteps) * 100} %)
         </span>
       </div>
       <ContentViewer>

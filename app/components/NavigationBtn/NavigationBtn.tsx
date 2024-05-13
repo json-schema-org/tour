@@ -21,7 +21,7 @@ export default function NavigationBtn({
         router.push("/" + path);
       }}
     >
-      {direction === "next" ? "Next" : "Previous"}
+      {direction === "next" ? "NEXT" : "PREVIOUS"}
     </Button>
   );
 }

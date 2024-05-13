@@ -4,7 +4,7 @@
   border: 1px solid rgba(0, 0, 0, 0.334);
   border-radius: 16px;
   padding: 16px;
-  width: 50%;
+  max-width: max(50%, 800px);
   overflow-y: scroll;
   height: 100%;
 }

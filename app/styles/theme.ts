@@ -12,6 +12,9 @@ const Button = {
       bg: "hsl(var(--primary))",
       _hover: {
         bg: "hsl(var(--primary) / 0.8)",
+        _disabled: {
+          bg: "hsl(var(--primary) / 0.6)",
+        },
       },
       _active: {
         bg: "hsl(var(--primary) / 0.6)",

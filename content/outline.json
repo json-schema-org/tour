@@ -1,12 +1,12 @@
 [
   {
-    "title": "introduction",
+    "title": "Introduction",
     "folderName": "01-introduction",
     "steps": [
       {
-        "title": "Why json schema?",
-        "fileName": "01-why-json-schema.mdx",
-        "fullPath": "01-introduction/01-why-json-schema.mdx"
+        "title": "Welcome",
+        "fileName": "01-welcome.mdx",
+        "fullPath": "01-introduction/01-welcome.mdx"
       },
       {
         "title": "Modify an array",

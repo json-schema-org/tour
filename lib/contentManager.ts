@@ -157,6 +157,12 @@ export default class ContentManager {
       );
     }
   }
+  public getTotalChapters() {
+    return this.getOutline().length;
+  }
+  public getTotalSteps(chapterIndex: number) {
+    return this.getOutline()[chapterIndex].steps.length;
+  }
 }
 
 const contentManager = new ContentManager();
