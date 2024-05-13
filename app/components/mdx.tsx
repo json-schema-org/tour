@@ -1,5 +1,12 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
-import { As, Heading, Link } from "@chakra-ui/react";
+import {
+  As,
+  Heading,
+  Link,
+  ListItem,
+  OrderedList,
+  UnorderedList,
+} from "@chakra-ui/react";
 
 import { MDXComponents } from "mdx/types";
 
@@ -47,6 +54,9 @@ export const components: MDXComponents = {
   h5: createHeading(5),
   h6: createHeading(6),
   a: (props) => <Link {...props} style={{ color: "blue" }} target="_" />,
+  ul: (props) => <UnorderedList {...props} />,
+  ol: (props) => <OrderedList {...props} />,
+  li: (props) => <ListItem {...props} />,
 };
 
 export function CustomMDX(props: MDXRemoteProps) {
