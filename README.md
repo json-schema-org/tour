@@ -86,4 +86,6 @@ the content of each step is stored in the `/content` directory with the followin
 
 ```
 
+> ### ⚠️ When you add new files to the `/content` directory, you'll need to restart the development server to see the changes.
+
 The instructions.mdx file holds the content the users sees, and the code.ts file holds template code and the logic to validate user provided schemas
