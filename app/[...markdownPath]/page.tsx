@@ -20,7 +20,7 @@ export default async function Content({
   const nextStepPath = contentManager.getNextStepPath(urlPath);
 
   const previousStepPath = contentManager.getPreviousStepPath(urlPath);
-  const outline = contentManager.generateOutline();
+  const outline = contentManager.getOutline();
 
   const { chapterIndex, stepIndex } = contentManager.getStepLocation(urlPath);
   const totalChapters = contentManager.getTotalChapters();
