@@ -1,12 +1,28 @@
-# JSON Schema Repository Template
+# Tour of JSON Schema
 
-You've stumbled upon our template repository.  The sole purpose of this repository is to make creating new repositories easier.
+This repository contains the code for the Tour of JSON Schema project.
+https://json-schema-org.github.io/tour
 
-# Using the template
+# Development
 
-1. Follow the [Github instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) to create your repo.
-2. Update _README.md_ to be project-specific rather than this file.
-3. Update _CONTRIBUTING.md_ with any additional or project-specific guidelines.
-4. Update your new repo settings, if desired.  This repo sets:
-   - Require PRs for changes to `main`
-   - Require an approval for all PRs
+The project is built using next.js.
+
+after cloning the repository, create a `.env` file in the root of the project with the following content:
+
+```python
+MODE = "local"
+```
+
+Then run the following command to install the dependencies:
+
+```bash
+yarn install
+```
+
+To start the development server, run the following command:
+
+```bash
+yarn dev
+```
+
+> when you run `yarn dev`, a file named `outline.json` will be created in th `/content` directory. This file is used to generate the table of contents for the website.
