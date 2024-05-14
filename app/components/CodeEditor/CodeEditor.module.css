@@ -1,0 +1,9 @@
+.codeEditor {
+  height: 100%;
+
+  border-radius: 5px;
+  flex: 1;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.334);
+  border-radius: 16px;
+}

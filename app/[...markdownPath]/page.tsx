@@ -47,7 +47,7 @@ export default async function Content({
           {((stepIndex + 1) / totalSteps) * 100} %)
         </span>
       </div>
-      <Flex dir="row" height={"100%"}>
+      <Flex dir="row" height={"100%"} gap={"8px"}>
         <ContentViewer>
           <Page />
         </ContentViewer>
