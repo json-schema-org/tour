@@ -12,6 +12,7 @@ export default function NavigationBtn({
   direction: "next" | "prev";
 }) {
   const router = useRouter();
+  console.log(path);
   return (
     <Button
       variant={"default"}

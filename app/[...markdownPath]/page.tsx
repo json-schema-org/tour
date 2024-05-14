@@ -13,25 +13,16 @@ export default async function Content({
 }: {
   params: { markdownPath: string[] };
 }) {
-  const mdPath = params.markdownPath.join("/") + ".mdx";
+  const urlPath = params.markdownPath.join("/");
+  const mdPath = contentManager.getInstructionsPath(urlPath);
+
   const { Page, metadata } = contentManager.parseMdxFile(mdPath);
+  const nextStepPath = contentManager.getNextStepPath(urlPath);
 
-  // const folderName = contentManager.contentFolderName;
-  // const file = await import(
-  //   `./../../../${folderName}/${params.path.join("/")}.mdx`
-  // );
-  // console.log(file.data);
-  //   console.log(
-  //     contentManager.getNextStep(params.markdownPath.join("/") + ".mdx"),
-  //     "next step"
-  //   );
-
-  const nextStepPath = contentManager.getNextStepPath(mdPath);
-
-  const previousStepPath = contentManager.getPreviousStepPath(mdPath);
+  const previousStepPath = contentManager.getPreviousStepPath(urlPath);
   const outline = contentManager.generateOutline();
 
-  const { chapterIndex, stepIndex } = contentManager.getStepLocation(mdPath);
+  const { chapterIndex, stepIndex } = contentManager.getStepLocation(urlPath);
   const totalChapters = contentManager.getTotalChapters();
   const totalSteps = contentManager.getTotalSteps(chapterIndex);
 
@@ -61,7 +52,7 @@ export default async function Content({
           <Page />
         </ContentViewer>
 
-        <CodeEditor mdPath={mdPath} />
+        <CodeEditor urlPath={urlPath} />
       </Flex>
       <div className={styles.navigationBtnWrapper}>
         <NavigationBtn path={previousStepPath} direction="prev" />
@@ -77,9 +68,10 @@ export async function generateStaticParams() {
   outline.map((item) => {
     item.steps.map((step) => {
       pathList.push({
-        markdownPath: [item.folderName, step.fileName.replaceAll(".mdx", "")],
+        markdownPath: [item.folderName, step.fileName],
       });
     });
   });
+
   return pathList;
 }

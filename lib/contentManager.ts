@@ -21,35 +21,26 @@ import { Metadata } from "./types";
 
 The content folder follows this structure:
 
+
 ├── 01-introduction
-|   ├── index.mdx
-│   ├── 01-welcome.mdx
-│   ├── 02-what-is-react.mdx
+│   ├── index.mdx
+│   ├── 01-welcome
+│       ├── instructions.mdx
+│       ├── code.ts
+│   ├── 02-what-is-json-schema
+│       ├── instructions.mdx
+│       ├── code.ts
 ├── 02-types
 │   ├── index.mdx
-│   ├── 01-primitive-types.mdx
-│   ├── 02-arrays.mdx
-├─
+│   ├── 01-primitive-types
+│       ├── instructions.mdx
+│       ├── code.ts
+│   ├── 02-arrays
+│       ├── instructions.mdx
+│       ├── code.ts
+
 
 */
-
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-  let match = frontmatterRegex.exec(fileContent);
-  let frontMatterBlock = match![1];
-  let content = fileContent.replace(frontmatterRegex, "").trim();
-  let frontMatterLines = frontMatterBlock.trim().split("\n");
-  let metadata: Partial<Metadata> = {};
-
-  frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(": ");
-    let value = valueArr.join(": ").trim();
-    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
-  });
-
-  return { metadata: metadata as Metadata, content };
-}
 
 export default class ContentManager {
   private contentFolderPath: string = "./content";
@@ -58,6 +49,8 @@ export default class ContentManager {
   public outlineJSONPath: string = "./content/outline.json";
 
   private indexFileName = "index.mdx";
+  public instructionsFileName = "instructions.mdx";
+  public codeFileName = "code.ts";
 
   public getOutline() {
     // check if outline.json exists
@@ -73,11 +66,8 @@ export default class ContentManager {
     return outline;
   }
 
-  public parseMdxFile(relativeFilePath: string) {
-    const file = fs.readFileSync(
-      this.contentFolderPath + "/" + relativeFilePath,
-      "utf-8"
-    );
+  public parseMdxFile(fullFilePath: string) {
+    const file = fs.readFileSync(fullFilePath, "utf-8");
 
     const { content, data } = matter(file);
     const Page = () => CustomMDX({ source: content });
@@ -94,7 +84,7 @@ export default class ContentManager {
     files.forEach((file, chapterNumber) => {
       if (file.isDirectory()) {
         const { metadata } = this.parseMdxFile(
-          `${file.name}/${this.indexFileName}`
+          `${this.contentFolderName}/${file.name}/${this.indexFileName}`
         );
 
         const chapter: Chapter = {
@@ -111,7 +101,7 @@ export default class ContentManager {
         );
         chapterFiles.forEach((chapterFile, stepNumber) => {
           const { metadata } = this.parseMdxFile(
-            `${file.name}/${chapterFile.name}`
+            `${this.contentFolderName}/${file.name}/${chapterFile.name}/${this.instructionsFileName}`
           );
 
           const step = {
@@ -121,7 +111,6 @@ export default class ContentManager {
           };
           chapter.steps.push(step);
         });
-
         contentOutline.push(chapter);
       }
     });
@@ -152,11 +141,11 @@ export default class ContentManager {
     const chapter = outline[chapterIndex];
     const nextStep = chapter.steps[stepIndex + 1];
     if (nextStep) {
-      return this.removeMdxExtension(nextStep.fullPath);
+      return nextStep.fullPath;
     }
     const nextChapter = outline[chapterIndex + 1];
     if (nextChapter) {
-      return this.removeMdxExtension(nextChapter.steps[0].fullPath);
+      return nextChapter.steps[0].fullPath;
     }
   }
 
@@ -166,13 +155,11 @@ export default class ContentManager {
     const chapter = outline[chapterIndex];
     const previousStep = chapter.steps[stepIndex - 1];
     if (previousStep) {
-      return this.removeMdxExtension(previousStep.fullPath);
+      return previousStep.fullPath;
     }
     const previousChapter = outline[chapterIndex - 1];
     if (previousChapter) {
-      return this.removeMdxExtension(
-        previousChapter.steps[previousChapter.steps.length - 1].fullPath
-      );
+      return previousChapter.steps[previousChapter.steps.length - 1].fullPath;
     }
   }
   public getTotalChapters() {
@@ -180,6 +167,12 @@ export default class ContentManager {
   }
   public getTotalSteps(chapterIndex: number) {
     return this.getOutline()[chapterIndex].steps.length;
+  }
+  public getInstructionsPath(urlPath: string) {
+    return `${this.contentFolderName}/${urlPath}/${this.instructionsFileName}`;
+  }
+  public getCodePath(urlPath: string) {
+    return `${this.contentFolderName}/${urlPath}/${this.codeFileName}`;
   }
 }
 

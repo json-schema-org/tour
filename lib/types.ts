@@ -17,3 +17,7 @@ export type ContentOutline = Chapter[];
 export type Metadata = {
   title: string;
 };
+
+export type CodeFile = {
+  code: Object;
+};

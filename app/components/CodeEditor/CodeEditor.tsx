@@ -1,21 +1,26 @@
 import { contentManager } from "@/lib/contentManager";
+import { CodeFile } from "@/lib/types";
 import fs from "fs";
 
-export default function CodeEditor({ mdPath }: { mdPath: string }) {
+type moduleExports = {
+  exports: CodeFile;
+};
+
+export default function CodeEditor({ urlPath }: { urlPath: string }) {
   const folderName = contentManager.contentFolderName;
-  const path = `./${folderName}/${mdPath}`.replace(".mdx", ".ts");
-  console.log(path);
+  const path = `./${folderName}/${urlPath}/${contentManager.codeFileName}`;
   const fileContent = fs.readFileSync(path, "utf-8");
-  console.log(fileContent);
   const dynmicFunction = new Function("module", fileContent);
-  const moduleExports = {};
+  const moduleExports: {} | moduleExports = {};
   dynmicFunction(moduleExports);
-  moduleExports.exports.validationLogicFunction();
-  console.log(moduleExports);
+  const { exports } = moduleExports as moduleExports;
+  const code = exports.code;
+
+  console.log();
   //   const ast = parser.parse(fileContent, {
   //     sourceType: "module",
   //     plugins: ["jsx"],
   //   });
 
-  return <div>CodeEditor</div>;
+  return <div>{JSON.stringify(code, null, 2)}</div>;
 }
