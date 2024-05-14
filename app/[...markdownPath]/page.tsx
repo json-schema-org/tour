@@ -14,7 +14,7 @@ export default async function Content({
   params: { markdownPath: string[] };
 }) {
   const urlPath = params.markdownPath.join("/");
-  const mdPath = contentManager.getInstructionsPath(urlPath);
+  const mdPath = contentManager.getInstructionsFilePath(urlPath);
 
   const { Page, metadata } = contentManager.parseMdxFile(mdPath);
   const nextStepPath = contentManager.getNextStepPath(urlPath);

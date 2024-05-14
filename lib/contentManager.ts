@@ -6,17 +6,13 @@ import { Metadata } from "./types";
 
 /* 
 
- - the content is stored in the content folder
- - this contentManager object will generate a outline of type ContentOutline
- - it will keep track of the active chapter and step
- - return full path of the active step
- - return the next step
- - return the previous step
- - return the next chapter
- - return the previous chapter
- - change the active chapter
- - change the active step
- - parse a mdx file and return component and metadata using gray-matter
+This class has the following responsibilities:
+- Read the content folder and generate an outline.json file
+- Read the outline.json file and return the outline
+- Parse an MDX file and return the content and metadata
+- Get the next and previous step path
+- Get the total number of chapters and steps
+- Get the instructions and code file path
 
 
 The content folder follows this structure:
@@ -131,10 +127,6 @@ export default class ContentManager {
     return { chapterIndex, stepIndex };
   }
 
-  private removeMdxExtension(fileName: string) {
-    return fileName.replace(".mdx", "");
-  }
-
   public getNextStepPath(activeStepPath: string) {
     const outline = this.getOutline();
     const { chapterIndex, stepIndex } = this.getStepLocation(activeStepPath);
@@ -168,10 +160,10 @@ export default class ContentManager {
   public getTotalSteps(chapterIndex: number) {
     return this.getOutline()[chapterIndex].steps.length;
   }
-  public getInstructionsPath(urlPath: string) {
+  public getInstructionsFilePath(urlPath: string) {
     return `${this.contentFolderName}/${urlPath}/${this.instructionsFileName}`;
   }
-  public getCodePath(urlPath: string) {
+  public getCodeFilePath(urlPath: string) {
     return `${this.contentFolderName}/${urlPath}/${this.codeFileName}`;
   }
 }
