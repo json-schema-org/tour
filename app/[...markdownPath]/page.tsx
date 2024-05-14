@@ -35,18 +35,17 @@ export default async function Content({
           Back TO OUTLINE
         </Button>
       </Link>
-      <div>
+      <Flex gap={4}>
         <span>
           Chapter {chapterIndex + 1}: {chapterTitle} (
           {((chapterIndex + 1) / totalChapters) * 100}%)
         </span>
-      </div>
-      <div>
+
         <span>
           Step {stepIndex + 1}: {metadata.title} (
           {((stepIndex + 1) / totalSteps) * 100} %)
         </span>
-      </div>
+      </Flex>
       <Flex dir="row" height={"100%"} gap={"8px"}>
         <ContentViewer>
           <Page />
