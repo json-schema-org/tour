@@ -22,7 +22,7 @@ export default function CodeEditor({ urlPath }: { urlPath: string }) {
 
   return (
     <div className={styles.codeEditor}>
-      <SyntaxHighlighter language="javascript" style={tomorrow}>
+      <SyntaxHighlighter language="json" style={tomorrow}>
         {codeString}
       </SyntaxHighlighter>
     </div>
