@@ -1,6 +1,13 @@
 const code = {
-  title: "Welcome to the course!",
-  content: "this is the content",
+  type: "object",
+  properties: {
+    name: {
+      type: "string",
+    },
+    age: {
+      type: "number",
+    },
+  },
 };
 
 function validationLogicFunction() {
