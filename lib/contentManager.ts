@@ -1,4 +1,3 @@
-import { CustomMDX } from "@/app/components/mdx";
 import { Chapter, ContentOutline } from "./types";
 import fs from "fs";
 import matter from "gray-matter";
@@ -62,13 +61,12 @@ export default class ContentManager {
     return outline;
   }
 
-  public parseMdxFile(fullFilePath: string) {
+  public parseMdxMetadata(fullFilePath: string) {
     const file = fs.readFileSync(fullFilePath, "utf-8");
 
     const { content, data } = matter(file);
-    const Page = () => CustomMDX({ source: content });
 
-    return { Page, metadata: data as Metadata };
+    return { metadata: data as Metadata };
   }
 
   public generateOutline(): ContentOutline {
@@ -79,7 +77,7 @@ export default class ContentManager {
 
     files.forEach((file, chapterNumber) => {
       if (file.isDirectory()) {
-        const { metadata } = this.parseMdxFile(
+        const { metadata } = this.parseMdxMetadata(
           `${this.contentFolderName}/${file.name}/${this.indexFileName}`
         );
 
@@ -96,7 +94,7 @@ export default class ContentManager {
           (file) => file.name !== this.indexFileName
         );
         chapterFiles.forEach((chapterFile, stepNumber) => {
-          const { metadata } = this.parseMdxFile(
+          const { metadata } = this.parseMdxMetadata(
             `${this.contentFolderName}/${file.name}/${chapterFile.name}/${this.instructionsFileName}`
           );
 

@@ -7,6 +7,7 @@ import { Button, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import ContentViewer from "../components/ContentViewer/ContentViewer";
 import CodeEditor from "../components/CodeEditor/CodeEditor";
+import { parseMdxFile } from "@/lib/functions";
 
 export default async function Content({
   params,
@@ -16,7 +17,7 @@ export default async function Content({
   const urlPath = params.markdownPath.join("/");
   const mdPath = contentManager.getInstructionsFilePath(urlPath);
 
-  const { Page, metadata } = contentManager.parseMdxFile(mdPath);
+  const { Page, metadata } = parseMdxFile(mdPath);
   const nextStepPath = contentManager.getNextStepPath(urlPath);
 
   const previousStepPath = contentManager.getPreviousStepPath(urlPath);
