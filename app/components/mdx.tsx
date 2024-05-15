@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { MDXComponents } from "mdx/types";
+import CodeSnippet from "./CodeSnippet/CodeSnippet";
 
 function createHeading(level: number): any {
   const headingSizes: {
@@ -37,7 +38,7 @@ function createHeading(level: number): any {
         lineHeight={"tall"}
         letterSpacing={"tight"}
       >
-        {children}
+        {children?.toString()}
       </Heading>
     );
   };
@@ -57,6 +58,7 @@ export const components: MDXComponents = {
   ul: (props) => <UnorderedList {...props} />,
   ol: (props) => <OrderedList {...props} />,
   li: (props) => <ListItem {...props} />,
+  code: (props: any) => <CodeSnippet {...props} />,
 };
 
 export function CustomMDX(props: MDXRemoteProps) {
