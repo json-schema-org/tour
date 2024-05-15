@@ -15,11 +15,11 @@ function createHeading(level: number): any {
   const headingSizes: {
     [key: number]: string;
   } = {
-    1: "2xl",
-    2: "xl",
-    3: "lg",
-    4: "md",
-    5: "sm",
+    1: "xl",
+    2: "lg",
+    3: "md",
+    4: "sm",
+    5: "xs",
     6: "xs",
   };
   if (level < 1 || level > 6) {
