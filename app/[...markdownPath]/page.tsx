@@ -54,7 +54,7 @@ export default async function Content({
           <Page />
         </ContentViewer>
 
-        {/* <CodeEditor urlPath={urlPath} /> */}
+        <CodeEditor urlPath={urlPath} />
       </Flex>
       <div className={styles.navigationBtnWrapper}>
         <NavigationBtn path={previousStepPath} direction="prev" />
