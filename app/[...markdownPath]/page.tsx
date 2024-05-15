@@ -31,28 +31,30 @@ export default async function Content({
 
   return (
     <div className={styles.wrapper}>
-      <Link href="/outline">
-        <Button size={"sm"} variant={"default"}>
-          Back TO OUTLINE
-        </Button>
-      </Link>
-      <Flex gap={4}>
-        <span>
-          Chapter {chapterIndex + 1}: {chapterTitle} (
-          {((chapterIndex + 1) / totalChapters) * 100}%)
-        </span>
+      <div>
+        <Link href="/outline">
+          <Button size={"sm"} variant={"default"}>
+            Back TO OUTLINE
+          </Button>
+        </Link>
+        <Flex gap={4}>
+          <span>
+            Chapter {chapterIndex + 1}: {chapterTitle} (
+            {((chapterIndex + 1) / totalChapters) * 100}%)
+          </span>
 
-        <span>
-          Step {stepIndex + 1}: {metadata.title} (
-          {((stepIndex + 1) / totalSteps) * 100} %)
-        </span>
-      </Flex>
-      <Flex dir="row" height={"100%"} gap={"8px"}>
+          <span>
+            Step {stepIndex + 1}: {metadata.title} (
+            {((stepIndex + 1) / totalSteps) * 100} %)
+          </span>
+        </Flex>
+      </div>
+      <Flex dir="row" height={"inherit"} gap={"8px"}>
         <ContentViewer>
           <Page />
         </ContentViewer>
 
-        <CodeEditor urlPath={urlPath} />
+        {/* <CodeEditor urlPath={urlPath} /> */}
       </Flex>
       <div className={styles.navigationBtnWrapper}>
         <NavigationBtn path={previousStepPath} direction="prev" />

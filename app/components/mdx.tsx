@@ -35,8 +35,8 @@ function createHeading(level: number): any {
       <Heading
         as={`h${level}` as As}
         size={headingSizes[level]}
-        lineHeight={"tall"}
-        letterSpacing={"tight"}
+        lineHeight={"tallest"}
+        letterSpacing={"tighter"}
       >
         {children?.toString()}
       </Heading>
