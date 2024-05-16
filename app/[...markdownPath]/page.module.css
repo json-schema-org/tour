@@ -1,9 +1,9 @@
 .navigationBtnWrapper {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 
-  position: absolute;
+  /* position: absolute; */
   bottom: 8px;
   left: 8px;
   gap: 4px;

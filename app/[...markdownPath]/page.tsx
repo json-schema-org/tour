@@ -32,11 +32,15 @@ export default async function Content({
   return (
     <div className={styles.wrapper}>
       <div>
-        <Link href="/outline">
-          <Button size={"sm"} variant={"default"}>
-            Back TO OUTLINE
-          </Button>
-        </Link>
+        <div className={styles.navigationBtnWrapper}>
+          <Link href="/outline">
+            <Button size={"sm"} variant={"default"}>
+              Back TO OUTLINE
+            </Button>
+          </Link>
+          <NavigationBtn path={previousStepPath} direction="prev" />
+          <NavigationBtn path={nextStepPath} direction="next" />
+        </div>
         <Flex gap={4}>
           <span>
             Chapter {chapterIndex + 1}: {chapterTitle} (
@@ -56,10 +60,6 @@ export default async function Content({
 
         <CodeEditor urlPath={urlPath} />
       </Flex>
-      <div className={styles.navigationBtnWrapper}>
-        <NavigationBtn path={previousStepPath} direction="prev" />
-        <NavigationBtn path={nextStepPath} direction="next" />
-      </div>
     </div>
   );
 }
