@@ -1,6 +1,5 @@
 ---
-title: Why JSON Schema?
-
+title: Your First Schema 
 ---
 
 
@@ -18,7 +17,7 @@ When you are working with JSON data, you may want to ensure that your json data 
 <br/>
 This is where JSON Schema can help you. JSON Schema is a vocabulary that allows you to annotate and validate JSON documents.
 
-## Let's Start Simple 
+## First Schema 
 We will start with a simple example.
 Consider you have a json document like this:
 ```json
@@ -27,23 +26,13 @@ Consider you have a json document like this:
   "age": 25
 }
 ```
-We can see that the this json document has two properties: `name` and `age`.
+ This json document has two properties:
+ - `name` with value `John Doe` (string)
+ - `age` with value `25` (number)
 
-Name is a string and age is a number.
+<br/>
+You are given an incomplete schema for this data in the editor. 
+Add `age` property to the schema and set `type` to `number`. 
+Press Validate 
 
-We can write a JSON Schema for this json document like this:
-```json
-{
-  "type": "object",
-  "properties": {
-	"name": {
-	  "type": "string"
-	},
-	"age": {
-	  "type": "number"
-	}
-  }
-}
-``` 
-
-You are give this JSON Schema in the editor. Change the value of `type` to `string` for the `age` property, and click validate to see if the JSON document is valid or not.
+<br/>

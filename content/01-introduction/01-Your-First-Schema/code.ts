@@ -6,9 +6,6 @@ const code = {
     name: {
       type: "string",
     },
-    age: {
-      type: "number",
-    },
   },
 };
 
