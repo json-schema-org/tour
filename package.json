@@ -4,10 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    
-	"next-dev":"next dev",
-	"content-watch":"nodemon --ext ts,mdx --watch ./content --ignore ./content/outline.json  --exec \"tsx ./scripts/generateOutline.ts\"",
-	"dev": "concurrently \"yarn run next-dev\" \"yarn run content-watch\"",
+    "next-dev": "next dev",
+    "content-watch": "nodemon --ext ts,mdx --watch ./content --ignore ./content/outline.json  --exec \"tsx ./scripts/generateOutline.ts\"",
+    "dev": "concurrently \"yarn run next-dev\" \"yarn run content-watch\"",
     "build": "tsx ./scripts/generateOutline.ts && next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,6 +18,7 @@
     "@emotion/styled": "^11.11.5",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
+    "@monaco-editor/react": "^4.6.0",
     "@next/mdx": "^14.2.3",
     "@types/mdx": "^2.0.13",
     "classnames": "^2.5.1",
@@ -39,6 +39,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "nodemon": "^3.1.0",

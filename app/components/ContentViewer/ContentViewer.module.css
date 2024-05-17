@@ -1,11 +1,21 @@
-.contentWrapper {
+.content {
   display: flex;
   flex-direction: column;
+
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 4px;
+}
+.contentWrapper {
   border: 1px solid rgba(0, 0, 0, 0.334);
   border-radius: 16px;
+
   padding: 16px;
-  max-width: max(50%, 800px);
-  overflow-y: auto;
+  padding-right: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   height: 100%;
   flex: 1;
+  height: 100%;
 }

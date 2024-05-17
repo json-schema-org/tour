@@ -1,4 +1,4 @@
-import { Chapter, ContentOutline } from "./types";
+import { Chapter, CodeFileExports, ContentOutline } from "./types";
 import fs from "fs";
 import matter from "gray-matter";
 import { Metadata } from "./types";
@@ -163,6 +163,40 @@ export default class ContentManager {
   }
   public getCodeFilePath(urlPath: string) {
     return `${this.contentFolderName}/${urlPath}/${this.codeFileName}`;
+  }
+  public getCodeFileExports(urlPath: string) {
+    const path = this.getCodeFilePath(urlPath);
+    const fileContent = fs.readFileSync(path, "utf-8");
+    const dynmicFunction = new Function("module", fileContent);
+    const moduleExports: {} | CodeFileExports = {};
+    dynmicFunction(moduleExports);
+
+    return (moduleExports as CodeFileExports).exports;
+  }
+  public getPageMeta(urlPath: string) {
+    const nextStepPath = this.getNextStepPath(urlPath);
+
+    const previousStepPath = this.getPreviousStepPath(urlPath);
+    const outline = this.getOutline();
+
+    const { chapterIndex, stepIndex } = this.getStepLocation(urlPath);
+    const totalChapters = this.getTotalChapters();
+    const totalSteps = this.getTotalSteps(chapterIndex);
+    const mdPath = this.getInstructionsFilePath(urlPath);
+    const chapterTitle = outline[chapterIndex].title;
+    const codeFile = this.getCodeFileExports(urlPath);
+
+    return {
+      nextStepPath,
+      previousStepPath,
+      chapterIndex,
+      stepIndex,
+      totalChapters,
+      totalSteps,
+      mdPath,
+      chapterTitle,
+      codeFile,
+    };
   }
 }
 

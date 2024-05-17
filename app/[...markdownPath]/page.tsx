@@ -15,19 +15,19 @@ export default async function Content({
   params: { markdownPath: string[] };
 }) {
   const urlPath = params.markdownPath.join("/");
-  const mdPath = contentManager.getInstructionsFilePath(urlPath);
 
+  const {
+    chapterIndex,
+    chapterTitle,
+    mdPath,
+    nextStepPath,
+    previousStepPath,
+    stepIndex,
+    totalChapters,
+    totalSteps,
+    codeFile,
+  } = contentManager.getPageMeta(urlPath);
   const { Page, metadata } = parseMdxFile(mdPath);
-  const nextStepPath = contentManager.getNextStepPath(urlPath);
-
-  const previousStepPath = contentManager.getPreviousStepPath(urlPath);
-  const outline = contentManager.getOutline();
-
-  const { chapterIndex, stepIndex } = contentManager.getStepLocation(urlPath);
-  const totalChapters = contentManager.getTotalChapters();
-  const totalSteps = contentManager.getTotalSteps(chapterIndex);
-
-  const chapterTitle = outline[chapterIndex].title;
 
   return (
     <div className={styles.wrapper}>
@@ -58,7 +58,7 @@ export default async function Content({
         <ContentViewer>
           <Page />
         </ContentViewer>
-        <CodeEditor urlPath={urlPath} />
+        <CodeEditor code={codeFile.code} />
       </div>
     </div>
   );

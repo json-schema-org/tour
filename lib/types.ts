@@ -21,3 +21,6 @@ export type Metadata = {
 export type CodeFile = {
   code: Object;
 };
+export type CodeFileExports = {
+  exports: CodeFile;
+};

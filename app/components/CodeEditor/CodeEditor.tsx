@@ -1,36 +1,17 @@
-import { contentManager } from "@/lib/contentManager";
+"use client";
 import { CodeFile } from "@/lib/types";
-import fs from "fs";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
 import styles from "./CodeEditor.module.css";
 import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
+import Editor from "@monaco-editor/react";
 
-type moduleExports = {
-  exports: CodeFile;
-};
-
-export default function CodeEditor({ urlPath }: { urlPath: string }) {
-  const folderName = contentManager.contentFolderName;
-  const path = `./${folderName}/${urlPath}/${contentManager.codeFileName}`;
-  const fileContent = fs.readFileSync(path, "utf-8");
-  const dynmicFunction = new Function("module", fileContent);
-  const moduleExports: {} | moduleExports = {};
-  dynmicFunction(moduleExports);
-  const { exports } = moduleExports as moduleExports;
-  const code = exports.code;
+export default function CodeEditor({ code }: { code: Object }) {
   const codeString = JSON.stringify(code, null, 2);
-
+  console.log(codeString);
   return (
     <div className={ctx(styles.codeEditor, GeistMono.className)}>
-      <SyntaxHighlighter
-        language="json"
-        style={tomorrow}
-        className={GeistMono.className}
-      >
-        {codeString}
-      </SyntaxHighlighter>
+      <Editor language="jsonc" defaultValue={codeString} />
     </div>
   );
 }
