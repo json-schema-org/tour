@@ -31,7 +31,7 @@ export default async function Content({
 
   return (
     <div className={styles.wrapper}>
-      <div>
+      <div className={styles.navBar}>
         <div className={styles.navigationBtnWrapper}>
           <Link href="/outline">
             <Button size={"sm"} variant={"default"}>
@@ -41,7 +41,7 @@ export default async function Content({
           <NavigationBtn path={previousStepPath} direction="prev" />
           <NavigationBtn path={nextStepPath} direction="next" />
         </div>
-        <Flex gap={4}>
+        <Flex gap={4} height={"100%"}>
           <span>
             Chapter {chapterIndex + 1}: {chapterTitle} (
             {((chapterIndex + 1) / totalChapters) * 100}%)
@@ -53,13 +53,13 @@ export default async function Content({
           </span>
         </Flex>
       </div>
-      <Flex dir="row" height={"inherit"} gap={"8px"}>
+
+      <div className={styles.mainArea}>
         <ContentViewer>
           <Page />
         </ContentViewer>
-
         <CodeEditor urlPath={urlPath} />
-      </Flex>
+      </div>
     </div>
   );
 }

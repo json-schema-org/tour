@@ -7,11 +7,25 @@
   bottom: 8px;
   left: 8px;
   gap: 4px;
+  height: 100%;
 }
 .wrapper {
   height: 100%;
-  position: relative;
+
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.mainArea {
+  display: flex;
+  flex-direction: row;
+  flex: 9;
+  height: 100%;
+  overflow-y: auto;
+  gap: 8px;
+}
+.navBar {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }

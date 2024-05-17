@@ -1,6 +1,5 @@
 .codeEditor {
-  height: 100%;
-
+  overflow-y: auto;
   border-radius: 5px;
   flex: 1;
   padding: 8px;

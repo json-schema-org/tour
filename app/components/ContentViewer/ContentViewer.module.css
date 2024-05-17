@@ -5,7 +5,7 @@
   border-radius: 16px;
   padding: 16px;
   max-width: max(50%, 800px);
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   flex: 1;
 }
