@@ -10,6 +10,7 @@ import {
 
 import { MDXComponents } from "mdx/types";
 import CodeSnippet from "./CodeSnippet/CodeSnippet";
+import InfoBox from "./InfoBox";
 
 function createHeading(level: number): any {
   const headingSizes: {
@@ -61,11 +62,18 @@ export const components: MDXComponents = {
   code: (props: any) => <CodeSnippet {...props} />,
 };
 
+const customComponents = {
+  InfoBox,
+};
 export function CustomMDX(props: MDXRemoteProps) {
   return (
     <MDXRemote
       {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      components={{
+        ...components,
+        ...(props.components || {}),
+        ...customComponents,
+      }}
     />
   );
 }
