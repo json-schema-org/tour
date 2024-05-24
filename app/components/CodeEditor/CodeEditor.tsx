@@ -8,7 +8,6 @@ import Editor from "@monaco-editor/react";
 
 export default function CodeEditor({ code }: { code: Object }) {
   const codeString = JSON.stringify(code, null, 2);
-  console.log(codeString);
   return (
     <div className={ctx(styles.codeEditor, GeistMono.className)}>
       <Editor language="jsonc" defaultValue={codeString} />

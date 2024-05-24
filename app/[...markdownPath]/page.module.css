@@ -19,7 +19,7 @@
 .mainArea {
   display: flex;
   flex-direction: row;
-  flex: 9;
+  flex: 12;
   height: 100%;
   overflow-y: auto;
   gap: 8px;
@@ -27,5 +27,8 @@
 .navBar {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  height: min-content;
+  gap: 16px;
+  align-items: center;
 }

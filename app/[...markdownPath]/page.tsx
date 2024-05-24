@@ -3,11 +3,13 @@ import styles from "./page.module.css";
 
 import React, { Suspense } from "react";
 import NavigationBtn from "../components/NavigationBtn";
-import { Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import ContentViewer from "../components/ContentViewer/ContentViewer";
 import CodeEditor from "../components/CodeEditor/CodeEditor";
 import { parseMdxFile } from "@/lib/functions";
+import Output from "../components/Output/Output";
+import EditorNOutput from "../components/EditorNOutput/EditorNOutput";
 
 export default async function Content({
   params,
@@ -41,7 +43,7 @@ export default async function Content({
           <NavigationBtn path={previousStepPath} direction="prev" />
           <NavigationBtn path={nextStepPath} direction="next" />
         </div>
-        <Flex gap={4} height={"100%"}>
+        <Flex gap={4}>
           <span>
             Chapter {chapterIndex + 1}: {chapterTitle} (
             {((chapterIndex + 1) / totalChapters) * 100}%)
@@ -58,7 +60,7 @@ export default async function Content({
         <ContentViewer>
           <Page />
         </ContentViewer>
-        <CodeEditor code={codeFile.code} />
+        <EditorNOutput codeFile={codeFile} />
       </div>
     </div>
   );
