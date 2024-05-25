@@ -3,10 +3,11 @@ import Ajv from "ajv/dist/2020.js";
 import betterAjvErrors from "better-ajv-errors";
 export function ajv(data: any, schema: any) {
   const ajv = new Ajv({ allErrors: true, verbose: true }); // options can be passed, e.g. {allErrors: true}
-
   const validate = ajv.compile(schema);
   const valid = validate(data);
-  const errors = betterAjvErrors(schema, data, validate.errors);
+  const errors = betterAjvErrors(schema, data, validate.errors, {
+    indent: 2,
+  });
   return { valid, errors };
 
   //   {
