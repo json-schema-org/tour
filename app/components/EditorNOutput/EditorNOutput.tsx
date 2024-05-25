@@ -43,13 +43,16 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
         className={styles.validateBtn}
         variant={"default"}
         onClick={validateCode}
+        size={"sm"}
+        width={"min-content"}
+        alignSelf={"flex-end"}
       >
         Validate
       </Button>
 
-      <Box flex={4}>
-        <Output output={output} />
-      </Box>
+      <Output isValid={isValid} flex={4}>
+        {output}
+      </Output>
     </div>
   );
 }
