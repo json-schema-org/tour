@@ -20,6 +20,7 @@ export type Metadata = {
 
 export type CodeFile = {
   code: Object;
+  validationSchema: Object;
 };
 export type CodeFileExports = {
   exports: CodeFile;

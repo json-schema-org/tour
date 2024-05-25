@@ -1,18 +1,54 @@
-import React from "react";
+"use client";
+
+import React, { useMemo, useState } from "react";
 import CodeEditor from "../CodeEditor";
 import styles from "./EditorNOutput.module.css";
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import Output from "../Output";
 import { CodeFile } from "@/lib/types";
 
+import { ajv } from "@/lib/validators";
+
 export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
+  const [codeString, setCodeString] = useState(
+    JSON.stringify(codeFile.code, null, 2)
+  );
+
+  const [output, setOutput] = useState<string>("");
+  const [isValid, setIsValid] = useState<boolean>(true);
+
+  const validateCode = useMemo(() => {
+    function validateCode() {
+      const { errors, valid } = ajv(
+        JSON.parse(codeString),
+        codeFile.validationSchema
+      );
+      setIsValid(valid);
+      if (valid) {
+        setOutput("Code is valid");
+      } else {
+        setOutput(errors);
+        console.log(errors);
+      }
+    }
+    return validateCode;
+  }, [codeString, codeFile.validationSchema]);
+
   return (
     <div className={styles.codeEditorNOutput}>
-      <Box flex={7}>
-        <CodeEditor code={codeFile.code} />
+      <Box flex={6}>
+        <CodeEditor code={codeString} setCode={setCodeString} />
       </Box>
-      <Box flex={3}>
-        <Output />
+      <Button
+        className={styles.validateBtn}
+        variant={"default"}
+        onClick={validateCode}
+      >
+        Validate
+      </Button>
+
+      <Box flex={4}>
+        <Output output={output} />
       </Box>
     </div>
   );

@@ -9,20 +9,44 @@ const code = {
   },
 };
 
-function validationLogicFunction() {
-  console.log("Doing some validation logic here");
-}
-
 const validationSchema = {
   type: "object",
   properties: {
     type: {
       type: "string",
+      const: "object",
+    },
+    properties: {
+      type: "object",
+      properties: {
+        name: {
+          type: "object",
+          properties: {
+            type: {
+              type: "string",
+              const: "string",
+            },
+          },
+          required: ["type"],
+        },
+        age: {
+          type: "object",
+          properties: {
+            type: {
+              type: "string",
+              const: "number",
+            },
+          },
+          required: ["type"],
+        },
+      },
+      required: ["name", "age"],
     },
   },
+  required: ["type", "properties"],
 };
 
 module.exports = {
   code,
-  validationLogicFunction,
+  validationSchema,
 };
