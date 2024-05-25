@@ -10,6 +10,23 @@ import CodeEditor from "../components/CodeEditor/CodeEditor";
 import { parseMdxFile } from "@/lib/functions";
 import Output from "../components/Output/Output";
 import EditorNOutput from "../components/EditorNOutput/EditorNOutput";
+import { title } from "process";
+
+export function generateMetadata({
+  params,
+}: {
+  params: { markdownPath: string[] };
+}) {
+  const urlPath = params.markdownPath.join("/");
+  const { mdPath } = contentManager.getPageMeta(urlPath);
+  const { metadata } = parseMdxFile(mdPath);
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    keywords: metadata.keywords,
+  };
+}
 
 export default async function Content({
   params,

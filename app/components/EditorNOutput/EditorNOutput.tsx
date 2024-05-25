@@ -43,9 +43,10 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
         className={styles.validateBtn}
         variant={"default"}
         onClick={validateCode}
-        size={"sm"}
+        size={"xs"}
         width={"min-content"}
         alignSelf={"flex-end"}
+        textTransform={"uppercase"}
       >
         Validate
       </Button>
