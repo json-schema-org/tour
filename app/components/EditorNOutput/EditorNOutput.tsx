@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react";
 import CodeEditor from "../CodeEditor";
 import styles from "./EditorNOutput.module.css";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import Output from "../Output";
 import { CodeFile } from "@/lib/types";
 
@@ -39,18 +39,30 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
       <Box flex={6}>
         <CodeEditor code={codeString} setCode={setCodeString} />
       </Box>
-      <Button
-        className={styles.validateBtn}
-        variant={"default"}
-        onClick={validateCode}
-        size={"xs"}
-        width={"min-content"}
-        alignSelf={"flex-end"}
-        textTransform={"uppercase"}
-      >
-        Validate
-      </Button>
-
+      <Flex alignSelf={"flex-start"} gap={"4px"}>
+        <Button
+          className={styles.validateBtn}
+          variant={"default"}
+          onClick={validateCode}
+          size={"xs"}
+          width={"min-content"}
+          textTransform={"uppercase"}
+        >
+          Validate
+        </Button>
+        <Button
+          className={styles.validateBtn}
+          variant={"success"}
+          onClick={() =>
+            setCodeString(JSON.stringify(codeFile.solution, null, 2))
+          }
+          size={"xs"}
+          width={"min-content"}
+          textTransform={"uppercase"}
+        >
+          Solve
+        </Button>
+      </Flex>
       <Output isValid={isValid} flex={4}>
         {output}
       </Output>

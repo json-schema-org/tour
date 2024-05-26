@@ -44,7 +44,20 @@ const validationSchema = {
   required: ["type", "properties"],
 };
 
+const solution = {
+  type: "object",
+  properties: {
+    name: {
+      type: "string",
+    },
+    age: {
+      type: "number",
+    },
+  },
+};
+
 module.exports = {
   code,
   validationSchema,
+  solution,
 };
