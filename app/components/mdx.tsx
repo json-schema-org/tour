@@ -58,8 +58,9 @@ export const components: MDXComponents = {
   a: (props) => <Link {...props} style={{ color: "blue" }} target="_" />,
   ul: (props) => <UnorderedList {...props} />,
   ol: (props) => <OrderedList {...props} />,
-  li: (props) => <ListItem {...props} lineHeight={"tall"} />,
+  li: (props) => <ListItem {...props} marginBlock={"0.5rem"} />,
   code: (props: any) => <CodeSnippet {...props} />,
+  p: (props) => <p {...props} style={{ marginBlock: "0.5rem" }} />,
 };
 
 const customComponents = {
