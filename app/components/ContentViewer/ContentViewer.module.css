@@ -4,7 +4,7 @@
 
   overflow-y: auto;
   flex: 1;
-  padding-right: 4px;
+  padding-right: 14px;
 }
 .contentWrapper {
   border: 1px solid var(--border-color);
