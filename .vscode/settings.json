@@ -3,5 +3,10 @@
   "editor.insertSpaces": true,
   "files.associations": {
     "*.mdx": "markdown"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false
   }
 }
