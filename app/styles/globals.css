@@ -8,6 +8,8 @@ html {
 }
 :root {
   --primary: 230 86% 40%;
+  --border-color: rgba(0, 0, 0, 0.334);
+  --border-radius: 16px;
 }
 
 main {
