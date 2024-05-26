@@ -35,27 +35,9 @@ The content written in [MDX](https://mdxjs.com/), a markdown format that support
 
 ### VSCode
 
-#### Previewing Changes Locally
-
-VSCode has a built-in markdown previewer that you can use to see your edits locally. To enable the previewer for MDX files, you'll need to add a configuration option to your user settings.
-
-Open the command palette (`⌘ + ⇧ + P` on Mac or `Ctrl + Shift + P` on Windows) and search from `Preferences: Open User Settings (JSON)`.
-
-Then, add the following line to your `settings.json` file:
-
-```json filename="settings.json"
-{
-  "files.associations": {
-    "*.mdx": "markdown"
-  }
-}
-```
-
-Next, open the command palette again, and search for `Markdown: Preview File` or `Markdown: Open Preview to the Side`. This will open a preview window where you can see your formatted changes.
-
 #### Extensions
 
-We also recommend the following extensions for VSCode users:
+We recommend the following extensions for VSCode users:
 
 - [MDX](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx): Intellisense and syntax highlighting for MDX.
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): Format MDX files on save.
