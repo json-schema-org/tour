@@ -11,6 +11,7 @@ import {
 import { MDXComponents } from "mdx/types";
 import CodeSnippet from "./CodeSnippet/CodeSnippet";
 import InfoBox from "./InfoBox";
+import GoodToKnowBox from "./GoodToKnowBox/GoodToKnowBox";
 
 function createHeading(level: number): any {
   const headingSizes: {
@@ -65,6 +66,7 @@ export const components: MDXComponents = {
 
 const customComponents = {
   InfoBox,
+  GoodToKnowBox,
 };
 export function CustomMDX(props: MDXRemoteProps) {
   return (
