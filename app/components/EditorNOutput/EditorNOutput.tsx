@@ -62,6 +62,16 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
         >
           Solve
         </Button>
+        <Button
+          className={styles.validateBtn}
+          variant={"error"}
+          onClick={() => setCodeString(JSON.stringify(codeFile.code, null, 2))}
+          size={"xs"}
+          width={"min-content"}
+          textTransform={"uppercase"}
+        >
+          Reset
+        </Button>
       </Flex>
       <Output isValid={isValid} flex={4}>
         {output}

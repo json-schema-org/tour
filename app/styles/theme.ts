@@ -38,6 +38,24 @@ const Button = {
         bg: "green.200",
       },
     },
+    error: {
+      color: "red",
+
+      borderColor: "red",
+      borderWidth: "1px",
+      _disabled: {
+        color: "red.700",
+      },
+      _hover: {
+        bg: "red.100",
+        _disabled: {
+          color: "red.700",
+        },
+      },
+      _active: {
+        bg: "red.200",
+      },
+    },
   },
 };
 
