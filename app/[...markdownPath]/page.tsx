@@ -18,11 +18,11 @@ export function generateMetadata({
   params: { markdownPath: string[] };
 }) {
   const urlPath = params.markdownPath.join("/");
-  const { mdPath } = contentManager.getPageMeta(urlPath);
+  const { mdPath, chapterTitle } = contentManager.getPageMeta(urlPath);
   const { metadata } = parseMdxFile(mdPath);
 
   return {
-    title: metadata.title,
+    title: `${metadata.title}: ${chapterTitle} | A Tour of JSON Schema`,
     description: metadata.description,
     keywords: metadata.keywords,
   };

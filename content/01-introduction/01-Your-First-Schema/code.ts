@@ -1,5 +1,3 @@
-"use server";
-
 const code = {
   type: "object",
   properties: {
