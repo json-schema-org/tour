@@ -7,11 +7,13 @@ import {
   OrderedList,
   UnorderedList,
 } from "@chakra-ui/react";
-
+import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import { MDXComponents } from "mdx/types";
 import CodeSnippet from "./CodeSnippet/CodeSnippet";
 import InfoBox from "./InfoBox";
 import GoodToKnowBox from "./GoodToKnowBox/GoodToKnowBox";
+
+import rehypeExternalLinks from "rehype-external-links";
 
 function createHeading(level: number): any {
   const headingSizes: {
@@ -56,7 +58,7 @@ export const components: MDXComponents = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  a: (props) => <Link {...props} style={{ color: "blue" }} target="_" />,
+  a: (props) => <Link {...props} style={{ color: "blue" }} />,
   ul: (props) => <UnorderedList {...props} />,
   ol: (props) => <OrderedList {...props} />,
   li: (props) => <ListItem {...props} marginBlock={"0.5rem"} />,
@@ -67,16 +69,25 @@ export const components: MDXComponents = {
 const customComponents = {
   InfoBox,
   GoodToKnowBox,
+  CodeSnippet,
 };
 export function CustomMDX(props: MDXRemoteProps) {
   return (
     <MDXRemote
-      {...props}
+      options={{
+        mdxOptions: {
+          rehypePlugins: [
+            [rehypeMdxCodeProps, { tagName: "code" }],
+            [rehypeExternalLinks, { target: "_" }],
+          ],
+        },
+      }}
       components={{
         ...components,
         ...(props.components || {}),
         ...customComponents,
       }}
+      {...props}
     />
   );
 }
