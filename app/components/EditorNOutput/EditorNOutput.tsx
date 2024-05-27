@@ -28,7 +28,6 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
         setOutput("Valid Schema! Let's move to the next step.");
       } else {
         setOutput(errors);
-        console.log(errors);
       }
     }
     return validateCode;

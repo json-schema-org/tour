@@ -39,5 +39,4 @@ export async function hyperjumpValidate(data: any, schema: any) {
   } finally {
     unregisterSchema("http://example.com/schemas/string");
   }
-  // console.log(BASIC);
 }

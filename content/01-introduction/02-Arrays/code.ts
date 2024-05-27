@@ -1,6 +1,4 @@
-const code = {
-  step: 2,
-};
+const code = {};
 
 module.exports = {
   code,
