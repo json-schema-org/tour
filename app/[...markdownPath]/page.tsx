@@ -63,12 +63,12 @@ export default async function Content({
         <Flex gap={4}>
           <span>
             Chapter {chapterIndex + 1}: {chapterTitle} (
-            {((chapterIndex + 1) / totalChapters) * 100}%)
+            {Math.round(((chapterIndex + 1) / totalChapters) * 100)}%)
           </span>
 
           <span>
             Step {stepIndex + 1}: {metadata.title} (
-            {((stepIndex + 1) / totalSteps) * 100} %)
+            {Math.round(((stepIndex + 1) / totalSteps) * 100)} %)
           </span>
         </Flex>
       </div>
