@@ -64,6 +64,7 @@ export const components: MDXComponents = {
   li: (props) => <ListItem {...props} marginBlock={"0.5rem"} />,
   code: (props: any) => <CodeSnippet {...props} />,
   p: (props) => <p {...props} style={{ marginBlock: "0.5rem" }} />,
+  blockquote: (props: any) => <InfoBox {...props} />,
 };
 
 const customComponents = {
