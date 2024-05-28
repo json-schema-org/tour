@@ -3,6 +3,7 @@
   margin: 0.5rem 0;
   border: 1px solid var(--border-color);
   border-radius: calc(var(--border-radius) / 2);
+  background-color: transparent !important;
 }
 .inlineCode {
   padding: 2px 4px;

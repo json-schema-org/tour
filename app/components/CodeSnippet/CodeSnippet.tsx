@@ -38,7 +38,7 @@ export default function CodeSnippet({
           lineNumber <= highlightLineEnd
         ) {
           style = {
-            backgroundColor: "#00ff002f",
+            backgroundColor: "#00ff0023",
           };
         }
         return { style };
