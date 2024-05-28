@@ -4,7 +4,9 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius);
   background-color: hsl(var(--primary) / 0.03);
-  width: 70%;
+  /* width: 90%; */
+  /* margin-inline: auto; */
+  margin-block: 16px;
 }
 
 .goodToKnowBoxTitle {
