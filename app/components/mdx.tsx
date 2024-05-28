@@ -79,7 +79,7 @@ export function CustomMDX(props: MDXRemoteProps) {
         mdxOptions: {
           rehypePlugins: [
             [rehypeMdxCodeProps, { tagName: "code" }],
-            [rehypeExternalLinks, { target: "_blank" }],
+            [rehypeExternalLinks, { target: "_blank" }] as any,
           ],
         },
       }}
