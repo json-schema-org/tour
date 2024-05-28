@@ -2,6 +2,7 @@ import { Chapter, CodeFileExports, ContentOutline } from "./types";
 import fs from "fs";
 import matter from "gray-matter";
 import { Metadata } from "./types";
+import typescript from "typescript";
 
 /* 
 
@@ -164,10 +165,19 @@ export default class ContentManager {
   public getCodeFilePath(urlPath: string) {
     return `${this.contentFolderName}/${urlPath}/${this.codeFileName}`;
   }
+  private transpileTypeScriptToJavaScript(tsCode: string) {
+    const result = typescript.transpileModule(tsCode, {
+      compilerOptions: { module: typescript.ModuleKind.CommonJS },
+    });
+    return result.outputText;
+  }
   public getCodeFileExports(urlPath: string) {
     const path = this.getCodeFilePath(urlPath);
     const fileContent = fs.readFileSync(path, "utf-8");
-    const dynmicFunction = new Function("module", fileContent);
+    const dynmicFunction = new Function(
+      "module",
+      this.transpileTypeScriptToJavaScript(fileContent)
+    );
     const moduleExports: {} | CodeFileExports = {};
     dynmicFunction(moduleExports);
 
