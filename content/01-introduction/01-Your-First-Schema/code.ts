@@ -1,4 +1,4 @@
-const code = {
+const code: any = {
   type: "object",
   properties: {
     name: {
@@ -44,16 +44,9 @@ const validationSchema = {
   required: ["type", "properties"],
 };
 
-const solution = {
-  type: "object",
-  properties: {
-    name: {
-      type: "string",
-    },
-    age: {
-      type: "number",
-    },
-  },
+const solution = structuredClone(code);
+solution.properties.age = {
+  type: "number",
 };
 
 module.exports = {
