@@ -1,0 +1,45 @@
+---
+title: "Constant Values"
+description: "Defining constant values in a JSON schema."
+keywords: "type, constant"
+---
+
+# Constants 
+
+Constant values are values that are fixed and cannot be changed. In JSON Schema, we can define constant values using the `const` keyword.
+
+```json highlightLineStart={4} 
+{
+  "name": "John Doe ",
+  "age": 25,
+  "role": "employee"
+}
+```
+
+we want to set the `role` field to a constant value of `employee`.
+
+
+## Schema Definition
+
+We just need to define the `role` property in the schema with the type `string` and the constant value `employee`.
+
+```json 
+{
+  ...
+    "role": {
+      "const": "employee"
+    }
+}
+```
+
+add this definition to the schema which is given to you in the editor
+
+<GoodToKnowBox>
+
+The values passed to the `const` keyword are **case-sensitive**.
+
+`"const": "employee"` is valid 
+
+`"const": "Employee"` is **in**valid 
+
+</GoodToKnowBox>
