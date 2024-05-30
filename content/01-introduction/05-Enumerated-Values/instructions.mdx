@@ -1,0 +1,57 @@
+---
+title: "Enumerated values"
+description: "Constrain the value of a property to a fixed set of values using JSON Schema."
+keywords: "enum"
+---
+
+# Enumerated values
+
+In the previous step, we have learned to define a constant value for a property using the `const` keyword. However a role of an employee can not be just `employee` it can be also `manager`, `admin` etc.
+
+We want to constrain  the value of the `role` property to a fixed set of values which are `employee`, `manager` and `admin`.
+
+
+**For Example:** both of these values for role is valid in the below data
+```json highlightLineStart={4} 
+{
+  "name": "John Doe ",
+  "age": 25,
+  "role": "manager"
+}
+```
+```json highlightLineStart={4} 
+{
+  "name": "John Doe ",
+  "age": 25,
+  "role": "admin"
+}
+```
+
+
+
+We can use the `enum` keyword to define this fixed set of values for a property.
+
+## Schema Definition
+
+Here is how we can define the `role` property in the schema with the type `string` and the fixed set of values `employee`, `manager` and `admin`.
+
+```json 
+{
+  ...
+    "role": {
+      "enum": ["employee", "manager", "admin"]
+    }
+}
+```
+
+
+
+<GoodToKnowBox>
+
+The values passed to the `const` keyword are **case-sensitive**.
+
+`"const": "employee"` is valid 
+
+`"const": "Employee"` is **in**valid 
+
+</GoodToKnowBox>
