@@ -6,10 +6,12 @@ export default function CodeSnippet({
   children,
   highlightLineStart,
   highlightLineEnd,
+  startingLineNumber,
 }: {
   children: string;
   highlightLineStart?: number;
   highlightLineEnd?: number;
+  startingLineNumber?: number;
 }) {
   if ((children.match(/\n/g) || []).length === 0) {
     return <span className={styles.inlineCode}>{children}</span>;
@@ -29,6 +31,7 @@ export default function CodeSnippet({
       showLineNumbers={true}
       wrapLines={true}
       wrapLongLines={true}
+      startingLineNumber={startingLineNumber}
       lineProps={(lineNumber) => {
         let style = {};
         if (
