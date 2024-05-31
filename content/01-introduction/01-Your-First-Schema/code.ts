@@ -7,42 +7,42 @@ const code: any = {
   },
 };
 
-const validationSchema = {
-  type: "object",
-  properties: {
-    type: {
-      type: "string",
-      const: "object",
+const testCases = [
+  {
+    input: {
+      name: "John Doe",
+      age: 30,
     },
-    properties: {
-      type: "object",
-      properties: {
-        name: {
-          type: "object",
-          properties: {
-            type: {
-              type: "string",
-              const: "string",
-            },
-          },
-          required: ["type"],
-        },
-        age: {
-          type: "object",
-          properties: {
-            type: {
-              type: "string",
-              const: "number",
-            },
-          },
-          required: ["type"],
-        },
-      },
-      required: ["name", "age"],
-    },
+    expected: true,
   },
-  required: ["type", "properties"],
-};
+  {
+    input: {
+      name: "John Doe",
+      age: "30z",
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: 30,
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: "John Doe",
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "John Doe",
+      age: 30,
+      location: "New York",
+    },
+    expected: true,
+  },
+];
 
 const solution = structuredClone(code);
 solution.properties.age = {
@@ -51,6 +51,6 @@ solution.properties.age = {
 
 module.exports = {
   code,
-  validationSchema,
   solution,
+  testCases,
 };
