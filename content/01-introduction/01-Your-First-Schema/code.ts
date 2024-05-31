@@ -18,7 +18,7 @@ const testCases = [
   {
     input: {
       name: "John Doe",
-      age: "30z",
+      age: "30",
     },
     expected: false,
   },
