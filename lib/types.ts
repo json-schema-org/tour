@@ -25,7 +25,7 @@ export type TestCase = {
   expected: Boolean;
 };
 
-export type FailedTestCase = {
+export type FailedTestCase = TestCase & {
   actual: Boolean;
   errors: any;
 };
