@@ -1,6 +1,6 @@
 import { OutputReducerAction } from "./reducers";
 import { CodeFile, FailedTestCase } from "./types";
-import { schemaSafeValidate } from "./validators";
+import { hyperjumpValidate, schemaSafeValidate } from "./validators";
 
 export async function validateCode(
   codeString: string,
@@ -12,8 +12,8 @@ export async function validateCode(
     const schemaCode = JSON.parse(codeString);
     const failedTestCases: FailedTestCase[] = [];
     let validationStatus: "valid" | "invalid" | "neutral" = "valid";
-    testCases.forEach((dataTestCase, i) => {
-      const validationResult = schemaSafeValidate(
+    testCases.forEach(async (dataTestCase, i) => {
+      const validationResult = await hyperjumpValidate(
         dataTestCase.input,
         schemaCode
       );
@@ -25,8 +25,17 @@ export async function validateCode(
           expected: dataTestCase.expected,
           input: dataTestCase.input,
         });
+        validationStatus = "invalid";
       }
     });
+    if (validationStatus === "valid") {
+      dispatchOutput({ type: "valid", payload: {} });
+    } else {
+      dispatchOutput({
+        type: "invalid",
+        payload: { failedTestCases },
+      });
+    }
   } catch (e) {
     dispatchOutput({
       type: "syntaxError",
