@@ -7,7 +7,7 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import ContentViewer from "../components/ContentViewer/ContentViewer";
 import CodeEditor from "../components/CodeEditor/CodeEditor";
-import { parseMdxFile } from "@/lib/functions";
+import { parseMdxFile } from "@/lib/server-functions";
 import Output from "../components/Output/Output";
 import EditorNOutput from "../components/EditorNOutput/EditorNOutput";
 import { title } from "process";
