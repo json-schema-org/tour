@@ -40,7 +40,7 @@ export type CodeFileExports = {
 };
 
 export type OutputResult = {
-  validityStatus: "valid" | "invalid" | "neutral";
+  validityStatus: "valid" | "invalid" | "neutral" | "syntaxError";
   failedTestCases?: FailedTestCase[];
   totalTestCases?: number;
   errors?: any;
