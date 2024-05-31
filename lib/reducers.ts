@@ -1,8 +1,8 @@
 import { OutputResult } from "./types";
 
 export type OutputReducerAction = {
-  type: "valid" | "syntaxError" | "failedTestCases" | "RESET";
-  payload: any;
+  type: "valid" | "syntaxError" | "invalid" | "RESET";
+  payload?: any;
 };
 
 export type OutputReducer = (
@@ -21,9 +21,9 @@ export function outputReducer(
       return {
         ...state,
         errors: action.payload.errors,
-        validityStatus: "invalid",
+        validityStatus: "syntaxError",
       };
-    case "failedTestCases":
+    case "invalid":
       return {
         ...state,
         failedTestCases: action.payload.failedTestCases,
