@@ -1,15 +1,36 @@
 import { OutputResult } from "./types";
 
-export function outputReducer(state: OutputResult, action: any): OutputResult {
+export type OutputReducerAction = {
+  type: "valid" | "syntaxError" | "failedTestCases" | "RESET";
+  payload: any;
+};
+
+export type OutputReducer = (
+  state: OutputResult,
+  action: OutputReducerAction
+) => OutputResult;
+
+export function outputReducer(
+  state: OutputResult,
+  action: OutputReducerAction
+): OutputResult {
   switch (action.type) {
-    case "validityStatus":
-      return { ...state, validityStatus: action.payload };
-    case "errors":
-      return { ...state, errors: action.payload };
+    case "valid":
+      return { ...state, validityStatus: "valid" };
+    case "syntaxError":
+      return {
+        ...state,
+        errors: action.payload.errors,
+        validityStatus: "invalid",
+      };
     case "failedTestCases":
-      return { ...state, failedTestCases: action.payload };
+      return {
+        ...state,
+        failedTestCases: action.payload.failedTestCases,
+        validityStatus: "invalid",
+      };
     case "RESET":
-      return { validityStatus: "valid" };
+      return { validityStatus: "neutral" };
 
     default:
       return state;
