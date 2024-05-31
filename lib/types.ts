@@ -20,11 +20,28 @@ export type Metadata = {
   keywords: string;
 };
 
+export type TestCase = {
+  input: Object;
+  expected: Boolean;
+};
+
+export type FailedTestCase = {
+  actual: Boolean;
+  errors: any;
+};
+
 export type CodeFile = {
   code: Object;
-  validationSchema: Object;
+  testCases: TestCase[];
   solution: Object;
 };
 export type CodeFileExports = {
   exports: CodeFile;
+};
+
+export type OutputResult = {
+  validityStatus: "valid" | "invalid" | "neutral";
+  failedTestCases?: FailedTestCase[];
+  totalTestCases?: number;
+  errors?: any;
 };
