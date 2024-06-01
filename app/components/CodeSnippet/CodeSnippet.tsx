@@ -44,6 +44,7 @@ export default function CodeSnippet({
         ) {
           style = {
             backgroundColor: "#00ff0023",
+            borderLeft: "2px solid #0aff0ad0",
           };
         }
         return { style };

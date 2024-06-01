@@ -6,9 +6,9 @@
   background-color: transparent !important;
 }
 .inlineCode {
-  padding: 2px 4px;
+  padding: 1px 4px;
   border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.329);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   font-family: "Fira Code", monospace;
   font-weight: bold;
   font-size: 0.9rem;
