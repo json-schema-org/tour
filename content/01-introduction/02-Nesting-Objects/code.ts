@@ -1,9 +1,7 @@
 const code: any = {
   type: "object",
   properties: {
-    name: {
-      type: "string",
-    },
+    name: {},
     age: {
       type: "number",
     },
@@ -67,10 +65,18 @@ const validationSchema = {
 };
 
 const solution = structuredClone(code);
-solution.properties.skills = {
-  type: "array",
-  items: {
-    type: "string",
+solution.properties.name = {
+  type: "object",
+  properties: {
+    firstName: {
+      type: "string",
+    },
+    lastName: {
+      type: "string",
+    },
+    middleName: {
+      type: "string",
+    },
   },
 };
 module.exports = {
