@@ -26,6 +26,7 @@ function FailedTestCaseItem({
           </span>
         </span>
       </div>
+      <div className={styles.failedTestCaseResultTitle}>Data</div>
       <div className={styles.failedTestCaseCode}>
         {JSON.stringify(testCase.input, null, 2)}
       </div>

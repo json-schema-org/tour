@@ -7,8 +7,9 @@
   border: 1px solid var(--border-color);
   font-family: monospace;
   width: fit-content;
-  padding: 8px;
+  padding: 4px;
   border-radius: calc(var(--border-radius) / 2);
+  width: 100%;
 }
 .failedTestCasesSubtitle {
   font-size: small;
