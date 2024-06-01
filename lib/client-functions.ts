@@ -12,8 +12,9 @@ export async function validateCode(
     const schemaCode = JSON.parse(codeString);
     const failedTestCases: FailedTestCase[] = [];
     let validationStatus: "valid" | "invalid" | "neutral" = "valid";
-    testCases.forEach(async (dataTestCase, i) => {
-      const validationResult = await hyperjumpValidate(
+    const totalTestCases = testCases.length;
+    testCases.forEach((dataTestCase, i) => {
+      const validationResult = schemaSafeValidate(
         dataTestCase.input,
         schemaCode
       );
@@ -33,10 +34,11 @@ export async function validateCode(
     } else {
       dispatchOutput({
         type: "invalid",
-        payload: { failedTestCases },
+        payload: { failedTestCases, totalTestCases },
       });
     }
   } catch (e) {
+    console.log("error");
     dispatchOutput({
       type: "syntaxError",
       payload: { errors: (e as Error).message },

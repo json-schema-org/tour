@@ -27,6 +27,7 @@ export function outputReducer(
       return {
         ...state,
         failedTestCases: action.payload.failedTestCases,
+        totalTestCases: action.payload.totalTestCases,
         validityStatus: "invalid",
       };
     case "RESET":
