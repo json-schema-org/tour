@@ -7,11 +7,13 @@ export default function CodeSnippet({
   highlightLineStart,
   highlightLineEnd,
   startingLineNumber,
+  showLineNumbers = true,
 }: {
   children: string;
   highlightLineStart?: number;
   highlightLineEnd?: number;
   startingLineNumber?: number;
+  showLineNumbers?: boolean;
 }) {
   if ((children.match(/\n/g) || []).length === 0) {
     return <span className={styles.inlineCode}>{children}</span>;
@@ -28,7 +30,7 @@ export default function CodeSnippet({
       language="javascript"
       style={tomorrow}
       className={styles.codeSnippet}
-      showLineNumbers={true}
+      showLineNumbers={showLineNumbers}
       wrapLines={true}
       wrapLongLines={true}
       startingLineNumber={startingLineNumber}
