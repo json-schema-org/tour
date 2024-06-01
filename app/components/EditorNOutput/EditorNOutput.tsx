@@ -39,7 +39,7 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
 
   const [output, dispatchOutput] = useReducer(outputReducer, {
     validityStatus: "neutral",
-    errors: [],
+    errors: "",
     failedTestCases: [],
   });
 
