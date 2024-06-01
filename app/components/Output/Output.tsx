@@ -34,21 +34,28 @@ function FailedTestCaseItem({
 }) {
   return (
     <div className={styles.failedTestCase}>
-      <div className={styles.failedTestCaseBody}>
-        <span className={styles.failedTestCaseTitle}>Expected Output:</span>
-        <span>{testCase.expected ? "valid" : "invalid"}</span>
-        <span className={styles.failedTestCaseTitle}>Actual Output:</span>
-        <span>{testCase.actual ? "valid" : "invalid"}</span>
-        <br />
-        <div className={styles.failedTestCaseCode}>
-          {JSON.stringify(testCase.input, null, 2)}
-        </div>
-        <div className={styles.failedTestCaseError}>
-          {testCase.errors &&
-            testCase.errors.map((i) => {
-              return i.keywordLocation;
-            })}
-        </div>
+      <div className={styles.failedTestCaseResultWrapper}>
+        <span className={styles.failedTestCaseResult}>
+          <span className={styles.failedTestCaseResultTitle}>Expected:</span>
+          <span className={styles.failedTestCaseResultValue}>
+            {testCase.expected ? "valid" : "invalid"}
+          </span>
+        </span>
+        <span className={styles.failedTestCaseResult}>
+          <span className={styles.failedTestCaseResultTitle}>Actual:</span>
+          <span className={styles.failedTestCaseResultValue}>
+            {testCase.actual ? "valid" : "invalid"}
+          </span>
+        </span>
+      </div>
+      <div className={styles.failedTestCaseCode}>
+        {JSON.stringify(testCase.input, null, 2)}
+      </div>
+      <div className={styles.failedTestCaseError}>
+        {testCase.errors &&
+          testCase.errors.map((i) => {
+            return i.keywordLocation;
+          })}
       </div>
     </div>
   );
@@ -70,22 +77,21 @@ function FailedTestCasesWindow({
           {failedTestCases.length} out of {totalTestCases} test cases failed
         </span>
       </div>
-      <div className={styles.failedTestCasesBody}>
-        <div className={styles.failedTestCasesTabs}>
-          {failedTestCases.map((_, i) => (
-            <TestCaseTab
-              key={i}
-              isActive={i === activeTestCase}
-              index={i}
-              setIsActive={setActiveTestCase}
-            />
-          ))}
-        </div>
-        <FailedTestCaseItem
-          index={activeTestCase}
-          testCase={failedTestCases[activeTestCase]}
-        />
+      <div className={styles.failedTestCasesTabs}>
+        {failedTestCases.map((_, i) => (
+          <TestCaseTab
+            key={i}
+            isActive={i === activeTestCase}
+            index={i}
+            setIsActive={setActiveTestCase}
+          />
+        ))}
       </div>
+
+      <FailedTestCaseItem
+        index={activeTestCase}
+        testCase={failedTestCases[activeTestCase]}
+      />
     </div>
   );
 }
@@ -115,7 +121,11 @@ function Output({
   } else if (outputResult.validityStatus == "valid") {
     outputBodyContent = "The code is valid. Let's move on to the next step";
   } else if (outputResult.validityStatus == "syntaxError") {
-    outputBodyContent = "Syntax Error:" + outputResult.errors;
+    outputBodyContent = (
+      <div>
+        <b>Syntax Error:</b> <code>{outputResult.errors}</code>
+      </div>
+    );
   } else {
     outputBodyContent = (
       <FailedTestCasesWindow

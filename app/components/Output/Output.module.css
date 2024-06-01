@@ -57,9 +57,6 @@
   font-weight: bold;
 }
 
-.failedTestCaseTitle {
-  margin-right: 6px;
-}
 .failedTestCaseCode {
   border: 1px solid var(--border-color);
   font-family: monospace;
@@ -98,5 +95,35 @@
 .failedTestCasesTabs {
   display: flex;
   flex-direction: row;
+  gap: 8px;
+}
+.failedTestCase {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.failedTestCaseResult {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+.failedTestCaseResultWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+.failedTestCaseResultTitle {
+  font-size: small;
+  font-weight: bold;
+}
+.failedTestCaseResultValue {
+  font-size: small;
+}
+
+.failedTestCasesWindow {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }
