@@ -54,4 +54,49 @@
 }
 .failedTestCasesHeader {
   color: red;
+  font-weight: bold;
+}
+
+.failedTestCaseTitle {
+  margin-right: 6px;
+}
+.failedTestCaseCode {
+  border: 1px solid var(--border-color);
+  font-family: monospace;
+  width: fit-content;
+  padding: 8px;
+  border-radius: calc(var(--border-radius) / 2);
+}
+.failedTestCasesSubtitle {
+  font-size: small;
+}
+.failedTestCasesHeaderWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.testCaseTab {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: calc(var(--border-radius) / 2);
+  /* border: 1px solid var(--border-color); */
+
+  cursor: pointer;
+  font-size: small;
+}
+
+.activeTestCaseTab {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.failedTestCasesTabs {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 }
