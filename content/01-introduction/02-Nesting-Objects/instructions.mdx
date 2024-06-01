@@ -47,19 +47,3 @@ We have divided the name property into `firstName`, `lastName`, and `MiddleName`
 ```
 
 In the above schema, we have defined the `name` property as an object with three properties `firstName`, `lastName`, and `MiddleName` with `string` type.
-
-<GoodToKnowBox>
-  When you use json schema with an implementer, you might encounter `$schema` keyword. This keyword is used to specify the version of the JSON Schema standard that the schema is written in.
-
-for example,
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  ...
-}
-```
-
-The above schema is written in the JSON Schema draft 2020-12 standard. For the rest of the tour we will use the latest JSON Schema **draft 2020-12 standard** and we are not going to include `$schema` keyword in the schema for simplicity.
-
-</GoodToKnowBox>
