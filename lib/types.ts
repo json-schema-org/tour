@@ -25,9 +25,14 @@ export type TestCase = {
   expected: Boolean;
 };
 
+type schemaSafeError = {
+  instanceLocation: string;
+  keywordLocation: string;
+};
+
 export type FailedTestCase = TestCase & {
   actual: Boolean;
-  errors: any;
+  errors?: schemaSafeError[] | undefined;
 };
 
 export type CodeFile = {
@@ -43,5 +48,5 @@ export type OutputResult = {
   validityStatus: "valid" | "invalid" | "neutral" | "syntaxError";
   failedTestCases?: FailedTestCase[];
   totalTestCases?: number;
-  errors?: any;
+  errors?: schemaSafeError[] | undefined;
 };
