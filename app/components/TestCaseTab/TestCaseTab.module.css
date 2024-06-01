@@ -10,8 +10,13 @@
   cursor: pointer;
   font-size: small;
 }
-
+.testCaseTab:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
 .activeTestCaseTab {
   background-color: rgba(0, 0, 0, 0.1);
   color: black;
+}
+.activeTestCaseTab.testCaseTab:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
