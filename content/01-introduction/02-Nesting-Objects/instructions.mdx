@@ -1,0 +1,65 @@
+---
+title: "Nesting Objects"
+description: "Nest objects within objects"
+keywords: "nesting, objects, array, string, properties, items"
+---
+
+# Nesting Objects
+
+we have learned to define an object schema with properties using the `properties` keyword, and added properties with `string` and `number` types .
+
+In this step, we will learn how to nest objects within objects.
+We have divided the name property into `firstName`, `lastName`, and `MiddleName`.
+
+```json highlightLineStart={3} highlightLineEnd={5}
+{
+  "name": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "MiddleName": "Smith"
+  }
+  "age": 25,
+}
+```
+
+## Schema for nested objects
+
+```json 
+{
+ ...
+  "name":{
+    "type": "object",
+    "properties": {
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "MiddleName": {
+        "type": "string"
+      }
+    }
+  },
+  ...
+}
+
+```
+
+In the above schema, we have defined the `name` property as an object with three properties `firstName`, `lastName`, and `MiddleName` with `string` type.
+
+<GoodToKnowBox>
+  When you use json schema with an implementer, you might encounter `$schema` keyword. This keyword is used to specify the version of the JSON Schema standard that the schema is written in.
+
+for example,
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  ...
+}
+```
+
+The above schema is written in the JSON Schema draft 2020-12 standard. For the rest of the tour we will use the latest JSON Schema **draft 2020-12 standard** and we are not going to include `$schema` keyword in the schema for simplicity.
+
+</GoodToKnowBox>
