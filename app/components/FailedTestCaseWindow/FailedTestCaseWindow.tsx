@@ -30,6 +30,7 @@ function FailedTestCaseItem({
         {JSON.stringify(testCase.input, null, 2)}
       </div>
       <div className={styles.failedTestCaseError}>
+        {testCase.errors && <b>trace: </b>}
         {testCase.errors &&
           testCase.errors.map((i) => {
             return i.keywordLocation;
