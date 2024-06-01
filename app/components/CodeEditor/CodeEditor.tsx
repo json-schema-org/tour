@@ -21,7 +21,7 @@ export default function CodeEditor({
         value={code}
         height={"100%"}
         onChange={(code) => setCode(code ? code : "")}
-        options={{ minimap: { enabled: false }, fontSize: 16 }}
+        options={{ minimap: { enabled: false }, fontSize: 14 }}
       />
     </div>
   );

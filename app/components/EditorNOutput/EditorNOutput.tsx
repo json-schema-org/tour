@@ -45,7 +45,7 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
 
   return (
     <div className={styles.codeEditorNOutput}>
-      <Box flex={6}>
+      <Box flex={5}>
         <CodeEditor code={codeString} setCode={setCodeString} />
       </Box>
       <Flex alignSelf={"flex-start"} gap={"4px"}>
@@ -77,7 +77,7 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
           Reset
         </SmallBtn>
       </Flex>
-      <Output outputResult={output} flex={6} />
+      <Output outputResult={output} flex={5} />
     </div>
   );
 }
