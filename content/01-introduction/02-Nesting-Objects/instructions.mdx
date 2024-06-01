@@ -6,10 +6,10 @@ keywords: "nesting, objects, array, string, properties, items"
 
 # Nesting Objects
 
-we have learned to define an object schema with properties using the `properties` keyword, and added properties with `string` and `number` types .
+You have learned to define an object schema with properties using the `properties` keyword, and added properties with `string` and `number` types .
 
-In this step, we will learn how to nest objects within objects.
-We have divided the name property into `firstName`, `lastName`, and `MiddleName`.
+In this step, you will learn how to nest objects within objects.
+Let's divide the name property into the separate components `firstName`, `lastName`, and `MiddleName` .
 
 ```json highlightLineStart={3} highlightLineEnd={5}
 {
@@ -24,11 +24,13 @@ We have divided the name property into `firstName`, `lastName`, and `MiddleName`
 
 ## Schema for nested objects
 
+In _JSON Schema_, you nest objects within objects by defining the `type` as `object` and adding the `properties` keyword to define the nested properties.
+
 ```json 
 {
  ...
   "name":{
-    "type": "object",
+    "type": "object", // it was string in previous example
     "properties": {
       "firstName": {
         "type": "string"
@@ -46,6 +48,6 @@ We have divided the name property into `firstName`, `lastName`, and `MiddleName`
 
 ```
 
-In the above schema, we have defined the `name` property as an object with three properties `firstName`, `lastName`, and `MiddleName` with `string` type.
 
-Modify the `name` of the schema given on the right side editor as per the nested JSON document.
+
+Now, try to add the `name` property of the schema given on the right side editor to include the new properties `firstName`, `lastName`, and `MiddleName` with the `type` set to `string`.
