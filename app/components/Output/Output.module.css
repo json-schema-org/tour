@@ -52,3 +52,6 @@
   display: flex;
   justify-content: center;
 }
+.failedTestCasesHeader {
+  color: red;
+}
