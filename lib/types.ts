@@ -48,5 +48,5 @@ export type OutputResult = {
   validityStatus: "valid" | "invalid" | "neutral" | "syntaxError";
   failedTestCases?: FailedTestCase[];
   totalTestCases?: number;
-  errors?: schemaSafeError[] | undefined;
+  errors?: string;
 };
