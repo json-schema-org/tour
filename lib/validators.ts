@@ -25,25 +25,30 @@ import {
   setMetaSchemaOutputFormat,
   unregisterSchema,
   SchemaObject,
+  FLAG,
 } from "@hyperjump/json-schema/draft-2020-12";
-import { BASIC } from "@hyperjump/json-schema/experimental";
 
-setMetaSchemaOutputFormat(BASIC);
+setMetaSchemaOutputFormat("FLAG");
 
 export async function hyperjumpValidate(data: any, schema: any) {
   if (!("$schema" in schema)) {
     schema["$schema"] = "https://json-schema.org/draft/2020-12/schema";
   }
-  registerSchema(schema as SchemaObject, "http://example.com/schemas/string");
-  const output = await validate(
-    "http://example.com/schemas/string",
-    data as SchemaObject
-  );
-
-  console.log("unregistering schema");
-  unregisterSchema("http://example.com/schemas/string");
-
-  return output;
+  try {
+    registerSchema(schema as SchemaObject, "http://example.com/schemas/string");
+    const output = await validate(
+      "http://example.com/schemas/string",
+      data as SchemaObject,
+      "FLAG"
+    );
+    console.log(output);
+    return output;
+  } catch (e) {
+    console.log(e);
+    throw e;
+  } finally {
+    unregisterSchema("http://example.com/schemas/string");
+  }
 }
 
 import { validator as schemaSafeValidator } from "@exodus/schemasafe";

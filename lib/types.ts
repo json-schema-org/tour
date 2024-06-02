@@ -1,3 +1,5 @@
+import { OutputUnit } from "@hyperjump/json-schema/draft-2020-12";
+
 export type ChapterStep = {
   title: string;
   fileName: string;
@@ -25,14 +27,14 @@ export type TestCase = {
   expected: Boolean;
 };
 
-type schemaSafeError = {
-  instanceLocation: string;
-  keywordLocation: string;
-};
+// type schemaSafeError = {
+//   instanceLocation: string;
+//   keywordLocation: string;
+// };
 
 export type FailedTestCase = TestCase & {
   actual: Boolean;
-  errors?: schemaSafeError[] | undefined;
+  errors?: string | undefined;
 };
 
 export type CodeFile = {
