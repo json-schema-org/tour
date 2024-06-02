@@ -38,10 +38,19 @@
   height: 100%;
   white-space: pre-wrap;
 }
-
 .valid {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+}
+
+.validMessage {
   color: green;
   font-size: large;
+}
+
+.validSmallMessage {
+  font-size: small;
 }
 .neutral {
   color: black;

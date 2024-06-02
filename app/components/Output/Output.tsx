@@ -11,26 +11,21 @@ function Output({
   outputResult: OutputResult;
   flex: number;
 }) {
-  let textColor;
-
-  if (outputResult.validityStatus === "neutral") {
-    textColor = "neutral";
-  } else if (outputResult.validityStatus === "valid") {
-    textColor = "valid";
-  } else if (outputResult.validityStatus === "syntaxError") {
-    textColor = "invalid";
-  } else {
-    // invalid
-    textColor = "neutral";
-  }
   let outputBodyContent;
   if (outputResult.validityStatus == "neutral") {
     outputBodyContent = "Please click the validate button to see the output";
   } else if (outputResult.validityStatus == "valid") {
-    outputBodyContent = "The code is valid. Let's move on to the next step";
+    outputBodyContent = (
+      <div className={styles.valid}>
+        <b className={styles.validMessage}>Valid Schema!</b>
+        <span className={styles.validSmallMessage}>
+          Let&apos;s move on to the next step
+        </span>
+      </div>
+    );
   } else if (outputResult.validityStatus == "syntaxError") {
     outputBodyContent = (
-      <div>
+      <div className={styles.invalid}>
         <b>Syntax Error:</b> <code>{outputResult.errors}</code>
       </div>
     );
@@ -45,10 +40,7 @@ function Output({
   }
 
   return (
-    <div
-      className={classnames(styles.output, styles[textColor])}
-      style={{ flex: flex }}
-    >
+    <div className={classnames(styles.output)} style={{ flex: flex }}>
       <div className={styles.header}>
         <div className={styles.title}>Output </div>
       </div>
