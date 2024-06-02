@@ -43,7 +43,7 @@ export default function CodeSnippet({
           lineNumber <= highlightLineEnd
         ) {
           style = {
-            backgroundColor: "#00ff0023",
+            backgroundColor: "#00ff001a",
             borderLeft: "2px solid #0aff0ad0",
           };
         }
