@@ -13,8 +13,9 @@ export async function validateCode(
     const failedTestCases: FailedTestCase[] = [];
     let validationStatus: "valid" | "invalid" | "neutral" = "valid";
     const totalTestCases = testCases.length;
-    testCases.forEach((dataTestCase, i) => {
-      const validationResult = schemaSafeValidate(
+    for (let i = 0; i < testCases.length; i++) {
+      const dataTestCase = testCases[i];
+      const validationResult = await hyperjumpValidate(
         dataTestCase.input,
         schemaCode
       );
@@ -22,13 +23,13 @@ export async function validateCode(
       if (validationResult.valid !== dataTestCase.expected) {
         failedTestCases.push({
           actual: validationResult.valid,
-          errors: validationResult.errors,
+          errors: validationResult.instanceLocation,
           expected: dataTestCase.expected,
           input: dataTestCase.input,
         });
         validationStatus = "invalid";
       }
-    });
+    }
     if (validationStatus === "valid") {
       dispatchOutput({ type: "valid", payload: {} });
     } else {
