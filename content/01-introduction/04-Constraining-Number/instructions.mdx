@@ -39,13 +39,23 @@ To apply constraints on number values, you can use the following keywords:
 - x ≤ `maximum`
 - x < `exclusiveMaximum`
 
-```json 
+
+### age property 
+
+```json
 {
   "age":{
-  type: "number",
-  minimum: 18,
-  maximum: 60
+    type: "number",
+    minimum: 18,
+    maximum: 60
   }
+}
+```
+
+### dateOfBirth property 
+
+```json 
+{
   "dateOfBirth": {
     type: "object",
     properties: {
