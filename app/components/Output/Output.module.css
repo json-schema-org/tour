@@ -41,7 +41,7 @@
 .valid {
   display: flex;
   gap: 12px;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .validMessage {
