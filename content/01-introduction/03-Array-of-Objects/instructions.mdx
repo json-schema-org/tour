@@ -1,0 +1,69 @@
+---
+title: "Array of Objects"
+description: "Define an array of objects with enumerated properties"
+keywords: "items, array, object, properties, type, properties, enum"
+---
+
+# Array of Objects
+
+
+
+Now let's add `skills` field. Which is an array of objects. Each object in the array will have two properties `name` and `level`.
+
+- The `name` property will be a string value.
+- The `level` property will have only three possible values: `beginner`, `intermediate`, and `advanced`.
+
+
+
+```json highlightLineStart={4} highlightLineEnd={13}
+{
+  "name": "John Doe",
+  "age": 25,
+  "skills": [
+    {
+      "name": "JavaScript",
+      "level":"beginner"
+    },
+    {
+      "name": "React",
+      "level":"intermediate"
+    }
+  ]
+}
+```
+
+
+
+
+## Enumerated Values
+
+**How do you constrain the value of a property to a fixed set of values?** Enumerated values are used to solve this problem.
+
+In _JSON Schema_, you can define enumerated values using the `enum` keyword.
+
+```json
+{
+  "enum": ["beginner", "intermediate", "advanced"]
+}
+```
+## Schema for the Array of Objects
+
+To define an array of objects in _JSON Schema_, you use the `items` keyword with the `type` set to `object`.
+> `items` keyword to define the type (or _subschema_) of items in the array. In this case, the type is an object.
+
+```json
+{
+  "skills": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "level": {
+          "enum": ["beginner", "intermediate", "advanced"]
+        }
+      }
+    }
+  }
+}
+```
