@@ -40,7 +40,7 @@ function createHeading(level: number): any {
         as={`h${level}` as As}
         size={headingSizes[level]}
         lineHeight={"tallest"}
-        letterSpacing={"tighter"}
+        letterSpacing={level <= 2 ? "tighter" : ""}
       >
         {children?.toString()}
       </Heading>
