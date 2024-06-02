@@ -1,18 +1,24 @@
 ---
-title: "Constant Values"
-description: "Defining constant values in a JSON schema."
-keywords: "constant"
+title: "Constraining Number"
+description: "Constraints on number values, minimum, maximum and range"
+keywords: ""
 ---
 
-# Constants 
+# Constraining Number
 
-Constant values are values that are fixed and cannot be changed. In JSON Schema, we can define constant values using the `const` keyword.
+We want to constrain the age of the employee to be between 18 and 60.
+and add a date of birth object with the properties `day`, `month`, and `year`.
 
-```json highlightLineStart={4} 
+
+```json highlightLineStart={4} highlightLineEnd={8}
 {
   "name": "John Doe ",
   "age": 25,
-  "role": "employee"
+  "dateOfBirth": {
+    "day": 1,
+    "month": 1,
+    "year": 1995
+  }
 }
 ```
 
