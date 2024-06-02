@@ -46,10 +46,20 @@ In _JSON Schema_, you can define enumerated values using the `enum` keyword.
   "enum": ["beginner", "intermediate", "advanced"]
 }
 ```
+
+<GoodToKnowBox>
+Values defined in the `enum` keyword are **case-sensitive**.
+
+<code>"enum": ["beginner", "intermediate", "advanced"]</code> and
+
+<code>"enum": ["Beginner", "Intermediate", "Advanced"]</code> are **different**.
+</GoodToKnowBox>
 ## Schema for the Array of Objects
 
-To define an array of objects in _JSON Schema_, you use the `items` keyword with the `type` set to `object`.
-> `items` keyword to define the type (or _subschema_) of items in the array. In this case, the type is an object.
+
+In _JSON Schema_ you can use the `items` keyword for defining the type (or _subschema_) of items in the array.
+
+in this case, you can use the `items` keyword with the `type` set to `object`.
 
 ```json
 {
@@ -59,11 +69,11 @@ To define an array of objects in _JSON Schema_, you use the `items` keyword with
       "type": "object",
       "properties": {
         "name": {"type": "string"},
-        "level": {
-          "enum": ["beginner", "intermediate", "advanced"]
-        }
+        "level": { "enum": ["beginner", "intermediate", "advanced"] }
       }
     }
   }
 }
 ```
+Now, try to add the `skills` property in the schema given to you in the editor.
+
