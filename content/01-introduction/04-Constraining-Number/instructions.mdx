@@ -11,7 +11,7 @@ You may want to constrain the value of a number to a specific **range** or set a
 Let's add dateOfBirth property field to the data. 
 We want to apply the following constrains on the data: 
 - `age` should be between 18 and 60
-- `dateOfBirth.year` should be between 1954 and 2024 
+- `dateOfBirth.year` should be between 1964 and 2024 
 - `dateOfBirth.month` should be between 1 and 12
 - `dateOfBirth.day` should be between 1 and 31
 
@@ -64,16 +64,7 @@ To apply constraints on number values, you can use the following keywords:
         minimum: 1954,
         maximum: 2024
       },
-      "month": {
-        type: "number",
-        minimum: 1,
-        maximum: 12
-      },
-      "day": {
-        type: "number",
-        minimum: 1,
-        maximum: 31
-      }
+      ...
     }
   }
 }
