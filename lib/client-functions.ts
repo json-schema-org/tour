@@ -23,9 +23,10 @@ export async function validateCode(
       if (validationResult.valid !== dataTestCase.expected) {
         failedTestCases.push({
           actual: validationResult.valid,
-          errors: validationResult.errors
-            ? (validationResult.errors[-1].instanceLocation as string)
-            : "",
+          errors:
+            validationResult.errors && validationResult.errors[-1]
+              ? (validationResult.errors[-1].instanceLocation as string)
+              : "",
           expected: dataTestCase.expected,
           input: dataTestCase.input,
         });
