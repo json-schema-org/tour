@@ -35,32 +35,15 @@ Now let's add `skills` field. Which is an array of objects. Each object in the a
 
 
 
-## Enumerated Values
 
-**How do you constrain a property to have a fixed set of values?** Enumerated values are used to solve this problem.
 
-In _JSON Schema_, you can define enumerated values using the `enum` keyword.
 
-```json
-{
-  "enum": ["beginner", "intermediate", "advanced"]
-}
-```
-
-<GoodToKnowBox>
-Values defined in the `enum` keyword are **case-sensitive**.
-
-<code>"enum": ["beginner", "intermediate", "advanced"]</code> and
-
-<code>"enum": ["Beginner", "Intermediate", "Advanced"]</code> are **different**.
-</GoodToKnowBox>
 ## Schema for the Array of Objects
 
 
 In _JSON Schema_ you can use the `items` keyword for defining the type (or _subschema_) of items in the array.
 
-in this case, you can use the `items` keyword with the `type` set to `object`.
-
+in this case, you can use the `items` keyword with the `type` set to `object`, and to constrain the values of `skills.level` you can use the `enum` keyword
 ```json
 {
   "skills": {
