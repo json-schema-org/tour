@@ -3,6 +3,7 @@ import styles from "./Output.module.css";
 import classnames from "classnames";
 import { OutputResult } from "@/lib/types";
 import FailedTestCasesWindow from "../FailedTestCaseWindow/FailedTestCaseWindow";
+import SmallBtn from "../SmallBtn/SmallBtn";
 
 function Output({
   outputResult,
@@ -13,7 +14,16 @@ function Output({
 }) {
   let outputBodyContent;
   if (outputResult.validityStatus == "neutral") {
-    outputBodyContent = "Please click the validate button to see the output";
+    outputBodyContent = (
+      <>
+        {" "}
+        Please click the{" "}
+        <SmallBtn variant="default" onClick={() => {}}>
+          validate
+        </SmallBtn>{" "}
+        button to see the output
+      </>
+    );
   } else if (outputResult.validityStatus == "valid") {
     outputBodyContent = (
       <div className={styles.valid}>
