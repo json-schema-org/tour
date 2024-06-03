@@ -32,10 +32,7 @@ function FailedTestCaseItem({
       </div>
       <div className={styles.failedTestCaseError}>
         {testCase.errors && <b>trace: </b>}
-        {testCase.errors &&
-          testCase.errors.map((i) => {
-            return i.keywordLocation;
-          })}
+        {testCase.errors && testCase.errors}
       </div>
     </div>
   );
