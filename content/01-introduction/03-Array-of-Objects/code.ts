@@ -7,6 +7,7 @@ const code: any = {
     age: {
       type: "number",
     },
+    skills: {},
   },
 };
 
