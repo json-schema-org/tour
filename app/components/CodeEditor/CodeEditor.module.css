@@ -5,9 +5,3 @@
   height: 100%;
   overflow-y: auto;
 }
-
-.validateBtn {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-}
