@@ -35,13 +35,19 @@ In _JSON Schema_, you nest objects within objects by defining the `type` as `obj
       "firstName": {"type": "string"},
       "lastName": {"type": "string"},
       "MiddleName": {"type": "string"}
-    }
+    },
+    "required": ["firstName", "lastName"]
   },
   ...
 }
 
 ```
 
+<GoodToKnowBox>
+`required` keyword is used to specify the required properties in an object. In the above example, `firstName` and `lastName` are required properties. 
+
+**These properties must be present in the object**
+</GoodToKnowBox>
 
 
-Now, try to add the `name` property of the schema given on the right side editor to include the new properties `firstName`, `lastName`, and `MiddleName` with the `type` set to `string`.
+Now, try to add the `name` property on the right side editor with `required` constrain
