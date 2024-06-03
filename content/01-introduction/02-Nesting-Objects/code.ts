@@ -48,6 +48,17 @@ const testCases: any[] = [
     input: {
       name: {
         firstName: "John",
+        lastName: "Doe",
+        middleName: null,
+      },
+      age: 23,
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: {
+        firstName: "John",
         lastName: "Smith",
       },
       age: 23,
