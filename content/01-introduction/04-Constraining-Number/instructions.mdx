@@ -8,13 +8,7 @@ keywords: ""
 
 You may want to constrain the value of a number to a specific **range** or set a **minimum** or **maximum** value.
 
-Let's add dateOfBirth property field to the data. 
-We want to apply the following constrains on the data: 
-- `age` should be between 18 and 60
-- `dateOfBirth.year` should be between 1964 and 2024 
-- `dateOfBirth.month` should be between 1 and 12
-- `dateOfBirth.day` should be between 1 and 31
-
+Consider you want to add a new property dateOfBirth with some constraints on the year, month, and day. 
 
 
 ```json highlightLineStart={4} highlightLineEnd={8}
@@ -40,7 +34,7 @@ To apply constraints on number values, you can use the following keywords:
 - x < `exclusiveMaximum`
 
 
-### age property 
+### Example: age property 
 
 ```json
 {
@@ -52,7 +46,7 @@ To apply constraints on number values, you can use the following keywords:
 }
 ```
 
-### dateOfBirth property 
+### Example: dateOfBirth property 
 
 ```json 
 {
@@ -70,7 +64,13 @@ To apply constraints on number values, you can use the following keywords:
 }
 ```
 
-now try to add the `age` and `dateOfBirth` properties to the schema given on the right side editor with the constraints mentioned above. 
+now try to add the `age` and `dateOfBirth` properties in the schema given on the right side editor with the constraints mentioned below:
+
+- `age` should be between 18 and 60
+- `dateOfBirth.year` should be between 1964 and 2024 
+- `dateOfBirth.month` should be between 1 and 12
+- `dateOfBirth.day` should be between 1 and 31
+
 
 You can also use the `exclusiveMinimum` and `exclusiveMaximum` keywords in the schema. 
 For example: to set the age between 18 to 16 you can set `exclusiveMinimum : 15` and `exclusiveMaximum : 61`
