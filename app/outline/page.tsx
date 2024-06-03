@@ -19,7 +19,7 @@ export default function OutlinePage() {
           return (
             <ListItem key={item.folderName}>
               {item.title}
-              <UnorderedList>
+              <OrderedList styleType={"lower-roman"}>
                 {item.steps.map((step) => (
                   <ListItem key={step.fileName}>
                     <Link
@@ -30,7 +30,7 @@ export default function OutlinePage() {
                     </Link>
                   </ListItem>
                 ))}
-              </UnorderedList>
+              </OrderedList>
             </ListItem>
           );
         })}
