@@ -25,10 +25,10 @@ import {
   setMetaSchemaOutputFormat,
   unregisterSchema,
   SchemaObject,
-  FLAG,
 } from "@hyperjump/json-schema/draft-2020-12";
+import { BASIC } from "@hyperjump/json-schema/experimental";
 
-setMetaSchemaOutputFormat("FLAG");
+setMetaSchemaOutputFormat(BASIC);
 
 export async function hyperjumpValidate(data: any, schema: any) {
   if (!("$schema" in schema)) {
@@ -39,7 +39,7 @@ export async function hyperjumpValidate(data: any, schema: any) {
     const output = await validate(
       "http://example.com/schemas/string",
       data as SchemaObject,
-      "FLAG"
+      BASIC
     );
     console.log(output);
     return output;
