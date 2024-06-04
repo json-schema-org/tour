@@ -11,7 +11,7 @@ const code: any = {
 
 const solution = structuredClone(code);
 solution.properties.age = {
-  type: "number",
+  type: "integer",
   minimum: 18,
   maximum: 60,
 };
@@ -20,17 +20,17 @@ solution.properties.dateOfBirth = {
   type: "object",
   properties: {
     year: {
-      type: "number",
+      type: "integer",
       minimum: 1964,
       maximum: 2024,
     },
     month: {
-      type: "number",
+      type: "integer",
       minimum: 1,
       maximum: 12,
     },
     day: {
-      type: "number",
+      type: "integer",
       minimum: 1,
       maximum: 31,
     },

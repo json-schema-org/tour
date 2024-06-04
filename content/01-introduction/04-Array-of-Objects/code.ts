@@ -5,7 +5,7 @@ const code: any = {
       type: "string",
     },
     age: {
-      type: "number",
+      type: "integer",
     },
     skills: {},
   },

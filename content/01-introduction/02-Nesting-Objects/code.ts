@@ -3,7 +3,7 @@ const code: any = {
   properties: {
     name: {},
     age: {
-      type: "number",
+      type: "integer",
     },
   },
 };

@@ -18,6 +18,13 @@ const testCases = [
   {
     input: {
       name: "John Doe",
+      age: 30.5,
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: "John Doe",
       age: "30",
     },
     expected: false,
@@ -37,7 +44,7 @@ const testCases = [
   {
     input: {
       name: "John Doe",
-      age: 30,
+      age: 30.0,
       location: "New York",
     },
     expected: true,
@@ -46,7 +53,7 @@ const testCases = [
 
 const solution = structuredClone(code);
 solution.properties.age = {
-  type: "number",
+  type: "integer",
 };
 
 module.exports = {
