@@ -10,24 +10,7 @@ const code: any = {
       maximum: 60,
     },
     dateOfBirth: {
-      type: "object",
-      properties: {
-        year: {
-          type: "integer",
-          minimum: 1964,
-          maximum: 2024,
-        },
-        month: {
-          type: "integer",
-          minimum: 1,
-          maximum: 12,
-        },
-        day: {
-          type: "integer",
-          minimum: 1,
-          maximum: 31,
-        },
-      },
+      type: "string",
     },
   },
 };
@@ -41,41 +24,48 @@ solution.oneOf = [
     required: ["dateOfBirth"],
   },
 ];
+solution.properties.dateOfBirth.format = "date";
 
 const testCases: any[] = [
   {
     input: {
-      name: "John Doe",
-      age: 25,
+      name: "person",
+      age: 23,
     },
     expected: true,
   },
   {
     input: {
-      name: "John Doe",
-      dateOfBirth: {
-        year: 1998,
-        month: 5,
-        day: 12,
-      },
-    },
-    expected: true,
-  },
-  {
-    input: {
-      name: "John Doe",
+      name: null,
+      age: 23,
     },
     expected: false,
   },
   {
     input: {
-      name: "John Doe",
-      age: 25,
-      dateOfBirth: {
-        year: 1998,
-        month: 5,
-        day: 12,
-      },
+      name: "person",
+      dateOfBirth: "1998-05-12",
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      dateOfBirth: "1st January 2025",
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23,
+      dateOfBirth: "1998-05-12",
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: "person",
     },
     expected: false,
   },
