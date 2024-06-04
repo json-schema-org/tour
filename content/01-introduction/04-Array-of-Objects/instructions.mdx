@@ -40,10 +40,8 @@ Now let's add `skills` field. Which is an array of objects. Each object in the a
 
 ## Schema for the Array of Objects
 
+Start by defining `skills` as an array. set the `items` keyword to define the type of items in the array. Each item in the array will be an object with two properties `name` and `level`. See the below example.
 
-In _JSON Schema_ you can use the `items` keyword for defining the type (or _subschema_) of items in the array.
-
-in this case, you can use the `items` keyword with the `type` set to `object`, and to constrain the values of `skills.level` you can use the `enum` keyword
 ```json
 {
   "skills": {
