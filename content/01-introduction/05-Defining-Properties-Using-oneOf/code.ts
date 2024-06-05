@@ -6,8 +6,6 @@ const code: any = {
     },
     age: {
       type: "integer",
-      minimum: 18,
-      maximum: 60,
     },
     dateOfBirth: {
       type: "string",
@@ -53,7 +51,7 @@ const testCases: any[] = [
       name: "person",
       dateOfBirth: "1st January 2025",
     },
-    expected: false,
+    expected: true,
   },
   {
     input: {
