@@ -6,48 +6,41 @@ keywords: "types, combining types, object schema, JSON Schema"
 
 # Combining Types
 
-You have learned to define an object schema with properties using the `properties` keyword, and added properties with `string` and `integer` types .
+In out previous example, we have set the types of properties as `string` and `number`. But what if you want to combine different types for a single property?
 
-In this step, you will learn how to nest objects within objects.
-Let's divide the name property into the three separate components: `firstName`, `lastName`, and `middleName` 
+**Example,** a person may or may not have a middle name. so you want to set the `middleName` property as `null` or `string`.
 
-```json highlightLineStart={3} highlightLineEnd={5}
+```json highlightLineStart={5} 
 {
   "name": {
     "firstName": "John",
     "lastName": "Doe",
-    "middleName": "Smith"
+    "middleName": null
   }
   "age": 25,
 }
 ```
 
-## Schema for nested objects
+## Defining the Schema 
 
-In _JSON Schema_, you nest objects within objects by defining the `type` as `object` and adding the `properties` keyword to define the nested properties.
+In _JSON Schema_, you can define multiple types by passing **an array of types** to the `type` field. 
+**Example:**
 
-```json 
+```json highlightLineStart={6} 
 {
- ...
-  "name":{
-    "type": "object", // it was string in previous example
-    "properties": {
-      "firstName": {"type": "string"},
-      "lastName": {"type": "string"},
-      "middleName": {"type": "string"}
+  "properties": {
+    "name": {     
+      "properties": {
+        "middleName": {
+          "type": ["string", "null"]
+        }
+        ...
+      },
     },
-    "required": ["firstName", "lastName"]
-  },
-  ...
+  }
 }
-
 ```
 
-<GoodToKnowBox>
-`required` keyword is used to specify the required properties in an object. In the above example, `firstName` and `lastName` are required properties. 
-
-**Properties mentioned in `required` must be present in the object**
-</GoodToKnowBox>
 
 
-Now, try to add the `name` property on the right side editor with `required` constrain
+Now, try to add the `type` property of `middleName` to include both `string` and `null` types.
