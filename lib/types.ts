@@ -1,4 +1,4 @@
-import { OutputUnit } from "@hyperjump/json-schema/draft-2020-12";
+import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 
 export type ChapterStep = {
   title: string;
@@ -47,8 +47,13 @@ export type CodeFileExports = {
 };
 
 export type OutputResult = {
-  validityStatus: "valid" | "invalid" | "neutral" | "syntaxError";
+  validityStatus:
+    | "valid"
+    | "invalid"
+    | "neutral"
+    | "syntaxError"
+    | "invalidSchema";
   failedTestCases?: FailedTestCase[];
   totalTestCases?: number;
-  errors?: string;
+  errors?: InvalidSchemaError | string;
 };

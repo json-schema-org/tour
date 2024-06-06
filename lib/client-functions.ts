@@ -1,3 +1,4 @@
+import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { OutputReducerAction } from "./reducers";
 import { CodeFile, FailedTestCase } from "./types";
 import { hyperjumpValidate, schemaSafeValidate } from "./validators";
@@ -42,10 +43,17 @@ export async function validateCode(
       });
     }
   } catch (e) {
-    console.log("error");
-    dispatchOutput({
-      type: "syntaxError",
-      payload: { errors: (e as Error).message },
-    });
+    if ((e as Error).message === "Invalid Schema") {
+      console.log("message is invalid schema");
+      dispatchOutput({
+        type: "invalidSchema",
+        payload: { errors: e as InvalidSchemaError },
+      });
+    } else {
+      dispatchOutput({
+        type: "syntaxError",
+        payload: { errors: (e as Error).message },
+      });
+    }
   }
 }

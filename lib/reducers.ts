@@ -1,7 +1,7 @@
 import { OutputResult } from "./types";
 
 export type OutputReducerAction = {
-  type: "valid" | "syntaxError" | "invalid" | "RESET";
+  type: "valid" | "syntaxError" | "invalid" | "RESET" | "invalidSchema";
   payload?: any;
 };
 
@@ -22,6 +22,12 @@ export function outputReducer(
         ...state,
         errors: action.payload.errors,
         validityStatus: "syntaxError",
+      };
+    case "invalidSchema":
+      return {
+        ...state,
+        errors: action.payload.errors,
+        validityStatus: "invalidSchema",
       };
     case "invalid":
       return {
