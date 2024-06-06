@@ -1,7 +1,20 @@
 const code: any = {
   type: "object",
   properties: {
-    name: {},
+    name: {
+      type: "object",
+      properties: {
+        firstName: {
+          type: "string",
+        },
+        lastName: {
+          type: "string",
+        },
+        middleName: {
+          type: "string",
+        },
+      },
+    },
     age: {
       type: "integer",
     },
@@ -9,20 +22,7 @@ const code: any = {
 };
 
 const solution = structuredClone(code);
-solution.properties.name = {
-  type: "object",
-  properties: {
-    firstName: {
-      type: "string",
-    },
-    lastName: {
-      type: "string",
-    },
-    middleName: {
-      type: "string",
-    },
-  },
-};
+solution.properties.name.required = ["firstName", "lastName"];
 
 const testCases: any[] = [
   {
@@ -42,6 +42,34 @@ const testCases: any[] = [
       age: 23,
     },
     expected: true,
+  },
+  {
+    input: {
+      name: {
+        firstName: "John",
+        lastName: "Doe",
+      },
+      age: 23,
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: {
+        lastName: "Doe",
+      },
+      age: 23,
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: {
+        firstName: "John",
+      },
+      age: 23,
+    },
+    expected: false,
   },
   {
     input: {
