@@ -4,6 +4,8 @@ import classnames from "classnames";
 import { OutputResult } from "@/lib/types";
 import FailedTestCasesWindow from "../FailedTestCaseWindow/FailedTestCaseWindow";
 import SmallBtn from "../SmallBtn/SmallBtn";
+import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
+import { schemaUrl } from "@/lib/validators";
 
 function Output({
   outputResult,
@@ -13,6 +15,7 @@ function Output({
   flex: number;
 }) {
   let outputBodyContent;
+  console.log(outputResult.validityStatus);
   if (outputResult.validityStatus == "neutral") {
     outputBodyContent = (
       <>
@@ -36,7 +39,19 @@ function Output({
   } else if (outputResult.validityStatus == "syntaxError") {
     outputBodyContent = (
       <div className={styles.invalid}>
-        <b>Syntax Error:</b> <code>{outputResult.errors}</code>
+        <b>Syntax Error:</b> <code>{outputResult.errors as string}</code>
+      </div>
+    );
+  } else if (outputResult.validityStatus == "invalidSchema") {
+    outputBodyContent = (
+      <div className={styles.invalid}>
+        <b>Invalid Schema:</b>{" "}
+        <code>
+          {(outputResult.errors as InvalidSchemaError).output.errors &&
+            (
+              outputResult.errors as InvalidSchemaError
+            ).output.errors![0].instanceLocation.replace(schemaUrl, "")}
+        </code>
       </div>
     );
   } else {
