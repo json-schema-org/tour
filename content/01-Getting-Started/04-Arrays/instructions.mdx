@@ -1,36 +1,8 @@
 ---
-title: "Arrays and Enums"
-description: "Define arrays and enumerated values in JSON Schema"
-keywords: "nesting, string, properties, type, object, required"
+title: "Arrays"
+description: "Define arrays in JSON Schema"
+keywords: "array"
 ---
-
-
-# Enumerated Values
-
-**How do you constrain a property to have a fixed set of values?** Enumerated values are used to solve this problem.
-
-
-Consider we add a field `hobbies` to the document. The `hobbies` field can have only three possible values: `reading`, `writing`, and `painting`.
-
-
-```json highlightLineStart={4}
-{
-  "name": "John Doe",
-  "age": 25,
-  "hobbies": "reading"
-}
-```
-
-To define the enumerated values in _JSON Schema_, use the `enum` keyword. **Example:**
-
-```json 
-{
-  "hobbies": {
-    "type": "string",
-    "enum": ["reading", "writing", "painting"]
-  }
-}
-```
 
 # Arrays
 
@@ -45,14 +17,12 @@ We will convert the hobbies field to an array of strings.
 ```
 
 
-In _JSON Schema_, defining an array is similar to defining an object. Use the `type` keyword with the value `array` to define an array. with the `items` keyword to define the type (or _subschema_) of items in the array. 
+In _JSON Schema_, defining an array is similar to defining an object. Use the `type` keyword with the value `array` to define an array. now use the `items` keyword to define the type (or _subschema_) of items in the array. 
 
-please see the below example, where we have declared hobbies as an array of strings.
-
-
+**Example:**
 ```json
 {
-  "hobbies": {
+  "skills": {
     "type": "array",
     "items": {
       "type": "string"
@@ -61,21 +31,6 @@ please see the below example, where we have declared hobbies as an array of stri
 }
 ```
 
-In this step, we will define an **array** property `hobbies`, which will **consist of zero or more predefined values**. in our case, the array will consist of the values from `reading`, `writing`, and `painting`. any other value will be invalid.
 
-### Schema Defination
-
-```json highlightLineStart={6}
- {
-  "hobbies": {
-    "type": "array",
-    "items": {
-      "type": "string",
-      "enum": ["reading", "writing", "painting"]
-    }
-  }
- }
-```
-
-Now, try to add the `hobbies` property on the right side editor with `enum` constrain
+Now, try to modify the `hobbies` property on the right side editor and convert it to an **array of strings**.
 
