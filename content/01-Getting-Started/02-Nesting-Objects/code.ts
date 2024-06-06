@@ -22,7 +22,6 @@ solution.properties.name = {
       type: "string",
     },
   },
-  required: ["firstName", "lastName"],
 };
 
 const testCases: any[] = [
@@ -58,12 +57,12 @@ const testCases: any[] = [
   {
     input: {
       name: {
-        firstName: "John",
+        firstName: 0,
         lastName: "Smith",
       },
       age: 23,
     },
-    expected: true,
+    expected: false,
   },
 ];
 

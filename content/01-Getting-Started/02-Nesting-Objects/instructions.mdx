@@ -1,7 +1,7 @@
 ---
 title: "Nesting Objects"
 description: "Nest objects within objects to define complex JSON structures."
-keywords: "nesting, string, properties, type, object, required"
+keywords: "nesting, string, properties, type, object"
 ---
 
 # Nesting Objects
@@ -26,28 +26,16 @@ Let's divide the name property into the three separate components: `firstName`, 
 
 In _JSON Schema_, you nest objects within objects by defining the `type` as `object` and adding the `properties` keyword to define the nested properties.
 
-```json 
+**Example**
+```json
 {
- ...
-  "name":{
-    "type": "object", // it was string in previous example
-    "properties": {
-      "firstName": {"type": "string"},
-      "lastName": {"type": "string"},
-      "middleName": {"type": "string"}
-    },
-    "required": ["firstName", "lastName"]
-  },
   ...
+  "name": {
+    "type": "object",
+    "properties": {},
+  }
 }
-
 ```
 
-<GoodToKnowBox>
-`required` keyword is used to specify the required properties in an object. In the above example, `firstName` and `lastName` are required properties. 
 
-**Properties mentioned in `required` must be present in the object**
-</GoodToKnowBox>
-
-
-Now, try to add the `name` property on the right side editor with `required` constrain
+Now, try to modify the `name` property on the right side editor to add `firstName`, `lastName`, and `middleName` with type `string`.
