@@ -10,10 +10,7 @@ keywords: "items, array, object, properties, type, properties, enum"
 
 Now let's add `skills` field. Which is an array of objects. Each object in the array will have two properties `name` and `level`.
 
-- The `name` property will be a string value.
-- The `level` property will have only three possible values: `beginner`, `intermediate`, and `advanced`.
-
-
+Both `name` and `level` are strings. 
 
 ```json highlightLineStart={4} highlightLineEnd={13}
 {
@@ -32,12 +29,6 @@ Now let's add `skills` field. Which is an array of objects. Each object in the a
 }
 ```
 
-
-
-
-
-
-
 ## Schema for the Array of Objects
 
 Start by defining `skills` as an array. set the `items` keyword to define the type of items in the array. Each item in the array will be an object with two properties `name` and `level`. See the below example.
@@ -48,13 +39,10 @@ Start by defining `skills` as an array. set the `items` keyword to define the ty
     "type": "array",
     "items": {
       "type": "object",
-      "properties": {
-        "name": {"type": "string"},
-        "level": { "enum": ["beginner", "intermediate", "advanced"] }
-      }
+      "properties": {...}
     }
   }
 }
 ```
-Now, try to add the `skills` property in the schema given to you in the editor.
+Now, try to modify the `skills` property in the schema given to you in the editor, and make it an array of objects with `name` and `level` properties.
 

@@ -18,9 +18,7 @@ solution.properties.skills = {
     type: "object",
     properties: {
       name: { type: "string" },
-      level: {
-        enum: ["beginner", "intermediate", "advanced"],
-      },
+      level: { type: "string" },
     },
   },
 };
@@ -59,6 +57,40 @@ const testCases: any[] = [
         {
           name: "TypeScript",
           level: "expert",
+        },
+      ],
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23,
+      skills: [
+        {
+          name: "JavaScript",
+          level: "beginner",
+        },
+        {
+          name: "TypeScript",
+          level: 0,
+        },
+      ],
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23,
+      skills: [
+        {
+          name: "JavaScript",
+          level: "beginner",
+        },
+        {
+          name: 0,
+          level: "intermediate",
         },
       ],
     },
