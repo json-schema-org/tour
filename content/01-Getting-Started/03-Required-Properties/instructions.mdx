@@ -6,7 +6,8 @@ keywords: "required, properties, object, type, string"
 
 # Required Properties
 
-In the previous example, the `name` had three properties: `firstName`, `lastName`, and `middleName`. In this step, you will learn how to define the required properties in JSON Schema.
+In the previous example, the `name` had three properties: `firstName`, `lastName`, and `middleName`. 
+now, you make `firstName` and `lastName` mandatory/required properties.
 
 ```json
 {
@@ -21,7 +22,7 @@ In the previous example, the `name` had three properties: `firstName`, `lastName
 
 ## Schema Definition
 
-You can use the `required` keyword to define the required properties in an object. 
+In JSON Schema, you can define required properties using the `required` keyword.
 
 Properties listed in the `required` array **must be present** in the object.
 if those properties are not present, the JSON data is considered invalid.
@@ -40,4 +41,4 @@ if those properties are not present, the JSON data is considered invalid.
 ```
 
 
-Now, try to modify the `name` property on the right side editor and add `firstName` and `lastName` to the `required` array.
+Now, try to modify the `name` property on the right side editor and add `firstName` and `lastName` as **required** properties.
