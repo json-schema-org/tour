@@ -17,7 +17,9 @@ Let's convert the hobbies field to an array of strings.
 ```
 
 
-In _JSON Schema_, defining an array is similar to defining an object. Use the `type` keyword with the value `array` to define an array. now use the `items` keyword to define the type (or _subschema_) of items in the array. 
+In _JSON Schema_, defining an array is similar to defining an object. Use the `type` keyword with the value `array` to define an array. 
+
+You can use the `items` keyword to define the *schema* of the array elements. The value of items should be a *subschema*.
 
 **Example:**
 ```json
