@@ -1,7 +1,7 @@
 ---
 title: "Nesting Objects"
 description: "Nest objects within objects to define complex JSON structures."
-keywords: "nesting, string, properties, type, object"
+keywords: "nesting, string, properties, type, object, subschema"
 ---
 
 # Nesting Objects
@@ -22,9 +22,11 @@ Let's divide the name property into the three separate components: `firstName`, 
 }
 ```
 
-## Schema for nested objects
+## Defining Subchema
 
-In _JSON Schema_, you can nest objects within objects by defining the `type` as `object` and adding the `properties` keyword to define the nested properties.
+In *JSON Schema*, A *subschema* refers to a schema that is nested within another schema. 
+
+To nest objects within objects, you can define a property as an object with its own properties. We can call this nested object a *subschema*. 
 
 **Example**
 ```json
