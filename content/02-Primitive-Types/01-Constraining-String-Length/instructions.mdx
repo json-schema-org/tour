@@ -5,9 +5,13 @@ keywords: minLength, maxLength, string, JSON Schema
 
 
 ---
-# Constraining String Length
+# Primitive Types
+Welcome to the Primitive Types module. In this module, you will learn about all the primitive types available in JSON Schema and some common constraints that can be applied to them. Let's start with the `string` type.
 
-Let's add two new fields `postalCode` and `phoneNumber` to the JSON object. You may want to constrain the length of these fields to ensure that they meet certain requirements.
+
+## Constraining String Length
+
+Let's add two new fields `postalCode` and `phoneNumber` to the JSON object. Now, **How do you ensure that those fields have the correct length?**
 
 ```json highlightLineStart={4} highlightLineEnd={5}
 {
@@ -20,12 +24,11 @@ Let's add two new fields `postalCode` and `phoneNumber` to the JSON object. You 
 
 ### minLength and maxLength
 
-In JSON Schema, you can use the `minLength` and `maxLength` keywords to define the minimum and maximum length of a string.
+In *JSON Schema*, you can use the `minLength` and `maxLength` keywords to define the minimum and maximum length of a string.
 
 **Example**
 
 ```json
-
 {
   ...
   "postalCode": {
