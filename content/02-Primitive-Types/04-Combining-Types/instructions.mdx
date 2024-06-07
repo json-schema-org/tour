@@ -1,0 +1,34 @@
+---
+title: "Combining Types - Boolean and Null"
+description: "Learn to combine different types of properties in a single property."
+keywords: "types, combining types, object schema, JSON Schema"
+---
+
+# Combining Types - Boolean and Null
+
+In out previous examples, we have set the types of properties as `string` and `integer`. But **what if you want to combine different types for a single property?**
+
+Let's add a new property `hasAgreedToTerms` to the JSON object. This property should be a boolean value, but it can also be `null`.
+
+```json highlightLineStart={4} 
+{
+  "name":"John Doe",
+  "age": 25,
+  "hasAgreedToTerms": true,
+}
+```
+
+## Defining the Schema 
+
+In _JSON Schema_, you can define multiple types by passing **an array of types** to the `type` field. 
+**Example:**
+
+```json 
+{
+  "type": ["boolean", "null"]
+}
+```
+
+
+
+Now, try to modify the `hasAgreedToTerms` property on the right side editor to accept both `boolean` and `null` values.
