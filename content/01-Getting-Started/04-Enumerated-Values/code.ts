@@ -13,7 +13,6 @@ const code: any = {
 
 const solution = structuredClone(code);
 solution.properties.hobbies = {
-  type: "string",
   enum: ["reading", "writing", "painting"],
 };
 
