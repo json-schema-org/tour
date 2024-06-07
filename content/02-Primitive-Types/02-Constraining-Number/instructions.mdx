@@ -30,10 +30,7 @@ you will also need to set range constraints for the `age` property
 To apply constraints on number values, you can use the following keywords:
 
 - x ≥ `minimum`
-- x > `exclusiveMinimum`
 - x ≤ `maximum`
-- x < `exclusiveMaximum`
-
 
 ### Example: age property 
 
@@ -72,6 +69,3 @@ now try to add the `age` and `dateOfBirth` properties in the schema given on the
 - `dateOfBirth.month` should be between 1 and 12
 - `dateOfBirth.day` should be between 1 and 31
 
-
-You can also use the `exclusiveMinimum` and `exclusiveMaximum` keywords in the schema. 
-For example: to set the age between 18 to 60 you can set `exclusiveMinimum : 15` and `exclusiveMaximum : 61`
