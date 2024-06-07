@@ -1,0 +1,43 @@
+---
+title: Constraining String Length
+description: Learn how to constrain the length of a string in JSON Schema.
+keywords: minLength, maxLength, string, JSON Schema
+
+
+---
+# Constraining String Length
+
+Let's add two new fields `postalCode` and `phoneNumber` to the JSON object. You may want to constrain the length of these fields to ensure that they meet certain requirements.
+
+```json highlightLineStart={4} highlightLineEnd={5}
+{
+  "name": "John Doe",
+  "age": 25,
+  "postalCode": "385004",
+  "phoneNumber": "84584898564"
+}
+```
+
+### minLength and maxLength
+
+In JSON Schema, you can use the `minLength` and `maxLength` keywords to define the minimum and maximum length of a string.
+
+**Example**
+
+```json
+
+{
+  ...
+  "postalCode": {
+    "type": "string",
+    "minLength": 6,
+    "maxLength": 6
+  }
+}
+```
+
+Now, add the `minLength` and `maxLength` constraints to the `postalCode` and `phoneNumber` fields in the right-side editor while keeping these constraints in mind.
+
+**Constraints:**
+- The `postalCode` should be a string with a length of **exactly 6** characters. 
+- The `phoneNumber` should be a string with a **minimum length of 10** characters.
