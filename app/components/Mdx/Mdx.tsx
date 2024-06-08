@@ -9,11 +9,11 @@ import {
 } from "@chakra-ui/react";
 import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import { MDXComponents } from "mdx/types";
-import CodeSnippet from "./CodeSnippet/CodeSnippet";
-import InfoBox from "./InfoBox";
-import GoodToKnowBox from "./GoodToKnowBox/GoodToKnowBox";
-
+import CodeSnippet from "../CodeSnippet/CodeSnippet";
+import InfoBox from "../InfoBox";
+import GoodToKnowBox from "../GoodToKnowBox/GoodToKnowBox";
 import rehypeExternalLinks from "rehype-external-links";
+import styles from "./Mdx.module.css";
 
 function createHeading(level: number): any {
   const headingSizes: {
@@ -41,8 +41,9 @@ function createHeading(level: number): any {
         size={headingSizes[level]}
         lineHeight={"tallest"}
         letterSpacing={level <= 2 ? "tighter" : ""}
+        className={styles.heading}
       >
-        {children?.toString()}
+        {children}
       </Heading>
     );
   };
