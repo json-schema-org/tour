@@ -4,9 +4,7 @@ const code: any = {
     name: {
       type: "string",
     },
-    age: {
-      type: "integer",
-    },
+    age: {},
     performanceRating: {},
   },
 };
@@ -18,6 +16,10 @@ solution.properties.performanceRating = {
   maximum: 5,
 };
 
+solution.properties.age = {
+  type: "integer",
+};
+
 const testCases: any[] = [
   {
     input: {
@@ -26,6 +28,14 @@ const testCases: any[] = [
       performanceRating: 3,
     },
     expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23.5,
+      performanceRating: 3,
+    },
+    expected: false,
   },
   {
     input: {

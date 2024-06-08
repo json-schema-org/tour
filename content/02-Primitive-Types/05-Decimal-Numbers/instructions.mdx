@@ -6,7 +6,7 @@ keywords: integer, number, JSON Schema
 
 # Decimal Numbers
 
-So far in the tour, we have defined `age` as an integer. However, `integer` does not allow decimal numbers. If you want to allow decimal numbers, you can use the `number` type.
+So far in the tour, we have defined `age` as an integer. However, `integer` **does not allow decimal numbers**. If you want to allow decimal numbers, you can use the `number` type.
 
 Consider a new property, `performanceRating`. 
 
@@ -19,3 +19,5 @@ Consider a new property, `performanceRating`.
 ```
 
 Now, Try to modify the `performanceRating` property on the right side editor to accept decimal numbers with `minimum` value as `0` and `maximum` value as `5`.
+
+and also try to modify the `age` property to accept only `integer` values. (there is no need to set the minimum and maximum values for the `age` property.)
