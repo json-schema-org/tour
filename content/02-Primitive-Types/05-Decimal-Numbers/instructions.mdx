@@ -1,0 +1,21 @@
+---
+title: Decimal Numbers
+description: Define decimal numbers and integers in JSON Schema.
+keywords: integer, number, JSON Schema
+---
+
+# Decimal Numbers
+
+So far in the tour, we have defined `age` as an integer. However, `integer` does not allow decimal numbers. If you want to allow decimal numbers, you can use the `number` type.
+
+Consider a new property, `performanceRating`. 
+
+```json highlightLineStart={4} 
+{
+  "name":"John Doe",
+  "age": 25,
+  "performanceRating": 4.5
+}
+```
+
+Now, Try to modify the `performanceRating` property on the right side editor to accept decimal numbers with `minimum` value as `0` and `maximum` value as `5`.
