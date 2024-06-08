@@ -1,1 +1,1 @@
-export { CustomMDX } from "./Mdx";
+export * from "./Mdx";
