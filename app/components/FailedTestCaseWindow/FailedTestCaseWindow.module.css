@@ -10,6 +10,8 @@
   padding: 4px;
   border-radius: calc(var(--border-radius) / 2);
   width: 100%;
+  font-size: small;
+  line-height: 1.3;
 }
 .failedTestCasesSubtitle {
   font-size: small;
