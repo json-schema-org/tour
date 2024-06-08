@@ -19,17 +19,9 @@ const testCases: any[] = [
     input: {
       name: "person",
       age: 23,
-      performanceRating: 3,
+      performanceRating: null,
     },
     expected: true,
-  },
-  {
-    input: {
-      name: "person",
-      age: 23.5,
-      performanceRating: 3,
-    },
-    expected: false,
   },
   {
     input: {
@@ -43,9 +35,49 @@ const testCases: any[] = [
     input: {
       name: "person",
       age: 23,
+      performanceRating: 1,
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23,
+      performanceRating: 2,
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23,
+      performanceRating: 3,
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23,
+      performanceRating: 4,
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23,
       performanceRating: 5,
     },
     expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23.5,
+      performanceRating: 3,
+    },
+    expected: false,
   },
   {
     input: {
@@ -86,14 +118,6 @@ const testCases: any[] = [
       performanceRating: 3,
     },
     expected: false,
-  },
-  {
-    input: {
-      name: "person",
-      age: 23,
-      performanceRating: null,
-    },
-    expected: true,
   },
 ];
 
