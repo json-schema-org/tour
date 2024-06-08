@@ -29,6 +29,14 @@ const testCases: any[] = [
     input: {
       name: "person",
       age: 23,
+      hasAgreedToTerms: 0,
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: "person",
+      age: 23,
       hasAgreedToTerms: null,
     },
     expected: true,
