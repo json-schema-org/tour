@@ -1,0 +1,39 @@
+---
+title: Multiple of a Number
+description: Define a number which is a multiple of another number in JSON Schema.
+keywords:  integer, JSON Schema, multiple, multipleOf
+---
+
+# Multiple of a Number
+
+Let's say you want to define a numeric property that should be a multiple of another number. We have added a new property, `hourlyWage`, in the JSON object.
+
+
+```json highlightLineStart={4}
+{
+  "name":"John Doe",
+  "age": 25,
+  "hourlyWage": 10
+}
+```
+
+## multipleOf Keyword 
+
+The `multipleOf` keyword is used to define a number which is a multiple of another number. The value of the `multipleOf` keyword **must be a number, strictly greater than or equal to 0.**
+
+**Example**
+
+```json
+{
+  "type": "number",
+  "multipleOf": 5
+}
+```
+
+Now, try to modify the JSON object such that `hourlyWage` property follows the given constraints. 
+
+**Constraints**
+- `hourlyWage` should be a **multiple of 0.25**
+- `hourlyWage` should be a **positive decimal number**
+- `hourlyWage` should have **maximum value of 100**
+
