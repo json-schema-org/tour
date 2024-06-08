@@ -1,4 +1,4 @@
-import { CustomMDX } from "@/app/components/mdx";
+import { CustomMDX } from "@/app/components/Mdx";
 import matter from "gray-matter";
 import fs from "fs";
 import { Metadata } from "./types";
