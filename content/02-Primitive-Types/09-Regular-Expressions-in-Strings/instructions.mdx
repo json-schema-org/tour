@@ -8,7 +8,7 @@ keywords:  regular expressions, regex, pattern, string, validation, JSON Schema
 
 Regular expressions are a powerful tool for matching patterns in strings. They are widely used in programming languages and tools for tasks like searching, replacing, and validating strings.
 
-In this step, we will use regular expressions to validate the format `postalCode` and `phoneNumber` fields in the JSON object.
+In this step, we will use regular expressions to validate the format `postalCode`, `phoneNumber` and `countryCode` fields in the JSON object.
 
 
 ```json highlightLineStart={4} highlightLineEnd={5}
@@ -16,7 +16,8 @@ In this step, we will use regular expressions to validate the format `postalCode
   "name": "John Doe",
   "age": 25,
   "postalCode": "385004",
-  "phoneNumber": "84584898564"
+  "phoneNumber": "84584898564",
+  "countryCode": "IN"
 }
 ```
 
@@ -33,8 +34,18 @@ In *JSON Schema*, you can use the `pattern` keyword to define a regular expressi
 }
 ```
 
-try to modify the `postalCode` and `phoneNumber` fields in the right-side editor with the below constraints in mind.
+Let's break down the regular expression `^[0-9]{6}$`:
+
+- `^` asserts the start of the string.
+- `[0-9]` matches any digit from 0 to 9.
+- `{6}` specifies that the previous pattern should be repeated exactly 6 times.
+- `$` asserts the end of the string.
+
+Now, try to modify the `postalCode`, `phoneNumber` and `countryCode` fields in the right-side editor with the below constraints in mind.
 
 **Constraints:**
 - The `postalCode` should be a string with a length of **exactly 6** characters and should **contain only digits.**
 - The `phoneNumber` should be a string with a **minimum length of 10** characters and should **contain only digits**.
+-  The `countryCode` should be a string with a **length of exactly 2** characters and should **contain only uppercase alphabets**. 
+
+> **Hint:** to only allow uppercase alphabets, you can use the regular expression `[A-Z]` in your regex pattern.
