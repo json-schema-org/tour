@@ -1,0 +1,40 @@
+---
+title: Regular Expressions in Strings
+description: Learn how to use regular expressions in JSON Schema to validate strings.
+keywords:  regular expressions, regex, pattern, string, validation, JSON Schema
+---
+
+# Regular Expressions in Strings
+
+Regular expressions are a powerful tool for matching patterns in strings. They are widely used in programming languages and tools for tasks like searching, replacing, and validating strings.
+
+In this step, we will use regular expressions to validate the format `postalCode` and `phoneNumber` fields in the JSON object.
+
+
+```json highlightLineStart={4} highlightLineEnd={5}
+{
+  "name": "John Doe",
+  "age": 25,
+  "postalCode": "385004",
+  "phoneNumber": "84584898564"
+}
+```
+
+## `pattern` Keyword
+
+In *JSON Schema*, you can use the `pattern` keyword to define a regular expression pattern that a string value must match.
+
+**Example**
+
+```
+{
+  "type": "string",
+  "pattern": "^[0-9]{6}$"
+}
+```
+
+try to modify the `postalCode` and `phoneNumber` fields in the right-side editor with the below constraints in mind.
+
+**Constraints:**
+- The `postalCode` should be a string with a length of **exactly 6** characters and should **contain only digits.**
+- The `phoneNumber` should be a string with a **minimum length of 10** characters and should **contain only digits**.
