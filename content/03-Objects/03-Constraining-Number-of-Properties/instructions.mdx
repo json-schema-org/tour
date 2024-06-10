@@ -1,0 +1,44 @@
+---
+title: Constraining Number of Properties
+description: Learn how to set the minimum and maximum number of properties in an object in JSON Schema.
+keywords: minProperties, maxProperties, object, JSON Schema, properties, type, properties, required, properties, object
+---
+
+
+# Constraining Number of Properties
+
+In JSON Schema, you can set constraints on the number of properties an object can have using the `minProperties` and `maxProperties` keywords.
+
+- `minProperties` specifies the **minimum number of properties an object must have.**
+- `maxProperties` specifies the **maximum number of properties an object can have.**
+
+Let's add a new property `contactMethods` in the employee object and set constraints on the number of properties.
+
+```json highlightLineStart={4}  highlightLineEnd={7}
+{
+  "name": "John Doe",
+  "age": 25,
+  "contactMethods": {
+    "email": "jhon.doe@postman.com",
+    "phone": "1234567890",
+    "mobile": "0987654321"
+  }
+}
+```
+
+Now, add the `minProperties` and `maxProperties` keywords to the schema on the right side editor to set the minimum and maximum number of properties in the `contactMethods` object.
+
+In the `contactMethods` object, set the minimum number of properties to `2` and the maximum number of properties to `5`. 
+
+
+**Example**
+
+```json
+{
+  "type": "object",
+  "minProperties": 2,
+  "maxProperties": 5
+}
+```
+
+Additionally, in the `contactMethods` object, use the `additionalProperties` keyword to ensure that the values of the properties are `string` type.
