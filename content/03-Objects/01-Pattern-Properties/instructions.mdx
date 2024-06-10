@@ -39,6 +39,6 @@ We will define a property that starts with `DEPT-` followed by department number
 
 Now, modify the schema provided in the editor on the right to permit `DEPT-*` properties. Additionally, ensure that the values for `DEPT-*` properties are constrained to be in **all capital letters.**
 
-> **Hint:** Use the `patternProperties` keyword to define the pattern for the property name and `pattern` keyword to define the pattern for the value. you can set `pattern` to `^[A-Z]+$` to match all capital letters.
+> **Hint:** Use the `patternProperties` keyword to define the pattern for the property name and `pattern` keyword to define the pattern for the property value. you can set `pattern` to `^[A-Z]+$` to match all capital letters.
 
 > We have set `additionalProperties` to `false` to disallow any additional properties. We will learn more about `additionalProperties` in the next lesson.
