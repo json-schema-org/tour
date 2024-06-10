@@ -1,0 +1,53 @@
+---
+title: Regular Expressions in Strings
+description: Learn how to use regular expressions in JSON Schema to validate strings.
+keywords:  regular expressions, regex, pattern, string, validation, JSON Schema
+---
+
+# Regular Expressions in Strings
+
+Regular expressions are a powerful tool for matching patterns in strings. They are widely used in programming languages and tools for tasks like searching, replacing, and validating strings.
+
+Regular expressions itself are out of scope for this Tour, you can learn more about them in the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions).
+
+In this step, we will use regular expressions to validate the format `postalCode`, `phoneNumber` and `countryCode` fields in the JSON object.
+
+
+```json highlightLineStart={6} 
+{
+  "name": "John Doe",
+  "age": 25,
+  "postalCode": "385004",
+  "phoneNumber": "84584898564",
+  "countryCode": "IN"
+}
+```
+
+## pattern Keyword
+
+In *JSON Schema*, you can use the `pattern` keyword to define a regular expression pattern that a string value must match.
+
+**Example**
+
+```
+{
+  "type": "string",
+  "pattern": "^[0-9]{6}$"
+}
+```
+
+Let's break down the regular expression `^[0-9]{6}$`:
+
+- `^` asserts the start of the string.
+- `[0-9]` matches any digit from 0 to 9.
+- `{6}` specifies that the previous pattern should be repeated exactly 6 times.
+- `$` asserts the end of the string.
+
+Now, try to modify the `postalCode`, `phoneNumber` and `countryCode` fields in the right-side editor with the below constraints in mind.
+
+**Constraints:**
+- The `postalCode` should be a string with a length of **exactly 6** characters and should **contain only digits.**
+- The `phoneNumber` should be a string with a **minimum length of 10** characters and should **contain only digits**.
+-  The `countryCode` should be a string with a **length of exactly 2** characters and should **contain only uppercase alphabets**. 
+
+> **Hint:** to only allow uppercase alphabets, you can use the regular expression `[A-Z]` in your regex pattern.
