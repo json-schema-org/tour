@@ -1,0 +1,32 @@
+---
+title: Additional Items in Tuples
+description: Constrain additional items in a tuple array using JSON Schema.
+keywords: tuple, array, items, validation, JSON, Schema, JSON Schema
+---
+
+
+# Additional Items in Tuples
+
+There is no new keyword for the additional items in tuple arrays. You can use the `items` keyword to define the schema for the additional items in a tuple array.
+
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "address": [123, "Main St", "Avenue", "NW"]
+}
+```
+**Example**
+
+```json
+{
+  "type": "array",
+  "items": false
+}
+```
+
+The above schema defines an array in which, no additional items are allowed.
+
+Now, try to modify the `address` property on the side editor, to allow only string values as additional items in the tuple array.
+
+> **Hint:** add a *subschema* to the `items` keyword to define the schema for the additional items.
