@@ -7,12 +7,15 @@ const code: any = {
     age: {
       type: "integer",
     },
+    phones: {
+      type: "array",
+    },
   },
 };
 
 const solution = structuredClone(code);
 solution.properties.phones = {
-  type: "array",
+  ...solution.properties.phones,
   items: {
     type: "string",
     pattern: "^\\d{3}-\\d{3}-\\d{4}$",
