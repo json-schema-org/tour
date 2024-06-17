@@ -1,0 +1,39 @@
+---
+title: Ensuring Array Content with the 'contains'
+description: Learn how to use the 'contains' keyword in JSON Schema to ensure that arrays contain specific elements.
+keywords: array, contains, validation, JSON Schema
+---
+
+
+# Ensuring Array Content with the 'contains'
+
+The `contains` keyword is used to ensure that an array contains **at least one element** that matches the *subschema* defined in the `contains` keyword.
+
+## Example
+
+In the following example, we have a JSON Schema that validates an array of numbers. The schema ensures that the array contains at least one element that is less than 10.
+
+```json
+{
+  "type": "array",
+  "contains": {
+    "type": "number",
+    "maximum": 10
+  }
+}
+```
+## Task 
+
+Our employee document has a field called `skills`. 
+
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 30,
+  "skills": ["JavaScript", "Python", "Java"]
+}
+```
+
+Now, we want to ensure that the `skills` array contains at least one element that is equal to `"JavaScript"`. modify the schema given to you in the side editor to apply this constrain.
+
+> **Hint:** Use the `const` keyword to specify JavaScript as the required element.
