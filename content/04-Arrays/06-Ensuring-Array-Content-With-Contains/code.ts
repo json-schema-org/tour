@@ -1,6 +1,5 @@
 const code: any = {
   type: "object",
-  required: ["name", "age", "skills"],
   properties: {
     name: {
       type: "string",
@@ -12,6 +11,7 @@ const code: any = {
       type: "array",
     },
   },
+  required: ["name", "age", "skills"],
 };
 
 const solution = structuredClone(code);
