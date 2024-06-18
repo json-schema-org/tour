@@ -4,9 +4,8 @@
   /* padding: 16px; */
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
-  border: 1px solid rgba(152, 152, 152, 0.668);
+  border: 1px solid hsl(var(--border-color));
   overflow-y: hidden;
 }
 
@@ -19,8 +18,7 @@
   border-radius: 16px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  background-color: rgb(242, 242, 242);
-  color: black;
+  background-color: hsl(var(--background2));
   width: 100%;
   border-bottom: 1px solid rgba(152, 152, 152, 0.668);
   display: flex;
