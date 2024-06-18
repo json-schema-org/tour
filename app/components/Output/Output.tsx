@@ -15,7 +15,7 @@ function Output({
   flex: number;
 }) {
   let outputBodyContent;
-  console.log(outputResult.validityStatus);
+
   if (outputResult.validityStatus == "neutral") {
     outputBodyContent = (
       <>
@@ -61,7 +61,6 @@ function Output({
         totalTestCases={outputResult.totalTestCases!}
       />
     );
-    console.log(outputResult.failedTestCases);
   }
 
   return (

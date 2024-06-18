@@ -44,7 +44,6 @@ export async function validateCode(
     }
   } catch (e) {
     if ((e as Error).message === "Invalid Schema") {
-      console.log("message is invalid schema");
       dispatchOutput({
         type: "invalidSchema",
         payload: { errors: e as InvalidSchemaError },

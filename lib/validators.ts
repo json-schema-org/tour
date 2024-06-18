@@ -38,10 +38,8 @@ export async function hyperjumpValidate(data: any, schema: any) {
   try {
     registerSchema(schema as SchemaObject, schemaUrl);
     const output = await validate(schemaUrl, data as SchemaObject, BASIC);
-    console.log(output);
     return output;
   } catch (e) {
-    console.log(e);
     throw e;
   } finally {
     unregisterSchema(schemaUrl);
@@ -51,7 +49,6 @@ export async function hyperjumpValidate(data: any, schema: any) {
 import { validator as schemaSafeValidator } from "@exodus/schemasafe";
 
 export function schemaSafeValidate(data: any, schema: any) {
-  console.log(data, schema);
   const validate = schemaSafeValidator(schema, { includeErrors: true });
   const valid = validate(data);
 
