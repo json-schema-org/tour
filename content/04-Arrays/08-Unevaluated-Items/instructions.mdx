@@ -1,0 +1,56 @@
+---
+title: Unevaluated Items
+description: Learn to handle unevaluated array items in JSON Schema.
+keywords: unevaluatedItems, array, validation, JSON Schema, additionalItems
+---
+
+
+# Unevaluated Items
+
+**What are Unevaluated Items?**
+
+So far, we have used `items`, `prefixItems` and `contains` keywords to define *subschemas* for the elements of an array. However, sometimes you many want to handle the items that are unevaluated by these keywords.
+
+In such cases, you can use the `unevaluatedItems` keyword to define a *subschema* for the unevaluated items in the array.
+
+- By definition, the `unevaluatedItems` *subschema* is always applied after `prefixItems`, `items`, and `contains` *subschemas*.
+- As its name implies, `unevaluatedItems` applies to any array index that has not been previously evaluated.
+
+
+
+## Example
+
+Consider, we have defined array items with `prefixItems`. When you have items more than the defined `prefixItems`, you can use `unevaluatedItems` to define a *subschema* for the remaining items.
+
+
+```json
+{
+  "type": "array",
+  "prefixItems": [
+    { "type": "number" },
+    { "type": "string" }
+  ],
+  "unevaluatedItems": { "type": "number" }
+}
+```
+
+In this case, first two items are evaluated by `prefixItems` and the remaining items are evaluated by `unevaluatedItems`.
+
+
+## Task 
+
+```json 
+{
+  "name": "John Doe",
+  "age": 30,
+  "skills": ["HTML", "CSS", "JavaScript", "React", "Node.js"]
+}
+```
+
+Modify the `skills` property of the given schema on the side editor such that, 
+- First three elements can have only "HTML", "CSS" and "JavaScript" as values (in any order), not anything else.
+- The remaining elements are of type string.
+
+> **Hints:** 
+> - For the first constrain use `prefixItems` combined with `enum` keyword.
+> - For the second constrain use `unevaluatedItems` keyword.
