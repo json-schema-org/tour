@@ -6,17 +6,17 @@
   padding: 2px 8px;
   border-radius: calc(var(--border-radius) / 2);
   /* border: 1px solid var(--border-color); */
+  color: hsl(var(--text));
 
   cursor: pointer;
   font-size: small;
 }
 .testCaseTab:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: hsl(var(--background2));
 }
 .activeTestCaseTab {
-  background-color: rgba(0, 0, 0, 0.1);
-  color: black;
+  background-color: hsl(var(--text) / 0.1);
 }
 .activeTestCaseTab.testCaseTab:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: hsl(var(--text) / 0.1);
 }

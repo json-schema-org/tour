@@ -3,6 +3,6 @@
   border: 1px dashed #d0d3d5;
   border-radius: 8px;
   margin-block: 12px;
-  background-color: #f8fafc;
+  background-color: hsl(var(--text) / 0.1);
   font-size: small;
 }
