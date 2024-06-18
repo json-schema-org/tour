@@ -4,7 +4,7 @@
 }
 
 .failedTestCaseCode {
-  border: 1px solid var(--border-color);
+  border: 1px solid hsl(var(--border-color));
   font-family: monospace;
   width: fit-content;
   padding: 4px;
