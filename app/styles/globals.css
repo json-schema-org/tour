@@ -18,7 +18,7 @@ html {
   --background-dark: 0 0% 0%;
   --text-dark: 0 0% 100%;
   --background2-dark: var(--text-dark) / 0.05;
-  --border-color-dark: var(--text-dark) / 0.334;
+  --border-color-dark: var(--text-dark) / 0.2;
 }
 
 :root[data-theme="dark"] {
