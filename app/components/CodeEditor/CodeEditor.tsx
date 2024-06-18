@@ -5,6 +5,7 @@ import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Button, useColorMode } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 export default function CodeEditor({
   code,
@@ -15,14 +16,20 @@ export default function CodeEditor({
 }) {
   const { colorMode } = useColorMode();
   const monaco = useMonaco();
-  monaco.editor.defineTheme("my-theme", {
-    base: "vs-dark",
-    inherit: true,
-    rules: [],
-    colors: {
-      "editor.background": "#000000",
-    },
-  });
+
+  useEffect(() => {
+    if (monaco) {
+      monaco.editor.defineTheme("my-theme", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [],
+        colors: {
+          "editor.background": "#000000",
+        },
+      });
+      monaco.editor.setTheme(colorMode === "light" ? "light" : "my-theme");
+    }
+  }, [monaco, colorMode]);
   return (
     <div className={ctx(styles.codeEditor, GeistMono.className)}>
       <Editor
