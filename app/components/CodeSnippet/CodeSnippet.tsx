@@ -1,6 +1,7 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import styles from "./CodeSnippet.module.css";
+import { CSSProperties } from "react";
 
 export default function CodeSnippet({
   children,
@@ -35,7 +36,9 @@ export default function CodeSnippet({
       wrapLongLines={true}
       startingLineNumber={startingLineNumber}
       lineProps={(lineNumber) => {
-        let style = {};
+        let style: CSSProperties = {
+          color: "hsl(var(--text))",
+        };
         if (
           highlightLineStart &&
           highlightLineEnd &&
@@ -43,6 +46,7 @@ export default function CodeSnippet({
           lineNumber <= highlightLineEnd
         ) {
           style = {
+            ...style,
             backgroundColor: "#00ff001a",
             borderLeft: "2px solid #0aff0ad0",
           };

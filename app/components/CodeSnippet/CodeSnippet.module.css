@@ -1,15 +1,19 @@
 .codeSnippet {
   padding: 16px;
   margin: 0.5rem 0;
-  border: 1px solid var(--border-color);
+  border: 1px solid hsl(var(--text) / 0.5);
   border-radius: calc(var(--border-radius) / 2);
   background-color: transparent !important;
 }
 .inlineCode {
   padding: 1px 4px;
   border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid hsl(var(--text) / 60%);
   font-family: "Fira Code", monospace;
   font-weight: bold;
   font-size: 0.9rem;
+}
+.inlineCode[data-theme="dark"] {
+  background-color: red;
+  color: hsl(var(--background));
 }
