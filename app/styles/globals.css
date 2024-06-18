@@ -8,8 +8,31 @@ html {
 }
 :root {
   --primary: 230 86% 40%;
-  --border-color: rgba(0, 0, 0, 0.334);
   --border-radius: 16px;
+
+  --background-light: 0 0% 100%;
+  --text-light: 0 0% 0%;
+  --background2-light: var(--text-light) / 0.05;
+  --border-color-light: var(--text-light) / 0.334;
+
+  --background-dark: 0 0% 0%;
+  --text-dark: 0 0% 100%;
+  --background2-dark: var(--text-dark) / 0.05;
+  --border-color-dark: var(--text-dark) / 0.334;
+}
+
+:root[data-theme="dark"] {
+  --background: var(--background-dark);
+  --text: var(--text-dark);
+  --border-color: var(--border-color-dark);
+  --background2: var(--background2-dark);
+}
+
+:root[data-theme="light"] {
+  --background: var(--background-light);
+  --text: var(--text-light);
+  --border-color: var(--border-color-light);
+  --background2: var(--background2-light);
 }
 
 main {
