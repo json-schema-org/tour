@@ -11,6 +11,7 @@ import { parseMdxFile } from "@/lib/server-functions";
 import Output from "../components/Output/Output";
 import EditorNOutput from "../components/EditorNOutput/EditorNOutput";
 import { title } from "process";
+import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
 
 export function generateMetadata({
   params,
@@ -71,6 +72,7 @@ export default async function Content({
             {Math.round(((stepIndex + 1) / totalSteps) * 100)} %)
           </span>
         </Flex>
+        <ThemeSwitch />
       </div>
 
       <div className={styles.mainArea}>
