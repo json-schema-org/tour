@@ -9,7 +9,7 @@
 }
 
 .goodToKnowBoxTitle {
-  border: 1px solid hsl(var(--border-color));
+  border-bottom: 1px solid hsl(var(--border-color));
 
   font-size: small;
   padding: 6px 8px;
