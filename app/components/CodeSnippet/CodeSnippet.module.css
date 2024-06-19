@@ -1,7 +1,7 @@
 .codeSnippet {
   padding: 16px;
   margin: 0.5rem 0;
-  border: 1px solid hsl(var(--text) / 0.5);
+  border: 1px solid hsl(var(--text) / 0.4);
   border-radius: calc(var(--border-radius) / 2);
   background-color: transparent !important;
 }
