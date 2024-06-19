@@ -59,7 +59,7 @@ export const components: MDXComponents = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  a: (props) => <Link {...props} style={{ color: "blue" }} />,
+  a: (props) => <Link {...props} style={{ color: "hsl(var(--link-color))" }} />,
   ul: (props) => <UnorderedList {...props} />,
   ol: (props) => <OrderedList {...props} />,
   li: (props) => <ListItem {...props} marginBlock={"0.5rem"} />,

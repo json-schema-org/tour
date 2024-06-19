@@ -10,15 +10,19 @@ html {
   --primary: 230 86% 40%;
   --border-radius: 16px;
 
+  /* Light Mode colors */
   --background-light: 0 0% 100%;
   --text-light: 0 0% 0%;
   --background2-light: var(--text-light) / 0.05;
   --border-color-light: var(--text-light) / 0.334;
+  --link-color-light: 240 100% 50%;
 
+  /* Dark Mode colors */
   --background-dark: 0 0% 0%;
   --text-dark: 0 0% 100%;
   --background2-dark: var(--text-dark) / 0.05;
   --border-color-dark: var(--text-dark) / 0.2;
+  --link-color-dark: 240 100% 87%;
 }
 
 :root[data-theme="dark"] {
@@ -26,6 +30,7 @@ html {
   --text: var(--text-dark);
   --border-color: var(--border-color-dark);
   --background2: var(--background2-dark);
+  --link-color: var(--link-color-dark);
 }
 
 :root[data-theme="light"] {
@@ -33,6 +38,7 @@ html {
   --text: var(--text-light);
   --border-color: var(--border-color-light);
   --background2: var(--background2-light);
+  --link-color: var(--link-color-light);
 }
 
 main {
