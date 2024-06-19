@@ -1,5 +1,9 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import {
+  tomorrow,
+  github,
+  obsidian,
+} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import styles from "./CodeSnippet.module.css";
 import { CSSProperties } from "react";
 
@@ -29,7 +33,7 @@ export default function CodeSnippet({
   return (
     <SyntaxHighlighter
       language="javascript"
-      style={tomorrow}
+      style={github}
       className={styles.codeSnippet}
       showLineNumbers={showLineNumbers}
       wrapLines={true}
