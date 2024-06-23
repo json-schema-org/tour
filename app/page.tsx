@@ -1,11 +1,7 @@
-"use client";
-import { Button } from "@chakra-ui/react";
 import styles from "./styles/page.module.css";
-import JsonIcon from "@/public/icons/json-schema-blue.png";
 import Link from "next/link";
 import cx from "classnames";
 import { outfitFont } from "./styles/fonts";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
 import RightArrow from "./styles/icons/rightArrow";
 export default function Home() {
   return (
