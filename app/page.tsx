@@ -3,32 +3,33 @@ import { Button } from "@chakra-ui/react";
 import styles from "./styles/page.module.css";
 import JsonIcon from "@/public/icons/json-schema-blue.png";
 import Link from "next/link";
-
+import cx from "classnames";
+import { outfitFont } from "./styles/fonts";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
+import RightArrow from "./styles/icons/rightArrow";
 export default function Home() {
   return (
-    <div className={styles.main}>
+    <div className={cx(styles.main, outfitFont.className)}>
       <div className={styles.wrapper}>
-        <div className={styles.iconAndTitle}>
-          <img
-            alt="logo"
-            src={JsonIcon.src}
-            style={{ width: "64px", height: "64px" }}
-          />
+        <div className={styles.titleWrapper}>
           <div className={styles.title}>
-            <div>Tour of</div>
-            <div>JSON</div>
-            <div>Schema</div>
+            <div>A Tour of</div>
+            <div className={styles.jsonSchemaTitle}>JSON Schema</div>
+          </div>
+          <div className={styles.subtitleWrapper}>
+            <div className={styles.subtitle1}>
+              Build more. Break less. Empower others.
+            </div>
+            <div className={styles.subtitle2}>
+              Ensure confident & reliable use of JSON data with JSON Schema
+            </div>
           </div>
         </div>
-        <div className={styles.subtitleWrapper}>
-          <div className={styles.subtitle}>Learn JSON Schema by Examples.</div>
-          Work in progress ...
-        </div>
         <Link href="/outline">
-          <Button variant={"default"} size="lg">
-            {" "}
-            View draft outline{" "}
-          </Button>
+          <button className={styles.mainBtn}>
+            START NOW
+            <RightArrow />
+          </button>
         </Link>
       </div>
     </div>
