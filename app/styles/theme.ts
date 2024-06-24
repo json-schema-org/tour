@@ -61,7 +61,7 @@ const Button = {
 
 export const theme = extendTheme({
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "system",
     useSystemColorMode: false,
   },
   styles: {
