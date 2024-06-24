@@ -7,6 +7,8 @@ import { interFont, outfitFont } from "./styles/fonts";
 import RightArrow from "./styles/icons/rightArrow";
 import { useMemo } from "react";
 import { useColorMode } from "@chakra-ui/react";
+import Image from "next/image";
+
 function CompanyLogos() {
   const { colorMode } = useColorMode();
 
@@ -29,26 +31,25 @@ function CompanyLogos() {
     return [
       {
         logo: logos["postman"],
-        height: "24px",
-        width: "79.08px",
+        height: 24,
+        width: 79.08,
       },
-      { logo: logos["microsoft"], height: "18px", width: "77.38px" },
-      { logo: logos["github"], height: "18px", width: "59.14px" },
-      { logo: logos["zapier"], height: "18px", width: "66.57px" },
+      { logo: logos["microsoft"], height: 18, width: 77.38 },
+      { logo: logos["github"], height: 18, width: 59.14 },
+      { logo: logos["zapier"], height: 18, width: 66.57 },
     ];
   }, [colorMode]);
+
   return (
     <div className={styles.footerLogos}>
       {logoInfo.map((info) => (
-        <img
+        <Image
           key={info.logo}
           src={`/logos/${info.logo}.png`}
           alt={info.logo}
           className={styles.companyLogo}
-          style={{
-            height: info.height,
-            width: info.width,
-          }}
+          height={info.height}
+          width={info.width}
         />
       ))}
     </div>
