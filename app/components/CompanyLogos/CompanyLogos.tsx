@@ -54,6 +54,10 @@ export default function CompanyLogos() {
           className={styles.companyLogo}
           height={info.height}
           width={info.width}
+          style={{
+            height: `${info.height}px`,
+            width: `${info.width}px`,
+          }}
         />
       ))}
     </div>
