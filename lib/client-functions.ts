@@ -56,3 +56,7 @@ export async function validateCode(
     }
   }
 }
+
+export function getBasePath() {
+  return process.env.MODE === "local" ? "" : "/tour";
+}
