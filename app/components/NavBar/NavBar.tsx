@@ -8,13 +8,14 @@ import cx from "classnames";
 import { outfitFont } from "@/app/styles/fonts";
 import LeftArrow from "@/app/styles/icons/LeftArrow";
 import FiChevronRight from "@/app/styles/icons/FiChevronRight";
-import { Flex } from "@chakra-ui/react";
+import { Flex, useColorMode } from "@chakra-ui/react";
 import GithubIcon from "@/app/styles/icons/GithubIcon";
 import MoonIcon from "@/app/styles/icons/MoonIcon";
 import SettingsIcon from "@/app/styles/icons/SettingsIcon";
 import OutlineMenuIcon from "@/app/styles/icons/OutlineMenuIcon";
 
 export default function NavBar() {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <div className={styles.navBar}>
       <div className={styles.leftContentWrapper}>
@@ -46,7 +47,7 @@ export default function NavBar() {
         <button className={styles.menuButton}>
           <GithubIcon />
         </button>
-        <button className={styles.menuButton}>
+        <button className={styles.menuButton} onClick={toggleColorMode}>
           <MoonIcon />
         </button>
         <button className={styles.menuButton}>

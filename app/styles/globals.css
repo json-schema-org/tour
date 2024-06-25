@@ -41,6 +41,10 @@ html {
   --link-color: var(--link-color-light);
 }
 
+html[data-theme="dark"] svg {
+  filter: invert(1);
+}
+
 main {
   height: 100%;
 }
