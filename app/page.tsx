@@ -2,7 +2,7 @@ import styles from "./styles/page.module.css";
 import Link from "next/link";
 import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
-import RightArrow from "./styles/icons/rightArrow";
+import RightArrow from "./styles/icons/RightArrow";
 import CompanyLogos from "./components/CompanyLogos/CompanyLogos";
 
 export default function Home() {

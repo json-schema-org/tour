@@ -1,14 +1,3 @@
-.navigationBtnWrapper {
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-
-  /* position: absolute; */
-  bottom: 8px;
-  left: 8px;
-  gap: 4px;
-  height: 100%;
-}
 .wrapper {
   height: 100%;
 
@@ -24,12 +13,4 @@
   height: 100%;
   overflow-y: auto;
   gap: 8px;
-}
-.navBar {
-  flex: 0;
-  display: flex;
-  flex-direction: row;
-  height: min-content;
-  gap: 16px;
-  align-items: center;
 }
