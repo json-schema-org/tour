@@ -3,6 +3,7 @@
 import React from "react";
 import styles from "./NavBar.module.css";
 import JSONSchemaIcon from "@/public/icons/json-schema-blue.png";
+import JSONSchemaIconDark from "@/public/icons/json-schema-white.png";
 import Image from "next/image";
 import cx from "classnames";
 import { outfitFont } from "@/app/styles/fonts";
@@ -13,6 +14,7 @@ import GithubIcon from "@/app/styles/icons/GithubIcon";
 import MoonIcon from "@/app/styles/icons/MoonIcon";
 import SettingsIcon from "@/app/styles/icons/SettingsIcon";
 import OutlineMenuIcon from "@/app/styles/icons/OutlineMenuIcon";
+import SunIcon from "@/app/styles/icons/BiSun";
 
 export default function NavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -21,7 +23,7 @@ export default function NavBar() {
       <div className={styles.leftContentWrapper}>
         <div className={styles.logoTitle}>
           <Image
-            src={JSONSchemaIcon}
+            src={colorMode == "light" ? JSONSchemaIcon : JSONSchemaIconDark}
             alt="JSON Schema Logo"
             width={40}
             height={40}
@@ -48,7 +50,7 @@ export default function NavBar() {
           <GithubIcon />
         </button>
         <button className={styles.menuButton} onClick={toggleColorMode}>
-          <MoonIcon />
+          {colorMode === "light" ? <SunIcon /> : <MoonIcon />}
         </button>
         <button className={styles.menuButton}>
           <SettingsIcon />
