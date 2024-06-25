@@ -1,6 +1,6 @@
 import React from "react";
 
-function Icon({ mode }: { mode: "dark" | "light" }) {
+function Icon() {
   return (
     <svg
       width="10"
@@ -8,9 +8,6 @@ function Icon({ mode }: { mode: "dark" | "light" }) {
       viewBox="0 0 8 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        filter: mode === "dark" ? "invert(1)" : "invert(0)",
-      }}
     >
       <path
         fillRule="evenodd"
