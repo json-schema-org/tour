@@ -15,7 +15,6 @@ import MoonIcon from "@/app/styles/icons/MoonIcon";
 import SettingsIcon from "@/app/styles/icons/SettingsIcon";
 import OutlineMenuIcon from "@/app/styles/icons/OutlineMenuIcon";
 import SunIcon from "@/app/styles/icons/BiSun";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -37,25 +36,25 @@ export default function NavBar({
   return (
     <div className={styles.navBar}>
       <div className={styles.leftContentWrapper}>
-        <div className={styles.logoTitle}>
-          <Link href="/">
-            <Image
-              src={colorMode == "light" ? JSONSchemaIcon : JSONSchemaIconDark}
-              alt="JSON Schema Logo"
-              width={40}
-              height={40}
-            />
-          </Link>
+        <Link className={styles.logoTitle} href="/">
+          <Image
+            src={colorMode == "light" ? JSONSchemaIcon : JSONSchemaIconDark}
+            alt="JSON Schema Logo"
+            width={40}
+            height={40}
+          />
           <div className={cx(styles.title, outfitFont.className)}>
             A Tour of JSON Schema
           </div>
-        </div>
+        </Link>
         <div className={styles.contentNavigation}>
           <button
             className={styles.backBtn}
             onClick={() => {
               if (backLink) {
                 router.push("/" + backLink);
+              } else {
+                router.push("/");
               }
             }}
           >
