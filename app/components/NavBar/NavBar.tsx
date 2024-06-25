@@ -15,35 +15,62 @@ import MoonIcon from "@/app/styles/icons/MoonIcon";
 import SettingsIcon from "@/app/styles/icons/SettingsIcon";
 import OutlineMenuIcon from "@/app/styles/icons/OutlineMenuIcon";
 import SunIcon from "@/app/styles/icons/BiSun";
-import { redirect } from "next/navigation";
-import Link from "next/link";
 
-export default function NavBar() {
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+export default function NavBar({
+  chapterTitle,
+  lessonTitle,
+  backLink,
+  chapterIndex,
+  stepIndex,
+}: {
+  chapterTitle: string;
+  lessonTitle: string;
+  backLink?: string;
+  chapterIndex: number;
+  stepIndex: number;
+}) {
   const { colorMode, toggleColorMode } = useColorMode();
+  const router = useRouter();
   return (
     <div className={styles.navBar}>
       <div className={styles.leftContentWrapper}>
         <div className={styles.logoTitle}>
-          <Image
-            src={colorMode == "light" ? JSONSchemaIcon : JSONSchemaIconDark}
-            alt="JSON Schema Logo"
-            width={40}
-            height={40}
-          />
+          <Link href="/">
+            <Image
+              src={colorMode == "light" ? JSONSchemaIcon : JSONSchemaIconDark}
+              alt="JSON Schema Logo"
+              width={40}
+              height={40}
+            />
+          </Link>
           <div className={cx(styles.title, outfitFont.className)}>
             A Tour of JSON Schema
           </div>
         </div>
         <div className={styles.contentNavigation}>
-          <button className={styles.backBtn}>
+          <button
+            className={styles.backBtn}
+            onClick={() => {
+              if (backLink) {
+                router.push("/" + backLink);
+              }
+            }}
+          >
             <LeftArrow />
           </button>
           <Flex dir="row" align="center" gap={"8px"}>
-            <div className={styles.chapterTitle}>Chapter 1: Introduction</div>
+            <div className={styles.chapterTitle}>
+              Chapter {chapterIndex + 1}: {chapterTitle}
+            </div>
             <div className={styles.breadcrumbIcon}>
               <FiChevronRight />
             </div>
-            <div className={styles.lessonTitle}>Lesson 1: Introduction</div>
+            <div className={styles.lessonTitle}>
+              Lesson {stepIndex + 1}: {lessonTitle}
+            </div>
           </Flex>
         </div>
       </div>
