@@ -15,6 +15,8 @@ import MoonIcon from "@/app/styles/icons/MoonIcon";
 import SettingsIcon from "@/app/styles/icons/SettingsIcon";
 import OutlineMenuIcon from "@/app/styles/icons/OutlineMenuIcon";
 import SunIcon from "@/app/styles/icons/BiSun";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function NavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -46,9 +48,11 @@ export default function NavBar() {
         </div>
       </div>
       <div className={styles.rightContentWrapper}>
-        <button className={styles.menuButton}>
-          <GithubIcon />
-        </button>
+        <Link href="https://github.com/json-schema-org/tour" target="_blank">
+          <button className={styles.menuButton}>
+            <GithubIcon />
+          </button>
+        </Link>
         <button className={styles.menuButton} onClick={toggleColorMode}>
           {colorMode === "light" ? <SunIcon /> : <MoonIcon />}
         </button>
