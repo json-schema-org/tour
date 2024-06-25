@@ -1,17 +1,7 @@
 import { contentManager } from "@/lib/contentManager";
 import styles from "./page.module.css";
-
-import React, { Suspense } from "react";
-import NavigationBtn from "../components/NavigationBtn";
-import { Box, Button, Flex } from "@chakra-ui/react";
-import Link from "next/link";
-import ContentViewer from "../components/ContentViewer/ContentViewer";
-import CodeEditor from "../components/CodeEditor/CodeEditor";
+import React from "react";
 import { parseMdxFile } from "@/lib/server-functions";
-import Output from "../components/Output/Output";
-import EditorNOutput from "../components/EditorNOutput/EditorNOutput";
-import { title } from "process";
-import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
 import NavBar from "../components/NavBar/NavBar";
 
 export function generateMetadata({
@@ -52,7 +42,13 @@ export default async function Content({
 
   return (
     <div className={styles.wrapper}>
-      <NavBar />
+      <NavBar
+        chapterTitle={chapterTitle}
+        lessonTitle={metadata.title}
+        backLink={previousStepPath}
+        chapterIndex={chapterIndex}
+        stepIndex={stepIndex}
+      />
       <div className={styles.mainArea}>
         {/* <ContentViewer>
           <Page />
