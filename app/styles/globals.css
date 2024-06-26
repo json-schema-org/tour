@@ -7,7 +7,8 @@ html {
   height: 100%;
 }
 :root {
-  --primary: 230 86% 40%;
+  --primary-light: 230 86% 40%;
+  --primary-dark: 232 100% 61%;
   --border-radius: 16px;
 
   /* Light Mode colors */
@@ -31,6 +32,7 @@ html {
   --border-color: var(--border-color-dark);
   --background2: var(--background2-dark);
   --link-color: var(--link-color-dark);
+  --primary: var(--primary-dark);
 }
 
 :root[data-theme="light"] {
@@ -39,6 +41,7 @@ html {
   --border-color: var(--border-color-light);
   --background2: var(--background2-light);
   --link-color: var(--link-color-light);
+  --primary: var(--primary-light);
 }
 
 main {

@@ -2,8 +2,8 @@ import styles from "./styles/page.module.css";
 import Link from "next/link";
 import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
-import RightArrow from "./styles/icons/rightArrow";
-import CompanyLogos from "./components/CompanyLogos/CompanyLogos";
+import RightArrow from "./styles/icons/RightArrow";
+import CompanyLogos from "./components/CommunityLinks/CommunityLinks";
 
 export default function Home() {
   return (
@@ -32,7 +32,7 @@ export default function Home() {
       </div>
       <div className={styles.footer}>
         <div className={cx(styles.footerText, interFont.className)}>
-          Adopted by
+          Join the Community
         </div>
         <CompanyLogos />
       </div>
