@@ -19,6 +19,8 @@ html {
   --link-color-light: 240 100% 50%;
 
   /* Dark Mode colors */
+
+  /* --background-dark: 222 11% 18%; */
   --background-dark: 0 0% 0%;
   --text-dark: 0 0% 100%;
   --background2-dark: var(--text-dark) / 0.05;

@@ -21,13 +21,16 @@
 }
 .backBtn {
   border-radius: 8px;
-  border: 2px solid hsl(var(--text) / 0.2);
+  border: 1px solid hsl(var(--text) / 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   padding: 2px;
+}
+.backBtn:hover {
+  background-color: hsl(var(--text) / 0.1);
 }
 .leftContentWrapper {
   display: flex;
