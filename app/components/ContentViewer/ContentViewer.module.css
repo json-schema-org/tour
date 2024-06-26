@@ -6,16 +6,14 @@
   flex: 1;
   padding-right: 14px;
   padding-bottom: 32px;
+  padding-left: 14px;
 }
 .contentWrapper {
-  border: 1px solid hsl(var(--border-color));
-  border-radius: var(--border-radius);
+  border-right: 1px solid hsl(var(--border-color));
 
-  padding: 16px;
-  padding-right: 2px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+
   height: 100%;
   flex: 1;
   height: 100%;

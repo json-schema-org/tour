@@ -3,6 +3,8 @@ import styles from "./page.module.css";
 import React from "react";
 import { parseMdxFile } from "@/lib/server-functions";
 import NavBar from "../components/NavBar/NavBar";
+import ContentViewer from "../components/ContentViewer";
+import EditorNOutput from "../components/EditorNOutput";
 
 export function generateMetadata({
   params,
@@ -31,10 +33,8 @@ export default async function Content({
     chapterIndex,
     chapterTitle,
     mdPath,
-    nextStepPath,
     previousStepPath,
     stepIndex,
-    totalChapters,
     totalSteps,
     codeFile,
   } = contentManager.getPageMeta(urlPath);
@@ -50,10 +50,10 @@ export default async function Content({
         stepIndex={stepIndex}
       />
       <div className={styles.mainArea}>
-        {/* <ContentViewer>
+        <ContentViewer stepIndex={stepIndex} totalSteps={totalSteps}>
           <Page />
         </ContentViewer>
-        <EditorNOutput codeFile={codeFile} /> */}
+        <EditorNOutput codeFile={codeFile} />
       </div>
     </div>
   );
