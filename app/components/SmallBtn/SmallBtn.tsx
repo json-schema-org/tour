@@ -4,10 +4,12 @@ export default function SmallBtn({
   children,
   variant,
   onClick,
+  isDisabled,
 }: {
   children: React.ReactNode;
   variant: "success" | "error" | "default";
   onClick: () => void;
+  isDisabled?: boolean;
 }) {
   return (
     <Button
@@ -16,6 +18,7 @@ export default function SmallBtn({
       size={"xs"}
       width={"min-content"}
       textTransform={"uppercase"}
+      isDisabled={isDisabled}
     >
       {children}
     </Button>

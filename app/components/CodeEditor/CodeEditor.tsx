@@ -11,20 +11,24 @@ import { CodeFile } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
 import { validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
+import { useRouter } from "next/navigation";
 
 export default function CodeEditor({
   codeString,
   setCodeString,
   codeFile,
   dispatchOutput,
+  nextStepPath,
 }: {
   codeString: string;
   setCodeString: (codeString: string) => void;
   codeFile: CodeFile;
   dispatchOutput: React.Dispatch<OutputReducerAction>;
+  nextStepPath: string;
 }) {
   const { colorMode } = useColorMode();
   const monaco = useMonaco();
+  const router = useRouter();
 
   useEffect(() => {
     if (monaco) {
@@ -75,9 +79,10 @@ export default function CodeEditor({
         </Flex>
         <SmallBtn
           onClick={() => {
-            setCodeString(JSON.stringify(codeFile.solution, null, 2));
+            if (nextStepPath) router.push("/" + nextStepPath);
           }}
           variant={"success"}
+          isDisabled={!nextStepPath}
         >
           Next
           <FiChevronRight />

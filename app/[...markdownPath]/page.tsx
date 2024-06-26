@@ -29,15 +29,8 @@ export default async function Content({
 }) {
   const urlPath = params.markdownPath.join("/");
 
-  const {
-    chapterIndex,
-    chapterTitle,
-    mdPath,
-    previousStepPath,
-    stepIndex,
-    totalSteps,
-    codeFile,
-  } = contentManager.getPageMeta(urlPath);
+  const { mdPath, nextStepPath, stepIndex, totalSteps, codeFile } =
+    contentManager.getPageMeta(urlPath);
   const { Page, metadata } = parseMdxFile(mdPath);
 
   return (
@@ -45,7 +38,7 @@ export default async function Content({
       <ContentViewer stepIndex={stepIndex} totalSteps={totalSteps}>
         <Page />
       </ContentViewer>
-      <EditorNOutput codeFile={codeFile} />
+      <EditorNOutput codeFile={codeFile} nextStepPath={nextStepPath} />
     </div>
   );
 }
