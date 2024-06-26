@@ -86,15 +86,12 @@
 .footer {
   display: flex;
   flex-direction: column;
-  opacity: 0.5;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   padding-bottom: 8px;
 }
 
 .footerText {
   font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
 }
