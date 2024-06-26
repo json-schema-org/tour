@@ -58,14 +58,14 @@ export default function NavBar({
               }
             }}
           >
-            <LeftArrow />
+            <LeftArrow colorMode={colorMode} />
           </button>
           <Flex dir="row" align="center" gap={"8px"}>
             <div className={styles.chapterTitle}>
               Chapter {chapterIndex + 1}: {chapterTitle}
             </div>
             <div className={styles.breadcrumbIcon}>
-              <FiChevronRight />
+              <FiChevronRight colorMode={colorMode} />
             </div>
             <div className={styles.lessonTitle}>
               Lesson {stepIndex + 1}: {lessonTitle}
@@ -76,17 +76,21 @@ export default function NavBar({
       <div className={styles.rightContentWrapper}>
         <Link href="https://github.com/json-schema-org/tour" target="_blank">
           <button className={styles.menuButton}>
-            <GithubIcon />
+            <GithubIcon colorMode={colorMode} />
           </button>
         </Link>
         <button className={styles.menuButton} onClick={toggleColorMode}>
-          {colorMode === "light" ? <SunIcon /> : <MoonIcon />}
+          {colorMode === "light" ? (
+            <SunIcon colorMode={colorMode} />
+          ) : (
+            <MoonIcon colorMode={colorMode} />
+          )}
         </button>
         <button className={styles.menuButton}>
-          <SettingsIcon />
+          <SettingsIcon colorMode={colorMode} />
         </button>
         <button className={styles.menuButton}>
-          <OutlineMenuIcon />
+          <OutlineMenuIcon colorMode={colorMode} />
         </button>
       </div>
     </div>

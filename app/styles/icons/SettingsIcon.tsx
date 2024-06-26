@@ -1,6 +1,6 @@
 import React from "react";
 
-function Icon() {
+function Icon({ colorMode }: { colorMode?: "dark" | "light" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +8,9 @@ function Icon() {
       height="22"
       fill="none"
       viewBox="0 0 20 22"
+      style={{
+        filter: colorMode === "dark" ? "invert(1)" : "invert(0)",
+      }}
     >
       <path
         fill="#000"

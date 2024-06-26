@@ -1,12 +1,15 @@
 import React from "react";
 
-function Icon() {
+function Icon({ colorMode }: { colorMode?: "dark" | "light" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="26"
       height="26"
       fill="none"
+      style={{
+        filter: colorMode === "dark" ? "invert(1)" : "invert(0)",
+      }}
       viewBox="0 0 22 22"
     >
       <path
