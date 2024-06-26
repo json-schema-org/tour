@@ -17,7 +17,7 @@ export default function SmallBtn({
       width={"min-content"}
       textTransform={"uppercase"}
     >
-      {children!.toString()}
+      {children}
     </Button>
   );
 }

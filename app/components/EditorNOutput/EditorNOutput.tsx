@@ -3,12 +3,10 @@
 import React, { useState, useReducer } from "react";
 import CodeEditor from "../CodeEditor";
 import styles from "./EditorNOutput.module.css";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Output from "../Output";
 import { CodeFile } from "@/lib/types";
-import { validateCode } from "@/lib/client-functions";
 import { outputReducer } from "@/lib/reducers";
-import SmallBtn from "../SmallBtn";
 
 export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
   const [codeString, setCodeString] = useState(
@@ -23,38 +21,15 @@ export default function EditorNOutput({ codeFile }: { codeFile: CodeFile }) {
 
   return (
     <div className={styles.codeEditorNOutput}>
-      <Box flex={6}>
-        <CodeEditor code={codeString} setCode={setCodeString} />
+      <Box flex={6} position={"relative"}>
+        <CodeEditor
+          codeString={codeString}
+          setCodeString={setCodeString}
+          codeFile={codeFile}
+          dispatchOutput={dispatchOutput}
+        />
       </Box>
-      <Flex alignSelf={"flex-start"} gap={"4px"}>
-        <SmallBtn
-          onClick={async () =>
-            validateCode(codeString, codeFile, dispatchOutput)
-          }
-          variant={"default"}
-        >
-          Validate
-        </SmallBtn>
 
-        <SmallBtn
-          onClick={() => {
-            setCodeString(JSON.stringify(codeFile.solution, null, 2));
-          }}
-          variant={"success"}
-        >
-          View Solution
-        </SmallBtn>
-
-        <SmallBtn
-          onClick={() => {
-            setCodeString(JSON.stringify(codeFile.code, null, 2));
-            dispatchOutput({ type: "RESET" });
-          }}
-          variant={"error"}
-        >
-          Reset
-        </SmallBtn>
-      </Flex>
       <Output outputResult={output} flex={4} />
     </div>
   );

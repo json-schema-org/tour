@@ -1,7 +1,17 @@
 .codeEditor {
   padding: 8px;
-  border: 1px solid hsl(var(--border-color));
-  border-radius: var(--border-radius);
   height: 100%;
   overflow-y: auto;
+  padding-bottom: 32px;
+}
+.buttonsWrapper {
+  position: absolute;
+  bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 32px;
 }
