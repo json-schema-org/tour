@@ -195,6 +195,7 @@ export default class ContentManager {
     const mdPath = this.getInstructionsFilePath(urlPath);
     const chapterTitle = outline[chapterIndex].title;
     const codeFile = this.getCodeFileExports(urlPath);
+    const stepTitle = outline[chapterIndex].steps[stepIndex].title;
 
     return {
       nextStepPath,
@@ -206,6 +207,7 @@ export default class ContentManager {
       mdPath,
       chapterTitle,
       codeFile,
+      stepTitle,
     };
   }
 }

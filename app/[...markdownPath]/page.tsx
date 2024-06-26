@@ -41,20 +41,11 @@ export default async function Content({
   const { Page, metadata } = parseMdxFile(mdPath);
 
   return (
-    <div className={styles.wrapper}>
-      <NavBar
-        chapterTitle={chapterTitle}
-        lessonTitle={metadata.title}
-        backLink={previousStepPath}
-        chapterIndex={chapterIndex}
-        stepIndex={stepIndex}
-      />
-      <div className={styles.mainArea}>
-        <ContentViewer stepIndex={stepIndex} totalSteps={totalSteps}>
-          <Page />
-        </ContentViewer>
-        <EditorNOutput codeFile={codeFile} />
-      </div>
+    <div className={styles.mainArea}>
+      <ContentViewer stepIndex={stepIndex} totalSteps={totalSteps}>
+        <Page />
+      </ContentViewer>
+      <EditorNOutput codeFile={codeFile} />
     </div>
   );
 }
