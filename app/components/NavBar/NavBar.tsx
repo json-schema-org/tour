@@ -9,7 +9,16 @@ import cx from "classnames";
 import { outfitFont } from "@/app/styles/fonts";
 import LeftArrow from "@/app/styles/icons/LeftArrow";
 import FiChevronRight from "@/app/styles/icons/FiChevronRight";
-import { Flex, useColorMode } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Switch,
+  useColorMode,
+} from "@chakra-ui/react";
 import GithubIcon from "@/app/styles/icons/GithubIcon";
 import MoonIcon from "@/app/styles/icons/MoonIcon";
 import SettingsIcon from "@/app/styles/icons/SettingsIcon";
@@ -17,6 +26,39 @@ import OutlineMenuIcon from "@/app/styles/icons/OutlineMenuIcon";
 import SunIcon from "@/app/styles/icons/BiSun";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import MdRestoreIcon from "@/app/styles/icons/MdRestore";
+import SensorsIcon from "@/app/styles/icons/Sensors";
+
+function NavBarMenu() {
+  const { colorMode } = useColorMode();
+  const [collectTelemetry, setCollectTelemetry] = React.useState(false);
+  return (
+    <Menu closeOnSelect={false} gutter={4}>
+      <MenuButton className={styles.menuButton}>
+        <SettingsIcon colorMode={colorMode} />
+      </MenuButton>
+      <MenuList width={"min-content"} className={outfitFont.className}>
+        <MenuItem
+          display={"flex"}
+          gap={"8px"}
+          onClick={(e) => {
+            e.preventDefault();
+            setCollectTelemetry(!collectTelemetry);
+          }}
+        >
+          <Flex dir="row" align="center" gap={"8px"} width={"max-content"}>
+            <SensorsIcon /> Telemetry data
+            <Switch size="sm" isChecked={collectTelemetry} />
+          </Flex>
+        </MenuItem>
+        <MenuItem display={"flex"} gap={"8px"} color={"red"}>
+          <MdRestoreIcon />
+          Reset progress
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  );
+}
 
 export default function NavBar({
   chapterTitle,
@@ -86,9 +128,8 @@ export default function NavBar({
             <MoonIcon colorMode={colorMode} />
           )}
         </button>
-        <button className={styles.menuButton}>
-          <SettingsIcon colorMode={colorMode} />
-        </button>
+        {/* menu */}
+        <NavBarMenu />
         <button className={styles.menuButton}>
           <OutlineMenuIcon colorMode={colorMode} />
         </button>

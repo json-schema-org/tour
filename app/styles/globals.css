@@ -46,9 +46,9 @@ html {
   --primary: var(--primary-light);
 }
 
-html[data-theme="dark"] svg {
+/* html[data-theme="dark"] svg {
   filter: invert(1);
-}
+} */
 
 main {
   height: 100%;

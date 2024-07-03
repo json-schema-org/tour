@@ -3,6 +3,7 @@ import {
   theme as chakraTheme,
   extendTheme,
 } from "@chakra-ui/react";
+import { it } from "node:test";
 import { config } from "process";
 
 const Button = {
@@ -59,6 +60,40 @@ const Button = {
   },
 };
 
+const Menu = {
+  baseStyle: {
+    list: {
+      bg: "hsl(var(--background))",
+      color: "hsl(var(--text))",
+      borderColor: "hsl(var(--border-color))",
+      borderWidth: "1px",
+      borderRadius: "8px",
+      padding: "8px",
+    },
+    item: {
+      bg: "hsl(var(--background))",
+      color: "hsl(var(--text))",
+      borderRadius: "8px",
+      _hover: {
+        bg: "hsl(var(--background2))",
+      },
+    },
+  },
+};
+
+const Switch = {
+  baseStyle: {
+    track: {
+      bg: "hsl(var(--primary) / 0.4)",
+      _checked: {
+        bg: "hsl(var(--primary) )",
+      },
+    },
+    thumb: {
+      bg: "hsl(var(--background))",
+    },
+  },
+};
 export const theme = extendTheme({
   config: {
     initialColorMode: "system",
@@ -72,6 +107,6 @@ export const theme = extendTheme({
       },
     },
   },
-  components: { Button },
+  components: { Button, Menu, Switch },
   fonts: {},
 });
