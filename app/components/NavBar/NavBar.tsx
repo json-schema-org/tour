@@ -46,9 +46,12 @@ function NavBarMenu() {
             setCollectTelemetry(!collectTelemetry);
           }}
         >
-          <Flex dir="row" align="center" gap={"8px"} width={"max-content"}>
-            <SensorsIcon colorMode={colorMode} /> Telemetry data
-            <Switch size="sm" isChecked={collectTelemetry} />
+          <Flex dir="row" align="center" width={"max-content"} gap={"8px"}>
+            <SensorsIcon colorMode={colorMode} />
+            Telemetry data
+            <div style={{ marginLeft: "16px" }}>
+              <Switch size="sm" isChecked={collectTelemetry} />
+            </div>
           </Flex>
         </MenuItem>
         <MenuItem display={"flex"} gap={"8px"} color={"red"}>
