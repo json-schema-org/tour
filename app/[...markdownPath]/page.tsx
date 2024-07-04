@@ -2,7 +2,6 @@ import { contentManager } from "@/lib/contentManager";
 import styles from "./page.module.css";
 import React from "react";
 import { parseMdxFile } from "@/lib/server-functions";
-import NavBar from "../components/NavBar/NavBar";
 import ContentViewer from "../components/ContentViewer";
 import EditorNOutput from "../components/EditorNOutput";
 

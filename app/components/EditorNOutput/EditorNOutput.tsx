@@ -13,7 +13,7 @@ export default function EditorNOutput({
   nextStepPath,
 }: {
   codeFile: CodeFile;
-  nextStepPath: string;
+  nextStepPath: string | undefined;
 }) {
   const [codeString, setCodeString] = useState(
     JSON.stringify(codeFile.code, null, 2)

@@ -24,7 +24,7 @@ export default function CodeEditor({
   setCodeString: (codeString: string) => void;
   codeFile: CodeFile;
   dispatchOutput: React.Dispatch<OutputReducerAction>;
-  nextStepPath: string;
+  nextStepPath: string | undefined;
 }) {
   const { colorMode } = useColorMode();
   const monaco = useMonaco();

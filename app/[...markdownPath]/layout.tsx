@@ -22,6 +22,7 @@ export default function PageLayout({
     codeFile,
     stepTitle,
   } = contentManager.getPageMeta(urlPath);
+  const outline = contentManager.getOutline();
   return (
     <div className={styles.wrapper}>
       <NavBar
@@ -30,6 +31,7 @@ export default function PageLayout({
         backLink={previousStepPath}
         chapterIndex={chapterIndex}
         stepIndex={stepIndex}
+        outline={outline}
       />
       {children}
     </div>

@@ -1,0 +1,64 @@
+.chapterItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chapterItem {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.chapterItemWrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em 0;
+  align-items: center;
+}
+.chapterItemNumber {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+  color: hsl(var(--primary));
+  border-radius: 50%;
+
+  height: 42px;
+  width: 42px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.chapterTitleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stepItem {
+  list-style-type: none;
+  padding: 4px;
+  margin-left: 21px;
+  padding-left: 16px;
+  border-left: 1px solid hsl(var(--text) / 0.5);
+  color: hsl(var(--text) / 0.75);
+}
+
+.activeStep {
+  border-left-width: 2px;
+  border-left-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+}
+.active {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--background));
+}
+
+.completed {
+  background-color: hsl(var(--secondary));
+}
+
+.neutral {
+  background-color: hsl(var(--primary) / 0.2);
+}

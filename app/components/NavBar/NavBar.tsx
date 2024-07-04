@@ -30,6 +30,7 @@ import { useRouter } from "next/navigation";
 import MdRestoreIcon from "@/app/styles/icons/MdRestore";
 import SensorsIcon from "@/app/styles/icons/Sensors";
 import OutlineDrawer from "../OutlineDrawer";
+import { ContentOutline } from "@/lib/types";
 
 function NavBarMenu() {
   const { colorMode } = useColorMode();
@@ -72,12 +73,14 @@ export default function NavBar({
   backLink,
   chapterIndex,
   stepIndex,
+  outline,
 }: {
   chapterTitle: string;
   lessonTitle: string;
   backLink?: string;
   chapterIndex: number;
   stepIndex: number;
+  outline: ContentOutline;
 }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
@@ -110,7 +113,13 @@ export default function NavBar({
           >
             <LeftArrow colorMode={colorMode} />
           </button>
-          <Flex dir="row" align="center" gap={"8px"}>
+          <Flex
+            dir="row"
+            align="center"
+            gap={"8px"}
+            onClick={onOpen}
+            cursor={"pointer"}
+          >
             <div className={styles.chapterTitle}>
               Chapter {chapterIndex + 1}: {chapterTitle}
             </div>
@@ -149,6 +158,9 @@ export default function NavBar({
           btnRef={outlineBtnRef}
           isOpen={isOpen}
           onClose={onClose}
+          outline={outline}
+          activeChapterIndex={chapterIndex}
+          activeStepIndex={stepIndex}
         />
       </div>
     </div>
