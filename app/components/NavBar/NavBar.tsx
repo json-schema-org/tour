@@ -18,6 +18,7 @@ import {
   MenuList,
   Switch,
   useColorMode,
+  useDisclosure,
 } from "@chakra-ui/react";
 import GithubIcon from "@/app/styles/icons/GithubIcon";
 import MoonIcon from "@/app/styles/icons/MoonIcon";
@@ -28,10 +29,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import MdRestoreIcon from "@/app/styles/icons/MdRestore";
 import SensorsIcon from "@/app/styles/icons/Sensors";
+import OutlineDrawer from "../OutlineDrawer";
 
 function NavBarMenu() {
   const { colorMode } = useColorMode();
   const [collectTelemetry, setCollectTelemetry] = React.useState(false);
+
   return (
     <Menu closeOnSelect={false} gutter={4}>
       <MenuButton className={styles.menuButton}>
@@ -78,6 +81,8 @@ export default function NavBar({
 }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const outlineBtnRef = React.useRef(null);
   return (
     <div className={styles.navBar}>
       <div className={styles.leftContentWrapper}>
@@ -133,9 +138,18 @@ export default function NavBar({
         </button>
         {/* menu */}
         <NavBarMenu />
-        <button className={styles.menuButton}>
+        <button
+          className={styles.menuButton}
+          onClick={onOpen}
+          ref={outlineBtnRef}
+        >
           <OutlineMenuIcon colorMode={colorMode} />
         </button>
+        <OutlineDrawer
+          btnRef={outlineBtnRef}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
       </div>
     </div>
   );

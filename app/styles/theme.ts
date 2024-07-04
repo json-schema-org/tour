@@ -94,6 +94,23 @@ const Switch = {
     },
   },
 };
+
+const Drawer = {
+  baseStyle: {
+    dialog: {
+      bg: "hsl(var(--background))",
+      color: "hsl(var(--text))",
+      borderLeftColor: "hsl(var(--border-color))",
+      borderLeftWidth: "1px",
+      borderTopLeftRadius: "16px",
+      borderBottomLeftRadius: "16px",
+    },
+    overlay: {
+      backdropFilter: "blur(2px)",
+    },
+  },
+};
+
 export const theme = extendTheme({
   config: {
     initialColorMode: "system",
@@ -107,6 +124,6 @@ export const theme = extendTheme({
       },
     },
   },
-  components: { Button, Menu, Switch },
+  components: { Button, Menu, Switch, Drawer },
   fonts: {},
 });
