@@ -8,7 +8,8 @@ html {
 }
 :root {
   --primary-light: 230 86% 40%;
-  --primary-dark: 232 100% 61%;
+
+  --primary-dark: 230 100% 65%;
   --border-radius: 16px;
 
   /* Light Mode colors */
@@ -20,8 +21,8 @@ html {
 
   /* Dark Mode colors */
 
-  /* --background-dark: 222 11% 18%; */
-  --background-dark: 0 0% 0%;
+  --background-dark: 0 0% 12%;
+  /* --background-dark: 0 0% 0%;   */
   --text-dark: 0 0% 100%;
   --background2-dark: var(--text-dark) / 0.05;
   --border-color-dark: var(--text-dark) / 0.2;

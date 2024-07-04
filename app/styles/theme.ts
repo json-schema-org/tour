@@ -22,7 +22,7 @@ const Button = {
       },
     },
     success: {
-      color: "green",
+      color: "green.300",
 
       borderColor: "green",
       borderWidth: "1px",
@@ -104,6 +104,9 @@ const Drawer = {
       borderLeftWidth: "1px",
       borderTopLeftRadius: "16px",
       borderBottomLeftRadius: "16px",
+    },
+    body: {
+      paddingInline: "16px",
     },
     overlay: {
       backdropFilter: "blur(2px)",

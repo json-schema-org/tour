@@ -19,6 +19,7 @@ export default function SmallBtn({
       width={"min-content"}
       textTransform={"uppercase"}
       isDisabled={isDisabled}
+      fontWeight={"bold"}
     >
       {children}
     </Button>

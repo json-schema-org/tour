@@ -37,7 +37,7 @@ export default function CodeEditor({
         inherit: true,
         rules: [],
         colors: {
-          "editor.background": "#000000",
+          "editor.background": "#1f1f1f",
         },
       });
       monaco.editor.setTheme(colorMode === "light" ? "light" : "my-theme");

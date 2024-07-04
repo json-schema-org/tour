@@ -48,17 +48,18 @@ function ChapterItem({
         {
           <ul>
             {steps.map((step, index) => (
-              <li
-                key={step.title}
-                className={cx(
-                  styles.stepItem,
-                  state === "active" && activeStepIndex === index
-                    ? styles.activeStep
-                    : ""
-                )}
-              >
-                <Link href={"/" + step.fullPath}>{step.title}</Link>
-              </li>
+              <Link href={"/" + step.fullPath} key={step.title}>
+                <li
+                  className={cx(
+                    styles.stepItem,
+                    state === "active" && activeStepIndex === index
+                      ? styles.activeStep
+                      : ""
+                  )}
+                >
+                  {step.title}
+                </li>
+              </Link>
             ))}
           </ul>
         }

@@ -1,7 +1,6 @@
 .chapterItemsList {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
 .chapterItem {
@@ -15,7 +14,14 @@
   flex-direction: row;
   padding: 0.5em 0;
   align-items: center;
+  padding: 8px 12px;
+  border-radius: 12px;
 }
+
+.chapterItemWrapper:hover {
+  background-color: hsl(var(--text) / 0.1);
+}
+
 .chapterItemNumber {
   font-size: 1.2rem;
   font-weight: bold;
@@ -39,16 +45,19 @@
 .stepItem {
   list-style-type: none;
   padding: 4px;
-  margin-left: 21px;
+  margin-left: 33px;
   padding-left: 16px;
   border-left: 1px solid hsl(var(--text) / 0.5);
   color: hsl(var(--text) / 0.75);
 }
-
+.stepItem:hover {
+  text-decoration: underline;
+}
 .activeStep {
   border-left-width: 2px;
   border-left-color: hsl(var(--primary));
   color: hsl(var(--primary));
+  font-weight: bold;
 }
 .active {
   background-color: hsl(var(--primary));
@@ -60,5 +69,6 @@
 }
 
 .neutral {
-  background-color: hsl(var(--primary) / 0.2);
+  background-color: hsl(var(--primary) / 0.3);
+  border: 1px solid hsl(var(--primary));
 }
