@@ -1,6 +1,6 @@
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { OutputReducerAction } from "./reducers";
-import { CodeFile, FailedTestCase } from "./types";
+import { CodeFile, TestCaseResult } from "./types";
 import { hyperjumpValidate, schemaSafeValidate } from "./validators";
 
 export async function validateCode(
@@ -11,7 +11,7 @@ export async function validateCode(
   const testCases = codeFile.testCases;
   try {
     const schemaCode = JSON.parse(codeString);
-    const failedTestCases: FailedTestCase[] = [];
+    const testCaseResults: TestCaseResult[] = [];
     let validationStatus: "valid" | "invalid" | "neutral" = "valid";
     const totalTestCases = testCases.length;
     for (let i = 0; i < testCases.length; i++) {
@@ -22,7 +22,7 @@ export async function validateCode(
       );
 
       if (validationResult.valid !== dataTestCase.expected) {
-        failedTestCases.push({
+        testCaseResults.push({
           actual: validationResult.valid,
           errors:
             validationResult.errors && validationResult.errors[-1]
@@ -30,16 +30,25 @@ export async function validateCode(
               : "",
           expected: dataTestCase.expected,
           input: dataTestCase.input,
+          passed: false,
         });
         validationStatus = "invalid";
+      } else {
+        testCaseResults.push({
+          actual: validationResult.valid,
+          expected: dataTestCase.expected,
+          input: dataTestCase.input,
+          passed: true,
+        });
       }
     }
+
     if (validationStatus === "valid") {
       dispatchOutput({ type: "valid", payload: {} });
     } else {
       dispatchOutput({
         type: "invalid",
-        payload: { failedTestCases, totalTestCases },
+        payload: { testCaseResults, totalTestCases },
       });
     }
   } catch (e) {

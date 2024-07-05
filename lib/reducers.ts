@@ -32,7 +32,7 @@ export function outputReducer(
     case "invalid":
       return {
         ...state,
-        failedTestCases: action.payload.failedTestCases,
+        testCaseResults: action.payload.testCaseResults,
         totalTestCases: action.payload.totalTestCases,
         validityStatus: "invalid",
       };

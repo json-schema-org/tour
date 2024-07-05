@@ -32,9 +32,10 @@ export type TestCase = {
 //   keywordLocation: string;
 // };
 
-export type FailedTestCase = TestCase & {
+export type TestCaseResult = TestCase & {
   actual: Boolean;
   errors?: string | undefined;
+  passed: Boolean;
 };
 
 export type CodeFile = {
@@ -53,7 +54,7 @@ export type OutputResult = {
     | "neutral"
     | "syntaxError"
     | "invalidSchema";
-  failedTestCases?: FailedTestCase[];
+  testCaseResults?: TestCaseResult[];
   totalTestCases?: number;
   errors?: InvalidSchemaError | string;
 };

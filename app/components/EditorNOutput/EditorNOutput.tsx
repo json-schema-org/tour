@@ -22,9 +22,9 @@ export default function EditorNOutput({
   const [output, dispatchOutput] = useReducer(outputReducer, {
     validityStatus: "neutral",
     errors: "",
-    failedTestCases: [],
+    testCaseResults: [],
   });
-
+  console.log(output);
   return (
     <div className={styles.codeEditorNOutput}>
       <Box flex={6} position={"relative"}>

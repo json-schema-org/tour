@@ -5,10 +5,12 @@ export default function TestCaseTab({
   isActive,
   index,
   setIsActive,
+  passed,
 }: {
   isActive: boolean;
   index: number;
   setIsActive: (index: number) => void;
+  passed: Boolean;
 }) {
   return (
     <div
@@ -18,6 +20,12 @@ export default function TestCaseTab({
       )}
       onClick={() => setIsActive(index)}
     >
+      <div
+        className={classnames(
+          styles.dot,
+          passed ? styles.passed : styles.failed
+        )}
+      />
       Case {index + 1}
     </div>
   );

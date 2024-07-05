@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Output.module.css";
 import classnames from "classnames";
 import { OutputResult } from "@/lib/types";
-import FailedTestCasesWindow from "../FailedTestCaseWindow/FailedTestCaseWindow";
+import FailedTestCasesWindow from "../TestCaseWindow/TestCaseWindow";
 import SmallBtn from "../SmallBtn/SmallBtn";
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { schemaUrl } from "@/lib/validators";
@@ -57,7 +57,7 @@ function Output({
   } else {
     outputBodyContent = (
       <FailedTestCasesWindow
-        failedTestCases={outputResult.failedTestCases!}
+        testCaseResult={outputResult.testCaseResults!}
         totalTestCases={outputResult.totalTestCases!}
       />
     );

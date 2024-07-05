@@ -1,13 +1,13 @@
 .testCaseTab {
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
   padding: 2px 8px;
   border-radius: calc(var(--border-radius) / 2);
   /* border: 1px solid var(--border-color); */
   color: hsl(var(--text));
-
+  width: max-content;
   cursor: pointer;
   font-size: small;
 }
@@ -19,4 +19,19 @@
 }
 .activeTestCaseTab.testCaseTab:hover {
   background-color: hsl(var(--text) / 0.1);
+}
+.dot {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+}
+
+.passed {
+  background-color: rgb(89, 255, 47);
+  box-shadow: 0 0 6px rgb(89, 255, 47);
+}
+
+.failed {
+  background-color: red;
+  box-shadow: 0 0 6px red;
 }
