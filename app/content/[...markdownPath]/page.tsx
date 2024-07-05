@@ -34,7 +34,7 @@ export default async function Content({
 
   return (
     <div className={styles.mainArea}>
-      <ContentViewer urlPath={urlPath}>
+      <ContentViewer>
         <Page />
       </ContentViewer>
       <EditorNOutput codeFile={codeFile} nextStepPath={nextStepPath} />

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./NavBar.module.css";
 import JSONSchemaIcon from "@/public/icons/json-schema-blue.png";
 import JSONSchemaIconDark from "@/public/icons/json-schema-white.png";
@@ -10,6 +10,7 @@ import { outfitFont } from "@/app/styles/fonts";
 import LeftArrow from "@/app/styles/icons/LeftArrow";
 import FiChevronRight from "@/app/styles/icons/FiChevronRight";
 import {
+  Box,
   Button,
   Flex,
   Menu,
@@ -31,6 +32,7 @@ import MdRestoreIcon from "@/app/styles/icons/MdRestore";
 import SensorsIcon from "@/app/styles/icons/Sensors";
 import OutlineDrawer from "../OutlineDrawer";
 import { contentManager } from "@/lib/contentManager";
+import Progressbar from "../Progressbar/Progressbar";
 
 function NavBarMenu() {
   const { colorMode } = useColorMode();
@@ -68,14 +70,30 @@ function NavBarMenu() {
 }
 
 export default function NavBar({ urlPath }: { urlPath: string }) {
-  const { chapterIndex, chapterTitle, previousStepPath, stepIndex, stepTitle } =
-    contentManager.getPageMeta(urlPath);
+  const {
+    chapterIndex,
+    chapterTitle,
+    previousStepPath,
+    stepIndex,
+    stepTitle,
+    totalSteps,
+  } = contentManager.getPageMeta(urlPath);
 
   const outline = contentManager.getOutline();
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const outlineBtnRef = React.useRef(null);
+  const [progress, setProgress] = useState(
+    ((stepIndex + 1) / totalSteps) * 100
+  );
+
+  useEffect(() => {
+    const newProgress = ((stepIndex + 1) / totalSteps) * 100;
+
+    setProgress(newProgress);
+  }, [urlPath]);
+
   return (
     <div className={styles.navBar}>
       <div className={styles.leftContentWrapper}>
@@ -153,6 +171,9 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
           activeStepIndex={stepIndex}
         />
       </div>
+      <Box pos={"absolute"} width={"50%"} bottom={0} left={0}>
+        <Progressbar progress={progress} />
+      </Box>
     </div>
   );
 }

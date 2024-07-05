@@ -6,7 +6,9 @@ export default function Progressbar({ progress }: { progress: number }) {
     <div className={styles.progressbarWrapper}>
       <div
         className={styles.progressbar}
-        style={{ width: `${progress}%` }}
+        style={{
+          width: `${progress}%`,
+        }}
       ></div>
     </div>
   );
