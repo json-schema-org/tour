@@ -30,7 +30,7 @@ import { useRouter } from "next/navigation";
 import MdRestoreIcon from "@/app/styles/icons/MdRestore";
 import SensorsIcon from "@/app/styles/icons/Sensors";
 import OutlineDrawer from "../OutlineDrawer";
-import { ContentOutline } from "@/lib/types";
+import { contentManager } from "@/lib/contentManager";
 
 function NavBarMenu() {
   const { colorMode } = useColorMode();
@@ -67,21 +67,10 @@ function NavBarMenu() {
   );
 }
 
-export default function NavBar({
-  chapterTitle,
-  lessonTitle,
-  backLink,
-  chapterIndex,
-  stepIndex,
-  outline,
-}: {
-  chapterTitle: string;
-  lessonTitle: string;
-  backLink?: string;
-  chapterIndex: number;
-  stepIndex: number;
-  outline: ContentOutline;
-}) {
+export default function NavBar({ urlPath }: { urlPath: string }) {
+  const { chapterIndex, chapterTitle, previousStepPath, stepIndex, stepTitle } =
+    contentManager.getPageMeta(urlPath);
+  const outline = contentManager.getOutline();
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -104,8 +93,8 @@ export default function NavBar({
           <button
             className={styles.backBtn}
             onClick={() => {
-              if (backLink) {
-                router.push("/" + backLink);
+              if (previousStepPath) {
+                router.push("/" + previousStepPath);
               } else {
                 router.push("/");
               }
@@ -127,7 +116,7 @@ export default function NavBar({
               <FiChevronRight colorMode={colorMode} />
             </div>
             <div className={styles.lessonTitle}>
-              Lesson {stepIndex + 1}: {lessonTitle}
+              Lesson {stepIndex + 1}: {stepTitle}
             </div>
           </Flex>
         </div>

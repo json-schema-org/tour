@@ -11,8 +11,9 @@ export function generateMetadata({
   params: { markdownPath: string[] };
 }) {
   const urlPath = params.markdownPath.join("/");
-  const { mdPath, chapterTitle } = contentManager.getPageMeta(urlPath);
-  const { metadata } = parseMdxFile(mdPath);
+  const { mdPath, chapterTitle, codePath } =
+    contentManager.getPageMeta(urlPath);
+  const { metadata } = parseMdxFile(mdPath, codePath);
 
   return {
     title: `${metadata.title}: ${chapterTitle} | A Tour of JSON Schema`,
@@ -28,13 +29,13 @@ export default async function Content({
 }) {
   const urlPath = params.markdownPath.join("/");
 
-  const { mdPath, nextStepPath, stepIndex, totalSteps, codeFile } =
+  const { mdPath, codePath, nextStepPath } =
     contentManager.getPageMeta(urlPath);
-  const { Page, metadata } = parseMdxFile(mdPath);
+  const { Page, metadata, codeFile } = parseMdxFile(mdPath, codePath);
 
   return (
     <div className={styles.mainArea}>
-      <ContentViewer stepIndex={stepIndex} totalSteps={totalSteps}>
+      <ContentViewer urlPath={urlPath}>
         <Page />
       </ContentViewer>
       <EditorNOutput codeFile={codeFile} nextStepPath={nextStepPath} />

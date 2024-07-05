@@ -1,8 +1,6 @@
-import { Chapter, CodeFileExports, ContentOutline } from "./types";
-import fs from "fs";
-import matter from "gray-matter";
-import { Metadata } from "./types";
-import typescript from "typescript";
+import { ContentOutline } from "./types";
+
+import outline from "../content/outline.json";
 
 /* 
 
@@ -39,79 +37,21 @@ The content folder follows this structure:
 */
 
 export default class ContentManager {
-  private contentFolderPath: string = "./content";
+  public contentFolderPath: string = "./content";
   public contentFolderName: string = this.contentFolderPath.replace("./", "");
 
   public outlineJSONPath: string = "./content/outline.json";
 
-  private indexFileName = "index.mdx";
+  public indexFileName = "index.mdx";
   public instructionsFileName = "instructions.mdx";
   public codeFileName = "code.ts";
 
   public getOutline() {
     // check if outline.json exists
-    if (!fs.existsSync(this.outlineJSONPath)) {
-      throw new Error(
-        "outline.json file does not exist. Run generateOutline script to generate outline.json"
-      );
-    }
-    const outline = JSON.parse(
-      fs.readFileSync(this.outlineJSONPath, "utf-8")
-    ) as ContentOutline;
 
-    return outline;
+    return outline as ContentOutline;
   }
 
-  public parseMdxMetadata(fullFilePath: string) {
-    const file = fs.readFileSync(fullFilePath, "utf-8");
-
-    const { content, data } = matter(file);
-
-    return { metadata: data as Metadata };
-  }
-
-  public generateOutline(): ContentOutline {
-    const contentOutline: ContentOutline = [];
-    const files = fs.readdirSync(this.contentFolderPath, {
-      withFileTypes: true,
-    });
-
-    files.forEach((file, chapterNumber) => {
-      if (file.isDirectory()) {
-        const { metadata } = this.parseMdxMetadata(
-          `${this.contentFolderName}/${file.name}/${this.indexFileName}`
-        );
-
-        const chapter: Chapter = {
-          title: metadata.title,
-          folderName: file.name,
-          steps: [],
-        };
-        const chapterPath = `${this.contentFolderPath}/${file.name}`;
-        let chapterFiles = fs.readdirSync(chapterPath, {
-          withFileTypes: true,
-        });
-        chapterFiles = chapterFiles.filter(
-          (file) => file.name !== this.indexFileName
-        );
-        chapterFiles.forEach((chapterFile, stepNumber) => {
-          const { metadata } = this.parseMdxMetadata(
-            `${this.contentFolderName}/${file.name}/${chapterFile.name}/${this.instructionsFileName}`
-          );
-
-          const step = {
-            title: metadata.title,
-            fileName: chapterFile.name,
-            fullPath: `${file.name}/${chapterFile.name}`,
-          };
-          chapter.steps.push(step);
-        });
-        contentOutline.push(chapter);
-      }
-    });
-
-    return contentOutline;
-  }
   public getStepLocation(fullPath: string) {
     const outline = this.getOutline();
     let chapterIndex = 0;
@@ -165,24 +105,7 @@ export default class ContentManager {
   public getCodeFilePath(urlPath: string) {
     return `${this.contentFolderName}/${urlPath}/${this.codeFileName}`;
   }
-  private transpileTypeScriptToJavaScript(tsCode: string) {
-    const result = typescript.transpileModule(tsCode, {
-      compilerOptions: { module: typescript.ModuleKind.CommonJS },
-    });
-    return result.outputText;
-  }
-  public getCodeFileExports(urlPath: string) {
-    const path = this.getCodeFilePath(urlPath);
-    const fileContent = fs.readFileSync(path, "utf-8");
-    const dynmicFunction = new Function(
-      "module",
-      this.transpileTypeScriptToJavaScript(fileContent)
-    );
-    const moduleExports: {} | CodeFileExports = {};
-    dynmicFunction(moduleExports);
 
-    return (moduleExports as CodeFileExports).exports;
-  }
   public getPageMeta(urlPath: string) {
     const nextStepPath = this.getNextStepPath(urlPath);
 
@@ -193,8 +116,8 @@ export default class ContentManager {
     const totalChapters = this.getTotalChapters();
     const totalSteps = this.getTotalSteps(chapterIndex);
     const mdPath = this.getInstructionsFilePath(urlPath);
+    const codePath = this.getCodeFilePath(urlPath);
     const chapterTitle = outline[chapterIndex].title;
-    const codeFile = this.getCodeFileExports(urlPath);
     const stepTitle = outline[chapterIndex].steps[stepIndex].title;
 
     return {
@@ -206,7 +129,7 @@ export default class ContentManager {
       totalSteps,
       mdPath,
       chapterTitle,
-      codeFile,
+      codePath,
       stepTitle,
     };
   }
