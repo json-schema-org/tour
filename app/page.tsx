@@ -25,7 +25,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Link href={outline[0].steps[0].fullPath}>
+        <Link
+          href={
+            contentManager.getPathWithPrefix(
+              outline[0].steps[0].fullPath
+            ) as string
+          }
+        >
           <button className={styles.mainBtn}>
             START NOW
             <RightArrow />

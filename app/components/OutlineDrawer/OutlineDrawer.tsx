@@ -15,6 +15,7 @@ import styles from "./OutlineDrawer.module.css";
 import { ChapterStep, ContentOutline } from "@/lib/types";
 import Link from "next/link";
 import cx from "classnames";
+import { contentManager } from "@/lib/contentManager";
 
 function ChapterItem({
   index,
@@ -29,9 +30,9 @@ function ChapterItem({
   steps: ChapterStep[];
   activeStepIndex: number;
 }) {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle, onOpen } = useDisclosure();
   useEffect(() => {
-    if (state === "active") onToggle();
+    if (state === "active") onOpen();
   }, [state]);
   return (
     <li className={styles.chapterItem}>
@@ -48,7 +49,13 @@ function ChapterItem({
         {
           <ul>
             {steps.map((step, index) => (
-              <Link href={"/" + step.fullPath} key={step.title}>
+              <Link
+                href={
+                  ("/" +
+                    contentManager.getPathWithPrefix(step.fullPath)) as string
+                }
+                key={step.title}
+              >
                 <li
                   className={cx(
                     styles.stepItem,

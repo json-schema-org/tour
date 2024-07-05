@@ -70,6 +70,7 @@ function NavBarMenu() {
 export default function NavBar({ urlPath }: { urlPath: string }) {
   const { chapterIndex, chapterTitle, previousStepPath, stepIndex, stepTitle } =
     contentManager.getPageMeta(urlPath);
+
   const outline = contentManager.getOutline();
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();

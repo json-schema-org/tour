@@ -2,8 +2,8 @@ import { contentManager } from "@/lib/contentManager";
 import styles from "./page.module.css";
 import React from "react";
 import { parseMdxFile } from "@/lib/server-functions";
-import ContentViewer from "../components/ContentViewer";
-import EditorNOutput from "../components/EditorNOutput";
+import ContentViewer from "@/app/components/ContentViewer";
+import EditorNOutput from "@/app/components/EditorNOutput";
 
 export function generateMetadata({
   params,
@@ -28,8 +28,7 @@ export default async function Content({
   params: { markdownPath: string[] };
 }) {
   const urlPath = params.markdownPath.join("/");
-
-  const { mdPath, codePath, nextStepPath } =
+  const { mdPath, nextStepPath, stepIndex, totalSteps, codePath } =
     contentManager.getPageMeta(urlPath);
   const { Page, metadata, codeFile } = parseMdxFile(mdPath, codePath);
 

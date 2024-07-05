@@ -43,6 +43,7 @@ export default function CodeEditor({
       monaco.editor.setTheme(colorMode === "light" ? "light" : "my-theme");
     }
   }, [monaco, colorMode]);
+
   return (
     <>
       <div className={ctx(styles.codeEditor, GeistMono.className)}>

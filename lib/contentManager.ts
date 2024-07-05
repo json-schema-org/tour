@@ -45,6 +45,7 @@ export default class ContentManager {
   public indexFileName = "index.mdx";
   public instructionsFileName = "instructions.mdx";
   public codeFileName = "code.ts";
+  public pathPrefix = "content";
 
   public getOutline() {
     // check if outline.json exists
@@ -64,6 +65,14 @@ export default class ContentManager {
       }
     });
     return { chapterIndex, stepIndex };
+  }
+
+  public getPathWithPrefix(fullPath: string | undefined) {
+    if (!fullPath) {
+      return undefined;
+    }
+
+    return `${this.pathPrefix}/${fullPath}`;
   }
 
   public getNextStepPath(activeStepPath: string) {
@@ -107,9 +116,11 @@ export default class ContentManager {
   }
 
   public getPageMeta(urlPath: string) {
-    const nextStepPath = this.getNextStepPath(urlPath);
+    const nextStepPath = this.getPathWithPrefix(this.getNextStepPath(urlPath));
 
-    const previousStepPath = this.getPreviousStepPath(urlPath);
+    const previousStepPath = this.getPathWithPrefix(
+      this.getPreviousStepPath(urlPath)
+    );
     const outline = this.getOutline();
 
     const { chapterIndex, stepIndex } = this.getStepLocation(urlPath);
