@@ -74,13 +74,15 @@ export default function TestCasesWindow({
   );
   const [isLeftDisabled, setIsLeftDisabled] = useState(true);
   const [isRightDisabled, setIsRightDisabled] = useState(false);
-
+  const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
     const container = testCasesTabWrapperRef.current;
     if (container) {
       const newScrollPosition = container.scrollLeft;
       const maxScroll = container.scrollWidth - container.clientWidth;
+      console.log(newScrollPosition, maxScroll);
 
+      setScrollPosition(newScrollPosition);
       setIsLeftDisabled(newScrollPosition === 0);
       setIsRightDisabled(Math.round(newScrollPosition + 1) >= maxScroll);
     }
@@ -89,8 +91,15 @@ export default function TestCasesWindow({
   useEffect(() => {
     const container = testCasesTabWrapperRef.current;
     if (container) {
-      container.addEventListener("scroll", handleScroll);
-      return () => container.removeEventListener("scroll", handleScroll);
+      const newScrollPosition = container.scrollLeft;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (newScrollPosition === 0 && maxScroll === 0) {
+        setIsLeftDisabled(true);
+        setIsRightDisabled(true);
+      } else {
+        container.addEventListener("scroll", handleScroll);
+        return () => container.removeEventListener("scroll", handleScroll);
+      }
     }
   }, []);
 
