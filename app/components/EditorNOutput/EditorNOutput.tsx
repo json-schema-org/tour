@@ -24,7 +24,7 @@ export default function EditorNOutput({
     errors: "",
     testCaseResults: [],
   });
-  console.log(output);
+
   return (
     <div className={styles.codeEditorNOutput}>
       <Box flex={6} position={"relative"}>

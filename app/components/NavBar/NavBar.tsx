@@ -171,7 +171,7 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
           activeStepIndex={stepIndex}
         />
       </div>
-      <Box pos={"absolute"} width={"50%"} bottom={0} left={0}>
+      <Box pos={"absolute"} width={"100%"} bottom={0} left={0}>
         <Progressbar progress={progress} />
       </Box>
     </div>

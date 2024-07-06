@@ -23,16 +23,40 @@
   align-items: center;
 }
 .TestCasesTabsWrapper {
-  overflow-x: hidden;
+  overflow-x: auto;
+  scrollbar-width: none;
   display: flex;
+  flex-direction: row;
+  scroll-behavior: smooth;
+
+  align-items: center;
+  border-left: 1px solid hsl(var(--text) / 0.1);
+  border-right: 1px solid hsl(var(--text) / 0.1);
+}
+.TestCasesTabsWrapper::-webkit-scrollbar {
+  display: none;
 }
 .TestCasesTabs {
   display: flex;
-  width: 100%;
-  overflow-y: auto;
+  width: auto;
+  min-width: min-content;
+
   flex-direction: row;
   gap: 8px;
 }
+
+.scrollButton {
+  border-radius: 50%;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollButton:hover {
+  background-color: hsl(var(--text) / 0.1);
+}
+
 .TestCase {
   display: flex;
   flex-direction: column;
