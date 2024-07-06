@@ -11,7 +11,7 @@ const code: any = {
 
 const solution = structuredClone(code);
 solution.properties.companyName = {
-  const: "Postman",
+  const: "MyCompany",
 };
 
 solution.properties.age = {
@@ -23,7 +23,7 @@ const testCases: any[] = [
     input: {
       name: "person",
       age: 25,
-      companyName: "Postman",
+      companyName: "MyCompany",
     },
     expected: true,
   },
@@ -39,7 +39,7 @@ const testCases: any[] = [
     input: {
       name: "person",
       age: 26,
-      companyName: "Postman",
+      companyName: "MyCompany",
     },
     expected: false,
   },
@@ -55,7 +55,7 @@ const testCases: any[] = [
     input: {
       name: "person",
       age: 24,
-      companyName: "Postman",
+      companyName: "MyCompany",
     },
     expected: false,
   },
@@ -63,7 +63,7 @@ const testCases: any[] = [
     input: {
       name: 0,
       age: 25,
-      companyName: "Postman",
+      companyName: "MyCompany",
     },
     expected: false,
   },

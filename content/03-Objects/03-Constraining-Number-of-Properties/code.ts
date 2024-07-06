@@ -28,7 +28,7 @@ const testCases = [
       name: "John Doe",
       age: 30,
       contactMethods: {
-        email: "jhon.doe@postman.com",
+        email: "jhon.doe@MyCompany.com",
         phone: "1234567890",
         phone2: "1234567890",
       },
@@ -40,7 +40,7 @@ const testCases = [
       name: "John Doe",
       age: 30,
       contactMethods: {
-        email: "jhon.doe@postman.com",
+        email: "jhon.doe@MyCompany.com",
         phone: "1234567890",
       },
     },
@@ -59,7 +59,7 @@ const testCases = [
       name: "John Doe",
       age: 30,
       contactMethods: {
-        email: "jhon.doe@postman.com",
+        email: "jhon.doe@MyCompany.com",
       },
     },
     expected: false,
@@ -69,7 +69,7 @@ const testCases = [
       name: "John Doe",
       age: 30,
       contactMethods: {
-        email: "jhon.doe@postman.com",
+        email: "jhon.doe@MyCompany.com",
         phone: "1234567890",
         phone2: "1234567890",
         email2: "jhondoe@gmail.com",
@@ -93,7 +93,7 @@ const testCases = [
       name: "John Doe",
       age: 30,
       contactMethods: {
-        email: "jhon.doe@postman.com",
+        email: "jhon.doe@MyCompany.com",
         phone: "1234567890",
         phone2: "1234567890",
         email2: "jhondoe@gmail.com",
@@ -107,7 +107,7 @@ const testCases = [
       name: "John Doe",
       age: 30,
       contactMethods: {
-        email: "jhon.doe@postman.com",
+        email: "jhon.doe@MyCompany.com",
         phone: "1234567890",
         phone2: "1234567890",
         email2: "jhondoe@gmail.com",
