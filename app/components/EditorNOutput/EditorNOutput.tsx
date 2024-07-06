@@ -19,6 +19,10 @@ export default function EditorNOutput({
     JSON.stringify(codeFile.code, null, 2)
   );
 
+  const showSolution = () => {
+    setCodeString(JSON.stringify(codeFile.solution, null, 2));
+  };
+
   const [output, dispatchOutput] = useReducer(outputReducer, {
     validityStatus: "neutral",
     errors: "",
@@ -93,7 +97,7 @@ export default function EditorNOutput({
         className={styles.outputWrapper}
         style={{ height: `calc(100% - ${topWidth}px - 6px)` }}
       >
-        <Output outputResult={output} />
+        <Output outputResult={output} showSolution={showSolution} />
       </div>
     </div>
   );

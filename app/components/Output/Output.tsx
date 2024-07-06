@@ -7,19 +7,25 @@ import SmallBtn from "../SmallBtn/SmallBtn";
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { schemaUrl } from "@/lib/validators";
 
-function Output({ outputResult }: { outputResult: OutputResult }) {
+function Output({
+  outputResult,
+  showSolution,
+}: {
+  outputResult: OutputResult;
+  showSolution: () => void;
+}) {
   let outputBodyContent;
 
   if (outputResult.validityStatus == "neutral") {
     outputBodyContent = (
-      <>
+      <div>
         {" "}
         Please click the{" "}
         <SmallBtn variant="default" onClick={() => {}}>
           validate
         </SmallBtn>{" "}
         button to see the output
-      </>
+      </div>
     );
   } else if (outputResult.validityStatus == "valid") {
     outputBodyContent = (
@@ -62,7 +68,25 @@ function Output({ outputResult }: { outputResult: OutputResult }) {
       <div className={styles.header}>
         <div className={styles.title}>Output </div>
       </div>
-      <div className={classnames(styles.outputBody)}>{outputBodyContent}</div>
+
+      <div className={classnames(styles.outputBody)}>
+        {outputBodyContent}
+        {outputResult.validityStatus !== "neutral" &&
+          outputResult.validityStatus !== "valid" && (
+            <div className={styles.footer}>
+              Stuck?{" "}
+              <button
+                onClick={showSolution}
+                style={{
+                  color: "hsl(var(--link-color))",
+                  textDecoration: "underline",
+                }}
+              >
+                View Solution
+              </button>
+            </div>
+          )}
+      </div>
     </>
   );
 }

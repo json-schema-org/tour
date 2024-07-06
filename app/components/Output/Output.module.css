@@ -35,6 +35,8 @@
   overflow-y: scroll;
   height: 100%;
   white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
 }
 .valid {
   display: flex;
@@ -58,4 +60,9 @@
   padding-inline: 1em;
   display: flex;
   justify-content: center;
+}
+.footer {
+  margin-top: auto;
+  font-size: small;
+  padding: 0.2em 0.2em;
 }
