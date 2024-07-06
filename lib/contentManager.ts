@@ -1,3 +1,4 @@
+import { contentFolderName, instructionsFileName } from "./contentVariables";
 import { ContentOutline } from "./types";
 
 import outline from "@/content/outline.json";
@@ -37,19 +38,11 @@ The content folder follows this structure:
 */
 
 export default class ContentManager {
-  public contentFolderPath: string = "./content";
-  public contentFolderName: string = this.contentFolderPath.replace("./", "");
-
   public outlineJSONPath: string = "./content/outline.json";
-
-  public indexFileName = "index.mdx";
-  public instructionsFileName = "instructions.mdx";
   public codeFileName = "code.ts";
   public pathPrefix = "content";
 
   public getOutline() {
-    // check if outline.json exists
-
     return outline as ContentOutline;
   }
 
@@ -109,10 +102,10 @@ export default class ContentManager {
     return this.getOutline()[chapterIndex].steps.length;
   }
   public getInstructionsFilePath(urlPath: string) {
-    return `${this.contentFolderName}/${urlPath}/${this.instructionsFileName}`;
+    return `${contentFolderName}/${urlPath}/${instructionsFileName}`;
   }
   public getCodeFilePath(urlPath: string) {
-    return `${this.contentFolderName}/${urlPath}/${this.codeFileName}`;
+    return `${contentFolderName}/${urlPath}/${this.codeFileName}`;
   }
 
   public getPageMeta(urlPath: string) {

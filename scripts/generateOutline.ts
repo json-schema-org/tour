@@ -1,7 +1,13 @@
 import fs from "fs";
-import { contentManager } from "@/lib/contentManager";
+
 import { Chapter, ContentOutline, Metadata } from "@/lib/types";
 import matter from "gray-matter";
+import {
+  contentFolderName,
+  contentFolderPath,
+  indexFileName,
+  instructionsFileName,
+} from "@/lib/contentVariables";
 
 function parseMdxMetadata(fullFilePath: string) {
   const file = fs.readFileSync(fullFilePath, "utf-8");
@@ -13,14 +19,14 @@ function parseMdxMetadata(fullFilePath: string) {
 
 function generateOutline(): ContentOutline {
   const contentOutline: ContentOutline = [];
-  const files = fs.readdirSync(contentManager.contentFolderPath, {
+  const files = fs.readdirSync(contentFolderPath, {
     withFileTypes: true,
   });
 
   files.forEach((file, chapterNumber) => {
     if (file.isDirectory()) {
       const { metadata } = parseMdxMetadata(
-        `${contentManager.contentFolderName}/${file.name}/${contentManager.indexFileName}`
+        `${contentFolderName}/${file.name}/${indexFileName}`
       );
 
       const chapter: Chapter = {
@@ -28,16 +34,14 @@ function generateOutline(): ContentOutline {
         folderName: file.name,
         steps: [],
       };
-      const chapterPath = `${contentManager.contentFolderPath}/${file.name}`;
+      const chapterPath = `${contentFolderPath}/${file.name}`;
       let chapterFiles = fs.readdirSync(chapterPath, {
         withFileTypes: true,
       });
-      chapterFiles = chapterFiles.filter(
-        (file) => file.name !== contentManager.indexFileName
-      );
+      chapterFiles = chapterFiles.filter((file) => file.name !== indexFileName);
       chapterFiles.forEach((chapterFile, stepNumber) => {
         const { metadata } = parseMdxMetadata(
-          `${contentManager.contentFolderName}/${file.name}/${chapterFile.name}/${contentManager.instructionsFileName}`
+          `${contentFolderName}/${file.name}/${chapterFile.name}/${instructionsFileName}`
         );
 
         const step = {
