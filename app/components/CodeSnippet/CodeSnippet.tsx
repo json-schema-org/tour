@@ -1,11 +1,12 @@
+"use client";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {
-  tomorrow,
-  github,
-  obsidian,
+  nightOwl,
+  atelierCaveLight,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import styles from "./CodeSnippet.module.css";
 import { CSSProperties } from "react";
+import { useColorMode } from "@chakra-ui/react";
 
 export default function CodeSnippet({
   children,
@@ -20,6 +21,8 @@ export default function CodeSnippet({
   startingLineNumber?: number;
   showLineNumbers?: boolean;
 }) {
+  const { colorMode } = useColorMode();
+
   if ((children.match(/\n/g) || []).length === 0) {
     return <span className={styles.inlineCode}>{children}</span>;
   }
@@ -33,7 +36,7 @@ export default function CodeSnippet({
   return (
     <SyntaxHighlighter
       language="javascript"
-      style={github}
+      style={colorMode === "dark" ? nightOwl : atelierCaveLight}
       className={styles.codeSnippet}
       showLineNumbers={showLineNumbers}
       wrapLines={true}
@@ -51,8 +54,10 @@ export default function CodeSnippet({
         ) {
           style = {
             ...style,
-            backgroundColor: "#00ff001a",
-            borderLeft: "2px solid #0aff0ad0",
+            backgroundColor: colorMode === "dark" ? "#00ff001a" : "#00ff001a",
+            borderLeft: `2px solid ${
+              colorMode === "dark" ? "#0aff0a50" : "#0aff0aa0"
+            }`,
           };
         }
         return { style };
