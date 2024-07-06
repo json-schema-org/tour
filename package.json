@@ -39,6 +39,7 @@
     "rehype-mdx-code-props": "^3.0.0",
     "remark-frontmatter": "^5.0.0",
     "remark-mdx-frontmatter": "^4.0.0",
+    "sharp": "^0.33.4",
     "tsx": "^4.10.1"
   },
   "devDependencies": {
