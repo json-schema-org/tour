@@ -3,6 +3,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import {
   nightOwl,
   atelierCaveLight,
+  arduinoLight,
+  atelierEstuaryLight,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import styles from "./CodeSnippet.module.css";
 import { CSSProperties } from "react";
@@ -36,7 +38,7 @@ export default function CodeSnippet({
   return (
     <SyntaxHighlighter
       language="javascript"
-      style={colorMode === "dark" ? nightOwl : atelierCaveLight}
+      style={colorMode === "dark" ? nightOwl : arduinoLight}
       className={styles.codeSnippet}
       showLineNumbers={showLineNumbers}
       wrapLines={true}
@@ -54,7 +56,7 @@ export default function CodeSnippet({
         ) {
           style = {
             ...style,
-            backgroundColor: colorMode === "dark" ? "#00ff001a" : "#00ff001a",
+            backgroundColor: colorMode === "dark" ? "#18261f" : "#e0fae3",
             borderLeft: `2px solid ${
               colorMode === "dark" ? "#0aff0a50" : "#0aff0aa0"
             }`,

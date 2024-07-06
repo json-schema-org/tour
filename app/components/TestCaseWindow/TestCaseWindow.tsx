@@ -6,6 +6,7 @@ import { Box, Flex, useColorMode } from "@chakra-ui/react";
 import CkChevronLeft from "@/app/styles/icons/CkChevronLeft";
 import CkChevronRight from "@/app/styles/icons/CkChevronRight";
 import cx from "classnames";
+import CodeSnippet from "../CodeSnippet/CodeSnippet";
 
 function TestCaseItem({
   testCase,
@@ -42,7 +43,7 @@ function TestCaseItem({
       </div>
       <div className={styles.TestCaseResultTitle}>Data</div>
       <div className={styles.TestCaseCode}>
-        {JSON.stringify(testCase.input, null, 2)}
+        <CodeSnippet>{JSON.stringify(testCase.input, null, 2)}</CodeSnippet>
       </div>
       <div className={styles.TestCaseError}>
         {testCase.errors && <b>trace: </b>}
