@@ -1,6 +1,6 @@
 import { ContentOutline } from "./types";
 
-import outline from "../content/outline.json";
+import outline from "@/content/outline.json";
 
 /* 
 
