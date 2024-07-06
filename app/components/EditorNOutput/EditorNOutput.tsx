@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useReducer, useRef } from "react";
+import React, { useState, useReducer, useRef, useEffect } from "react";
 import CodeEditor from "../CodeEditor";
 import styles from "./EditorNOutput.module.css";
 import { Box } from "@chakra-ui/react";
@@ -48,10 +48,19 @@ export default function EditorNOutput({
 
     if (newTopWidth > 32) {
       setTopWidth(newTopWidth);
+      localStorage.setItem("verticalTopHeight", String(newTopWidth));
     } else {
+      localStorage.setItem("verticalTopHeight", String(containerRect.top));
       setTopWidth(containerRect.top);
     }
   };
+
+  useEffect(() => {
+    const topHeight = localStorage.getItem("verticalTopHeight");
+    if (topHeight) {
+      setTopWidth(Number(topHeight));
+    }
+  }, []);
 
   return (
     <div
