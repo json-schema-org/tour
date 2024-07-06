@@ -7,13 +7,7 @@ import SmallBtn from "../SmallBtn/SmallBtn";
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { schemaUrl } from "@/lib/validators";
 
-function Output({
-  outputResult,
-  flex,
-}: {
-  outputResult: OutputResult;
-  flex: number;
-}) {
+function Output({ outputResult }: { outputResult: OutputResult }) {
   let outputBodyContent;
 
   if (outputResult.validityStatus == "neutral") {
@@ -64,12 +58,12 @@ function Output({
   }
 
   return (
-    <div className={classnames(styles.output)} style={{ flex: flex }}>
+    <>
       <div className={styles.header}>
         <div className={styles.title}>Output </div>
       </div>
       <div className={classnames(styles.outputBody)}>{outputBodyContent}</div>
-    </div>
+    </>
   );
 }
 

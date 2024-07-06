@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useRef } from "react";
 import CodeEditor from "../CodeEditor";
 import styles from "./EditorNOutput.module.css";
 import { Box } from "@chakra-ui/react";
@@ -24,10 +24,49 @@ export default function EditorNOutput({
     errors: "",
     testCaseResults: [],
   });
+  const [topWidth, setTopWidth] = useState(400); // Initial width of the left div
+  const dividerRef = useRef<HTMLDivElement>(null);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef<HTMLDivElement | boolean>(false);
+
+  const handleMouseDown = () => {
+    isDraggingRef.current = true;
+  };
+
+  const handleMouseUp = () => {
+    isDraggingRef.current = false;
+  };
+
+  const handleMouseMove = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent> | MouseEvent
+  ) => {
+    if (!isDraggingRef.current) return;
+
+    const containerRect = containerRef.current!.getBoundingClientRect();
+    const newTopWidth = e.clientY - containerRect.top;
+
+    if (newTopWidth > 32) {
+      setTopWidth(newTopWidth);
+    } else {
+      setTopWidth(containerRect.top);
+    }
+  };
 
   return (
-    <div className={styles.codeEditorNOutput}>
-      <Box flex={6} position={"relative"}>
+    <div
+      className={styles.codeEditorNOutput}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      ref={containerRef}
+    >
+      <Box
+        flex={6}
+        height={`${topWidth}px`}
+        position={"relative"}
+        className="top"
+      >
         <CodeEditor
           codeString={codeString}
           setCodeString={setCodeString}
@@ -36,8 +75,17 @@ export default function EditorNOutput({
           nextStepPath={nextStepPath}
         />
       </Box>
-
-      <Output outputResult={output} flex={4} />
+      <div
+        ref={dividerRef}
+        className={styles.divider}
+        onMouseDown={handleMouseDown}
+      ></div>
+      <div
+        className={styles.outputWrapper}
+        style={{ height: `calc(100% - ${topWidth}px - 6px)` }}
+      >
+        <Output outputResult={output} />
+      </div>
     </div>
   );
 }
