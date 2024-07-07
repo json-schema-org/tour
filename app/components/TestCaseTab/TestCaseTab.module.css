@@ -29,10 +29,10 @@
 
 .passed {
   background-color: #00d548;
-  box-shadow: 0 0 6px #00d548;
+  box-shadow: 0 0 6px 1px #00d548;
 }
 
 .failed {
   background-color: red;
-  box-shadow: 0 0 6px red;
+  box-shadow: 0 0 6px 1px red;
 }

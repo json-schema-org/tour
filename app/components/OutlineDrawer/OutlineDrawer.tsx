@@ -23,20 +23,45 @@ function ChapterItem({
   title,
   steps,
   activeStepIndex,
+  openChapterIndex,
+  setOpenChapterIndex,
 }: {
   index: number;
   state: "active" | "completed" | "neutral";
   title: string;
   steps: ChapterStep[];
   activeStepIndex: number;
+  openChapterIndex: number;
+  setOpenChapterIndex: (index: number) => void;
 }) {
-  const { isOpen, onToggle, onOpen } = useDisclosure();
+  const { isOpen, onToggle, onOpen, onClose } = useDisclosure();
+  // useEffect(() => {
+  //   if (state === "active") onOpen();
+  // }, [state]);
+
   useEffect(() => {
-    if (state === "active") onOpen();
+    if (openChapterIndex === index) {
+      onOpen();
+    } else {
+      onClose();
+    }
+  }, [openChapterIndex]);
+
+  useEffect(() => {
+    if (state === "active") {
+      onOpen();
+    } else {
+      onClose();
+    }
   }, [state]);
   return (
     <li className={styles.chapterItem}>
-      <button className={styles.chapterItemWrapper} onClick={onToggle}>
+      <button
+        className={styles.chapterItemWrapper}
+        onClick={() => {
+          setOpenChapterIndex(index);
+        }}
+      >
         <div className={cx(styles.chapterItemNumber, styles[state])}>
           <span>{index + 1}</span>
         </div>
@@ -90,6 +115,9 @@ export default function OutlineDrawer({
   activeChapterIndex: number;
   activeStepIndex: number;
 }) {
+  const [openChapterIndex, setOpenChapterIndex] =
+    React.useState<number>(activeChapterIndex);
+
   return (
     <>
       <Drawer
@@ -115,6 +143,8 @@ export default function OutlineDrawer({
                     title={item.title}
                     steps={item.steps}
                     activeStepIndex={activeStepIndex}
+                    openChapterIndex={openChapterIndex}
+                    setOpenChapterIndex={setOpenChapterIndex}
                   />
                 ))}
               </ul>
