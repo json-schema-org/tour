@@ -36,36 +36,44 @@ export default function CodeSnippet({
   }
 
   return (
-    <SyntaxHighlighter
-      language="javascript"
-      style={colorMode === "dark" ? nightOwl : arduinoLight}
-      className={styles.codeSnippet}
-      showLineNumbers={showLineNumbers}
-      wrapLines={true}
-      wrapLongLines={true}
-      startingLineNumber={startingLineNumber}
-      lineProps={(lineNumber) => {
-        let style: CSSProperties = {
-          color: "hsl(var(--text))",
-        };
-        if (
-          highlightLineStart &&
-          highlightLineEnd &&
-          lineNumber >= highlightLineStart &&
-          lineNumber <= highlightLineEnd
-        ) {
-          style = {
-            ...style,
-            backgroundColor: colorMode === "dark" ? "#18391f" : "#e0fae3",
-            borderLeft: `2px solid ${
-              colorMode === "dark" ? "#0aff0a50" : "#0aff0aa0"
-            }`,
-          };
-        }
-        return { style };
+    <div
+      onCopy={(e) => {
+        e.preventDefault();
+        e.clipboardData.setData("text/plain", children);
       }}
     >
-      {children}
-    </SyntaxHighlighter>
+      <SyntaxHighlighter
+        language="javascript"
+        style={colorMode === "dark" ? nightOwl : arduinoLight}
+        className={styles.codeSnippet}
+        showLineNumbers={showLineNumbers}
+        wrapLines={true}
+        wrapLongLines={true}
+        startingLineNumber={startingLineNumber}
+        lineProps={(lineNumber) => {
+          let style: CSSProperties = {
+            color: "hsl(var(--text))",
+            padding: " 0 2px",
+          };
+          if (
+            highlightLineStart &&
+            highlightLineEnd &&
+            lineNumber >= highlightLineStart &&
+            lineNumber <= highlightLineEnd
+          ) {
+            style = {
+              ...style,
+              backgroundColor: colorMode === "dark" ? "#18391f" : "#e0fae3",
+              borderLeft: `2px solid ${
+                colorMode === "dark" ? "#0aff0a50" : "#0aff0aa0"
+              }`,
+            };
+          }
+          return { style };
+        }}
+      >
+        {children}
+      </SyntaxHighlighter>
+    </div>
   );
 }
