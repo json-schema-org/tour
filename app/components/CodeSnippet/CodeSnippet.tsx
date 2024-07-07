@@ -56,7 +56,7 @@ export default function CodeSnippet({
         ) {
           style = {
             ...style,
-            backgroundColor: colorMode === "dark" ? "#18261f" : "#e0fae3",
+            backgroundColor: colorMode === "dark" ? "#18391f" : "#e0fae3",
             borderLeft: `2px solid ${
               colorMode === "dark" ? "#0aff0a50" : "#0aff0aa0"
             }`,

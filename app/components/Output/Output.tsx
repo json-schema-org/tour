@@ -6,6 +6,8 @@ import FailedTestCasesWindow from "../TestCaseWindow/TestCaseWindow";
 import SmallBtn from "../SmallBtn/SmallBtn";
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { schemaUrl } from "@/lib/validators";
+import KeyBindings from "../KeyBindings/KeyBindings";
+import { Flex } from "@chakra-ui/react";
 
 function Output({
   outputResult,
@@ -18,14 +20,15 @@ function Output({
 
   if (outputResult.validityStatus == "neutral") {
     outputBodyContent = (
-      <div>
+      <Flex dir="row" gap={1} paddingTop={2}>
         {" "}
         Please click the{" "}
         <SmallBtn variant="default" onClick={() => {}}>
           validate
         </SmallBtn>{" "}
-        button to see the output
-      </div>
+        button or use <KeyBindings keys={["Shift", "Enter"]} /> to view the
+        output
+      </Flex>
     );
   } else if (outputResult.validityStatus == "valid") {
     outputBodyContent = (

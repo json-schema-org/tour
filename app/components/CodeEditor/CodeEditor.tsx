@@ -43,7 +43,21 @@ export default function CodeEditor({
       monaco.editor.setTheme(colorMode === "light" ? "light" : "my-theme");
     }
   }, [monaco, colorMode]);
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // event.preventDefault();
+      if (event.key == "Enter" && event.shiftKey) {
+        event.preventDefault(); // Prevent default behavior
+        validateCode(codeString, codeFile, dispatchOutput);
+      }
+    };
 
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [codeString]);
   return (
     <>
       <div className={ctx(styles.codeEditor, GeistMono.className)}>
