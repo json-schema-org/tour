@@ -25,3 +25,8 @@
   background-color: hsl(var(--border-color));
   cursor: row-resize;
 }
+
+.divider:hover,
+.divider:active {
+  background-color: hsl(var(--primary) / 0.75);
+}
