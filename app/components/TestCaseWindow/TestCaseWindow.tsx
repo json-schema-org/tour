@@ -76,6 +76,7 @@ export default function TestCasesWindow({
   const [isLeftDisabled, setIsLeftDisabled] = useState(true);
   const [isRightDisabled, setIsRightDisabled] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [areBothDisabled, setAreBothDisabled] = useState(false);
   const handleScroll = () => {
     const container = testCasesTabWrapperRef.current;
     if (container) {
@@ -97,6 +98,7 @@ export default function TestCasesWindow({
       if (newScrollPosition === 0 && maxScroll === 0) {
         setIsLeftDisabled(true);
         setIsRightDisabled(true);
+        setAreBothDisabled(true);
       } else {
         container.addEventListener("scroll", handleScroll);
         return () => container.removeEventListener("scroll", handleScroll);
@@ -113,16 +115,17 @@ export default function TestCasesWindow({
         </span>
       </div>
       <Flex dir="row" gap={2}>
-        <button
-          onClick={scrollLeft}
-          className={cx(
-            styles.scrollButton,
-            isLeftDisabled ? styles.disabledScrollBtn : ""
-          )}
-        >
-          <CkChevronLeft colorMode={colorMode} />
-        </button>
-
+        {!areBothDisabled && (
+          <button
+            onClick={scrollLeft}
+            className={cx(
+              styles.scrollButton,
+              isLeftDisabled ? styles.disabledScrollBtn : ""
+            )}
+          >
+            <CkChevronLeft colorMode={colorMode} />
+          </button>
+        )}
         <div
           className={styles.TestCasesTabsWrapper}
           ref={testCasesTabWrapperRef}
@@ -139,16 +142,17 @@ export default function TestCasesWindow({
             ))}
           </div>
         </div>
-
-        <button
-          onClick={scrollRight}
-          className={cx(
-            styles.scrollButton,
-            isRightDisabled ? styles.disabledScrollBtn : ""
-          )}
-        >
-          <CkChevronRight colorMode={colorMode} />
-        </button>
+        {!areBothDisabled && (
+          <button
+            onClick={scrollRight}
+            className={cx(
+              styles.scrollButton,
+              isRightDisabled ? styles.disabledScrollBtn : ""
+            )}
+          >
+            <CkChevronRight colorMode={colorMode} />
+          </button>
+        )}
       </Flex>
 
       <TestCaseItem
