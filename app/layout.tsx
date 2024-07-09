@@ -17,6 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="LsHgkHvmmMhqHAlY5aZO7HYwsa6jsRgpE1gpRp9V_V4"
+        />
+      </head>
       <body className={GeistSans.className}>
         <Providers>
           <main>{children}</main>

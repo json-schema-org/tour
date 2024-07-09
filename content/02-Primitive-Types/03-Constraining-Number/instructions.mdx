@@ -37,9 +37,9 @@ To apply constraints on number values, you can use the following keywords:
 ```json
 {
   "age":{
-    type: "integer",
-    minimum: 18,
-    maximum: 60
+    "type": "integer",
+    "minimum": 18,
+    "maximum": 60
   }
 }
 ```
@@ -49,12 +49,12 @@ To apply constraints on number values, you can use the following keywords:
 ```json 
 {
   "dateOfBirth": {
-    type: "object",
-    properties: {
+    "type": "object",
+    "properties": {
       "year": {
-        type: "integer",
-        minimum: 1954,
-        maximum: 2024
+        "type": "integer",
+        "minimum": 1954,
+        "maximum": 2024
       },
       ...
     }
