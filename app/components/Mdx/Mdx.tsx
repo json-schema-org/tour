@@ -64,8 +64,16 @@ export const components: MDXComponents = {
   ol: (props) => <OrderedList {...props} />,
   li: (props) => <ListItem {...props} marginBlock={"0.5rem"} />,
   code: (props: any) => <CodeSnippet {...props} />,
-  p: (props) => <p {...props} style={{ marginBlock: "0.5rem" }} />,
+  p: (props) => (
+    <p
+      {...props}
+      style={{ marginBlock: "0.5rem", color: "hsl(var(--text) / 0.75)" }}
+    />
+  ),
   blockquote: (props: any) => <InfoBox {...props} />,
+  strong: (props) => (
+    <strong {...props} style={{ color: "hsl(var(--text))" }} />
+  ),
 };
 
 const customComponents = {
