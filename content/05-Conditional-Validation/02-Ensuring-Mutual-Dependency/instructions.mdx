@@ -1,0 +1,49 @@
+---
+title: Ensuring Mutual Dependency
+description: Learn how to make properties dependent on each other in JSON Schema using dependentRequired keyword.
+keywords: dependentRequired, conditional validation, JSON Schema
+---
+
+
+# Mutual Dependency
+To understand mutual dependency, consider a JSON Document has two properties `firstName` and `lastName` 
+
+
+If both of these properties are mutually dependent, then both of the below conditions must be satisfied:
+
+- If `firstName` is present, then `lastName` must also be present.
+- If `lastName` is present, then `firstName` must also be present.
+
+Similar to the previous lesson, we can use the `dependentRequired` keyword to enforce this mutual dependency.
+
+**Example Schema**
+
+```json highlightLineStart={12} highlightLineEnd={13}
+{
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    }
+  },
+  "dependentRequired": {
+    "firstName": ["lastName"],
+    "lastName": ["firstName"]
+  }
+}
+```
+
+## Task 
+
+```json 
+{
+  "name": "John Doe",
+  "creditCardNumber":"1234 5678 1234 5678",
+  "address":"123 Main St",
+}
+```
+
+You are given a *Schema* for the above JSON document in the side editor. Update the schema to make sure that `creditCardNumber` and `address` are mutually dependent.
