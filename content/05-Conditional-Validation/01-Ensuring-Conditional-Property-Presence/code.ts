@@ -13,7 +13,7 @@ const code: any = {
   },
 
   dependentRequired: {
-    address: [],
+    creditCardNumber: [],
   },
   required: ["name"],
 };

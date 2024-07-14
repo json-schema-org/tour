@@ -12,9 +12,7 @@ const code: any = {
     },
   },
 
-  dependentRequired: {
-    address: [],
-  },
+  dependentRequired: {},
   required: ["name"],
 };
 

@@ -21,14 +21,7 @@ Similar to the previous lesson, we can use the `dependentRequired` keyword to en
 ```json highlightLineStart={12} highlightLineEnd={13}
 {
   "type": "object",
-  "properties": {
-    "firstName": {
-      "type": "string"
-    },
-    "lastName": {
-      "type": "string"
-    }
-  },
+  "properties": {...},
   "dependentRequired": {
     "firstName": ["lastName"],
     "lastName": ["firstName"]
