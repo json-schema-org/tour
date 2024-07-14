@@ -62,7 +62,13 @@ export const components: MDXComponents = {
   a: (props) => <Link {...props} style={{ color: "hsl(var(--link-color))" }} />,
   ul: (props) => <UnorderedList {...props} />,
   ol: (props) => <OrderedList {...props} />,
-  li: (props) => <ListItem {...props} marginBlock={"0.5rem"} />,
+  li: (props) => (
+    <ListItem
+      {...props}
+      marginBlock={"0.5rem"}
+      color={"hsl(var(--text) / 0.75)"}
+    />
+  ),
   code: (props: any) => <CodeSnippet {...props} />,
   p: (props) => (
     <p
