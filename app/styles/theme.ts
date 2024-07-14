@@ -117,7 +117,7 @@ const Drawer = {
 export const theme = extendTheme({
   config: {
     initialColorMode: "system",
-    useSystemColorMode: false,
+    useSystemColorMode: true,
   },
   styles: {
     global: {
