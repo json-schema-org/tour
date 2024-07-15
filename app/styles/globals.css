@@ -6,6 +6,18 @@ body {
 html {
   height: 100%;
 }
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--text) / 0.05);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: hsl(var(--text) / 0.25);
+}
+
 :root {
   --primary-light: 230 86% 40%;
 
