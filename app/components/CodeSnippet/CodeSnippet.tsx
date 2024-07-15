@@ -7,8 +7,9 @@ import {
   atelierEstuaryLight,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import styles from "./CodeSnippet.module.css";
-import { CSSProperties } from "react";
-import { useColorMode } from "@chakra-ui/react";
+import { CSSProperties, useState } from "react";
+import { useColorMode, Tooltip } from "@chakra-ui/react";
+import { CopyIcon, CheckIcon } from "@chakra-ui/icons";
 
 export default function CodeSnippet({
   children,
@@ -24,6 +25,7 @@ export default function CodeSnippet({
   showLineNumbers?: boolean;
 }) {
   const { colorMode } = useColorMode();
+  const [isCopied, setIsCopied] = useState(false);
 
   if ((children.match(/\n/g) || []).length === 0) {
     return <span className={styles.inlineCode}>{children}</span>;
@@ -37,11 +39,30 @@ export default function CodeSnippet({
 
   return (
     <div
+      className={styles.codeSnippetContainer}
       onCopy={(e) => {
         e.preventDefault();
         e.clipboardData.setData("text/plain", children);
       }}
     >
+      <div
+        className={styles.copyButton}
+        onClick={() => {
+          navigator.clipboard.writeText(children);
+          setIsCopied(true);
+          setTimeout(() => setIsCopied(false), 5000);
+        }}
+      >
+        {isCopied ? (
+          <Tooltip label="Copied!" aria-label="Copied!" placement="top">
+            <CheckIcon />
+          </Tooltip>
+        ) : (
+          <Tooltip label="Copy" aria-label="Copy" placement="top">
+            <CopyIcon />
+          </Tooltip>
+        )}
+      </div>
       <SyntaxHighlighter
         language="javascript"
         style={colorMode === "dark" ? nightOwl : arduinoLight}

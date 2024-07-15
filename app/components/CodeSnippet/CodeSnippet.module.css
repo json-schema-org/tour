@@ -16,3 +16,15 @@
   background-color: red;
   color: hsl(var(--background));
 }
+
+.codeSnippetContainer {
+  position: relative;
+}
+.copyButton {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  color: hsl(var(--text) / 0.5);
+  cursor: pointer;
+  z-index: 3;
+}

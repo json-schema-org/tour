@@ -108,6 +108,15 @@ const Drawer = {
   },
 };
 
+const Tooltip = {
+  baseStyle: {
+    bg: "hsl(var(--background))",
+    color: "hsl(var(--text) )",
+    border: "1px solid hsl(var(--text) / 0.4)",
+    borderRadius: "6px",
+  },
+};
+
 export const theme = extendTheme({
   config: {
     initialColorMode: "system",
@@ -121,6 +130,6 @@ export const theme = extendTheme({
       },
     },
   },
-  components: { Button, Menu, Switch, Drawer },
+  components: { Button, Menu, Switch, Drawer, Tooltip },
   fonts: {},
 });
