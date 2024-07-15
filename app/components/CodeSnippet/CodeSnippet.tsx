@@ -47,13 +47,21 @@ export default function CodeSnippet({
         style={colorMode === "dark" ? nightOwl : arduinoLight}
         className={styles.codeSnippet}
         showLineNumbers={showLineNumbers}
+        customStyle={{
+          paddingInline: 0,
+          paddingBlock: "10px",
+        }}
         wrapLines={true}
         wrapLongLines={true}
+        lineNumberStyle={{
+          color: "hsl(var(--text) / 0.6)",
+          paddingLeft: "16px",
+          paddingRight: "12px",
+        }}
         startingLineNumber={startingLineNumber}
         lineProps={(lineNumber) => {
           let style: CSSProperties = {
-            color: "hsl(var(--text))",
-            padding: " 0 2px",
+            opacity: colorMode === "dark" ? 0.9 : 1,
           };
           if (
             highlightLineStart &&
@@ -63,9 +71,10 @@ export default function CodeSnippet({
           ) {
             style = {
               ...style,
-              backgroundColor: colorMode === "dark" ? "#18391f" : "#e0fae3",
+              color: "hsl(var(--text) / 0.75)",
+              backgroundColor: colorMode === "dark" ? "#18391faa" : "#e0fae37a",
               borderLeft: `2px solid ${
-                colorMode === "dark" ? "#0aff0a50" : "#0aff0aa0"
+                colorMode === "dark" ? "#0aff0aa0" : "#14ab00a0"
               }`,
             };
           }
