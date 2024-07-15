@@ -1,0 +1,50 @@
+---
+title: Implication
+description: Learn how to use the `if-then` keyword to enforce Implication in JSON Schema.
+keywords:  If-Then, Implication, conditional validation, JSON Schema
+---
+
+
+# Implication using if-then keyword
+
+**Implication** is a logical operation that states that **if** condition `A` is true, **then** condition `B` must also be true. or in other words **A -> B** (pronounced, A implies B)
+
+You can use the `if-then` keyword to enforce this condition.
+
+Consider an `isFullTime` Field. **If** `isFullTime` is true, **then** the `salary` field must be present.
+
+
+```json highlightLineStart={3} highlightLineEnd={4}
+{
+  "name": "John Doe",
+  "isFullTime": true,
+  "salary": 50000
+}
+```
+You can use the `if-then` keyword to enforce this condition.
+
+**Example Schema**
+
+```json highlightLineStart={8} highlightLineEnd={10}
+{
+  "type": "object",
+  "properties": {...},
+  "if": {"properties": {"isFullTime": {"const": true}}},
+  "then": {"required": ["salary"]},
+}
+```
+
+## Task
+
+
+```json 
+{
+  "name": "John Doe",
+  "isStudent": true,
+  "age": 25
+}
+```
+
+You are given the schema for the same JSON document in the side editor. Modify the schema to enforce the below condition:
+
+- **If** `isStudent` is true, **then** the `age` field must be present. 
