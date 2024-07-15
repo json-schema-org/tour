@@ -15,7 +15,7 @@ const code: any = {
   required: ["name"],
 };
 
-const solution = structuredClone(code);
+let solution = structuredClone(code);
 solution = {
   ...solution,
   if: {
