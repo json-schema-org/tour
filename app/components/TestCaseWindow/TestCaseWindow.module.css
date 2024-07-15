@@ -4,9 +4,8 @@
 }
 
 .TestCaseCode {
-  width: fit-content;
-
-  width: 100%;
+  width: max-content;
+  /* width: 100%; */
   font-size: small;
   line-height: 1.3;
 }
