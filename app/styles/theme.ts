@@ -1,10 +1,4 @@
-import {
-  background,
-  theme as chakraTheme,
-  extendTheme,
-} from "@chakra-ui/react";
-import { it } from "node:test";
-import { config } from "process";
+import { extendTheme } from "@chakra-ui/react";
 
 const Button = {
   variants: {
