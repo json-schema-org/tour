@@ -50,7 +50,7 @@ export default function CodeSnippet({
         onClick={() => {
           navigator.clipboard.writeText(children);
           setIsCopied(true);
-          setTimeout(() => setIsCopied(false), 5000);
+          setTimeout(() => setIsCopied(false), 2500);
         }}
       >
         {isCopied ? (
@@ -76,13 +76,14 @@ export default function CodeSnippet({
         wrapLongLines={true}
         lineNumberStyle={{
           color: "hsl(var(--text) / 0.6)",
-          paddingLeft: "16px",
           paddingRight: "12px",
         }}
         startingLineNumber={startingLineNumber}
         lineProps={(lineNumber) => {
           let style: CSSProperties = {
             opacity: colorMode === "dark" ? 0.9 : 1,
+            paddingRight: "16px",
+            paddingLeft: "4px",
           };
           if (
             highlightLineStart &&
