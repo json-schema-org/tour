@@ -77,6 +77,7 @@ export default function CodeSnippet({
         lineNumberStyle={{
           color: "hsl(var(--text) / 0.6)",
           paddingRight: "12px",
+          minWidth: "4ch",
         }}
         startingLineNumber={startingLineNumber}
         lineProps={(lineNumber) => {
