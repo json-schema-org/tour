@@ -1,10 +1,16 @@
 ---
-title: "Defining Properties Using oneOf"
+title: "Valid Against oneOf the Subschemas (XOR)"
 description: "Define properties with oneOf keyword to apply conditional validation."
 keywords: "oneOf, properties, conditional validation"
 ---
 
-# Defining Properties Using oneOf
+# Valid Against oneOf the Subschemas (XOR)
+
+When you want to ensure that an instance is valid against **exactly one of** the subschemas, you can use the `oneOf` keyword.
+
+You can think of `oneOf` as an **XOR operation** between subschemas. If more than one subschema is valid, the instance is considered invalid.
+
+## Example
 
 Let's add a new property `dateOfBirth` to the JSON document.
 
