@@ -19,6 +19,12 @@ export function generateMetadata({
     title: `${metadata.title}: ${chapterTitle} | A Tour of JSON Schema`,
     description: metadata.description,
     keywords: metadata.keywords,
+    authors: [
+      {
+        name: "Zeel Rajodiya",
+        url: "https://github.com/JeelRajodiya",
+      },
+    ],
   };
 }
 
