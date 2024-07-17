@@ -1,8 +1,8 @@
 .infoBox {
-  padding: 2px 8px;
-  border: 1px dashed hsl(var(--text) / 0.4);
+  padding: 0px 8px;
+  border: 1px dashed hsl(var(--text) / 0.3);
   border-radius: 8px;
   margin-block: 12px;
-  background-color: hsl(var(--text) / 0.05);
+  background-color: hsl(var(--text) / 0.025);
   font-size: small;
 }
