@@ -1,13 +1,17 @@
 ---
-title: Validity Against All Subschemas (AND) - allOf
+title: Valid Against allOf the Subschemas (AND)
 description: Defining Subschemas with $defs and then referencing them with $ref 
 keywords:  $defs, $ref, JSON Schema, subschemas, 
 ---
 
 
-# Validity Against All Subschemas (AND) - allOf
+# Valid Against allOf the Subschemas (AND) 
 
-When you want to ensure that an instance is valid against **all of** the subschemas, you can use the `allOf` keyword.
+When you want to ensure that an instance is valid against **all of** the subschemas, you can use the `allOf` keyword. 
+
+You can think of `allOf` as an **AND operation** between subschemas. if one of the subschemas fails, the instance is considered invalid.
+
+
 
 ```json
 {
