@@ -4,7 +4,7 @@ description: "Define properties with oneOf keyword to apply conditional validati
 keywords: "oneOf, properties, conditional validation"
 ---
 
-# Age or Date of Birth
+# Defining Properties Using oneOf
 
 Let's add a new property `dateOfBirth` to the JSON document.
 
@@ -17,6 +17,7 @@ Let's add a new property `dateOfBirth` to the JSON document.
 }
 ```
 
+
 **Now you want to apply these conditions in the document:**
 - if `age` is present, `dateOfBirth` should not be present, and vice versa.
 - both `age` and `dateOfBirth` should not be present at the same time.
@@ -26,12 +27,12 @@ Let's add a new property `dateOfBirth` to the JSON document.
 
 ## Schema Definition
 
-To apply these conditions you can use `oneOf` keyword. `oneOf` ensures that **exactly one** of the specified *subschemas* is valid. 
+To apply these conditions you can use `oneOf` keyword. `oneOf` ensures that **exactly one of** the specified *subschemas* is valid. 
 
 We will combine using `oneOf` and `required`, to ensure that only one of the properties is present in the JSON document.
 
 
-```json
+```json highlightLineStart={7} highlightLineEnd={10}
 {
   "type": "object",
   "properties": {
@@ -45,27 +46,20 @@ We will combine using `oneOf` and `required`, to ensure that only one of the pro
 }
 ```
 
-Notice the `format` keyword with `date` used in the `dateOfBirth` property. By default, `format` is just an annotation and **does not effect validation**. you can learn more about the format keyword [here](https://json-schema.org/understanding-json-schema/reference/string#format).
+> Notice the `format` keyword with `date` used in the `dateOfBirth` property. By default, `format` is just an annotation and **does not effect validation**. you can learn more about the format keyword [here](https://json-schema.org/understanding-json-schema/reference/string#format).
 
-Now, Let's try to add the `format` and `oneOf` keyword to the schema given in the side editor.
+## Task
 
-<GoodToKnowBox>
-you can also use the `not` keyword to ensure that both properties are not present at the same time.
-
-**Example**
-
-```json
+``` json
 {
-  "type": "object",
-  ...
-  "oneOf": [
-    { "required": ["age"], "not": { "required": ["dateOfBirth"] } },
-    { "required": ["dateOfBirth"], "not": { "required": ["age"] } }
-  ]
+  "name": "John Doe",
+  "age": 25,
 }
-```     
-</GoodToKnowBox>
+```
 
+You are given a *Schema* for the above JSON document in the side editor. Using `oneOf` keyword, update schema to ensure that the `age` follows one of the below conditions:
 
+- Either between 18 and 60 (inclusive) or,
+- Greater then 65 (inclusive).
 
-
+> **Hint:** use `minimum` and `maximum` keywords to define the range.

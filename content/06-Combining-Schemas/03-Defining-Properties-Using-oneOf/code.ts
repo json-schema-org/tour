@@ -6,23 +6,21 @@ const code: any = {
     },
     age: {
       type: "integer",
-    },
-    dateOfBirth: {
-      type: "string",
+      oneOf: [{}],
     },
   },
 };
 
 const solution = structuredClone(code);
-solution.oneOf = [
+solution.properties.age.oneOf = [
   {
-    required: ["age"],
+    minimum: 18,
+    maximum: 60,
   },
   {
-    required: ["dateOfBirth"],
+    minimum: 65,
   },
 ];
-solution.properties.dateOfBirth.format = "date";
 
 const testCases: any[] = [
   {
@@ -42,30 +40,45 @@ const testCases: any[] = [
   {
     input: {
       name: "person",
-      dateOfBirth: "1998-05-12",
+      age: 2,
     },
-    expected: true,
+    expected: false,
   },
+
   {
     input: {
       name: "person",
-      dateOfBirth: "1st January 2025",
-    },
-    expected: true,
-  },
-  {
-    input: {
-      name: "person",
-      age: 23,
-      dateOfBirth: "1998-05-12",
+      age: 17,
     },
     expected: false,
   },
   {
     input: {
       name: "person",
+      age: 61,
     },
     expected: false,
+  },
+  {
+    input: {
+      name: "person",
+      age: 64,
+    },
+    expected: false,
+  },
+  {
+    input: {
+      name: "person",
+      age: 65,
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "person",
+      age: 99,
+    },
+    expected: true,
   },
 ];
 module.exports = {
