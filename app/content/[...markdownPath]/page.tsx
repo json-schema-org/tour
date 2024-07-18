@@ -1,7 +1,7 @@
 import { contentManager } from "@/lib/contentManager";
 import styles from "./page.module.css";
 import React from "react";
-import { parseMdxFile } from "@/lib/server-functions";
+import { parseLessonFolder } from "@/lib/server-functions";
 import ContentViewer from "@/app/components/ContentViewer";
 import EditorNOutput from "@/app/components/EditorNOutput";
 
@@ -13,7 +13,7 @@ export function generateMetadata({
   const urlPath = params.markdownPath.join("/");
   const { mdPath, chapterTitle, codePath } =
     contentManager.getPageMeta(urlPath);
-  const { metadata } = parseMdxFile(mdPath, codePath);
+  const { metadata } = parseLessonFolder(mdPath, codePath);
 
   return {
     title: `${metadata.title}: ${chapterTitle} | A Tour of JSON Schema`,
@@ -36,7 +36,7 @@ export default async function Content({
   const urlPath = params.markdownPath.join("/");
   const { mdPath, nextStepPath, stepIndex, totalSteps, codePath } =
     contentManager.getPageMeta(urlPath);
-  const { Page, metadata, codeFile } = parseMdxFile(mdPath, codePath);
+  const { Page, metadata, codeFile } = parseLessonFolder(mdPath, codePath);
 
   return (
     <div className={styles.mainArea}>

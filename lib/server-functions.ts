@@ -6,7 +6,7 @@ import { contentManager } from "./contentManager";
 
 import { CodeFileExports, Metadata } from "./types";
 
-export function parseMdxFile(fullFilePath: string, codePath: string) {
+export function parseLessonFolder(fullFilePath: string, codePath: string) {
   const file = fs.readFileSync(fullFilePath, "utf-8");
 
   const { content, data } = matter(file);
