@@ -1,9 +1,4 @@
-"use client";
-import {
-  background,
-  theme as chakraTheme,
-  extendTheme,
-} from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 
 const Button = {
   variants: {
@@ -21,7 +16,7 @@ const Button = {
       },
     },
     success: {
-      color: "green",
+      color: "green.300",
 
       borderColor: "green",
       borderWidth: "1px",
@@ -38,13 +33,103 @@ const Button = {
         bg: "green.200",
       },
     },
+    error: {
+      color: "red",
+
+      borderColor: "red",
+      borderWidth: "1px",
+      _disabled: {
+        color: "red.700",
+      },
+      _hover: {
+        bg: "red.100",
+        _disabled: {
+          color: "red.700",
+        },
+      },
+      _active: {
+        bg: "red.200",
+      },
+    },
+  },
+};
+
+const Menu = {
+  baseStyle: {
+    list: {
+      bg: "hsl(var(--background))",
+      color: "hsl(var(--text))",
+      borderColor: "hsl(var(--border-color))",
+      borderWidth: "1px",
+      borderRadius: "8px",
+      padding: "8px",
+    },
+    item: {
+      bg: "hsl(var(--background))",
+      color: "hsl(var(--text))",
+      borderRadius: "8px",
+      _hover: {
+        bg: "hsl(var(--background2))",
+      },
+    },
+  },
+};
+
+const Switch = {
+  baseStyle: {
+    track: {
+      bg: "hsl(var(--primary) / 0.4)",
+      _checked: {
+        bg: "hsl(var(--primary) )",
+      },
+    },
+    thumb: {
+      bg: "hsl(var(--background))",
+    },
+  },
+};
+
+const Drawer = {
+  baseStyle: {
+    dialog: {
+      bg: "hsl(var(--background))",
+      color: "hsl(var(--text))",
+      borderLeftColor: "hsl(var(--border-color))",
+      borderLeftWidth: "1px",
+      borderTopLeftRadius: "16px",
+      borderBottomLeftRadius: "16px",
+    },
+    body: {
+      paddingInline: "16px",
+    },
+    overlay: {
+      backdropFilter: "blur(2px)",
+    },
+  },
+};
+
+const Tooltip = {
+  baseStyle: {
+    bg: "hsl(var(--background))",
+    color: "hsl(var(--text) )",
+    border: "1px solid hsl(var(--text) / 0.4)",
+    borderRadius: "6px",
   },
 };
 
 export const theme = extendTheme({
-  styles: {
-    global: {},
+  config: {
+    initialColorMode: "system",
+    useSystemColorMode: true,
   },
-  components: { Button },
+  styles: {
+    global: {
+      body: {
+        bg: "hsl(var(--background))",
+        color: "hsl(var(--text))",
+      },
+    },
+  },
+  components: { Button, Menu, Switch, Drawer, Tooltip },
   fonts: {},
 });

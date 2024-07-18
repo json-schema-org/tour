@@ -1,0 +1,44 @@
+---
+title: Pattern Properties
+description: Define patterns for object properties in JSON Schema.
+keywords: pattern properties, object, JSON Schema, properties, type, properties, required, properties, object
+---
+
+
+# Objects
+Welcome to the Objects chapter. In this chapter, you will learn all about the `object` type and constraints that can be applied to it in *JSON Schema*.
+
+## Pattern Properties
+
+So far, we have seen how to define the properties of an object in a schema. Sometimes you want to say that, given a particular kind of property name, the value should match a particular schema. 
+
+That's where `patternProperties` comes in: it maps regular expressions to schemas. If a property name matches the given regular expression, the property value must validate against the corresponding schema.
+
+
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "DEPT-001": "HR"
+}
+```
+
+We will define a property that starts with `DEPT-` followed by department number of length 3 and the value should be a string which is department name. 
+
+**Example:**
+```json
+{
+  "type":"object",
+  "patternProperties": {
+    "^DEPT-[0-9]{3}$": {
+      "type": "string"
+    }
+  }
+}
+```
+
+Now, modify the schema provided in the editor on the right to permit `DEPT-*` properties. Additionally, ensure that the values for `DEPT-*` properties are constrained to be in **all capital letters.**
+
+> **Hint:** Use the `patternProperties` keyword to define the pattern for the property name and `pattern` keyword to define the pattern for the property value. you can set `pattern` to `^[A-Z]+$` to match all capital letters.
+
+> We have set `additionalProperties` to `false` to disallow any additional properties. We will learn more about `additionalProperties` in the next lesson.

@@ -1,0 +1,48 @@
+---
+title: "Array of Objects"
+description: "Define an array of objects with enumerated properties"
+keywords: "items, array, object, properties, type, properties, enum"
+---
+
+# Array of Objects
+
+
+
+Now let's add `skills` field. Which is an array of objects. Each object in the array will have two properties `name` and `level`.
+
+Both `name` and `level` are strings. 
+
+```json highlightLineStart={4} highlightLineEnd={13}
+{
+  "name": "John Doe",
+  "age": 25,
+  "skills": [
+    {
+      "name": "JavaScript",
+      "level":"beginner"
+    },
+    {
+      "name": "React",
+      "level":"intermediate"
+    }
+  ]
+}
+```
+
+## Schema for the Array of Objects
+
+Start by defining `skills` as an array. set the `items` keyword to define the type of items in the array. Each item in the array will be an object with two properties `name` and `level`. See the below example.
+
+```json
+{
+  "skills": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {...}
+    }
+  }
+}
+```
+Now, try to modify the `skills` property in the schema given to you in the editor, and make it an array of objects with `name` and `level` properties.
+

@@ -1,0 +1,37 @@
+---
+title: "Exclusively Constraining Number"
+description: "Constraints on number values, exclusiveMinimum, exclusiveMaximum and range"
+keywords: "exclusiveMinimum, exclusiveMaximum, range"
+---
+
+# Exclusively Constraining Number
+
+We have added a new property `salary` to the JSON object. In this step we will define ranges for the `age` and `salary` properties.
+
+
+
+
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "salary": 50000
+}
+```
+
+
+## Schema Definition
+
+To apply exclusive constraints on number values, you can use the following keywords:
+
+- x > `exclusiveMinimum`
+- x < `exclusiveMaximum`
+
+
+now try to add the `age` and `salary` properties in the schema given on the side editor with the constraints mentioned below using `exclusiveMinimum` and `exclusiveMaximum` keywords:
+
+- `age` should be **greater than 18** and **less than 60**
+- `salary` should be **greater than 30000** and **less than 80000**
+
+
+

@@ -1,0 +1,28 @@
+---
+title: Enumerated Values II
+description: Define numbers and null values as enumerated values in JSON Schema.
+keywords:  integer, JSON Schema, enums, enumerated values, null
+---
+
+# Enumerated Values II
+
+Previously, we have used enumerated values only for strings. However, you can also **use them for any type**, including numbers and null values.
+
+```json
+{
+  "name":"John Doe",
+  "age": 25,
+  "performanceRating": 4
+}
+```
+Let's say you want to restrict the `performanceRating` to only a few specific values. You can use the `enum` keyword to define the allowed values.
+
+**Example**
+  
+```json
+{
+  "enum": [1, 2, 3, 4, 5, null]
+}
+```
+
+Now, modify the `performanceRating` property on the side editor to accept only the values 1, 2, 3, 4, 5, and null.

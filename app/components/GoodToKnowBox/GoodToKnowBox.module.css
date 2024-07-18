@@ -1,0 +1,26 @@
+.goodToKnowBox {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid hsl(var(--border-color));
+  border-radius: calc(var(--border-radius) / 2);
+  background-color: hsl(var(--primary) / 0.03);
+
+  margin-block: 16px;
+}
+
+.goodToKnowBoxTitle {
+  border-bottom: 1px solid hsl(var(--border-color));
+
+  font-size: small;
+  padding: 6px 8px;
+  background-color: hsl(var(--background2));
+  border-top-right-radius: calc(var(--border-radius) / 2);
+  border-top-left-radius: calc(var(--border-radius) / 2);
+  font-weight: bold;
+}
+
+.goodToKnowBoxContent {
+  padding: 4px 8px;
+  border-bottom-right-radius: calc(var(--border-radius) / 2);
+  border-bottom-left-radius: calc(var(--border-radius) / 2);
+}

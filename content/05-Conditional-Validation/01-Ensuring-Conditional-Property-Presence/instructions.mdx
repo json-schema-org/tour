@@ -1,0 +1,66 @@
+---
+title: Ensuring Conditional Property Presence
+description: Learn how to make properties dependent on each other in JSON Schema using dependentRequired keyword.
+keywords: dependentRequired, conditional validation, JSON Schema
+---
+
+
+# Conditional Validation
+Congratulations! You have made so far. We will learn about conditional validation in module 
+
+
+## What is Conditional Validation?
+
+Conditional validation involves applying validation rules based on the presence or absence of other properties in the JSON document.
+
+**For Example:**
+- **dependentRequired**: if a property `A` is present, then property `B` must be present. 
+
+- **dependentSchemas**: if a property `A` is present, then apply a sub-schema `B`.
+
+- **if-then-else**: if a sub-schema `A` is valid then sub-schema `B` must be valid, else sub-schema `C` must be valid.
+
+- **implications**: if sub-schema `A` is valid then sub-schema `B` must be valid.
+
+we will see each of these in detail in the upcoming lessons.
+
+## dependentRequired
+
+
+Consider a scenario where you have a JSON document with two properties `name` and `age`. You want to make sure that if the `name` property is present, then the `age` property must also be present.
+
+```json
+{
+  "name": "John",
+  "age": 25
+}
+```
+
+## Schema 
+
+To achieve this, you can use the `dependentRequired` keyword in JSON Schema. The `dependentRequired` keyword allows you to specify that a property is required if another property is present.
+
+```json
+{
+  "type": "object",
+  "properties": {...},
+  "dependentRequired": {
+    "age": ["name"]
+  }
+}
+```
+
+In the above schema, the `age` property is required if the `name` property is present. If the `name` property is not present, the `age` property is not required.
+
+
+## Task 
+
+```json 
+{
+  "name": "John Doe",
+  "creditCardNumber":"1234 5678 1234 5678",
+  "address":"123 Main St",
+}
+```
+
+You are given a *Schema* for the above JSON document in the side editor. Update the schema to make sure that if the `creditCardNumber` property is present, then the `address` property must also be present.

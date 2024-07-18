@@ -1,0 +1,59 @@
+---
+title: Valid Against allOf the Subschemas (AND)
+description: Defining Subschemas with $defs and then referencing them with $ref 
+keywords:  $defs, $ref, JSON Schema, subschemas, 
+---
+
+
+# Valid Against allOf the Subschemas (AND) 
+
+When you want to ensure that an instance is valid against **all of** the subschemas, you can use the `allOf` keyword. 
+
+You can think of `allOf` as an **AND operation** between subschemas. if one of the subschemas fails, the instance is considered invalid.
+
+
+
+```json
+{
+  "name":"John Doe",
+}
+```
+
+We will create two subSchemas 1. `minStringLength` and 2. `alphaNumeric` and then combine them using `allOf` in the `name` property.
+
+```json highlightLineStart={10} highlightLineEnd={13}
+{
+  "$defs": {
+    "minStringLength": {"minLength": 5},
+    "alphaNumeric": {"pattern": "^[a-zA-Z0-9]*$"}
+  },
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "allOf": [
+        { "$ref": "#/$defs/minStringLength" },
+        { "$ref": "#/$defs/alphaNumeric" }
+      ]
+    }
+  }
+}
+```
+
+The above schema ensures that the `name` property is valid against both the `minStringLength` and `alphaNumeric` subschemas. in other words, the `name` property must have a minimum length of 5 characters and must contain only alphanumeric characters.  
+
+> **Note:** It is **not necessary** to define subschemas using `$defs` and `$ref`. You can directly define the subschemas inline as well.
+
+## Task 
+
+```json 
+{
+  "name": "John Doe",
+  "age": 25
+}
+```
+
+For the given JSON document, you are provided with a schema in the side editor. the schema has defined a subschemas `ageLimit`.
+Your task is to: 
+- Define a inline subschema that checks if the `age` is of type `integer`
+- Combine the `ageLimit` and the inline subschema using `allOf` in the `age` property.

@@ -1,14 +1,67 @@
 body {
-  padding: 16px;
+  /* padding: 16px; */
   height: 100%;
   margin: 0;
 }
 html {
   height: 100%;
 }
-:root {
-  --primary: 230 86% 40%;
+::-webkit-scrollbar {
+  width: 8px;
 }
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--text) / 0.05);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: hsl(var(--text) / 0.25);
+}
+
+:root {
+  --primary-light: 230 86% 40%;
+
+  --primary-dark: 230 100% 65%;
+  --border-radius: 16px;
+
+  /* Light Mode colors */
+  --background-light: 0 0% 100%;
+  --text-light: 0 0% 0%;
+  --background2-light: var(--text-light) / 0.05;
+  --border-color-light: var(--text-light) / 0.334;
+  --link-color-light: 240 100% 50%;
+
+  /* Dark Mode colors */
+
+  --background-dark: 0 0% 12%;
+  /* --background-dark: 0 0% 0%;   */
+  --text-dark: 0 0% 100%;
+  --background2-dark: var(--text-dark) / 0.05;
+  --border-color-dark: var(--text-dark) / 0.2;
+  --link-color-dark: 240 100% 87%;
+}
+
+:root[data-theme="dark"] {
+  --background: var(--background-dark);
+  --text: var(--text-dark);
+  --border-color: var(--border-color-dark);
+  --background2: var(--background2-dark);
+  --link-color: var(--link-color-dark);
+  --primary: var(--primary-dark);
+}
+
+:root[data-theme="light"] {
+  --background: var(--background-light);
+  --text: var(--text-light);
+  --border-color: var(--border-color-light);
+  --background2: var(--background2-light);
+  --link-color: var(--link-color-light);
+  --primary: var(--primary-light);
+}
+
+/* html[data-theme="dark"] svg {
+  filter: invert(1);
+} */
 
 main {
   height: 100%;

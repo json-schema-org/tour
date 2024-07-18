@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./ContentViewer.module.css";
 
 export default function ContentViewer({
@@ -6,5 +5,9 @@ export default function ContentViewer({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className={styles.contentWrapper}>{children}</div>;
+  return (
+    <div className={styles.contentWrapper}>
+      <div className={styles.content}>{children}</div>
+    </div>
+  );
 }

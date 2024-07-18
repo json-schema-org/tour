@@ -1,8 +1,7 @@
-import { CustomMDX } from "@/app/components/mdx";
-import { Chapter, ContentOutline } from "./types";
-import fs from "fs";
-import matter from "gray-matter";
-import { Metadata } from "./types";
+import { contentFolderName, instructionsFileName } from "./contentVariables";
+import { ContentOutline } from "./types";
+
+import outline from "@/content/outline.json";
 
 /* 
 
@@ -39,80 +38,14 @@ The content folder follows this structure:
 */
 
 export default class ContentManager {
-  private contentFolderPath: string = "./content";
-  public contentFolderName: string = this.contentFolderPath.replace("./", "");
-
   public outlineJSONPath: string = "./content/outline.json";
-
-  private indexFileName = "index.mdx";
-  public instructionsFileName = "instructions.mdx";
   public codeFileName = "code.ts";
+  public pathPrefix = "content";
 
   public getOutline() {
-    // check if outline.json exists
-    if (!fs.existsSync(this.outlineJSONPath)) {
-      throw new Error(
-        "outline.json file does not exist. Run generateOutline script to generate outline.json"
-      );
-    }
-    const outline = JSON.parse(
-      fs.readFileSync(this.outlineJSONPath, "utf-8")
-    ) as ContentOutline;
-
-    return outline;
+    return outline as ContentOutline;
   }
 
-  public parseMdxFile(fullFilePath: string) {
-    const file = fs.readFileSync(fullFilePath, "utf-8");
-
-    const { content, data } = matter(file);
-    const Page = () => CustomMDX({ source: content });
-
-    return { Page, metadata: data as Metadata };
-  }
-
-  public generateOutline(): ContentOutline {
-    const contentOutline: ContentOutline = [];
-    const files = fs.readdirSync(this.contentFolderPath, {
-      withFileTypes: true,
-    });
-
-    files.forEach((file, chapterNumber) => {
-      if (file.isDirectory()) {
-        const { metadata } = this.parseMdxFile(
-          `${this.contentFolderName}/${file.name}/${this.indexFileName}`
-        );
-
-        const chapter: Chapter = {
-          title: metadata.title,
-          folderName: file.name,
-          steps: [],
-        };
-        const chapterPath = `${this.contentFolderPath}/${file.name}`;
-        let chapterFiles = fs.readdirSync(chapterPath, {
-          withFileTypes: true,
-        });
-        chapterFiles = chapterFiles.filter(
-          (file) => file.name !== this.indexFileName
-        );
-        chapterFiles.forEach((chapterFile, stepNumber) => {
-          const { metadata } = this.parseMdxFile(
-            `${this.contentFolderName}/${file.name}/${chapterFile.name}/${this.instructionsFileName}`
-          );
-
-          const step = {
-            title: metadata.title,
-            fileName: chapterFile.name,
-            fullPath: `${file.name}/${chapterFile.name}`,
-          };
-          chapter.steps.push(step);
-        });
-        contentOutline.push(chapter);
-      }
-    });
-
-    return contentOutline;
-  }
   public getStepLocation(fullPath: string) {
     const outline = this.getOutline();
     let chapterIndex = 0;
@@ -125,6 +58,14 @@ export default class ContentManager {
       }
     });
     return { chapterIndex, stepIndex };
+  }
+
+  public getPathWithPrefix(fullPath: string | undefined) {
+    if (!fullPath) {
+      return undefined;
+    }
+
+    return `${this.pathPrefix}/${fullPath}`;
   }
 
   public getNextStepPath(activeStepPath: string) {
@@ -161,10 +102,40 @@ export default class ContentManager {
     return this.getOutline()[chapterIndex].steps.length;
   }
   public getInstructionsFilePath(urlPath: string) {
-    return `${this.contentFolderName}/${urlPath}/${this.instructionsFileName}`;
+    return `${contentFolderName}/${urlPath}/${instructionsFileName}`;
   }
   public getCodeFilePath(urlPath: string) {
-    return `${this.contentFolderName}/${urlPath}/${this.codeFileName}`;
+    return `${contentFolderName}/${urlPath}/${this.codeFileName}`;
+  }
+
+  public getPageMeta(urlPath: string) {
+    const nextStepPath = this.getPathWithPrefix(this.getNextStepPath(urlPath));
+
+    const previousStepPath = this.getPathWithPrefix(
+      this.getPreviousStepPath(urlPath)
+    );
+    const outline = this.getOutline();
+
+    const { chapterIndex, stepIndex } = this.getStepLocation(urlPath);
+    const totalChapters = this.getTotalChapters();
+    const totalSteps = this.getTotalSteps(chapterIndex);
+    const mdPath = this.getInstructionsFilePath(urlPath);
+    const codePath = this.getCodeFilePath(urlPath);
+    const chapterTitle = outline[chapterIndex].title;
+    const stepTitle = outline[chapterIndex].steps[stepIndex].title;
+
+    return {
+      nextStepPath,
+      previousStepPath,
+      chapterIndex,
+      stepIndex,
+      totalChapters,
+      totalSteps,
+      mdPath,
+      chapterTitle,
+      codePath,
+      stepTitle,
+    };
   }
 }
 

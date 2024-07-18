@@ -1,0 +1,39 @@
+---
+title: Your First Schema 
+description: Welcome to the JSON Schema Tour! Create your first schema to validate a JSON document.
+keywords: type, properties, integer, string
+---
+
+
+# JSON Schema Tour
+Welcome to the *JSON Schema* Tour! In this interactive tour you will be introduced to *JSON Schema*. You will learn how to use **JSON Schema draft 2020-12** to validate JSON documents.
+
+
+## Are there any prerequisites?
+**No!** You just need to know what [JSON](https://www.mongodb.com/resources/languages/what-is-json) is.
+
+## What is JSON Schema?
+
+JSON Schema is a language used for defining the _structure_  and _constraints_ of a JSON document.  A [_JSON Schema_](https://json-schema.org/learn/glossary#schema) is a JSON document that you can use to validate or document another JSON, which we call a JSON [_instance_](https://json-schema.org/learn/glossary#instance).
+
+## First Schema 
+Let's start with a simple example.
+Consider you have a JSON document of an employee:
+```json
+{
+  "name": "John Doe",
+  "age": 25
+}
+```
+ This JSON document has two properties:
+ - `name` with value `John Doe` (string)
+ - `age` with value `25` (integer)
+
+
+You are given an incomplete *schema* for this data on side editor. 
+
+Now, try to Add an `age` property to the *schema* and, using the type [keyword](https://json-schema.org/learn/glossary#keyword) and set it `type` to `integer`. 
+
+
+
+

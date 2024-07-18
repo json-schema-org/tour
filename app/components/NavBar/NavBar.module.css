@@ -1,0 +1,76 @@
+.navBar {
+  width: 100%;
+  border-bottom: 1px solid hsl(var(--text) / 0.3);
+  padding: 8px 16px;
+  padding-bottom: 10px;
+  display: flex;
+  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.logoTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-size: 1.3em;
+  font-weight: 800;
+}
+.backBtn {
+  border-radius: 8px;
+  border: 1px solid hsl(var(--text) / 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+}
+.backBtn:hover {
+  background-color: hsl(var(--text) / 0.1);
+}
+.leftContentWrapper {
+  display: flex;
+  gap: 36px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.contentNavigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.breadcrumbIcon {
+  height: 16px;
+  width: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+.chapterTitle {
+  color: hsl(var(--text) / 0.5);
+}
+
+.rightContentWrapper {
+  display: flex;
+  gap: 8px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.menuButton {
+  padding: 6px;
+  border-radius: 8px;
+}
+.menuButton:hover {
+  background-color: hsl(var(--text) / 0.1);
+}

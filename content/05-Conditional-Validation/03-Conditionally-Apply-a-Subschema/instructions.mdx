@@ -1,0 +1,66 @@
+---
+title: Conditionally Apply a Subschema
+description: Learn how to conditionally apply a subschema in JSON Schema using the dependentSchemas keyword.
+keywords:  dependentSchemas, conditional validation, JSON Schema
+---
+
+
+# Conditionally Apply a Subschema
+
+When you want to apply a subschema based on the presence or absence of a property, you can use the `dependentSchemas` keyword. This keyword allows you to define a subschema that is applied only when a specific property is present or absent.
+
+
+## Example 
+
+Let's say, our employee document has a property `address`. If 
+`address` is present, then `contact` must include a phone number and email address.
+
+
+```json highlightLineStart={5} highlightLineEnd={6} 
+{
+  "name": "John Doe",
+  "address": "123 Main St",
+  "contact": {
+    "phone": "123-456-7890",
+    "email": "jhon.doe@company.com"
+  }
+}
+```
+You can use the `dependentSchemas` keyword to enforce this condition.
+
+**Example Schema**
+
+```json highlightLineStart={6}
+{
+  "type": "object",
+  "properties": {
+    "address": {"type": "string"},
+  },
+  "dependentSchemas": {
+    "address": {
+      "properties": {
+        "contact": {
+          "type": "object",
+          "properties": {
+            "phone": {"type": "string"},
+            "email": {"type": "string"}
+          },
+          "required": ["phone", "email"]
+        }
+      }
+    }    
+  }
+}
+```
+
+## Task 
+
+```json 
+{
+  "name": "John Doe",
+  "creditCardNumber":"1234 5678 1234 5678",
+  "address":"123 Main St"
+}
+``` 
+
+You are given a *Schema* for the above JSON document in the side editor. Update the schema to make sure that if the `creditCardNumber` property is present, then the `address` property must also be present using the `dependentSchemas` keyword.

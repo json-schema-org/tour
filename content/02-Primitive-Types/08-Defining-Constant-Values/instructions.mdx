@@ -1,0 +1,43 @@
+---
+title: Defining Constant Values
+description: Learn to Define constant values in JSON Schema.
+keywords:  const, constant, JSON Schema
+---
+
+# Constant Values
+
+So far, we have used the `enum` keyword to define a list of allowed values for a property. But **what if you want to define a single constant value for a property?**
+
+Consider, you want to define a property `companyName` with a constant value `MyCompany`. any other value for `companyName` should be considered invalid.
+
+```json highlightLineStart={4}
+{
+  "name":"John Doe",
+  "age": 25,
+  "companyName": "MyCompany"
+}
+```
+
+## const Keyword
+
+The `const` keyword is used to define a single constant value for a property. The value of the `const` keyword **can be any valid JSON value**.
+
+**Example**
+
+```json
+{
+  "const": "MyCompany"
+}
+```
+
+Now, try to add a new property `companyName` in the JSON object such that it should have a constant value `MyCompany`.
+
+Just for practice, we will also **set the age to a constant value of 25**.
+
+
+
+
+<GoodToKnowBox>
+- Values defined in `const` are case-sensitive. So `MyCompany` and `myCompany` are considered different values.
+- You don't need to add `type` keywords when using `const`. The `const` keyword itself implies the type of the value.
+</GoodToKnowBox>

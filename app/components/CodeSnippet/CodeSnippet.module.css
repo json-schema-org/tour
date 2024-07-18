@@ -1,0 +1,27 @@
+.codeSnippet {
+  margin: 0.5rem 0;
+  border: 1px solid hsl(var(--text) / 0.25);
+  border-radius: calc(var(--border-radius) / 2);
+  background-color: transparent !important;
+}
+.inlineCode {
+  padding: 1px 4px;
+  border-radius: 6px;
+  border: 1px solid hsl(var(--text) / 40%);
+  font-family: "Fira Code", monospace;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: hsl(var(--text));
+}
+
+.codeSnippetContainer {
+  position: relative;
+}
+.copyButton {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  color: hsl(var(--text) / 0.5);
+  cursor: pointer;
+  z-index: 3;
+}

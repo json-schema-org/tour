@@ -1,0 +1,46 @@
+---
+title: Tuple Validation 
+description: Learn to validate tuple arrays in JSON Schema.
+keywords: tuple, array, items, validation, JSON, Schema, JSON Schema
+---
+
+
+# Tuple Validation
+
+We want to display the address of a person. The address is represented as an array of four elements: [`number`, `street_name`, `street_type`, `direction`]
+
+
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "address": [123, "Main St", "Avenue", "NW"]
+}
+```
+
+each element of the `address` array have constraints of their own:
+
+- `number` should be an integer
+- `street_name` should be a string
+- `street_type` can have only one value from the list: `["Street", "Avenue", "Boulevard"]`
+- `direction` can have only one value from the list: `["NW", "NW", "SE", "SW"]`
+
+## Schema definition
+
+In such cases, you can use the `prefixItems` keyword to define the schema for each element of the tuple array.
+
+**Example**
+
+```json
+{
+  "type": "array",
+  "prefixItems": [
+    {"type": "integer"},
+    {"type": "string"},
+  ]
+}
+```
+
+The above schema defines an array in which, the first element should be an `integer` and the second element should be a `string`.
+
+Now, try to modify the `address` property on the side editor, such that it follows the constraints mentioned above.

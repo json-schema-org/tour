@@ -1,0 +1,71 @@
+---
+title: "Valid Against oneOf the Subschemas (XOR)"
+description: "Define properties with oneOf keyword to apply conditional validation."
+keywords: "oneOf, properties, conditional validation"
+---
+
+# Valid Against oneOf the Subschemas (XOR)
+
+When you want to ensure that an instance is valid against **exactly one of** the subschemas, you can use the `oneOf` keyword.
+
+You can think of `oneOf` as an **XOR operation** between subschemas. If more than one subschema is valid, the instance is considered invalid.
+
+## Example
+
+Let's add a new property `dateOfBirth` to the JSON document.
+
+
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "dateOfBirth": "1999-01-01"
+}
+```
+
+
+**Now you want to apply these conditions in the document:**
+- if `age` is present, `dateOfBirth` should not be present, and vice versa.
+- both `age` and `dateOfBirth` should not be present at the same time.
+- if none of them is present, the document should be invalid.
+
+
+
+## Schema Definition
+
+To apply these conditions you can use `oneOf` keyword. `oneOf` ensures that **exactly one of** the specified *subschemas* is valid. 
+
+We will combine using `oneOf` and `required`, to ensure that only one of the properties is present in the JSON document.
+
+
+```json highlightLineStart={7} highlightLineEnd={10}
+{
+  "type": "object",
+  "properties": {
+    ...
+    "dateOfBirth": { "type": "string", "format": "date" }
+  },
+  "oneOf": [
+    { "required": ["age"] },
+    { "required": ["dateOfBirth"] }
+  ]
+}
+```
+
+> Notice the `format` keyword with `date` used in the `dateOfBirth` property. By default, `format` is just an annotation and **does not effect validation**. you can learn more about the format keyword [here](https://json-schema.org/understanding-json-schema/reference/string#format).
+
+## Task
+
+``` json
+{
+  "name": "John Doe",
+  "age": 25,
+}
+```
+
+You are given a *Schema* for the above JSON document in the side editor. Using `oneOf` keyword, update schema to ensure that the `age` follows one of the below conditions:
+
+- Either between 18 and 60 (inclusive) or,
+- Greater then 65 (inclusive).
+
+> **Hint:** use `minimum` and `maximum` keywords to define the range.

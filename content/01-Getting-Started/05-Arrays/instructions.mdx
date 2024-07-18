@@ -1,0 +1,38 @@
+---
+title: "Arrays"
+description: "Define arrays in JSON Schema"
+keywords: "array"
+---
+
+# Arrays
+
+Let's convert the hobbies field to an array of strings. 
+  
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "hobbies": ["reading", "writing"]
+}
+```
+
+
+In _JSON Schema_, defining an array is similar to defining an object. Use the `type` keyword with the value `array` to define an array. 
+
+You can use the `items` keyword to define the *schema* of the array elements. The value of items should be a *subschema*.
+
+**Example:**
+```json
+{
+  "skills": {
+    "type": "array",
+    "items": {
+      "type": "string"
+    }
+  }
+}
+```
+
+
+Now, try to modify the `hobbies` property on the side editor and convert it to an **array of strings**.
+

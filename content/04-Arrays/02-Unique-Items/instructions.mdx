@@ -1,0 +1,36 @@
+---
+title: Unique Array Items
+description: Validate arrays with unique items using JSON Schema.
+keywords: array, unique items, JSON Schema
+---
+
+
+# Unique Array Items
+
+Let's use the example from our previous lesson.
+We have an array of phone numbers. We want to make sure that the phone numbers are unique.
+
+
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "phones": ["123-456-7890", "987-654-3210"]
+}
+```
+
+## uniqueItems Keyword
+
+To ensure that the items in an array are unique, you can use the `uniqueItems` keyword.
+
+**Example:**
+
+```json
+{
+  "type": "array",
+  "items": {...},
+  "uniqueItems": true
+}
+```
+
+Now, try to modify the `phones` property in the schema given on the side editor to ensure that the phone numbers are unique.

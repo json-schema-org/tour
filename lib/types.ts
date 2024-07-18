@@ -1,3 +1,5 @@
+import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
+
 export type ChapterStep = {
   title: string;
   fileName: string;
@@ -16,8 +18,43 @@ export type ContentOutline = Chapter[];
 
 export type Metadata = {
   title: string;
+  description: string;
+  keywords: string;
+};
+
+export type TestCase = {
+  input: Object;
+  expected: Boolean;
+};
+
+// type schemaSafeError = {
+//   instanceLocation: string;
+//   keywordLocation: string;
+// };
+
+export type TestCaseResult = TestCase & {
+  actual: Boolean;
+  errors?: string | undefined;
+  passed: Boolean;
 };
 
 export type CodeFile = {
   code: Object;
+  testCases: TestCase[];
+  solution: Object;
+};
+export type CodeFileExports = {
+  exports: CodeFile;
+};
+
+export type OutputResult = {
+  validityStatus:
+    | "valid"
+    | "invalid"
+    | "neutral"
+    | "syntaxError"
+    | "invalidSchema";
+  testCaseResults?: TestCaseResult[];
+  totalTestCases?: number;
+  errors?: InvalidSchemaError | string;
 };

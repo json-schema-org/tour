@@ -19,6 +19,12 @@ const nextConfig = {
 
   output: "export",
   basePath: process.env.MODE === "local" ? "" : "/tour",
+  images: { unoptimized: true } ,
+  compiler:{
+    styledComponents:true
+  }
+
+  
 };
 
 export default withMDX(nextConfig);

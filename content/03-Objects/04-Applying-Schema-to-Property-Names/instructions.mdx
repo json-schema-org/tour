@@ -1,0 +1,36 @@
+---
+title: Applying Schema to Property Names
+description: Learn how to apply schema to property names in JSON Schema.
+keywords: propertyNames, minProperties, maxProperties
+---
+
+
+# Applying Schema to Property Names
+
+In *JSON Schema*, you can apply schema to property names using the `propertyNames` keyword. This keyword allows you to define a schema that restricts the property names of an object.
+
+## Example 
+
+We want to ensure that each property names are written in capital letters. We can use the `propertyNames` keyword to enforce this rule.
+
+**Example:**
+
+```json
+{
+  "type": "object",
+  "propertyNames": {
+    "pattern": "^[A-Z]+$"
+  }
+}
+```
+
+You are given an empty object schema in the right-hand editor. Modify it ensure that it follows the below constraints:
+
+1. The object should have at **least 2 properties**.
+2. The **property names** should be written **in capital letters**, and should have **minimum length of 3 characters**.
+3. The property **values should be either `string` or `integer`**.
+
+> **Hints:**
+> - For the first constraint, you can use the `minProperties` keyword.
+> - For the second constraint, you can use the `propertyNames` keyword with the `pattern` keyword.
+> - For the third constraint, you can use the `additionalProperties` keyword with the `type` keyword.

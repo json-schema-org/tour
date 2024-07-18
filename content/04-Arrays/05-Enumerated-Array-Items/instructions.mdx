@@ -1,0 +1,41 @@
+---
+title: Enumerated Array Items
+description: Learn to restrict array items to a specific set of values.
+keywords: enumerated items, array items, 
+---
+
+
+# Enumerated Array Items
+
+Previously, We used `enum` to restrict the values of a string property. Similarly, you can restrict the values of array items using the `enum` keyword.
+
+Let's add a new property `relevantDepartments` to the JSON document.
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "relevantDepartments": ["HR", "Finance"]
+}
+```
+
+now, we want to restrict the `relevantDepartments` property to only a few specific values. You can use the `enum` keyword to define the allowed values.
+
+**Example**
+
+```json
+{
+  "type": "array",
+  "items": {
+    "enum": ["HR", "Finance", "IT"]
+  }
+}
+```
+
+Now, Let's try to add the `enum` keyword to the schema given in the side editor and restrict the `relevantDepartments` property to only the values `HR`, `Finance`, `IT`, and `Admin`.
+
+Also, **each item in the array should be unique**. 
+
+> **Remember:** Items defined in the `enum` keyword are **case-sensitive.**
+
+
+> **Hint:** You can use the `uniqueItems` keyword to ensure that all items in the array are unique.

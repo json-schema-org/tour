@@ -1,0 +1,38 @@
+.testCaseTab {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: calc(var(--border-radius) / 3);
+  /* border: 1px solid var(--border-color); */
+  color: hsl(var(--text));
+  width: max-content;
+  cursor: pointer;
+  font-size: small;
+  height: min-content;
+}
+.testCaseTab:hover {
+  background-color: hsl(var(--background2));
+}
+.activeTestCaseTab {
+  background-color: hsl(var(--text) / 0.1);
+}
+.activeTestCaseTab.testCaseTab:hover {
+  background-color: hsl(var(--text) / 0.1);
+}
+.dot {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+}
+
+.passed {
+  background-color: #00d548;
+  box-shadow: 0 0 6px 1px #00d548;
+}
+
+.failed {
+  background-color: red;
+  box-shadow: 0 0 6px 1px red;
+}

@@ -1,0 +1,32 @@
+.codeEditorNOutput {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  max-width: 50%;
+}
+
+.outputWrapper {
+  width: 100%;
+
+  /* padding: 16px; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid hsl(var(--border-color));
+  overflow-y: hidden;
+  border-left: none;
+  height: 100%;
+}
+.divider {
+  width: 100%;
+  height: 6px;
+  background-color: hsl(var(--border-color));
+  cursor: row-resize;
+}
+
+.divider:hover,
+.divider:active {
+  background-color: hsl(var(--primary) / 0.75);
+}

@@ -1,0 +1,51 @@
+---
+title: Reusing and Referencing with $defs and $ref
+description: Defining Subschemas with $defs and then referencing them with $ref 
+keywords:  $defs, $ref, JSON Schema, subschemas, 
+---
+
+
+# $defs and $ref
+
+In *JSON Schema*, the `$defs` keyword allows you to **define reusable subschemas**. You can then reference these subschemas using the `$ref` keyword.
+
+To define a subschema with `$defs`, you can use the following syntax:
+
+```json
+{
+  "$defs": {
+    "mySubschema": {
+      "type": "string",
+      "maxLength": 10
+    }
+  }
+}
+```
+
+In the above example, we define a subschema named `mySubschema` which specifies that the value should be a string with a maximum length of 10 characters.
+
+To reference this subschema using `$ref`, you can use the following syntax:
+
+```json
+{
+  "$ref": "#/$defs/mySubschema"
+}
+```
+
+In the above example, we reference the `mySubschema` subschema using `$ref`. This allows us to reuse the definition of `mySubschema` wherever we need it.
+
+Using `$defs` and `$ref` can help make your JSON Schema more modular and maintainable by promoting code reuse.
+
+## Task
+
+```json
+{
+  "name":{
+    "firstName":"John",
+    "middleName":"Smith",
+    "lastName":"Doe"
+  }
+}
+```
+Define a *subschema* named `stringType` which is just `"type": "string"` and then reference it using `$ref` for the `properties` **firstName**, **middleName** and **lastName**
+

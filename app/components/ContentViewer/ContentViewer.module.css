@@ -1,11 +1,20 @@
-.contentWrapper {
+.content {
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.334);
-  border-radius: 16px;
-  padding: 16px;
-  max-width: max(50%, 800px);
-  overflow-y: scroll;
+
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 14px;
+  padding-bottom: 32px;
+  padding-left: 14px;
+}
+.contentWrapper {
+  border-right: 1px solid hsl(var(--border-color));
+
+  display: flex;
+  flex-direction: column;
+
   height: 100%;
   flex: 1;
+  height: 100%;
 }

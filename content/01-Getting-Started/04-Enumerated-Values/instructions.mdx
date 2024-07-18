@@ -1,0 +1,44 @@
+---
+title: "Enumerated Values"
+description: "Define enumerated values in JSON Schema"
+keywords: "Enums, string, properties, type, object"
+---
+
+
+# Enumerated Values
+
+**How do you constrain a property to have a fixed set of values?** Enumerated values are used to solve this problem.
+
+
+Consider we add a field `hobbies` to the document. The `hobbies` field can have only three possible values: `reading`, `writing`, and `painting`.
+
+
+```json highlightLineStart={4}
+{
+  "name": "John Doe",
+  "age": 25,
+  "hobbies": "reading"
+}
+```
+
+To define the enumerated values in _JSON Schema_, use the `enum` keyword.
+
+**Example:**
+
+```json 
+{
+  "department": {
+    "enum": ["engineering", "marketing", 
+            "sales", "HR", "finance"]
+  }
+}
+```
+
+
+Now, try to modify the `hobbies` property on the side editor with `enum` constrain to only allow `reading`, `writing`, and `painting` values.
+
+<GoodToKnowBox>
+Values defined in `enum` are case-sensitive.
+
+So `reading` and `Reading` are considered different values.
+</GoodToKnowBox>
