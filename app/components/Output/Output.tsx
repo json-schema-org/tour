@@ -7,7 +7,75 @@ import SmallBtn from "../SmallBtn/SmallBtn";
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { schemaUrl } from "@/lib/validators";
 import KeyBindings from "../KeyBindings/KeyBindings";
-import { Flex } from "@chakra-ui/react";
+import { Flex, ListItem, UnorderedList } from "@chakra-ui/react";
+import CodeSnippet from "../CodeSnippet/CodeSnippet";
+import Link from "next/link";
+
+const SchemaError = ({ schemaPath }: { schemaPath: string }) => {
+  const errorTitle = "Invalid Type or Keyword";
+  const JSONSchemaTypes = [
+    "string",
+    "number",
+    "integer",
+    "object",
+    "array",
+    "boolean",
+    "null",
+  ];
+  const errorDetails = (
+    <>
+      You are using invalid type or keyword in the schema. The type should be
+      one of the valid JSON Schema types. The valid types are:{" "}
+      {JSONSchemaTypes.map((t) => (
+        <>
+          <CodeSnippet key={t}>{t}</CodeSnippet>
+          {", "}
+        </>
+      ))}
+    </>
+  );
+  const possibleFixes = [
+    "Check that the type specified is one of the valid JSON Schema types",
+    "Correct any typos in the type name",
+    <>
+      Ensure you are using valid keywords for the JSON Schema version you are
+      using. You can view all the JSON Schema keywords for the latest version{" "}
+      <Link
+        href={"https://www.learnjsonschema.com/2020-12/"}
+        target="_blank"
+        style={{
+          color: "hsl(var(--link-color))",
+          textDecoration: "underline",
+        }}
+      >
+        here
+      </Link>
+    </>,
+  ];
+
+  return (
+    <div className={styles.schemaErrorContainer}>
+      <div className={styles.invalid}>
+        <b>Error: {errorTitle}</b>
+      </div>
+      <div>
+        <b>Path:</b>{" "}
+        <span style={{ color: "hsl(var(--link-color))" }}>{schemaPath}</span>
+      </div>
+      <div className={styles.schemaErrorDetails}>
+        <b>Details:</b> {errorDetails}
+      </div>
+      <div style={{ marginTop: "10px" }}>
+        <div>Possible Fixes:</div>
+        <UnorderedList>
+          {possibleFixes.map((fix, index) => (
+            <ListItem key={index}>{fix}</ListItem>
+          ))}
+        </UnorderedList>
+      </div>
+    </div>
+  );
+};
 
 function Output({
   outputResult,
@@ -47,14 +115,14 @@ function Output({
     );
   } else if (outputResult.validityStatus == "invalidSchema") {
     outputBodyContent = (
-      <div className={styles.invalid}>
-        <b>Invalid Schema:</b>{" "}
-        <code>
-          {(outputResult.errors as InvalidSchemaError).output.errors &&
-            (
+      <div>
+        {(outputResult.errors as InvalidSchemaError).output.errors && (
+          <SchemaError
+            schemaPath={(
               outputResult.errors as InvalidSchemaError
             ).output.errors![0].instanceLocation.replace(schemaUrl, "")}
-        </code>
+          />
+        )}
       </div>
     );
   } else {

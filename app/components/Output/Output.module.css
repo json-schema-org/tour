@@ -66,3 +66,14 @@
   font-size: small;
   padding: 0.2em 0.2em;
 }
+
+.schemaErrorContainer {
+  margin: 10px 0;
+}
+.schemaErrorDetails {
+  margin-block: 10px;
+}
+
+.schemaErrorFixList {
+  margin-top: "200px";
+}
