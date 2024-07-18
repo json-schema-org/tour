@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "next-dev": "next dev --turbo",
+    "next-dev": "next dev",
     "content-watch": "nodemon --ext ts,mdx --watch ./content --ignore ./content/outline.json  --exec \"tsx ./scripts/generateOutline.ts\"",
     "dev": "concurrently \"yarn run next-dev\" \"yarn run content-watch\"",
     "build": "tsx ./scripts/generateOutline.ts && next build",
