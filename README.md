@@ -27,6 +27,14 @@ yarn dev
 
 > when you run `yarn dev`, a file named `outline.json` will be created in th `/content` directory. This file is used to generate the table of contents for the website.
 
+
+To run the tests, run the following command:
+
+```bash 
+yarn test
+```
+
+
 # Content
 
 ### Writing MDX
