@@ -8,6 +8,7 @@ import {
   indexFileName,
   instructionsFileName,
 } from "@/lib/contentVariables";
+import chalk from "chalk";
 
 function parseMdxMetadata(fullFilePath: string) {
   const file = fs.readFileSync(fullFilePath, "utf-8");
@@ -59,5 +60,5 @@ function generateOutline(): ContentOutline {
 }
 const outline = generateOutline();
 const outlineString = JSON.stringify(outline, null, 2);
-
 fs.writeFileSync("./content/outline.json", outlineString);
+console.log(chalk.green("Outline generated!"));
