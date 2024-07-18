@@ -10,7 +10,7 @@
     "build": "tsx ./scripts/generateOutline.ts && next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest"
+    "test": "tsx ./scripts/generateOutline.ts && vitest"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
