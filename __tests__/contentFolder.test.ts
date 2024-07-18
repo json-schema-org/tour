@@ -8,6 +8,7 @@ import * as path from "path";
 import { contentManager } from "@/lib/contentManager";
 import { getCodeFileExports, parseLessonFolder } from "@/lib/server-functions";
 import { hyperjumpValidate } from "@/lib/validators";
+import matter from "gray-matter";
 
 // test the structure of the content folder
 // test if each of the code.ts files have valid exports
@@ -68,7 +69,20 @@ test("content folder structure", async () => {
     }
 
     for (const chapterFile of chapterFolderFiles) {
-      if (chapterFile === "index.mdx") continue;
+      if (chapterFile === "index.mdx") {
+        const indexFile = fs.readFileSync(
+          path.join(contentFolder, file, chapterFile),
+          "utf-8"
+        );
+        const { data } = matter(indexFile);
+        if (!data.title) {
+          assert.fail(
+            `Chapter ${file} does not contain a title as meta field in index.mdx file`
+          );
+        } else {
+          continue;
+        }
+      }
 
       if (!folderNameRegEx.exec(chapterFile)) {
         assert.fail(
