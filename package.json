@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "next-dev": "next dev",
+    "next-dev": "next dev --turbo",
     "content-watch": "nodemon --ext ts,mdx --watch ./content --ignore ./content/outline.json  --exec \"tsx ./scripts/generateOutline.ts\"",
     "dev": "concurrently \"yarn run next-dev\" \"yarn run content-watch\"",
     "build": "tsx ./scripts/generateOutline.ts && next build",
@@ -33,7 +33,7 @@
     "framer-motion": "^11.1.9",
     "geist": "^1.3.0",
     "gray-matter": "^4.0.3",
-    "next": "14.2.3",
+    "next": "^14.2.5",
     "next-mdx-remote": "^4.4.1",
     "react": "^18",
     "react-dom": "^18",
