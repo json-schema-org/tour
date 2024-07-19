@@ -1,0 +1,53 @@
+---
+title: Valid Against anyOf the Subschemas (OR)
+description:  Define properties with anyOf keyword to apply conditional validation.
+keywords: anyOf, properties, conditional validation
+---
+
+# Valid Against anyOf the Subschemas (OR)
+
+`anyOf` keyword is used to define multiple subschemas. If the instance is valid against **any one** of the subschemas, the document is considered valid.
+
+You can think of `anyOf` as an **OR** operation. If the instance is valid against **any one** of the subschemas, the document is considered valid.
+
+## Example
+
+```json 
+{
+  "name": "John Doe",
+  "age": 25,
+  "dateOfBirth": "1995-12-17"
+}
+```
+We want to allow both `age` and `dateOfBirth` properties in the document. The document is valid if it has either `age` or `dateOfBirth` property. we can use `anyOf` keyword to define this condition. 
+
+
+```json highlightLineStart={4} highlightLineEnd={7}
+{
+  "type": "object",
+  "properties": {...},
+  "anyOf": [
+    {"required": ["age"]},
+    {"required": ["dateOfBirth"]}
+  ]
+}
+```
+
+## Task 
+
+Create a JSON schema that validates the following document. 
+
+```json
+{
+  "name": "John Doe",
+  "employeeType": "full-time",
+  "salary": 50000,
+  "hourlyRate": 25
+}
+```
+
+
+Modify the schema given to you in the side editor to ensure that the document is valid if 
+- it has either `salary` or `hourlyRate` property.
+
+
