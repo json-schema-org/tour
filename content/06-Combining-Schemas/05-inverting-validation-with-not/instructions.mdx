@@ -1,0 +1,48 @@
+---
+title: Inverting Validation with not
+description:  Invert the validation with the not keyword in JSON Schema.
+keywords: not, properties, conditional validation
+---
+
+# Inverting Validation with not
+
+
+`not` keyword is used to invert the validation. If the instance is **not** valid against the subschema, the document is considered valid.
+
+
+```json
+{
+  "name": "John Doe",
+  "age": 25,
+}
+```
+
+We want the `age` to be greater then or equal to 18. but it should not be 21. We can use `not` keyword to define this condition.
+
+
+```json highlightLineStart={8} 
+{
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "age": {
+      "type": "integer",
+      "minimum": 18,
+      "not": {"const": 21}
+    }
+  },
+}
+```
+
+## Task
+
+```json
+{
+  "name": "John Doe",
+  "age": 21,
+  "status": "active"
+}
+```
+
+Modify the schema given to you in the side editor to ensure that the document is valid if `status` is not `null`.
+
