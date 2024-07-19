@@ -1,0 +1,75 @@
+---
+title: Recursive Schemas
+description:  Learn how to define recursive schemas in JSON Schema.
+keywords: defs, ref, recursive, schemas, JSON, JSON Schema
+---
+
+# Recursive Schemas
+
+In JSON Schema, recursive schemas allow you to define schemas that refer to themselves. This can be useful when working with hierarchical data structures or when modeling recursive relationships.
+
+```json
+{
+  
+  "name":"John Doe",
+  "links": [
+    {
+      "name": "Jane Doe",
+      "links": [
+        {
+          "name": "Alice Doe",
+          "links": []
+        },
+      ]
+    },
+    {
+      "name": "Jack Doe",
+      "links": []
+    }
+  ]
+}
+```
+
+To define a recursive schema, you can use the `$ref` keyword to refer to the schema itself. For example:
+
+```json
+{
+  "$defs": {
+    "TreeNode": {
+      "type":"array",
+      "items": {
+        "type":"object",
+        "properties": {
+          "name": { "type": "string" },
+          "children": { "$ref": "#/$defs/TreeNode" }
+        },
+        "required": ["name", "children"]
+      }
+    }
+  },
+  "$ref": "#/$defs/TreeNode",
+}
+```
+
+In the above example, the `TreeNode` schema refers to itself in the `children` property, creating a recursive structure.
+
+## Task 
+
+```json
+{
+  "name": "John Doe",
+  "next":{
+    "value": "Jane Doe",
+    "next": {
+      "value": "Alice Doe",
+      "next": {}
+    }
+  }
+}
+```
+You are given an incomplete JSON Schema in the right side editor.
+Define the `next` schema using recursive schemas. here `next` is a linked list of values.
+
+> **Hint:**
+> - inside `$defs` define a subschema `next` that refers to itself and `null` as the base case.
+> - You will define `next` property inside the `$defs/next` schema. the value of `next`property can be either `null` or the `next` schema itself.  you can use `anyOf` keyword to define multiple schemas.
