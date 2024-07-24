@@ -7,17 +7,20 @@ import cx from "classnames";
 import { contentManager } from "@/lib/contentManager";
 import { useEffect } from "react";
 import styles from "./ChapterItem.module.css";
+import GoCheck from "@/app/styles/icons/GoCheck";
 
 function StepItem({
   step,
   index,
-  state,
+  isActive,
   activeStepIndex,
+  isCompleted,
 }: {
   step: ChapterStep;
   index: number;
-  state: "active" | "completed" | "neutral";
+  isActive: boolean;
   activeStepIndex: number;
+  isCompleted: boolean;
 }) {
   return (
     <Link
@@ -27,9 +30,8 @@ function StepItem({
       <li
         className={cx(
           styles.stepItem,
-          state === "active" && activeStepIndex === index
-            ? styles.activeStep
-            : ""
+          isActive && activeStepIndex === index ? styles.activeStep : "",
+          isActive && isCompleted && styles.completedStep
         )}
       >
         {step.title}
@@ -40,26 +42,40 @@ function StepItem({
 
 export default function ChapterItem({
   index,
-  state,
+  isCompleted,
+  isActive,
   title,
   steps,
   activeStepIndex,
 }: {
   index: number;
-  state: "active" | "completed" | "neutral";
+  isCompleted: boolean;
+  isActive: boolean;
   title: string;
   steps: ChapterStep[];
   activeStepIndex: number;
 }) {
   const { isOpen, onToggle, onOpen } = useDisclosure();
   useEffect(() => {
-    if (state === "active") onOpen();
-  }, [state]);
+    if (isActive) onOpen();
+  }, [isActive, onOpen]);
   return (
     <li className={styles.chapterItem}>
-      <button className={styles.chapterItemWrapper} onClick={onToggle}>
-        <div className={cx(styles.chapterItemNumber, styles[state])}>
-          <span>{index + 1}</span>
+      <button
+        className={cx(styles.chapterItemWrapper, !isOpen && styles.closed)}
+        onClick={onToggle}
+      >
+        <div
+          className={cx(
+            styles.chapterItemNumber,
+            isActive ? styles.active : styles.neutral
+          )}
+        >
+          {isCompleted ? (
+            <GoCheck isActive={isActive} />
+          ) : (
+            <span>{index + 1}</span>
+          )}
         </div>
         <div className={styles.chapterTitleWrapper}>
           <Box opacity={0.5}>Chapter {index + 1}</Box>
@@ -73,8 +89,9 @@ export default function ChapterItem({
               <StepItem
                 step={step}
                 index={index}
-                state={state}
+                isActive={isActive}
                 key={step.title}
+                isCompleted={index < activeStepIndex}
                 activeStepIndex={activeStepIndex}
               />
             ))}

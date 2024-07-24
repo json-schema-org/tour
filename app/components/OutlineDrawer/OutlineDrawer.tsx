@@ -45,7 +45,8 @@ export default function OutlineDrawer({
               <ul className={styles.chapterItemsList}>
                 {outline.map((item, index) => (
                   <ChapterItem
-                    state={index === activeChapterIndex ? "active" : "neutral"}
+                    isActive={index === activeChapterIndex}
+                    isCompleted={index <= activeChapterIndex}
                     index={index}
                     key={item.title}
                     title={item.title}
