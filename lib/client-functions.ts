@@ -80,6 +80,9 @@ export function getBasePath() {
 }
 
 export function completeStep(chapterIndex: number, stepIndex: number) {
+  // If window is undefined, we are in a server environment and we can't access localStorage
+  // Don't remove this check
+  if (typeof window === "undefined") return false;
   const key = `chapter-${chapterIndex}-step-${stepIndex}`;
   const progress = JSON.parse(
     localStorage.getItem("progress") ? localStorage.getItem("progress")! : "{}"
@@ -90,6 +93,10 @@ export function completeStep(chapterIndex: number, stepIndex: number) {
 }
 
 export function isStepCompleted(chapterIndex: number, stepIndex: number) {
+  // If window is undefined, we are in a server environment and we can't access localStorage
+  // Don't remove this check
+  if (typeof window === "undefined") return false;
+
   const key = `chapter-${chapterIndex}-step-${stepIndex}`;
   const progress = JSON.parse(
     localStorage.getItem("progress") ? localStorage.getItem("progress")! : "{}"

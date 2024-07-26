@@ -1,3 +1,4 @@
+"use client";
 import { outfitFont } from "@/app/styles/fonts";
 import MdRestoreIcon from "@/app/styles/icons/MdRestore";
 import SensorsIcon from "@/app/styles/icons/Sensors";
