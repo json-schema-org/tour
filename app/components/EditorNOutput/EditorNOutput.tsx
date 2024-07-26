@@ -11,9 +11,13 @@ import { outputReducer } from "@/lib/reducers";
 export default function EditorNOutput({
   codeFile,
   nextStepPath,
+  stepIndex,
+  chapterIndex,
 }: {
   codeFile: CodeFile;
   nextStepPath: string | undefined;
+  stepIndex: number;
+  chapterIndex: number;
 }) {
   const [codeString, setCodeString] = useState(
     JSON.stringify(codeFile.code, null, 2)
@@ -86,6 +90,8 @@ export default function EditorNOutput({
           codeFile={codeFile}
           dispatchOutput={dispatchOutput}
           nextStepPath={nextStepPath}
+          stepIndex={stepIndex}
+          chapterIndex={chapterIndex}
         />
       </Box>
       <div

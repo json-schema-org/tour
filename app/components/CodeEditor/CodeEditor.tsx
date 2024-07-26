@@ -19,12 +19,16 @@ export default function CodeEditor({
   codeFile,
   dispatchOutput,
   nextStepPath,
+  stepIndex,
+  chapterIndex,
 }: {
   codeString: string;
   setCodeString: (codeString: string) => void;
   codeFile: CodeFile;
   dispatchOutput: React.Dispatch<OutputReducerAction>;
   nextStepPath: string | undefined;
+  stepIndex: number;
+  chapterIndex: number;
 }) {
   const { colorMode } = useColorMode();
   const monaco = useMonaco();
@@ -48,7 +52,13 @@ export default function CodeEditor({
       // event.preventDefault();
       if (event.key == "Enter" && event.shiftKey) {
         event.preventDefault(); // Prevent default behavior
-        validateCode(codeString, codeFile, dispatchOutput);
+        validateCode(
+          codeString,
+          codeFile,
+          dispatchOutput,
+          stepIndex,
+          chapterIndex
+        );
       }
     };
 
@@ -75,7 +85,13 @@ export default function CodeEditor({
         <Flex dir="row" gap={"8px"}>
           <SmallBtn
             onClick={async () =>
-              validateCode(codeString, codeFile, dispatchOutput)
+              validateCode(
+                codeString,
+                codeFile,
+                dispatchOutput,
+                stepIndex,
+                chapterIndex
+              )
             }
             variant={"default"}
           >

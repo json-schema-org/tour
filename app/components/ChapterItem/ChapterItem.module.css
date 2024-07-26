@@ -29,6 +29,7 @@
   top: 0px;
   left: 33px;
 }
+
 .chapterItemWrapper::after {
   position: absolute;
   content: "";
@@ -40,7 +41,15 @@
 
   bottom: 0px;
 }
+.active::after,
+.completed::after {
+  background-color: hsl(var(--primary));
+}
 
+.active::before,
+.completed::before {
+  background-color: hsl(var(--primary));
+}
 .chapterItem:first-child .chapterItemWrapper::before {
   display: none;
 }
@@ -107,4 +116,5 @@
 .completedStep {
   font-style: italic;
   color: hsl(var(--text) / 0.5);
+  border-left-color: hsl(var(--primary));
 }

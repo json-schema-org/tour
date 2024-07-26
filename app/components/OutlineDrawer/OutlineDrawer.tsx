@@ -10,6 +10,7 @@ import {
 import styles from "./OutlineDrawer.module.css";
 import { ContentOutline } from "@/lib/types";
 import ChapterItem from "../ChapterItem";
+import { isChapterCompleted } from "@/lib/client-functions";
 
 export default function OutlineDrawer({
   isOpen,
@@ -46,7 +47,7 @@ export default function OutlineDrawer({
                 {outline.map((item, index) => (
                   <ChapterItem
                     isActive={index === activeChapterIndex}
-                    isCompleted={index <= activeChapterIndex}
+                    isCompleted={isChapterCompleted(index, item.steps.length)}
                     index={index}
                     key={item.title}
                     title={item.title}

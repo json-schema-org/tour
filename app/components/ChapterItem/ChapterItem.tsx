@@ -8,6 +8,7 @@ import { contentManager } from "@/lib/contentManager";
 import { useEffect } from "react";
 import styles from "./ChapterItem.module.css";
 import GoCheck from "@/app/styles/icons/GoCheck";
+import { isStepCompleted } from "@/lib/client-functions";
 
 function StepItem({
   step,
@@ -31,7 +32,7 @@ function StepItem({
         className={cx(
           styles.stepItem,
           isActive && activeStepIndex === index ? styles.activeStep : "",
-          isActive && isCompleted && styles.completedStep
+          isCompleted && styles.completedStep
         )}
       >
         {step.title}
@@ -62,7 +63,11 @@ export default function ChapterItem({
   return (
     <li className={styles.chapterItem}>
       <button
-        className={cx(styles.chapterItemWrapper, !isOpen && styles.closed)}
+        className={cx(
+          styles.chapterItemWrapper,
+          !isOpen && styles.closed,
+          isCompleted && styles.completed
+        )}
         onClick={onToggle}
       >
         <div
@@ -77,7 +82,7 @@ export default function ChapterItem({
             <span>{index + 1}</span>
           )}
         </div>
-        <div className={styles.chapterTitleWrapper}>
+        <div className={cx(styles.chapterTitleWrapper)}>
           <Box opacity={0.5}>Chapter {index + 1}</Box>
           <div>{title}</div>
         </div>
@@ -85,13 +90,13 @@ export default function ChapterItem({
       <Collapse in={isOpen} animateOpacity>
         {
           <ul>
-            {steps.map((step, index) => (
+            {steps.map((step, stepIndex) => (
               <StepItem
                 step={step}
-                index={index}
+                index={stepIndex}
                 isActive={isActive}
                 key={step.title}
-                isCompleted={index < activeStepIndex}
+                isCompleted={isStepCompleted(index, stepIndex)}
                 activeStepIndex={activeStepIndex}
               />
             ))}

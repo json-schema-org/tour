@@ -6,7 +6,9 @@ import { hyperjumpValidate, schemaSafeValidate } from "./validators";
 export async function validateCode(
   codeString: string,
   codeFile: CodeFile,
-  dispatchOutput: React.Dispatch<OutputReducerAction>
+  dispatchOutput: React.Dispatch<OutputReducerAction>,
+  stepIndex: number,
+  chapterIndex: number
 ) {
   const testCases = codeFile.testCases;
   try {
@@ -45,6 +47,7 @@ export async function validateCode(
 
     if (validationStatus === "valid") {
       dispatchOutput({ type: "valid", payload: {} });
+      completeStep(chapterIndex, stepIndex);
     } else {
       const sortedResults = testCaseResults.sort((a, b) => {
         if (a.passed === b.passed) {
@@ -74,4 +77,31 @@ export async function validateCode(
 
 export function getBasePath() {
   return process.env.MODE === "local" ? "" : "/tour";
+}
+
+export function completeStep(chapterIndex: number, stepIndex: number) {
+  const key = `chapter-${chapterIndex}-step-${stepIndex}`;
+  const progress = JSON.parse(
+    localStorage.getItem("progress") ? localStorage.getItem("progress")! : "{}"
+  );
+  progress[key] = "completed";
+
+  localStorage.setItem("progress", JSON.stringify(progress));
+}
+
+export function isStepCompleted(chapterIndex: number, stepIndex: number) {
+  const key = `chapter-${chapterIndex}-step-${stepIndex}`;
+  const progress = JSON.parse(
+    localStorage.getItem("progress") ? localStorage.getItem("progress")! : "{}"
+  );
+  return progress[key] === "completed";
+}
+
+export function isChapterCompleted(chapterIndex: number, totalSteps: number) {
+  for (let i = 0; i < totalSteps; i++) {
+    if (!isStepCompleted(chapterIndex, i)) {
+      return false;
+    }
+  }
+  return true;
 }
