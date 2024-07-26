@@ -9,65 +9,19 @@ import cx from "classnames";
 import { outfitFont } from "@/app/styles/fonts";
 import LeftArrow from "@/app/styles/icons/LeftArrow";
 import FiChevronRight from "@/app/styles/icons/FiChevronRight";
-import {
-  Box,
-  Button,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Switch,
-  useColorMode,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Flex, useColorMode, useDisclosure } from "@chakra-ui/react";
 import GithubIcon from "@/app/styles/icons/GithubIcon";
 import MoonIcon from "@/app/styles/icons/MoonIcon";
-import SettingsIcon from "@/app/styles/icons/SettingsIcon";
+
 import OutlineMenuIcon from "@/app/styles/icons/OutlineMenuIcon";
 import SunIcon from "@/app/styles/icons/BiSun";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import MdRestoreIcon from "@/app/styles/icons/MdRestore";
-import SensorsIcon from "@/app/styles/icons/Sensors";
+
 import OutlineDrawer from "../OutlineDrawer";
 import { contentManager } from "@/lib/contentManager";
-import Progressbar from "../Progressbar/Progressbar";
-
-function NavBarMenu() {
-  const { colorMode } = useColorMode();
-  const [collectTelemetry, setCollectTelemetry] = React.useState(false);
-
-  return (
-    <Menu closeOnSelect={false} gutter={4}>
-      <MenuButton className={styles.menuButton}>
-        <SettingsIcon colorMode={colorMode} />
-      </MenuButton>
-      <MenuList width={"min-content"} className={outfitFont.className}>
-        <MenuItem
-          display={"flex"}
-          gap={"8px"}
-          onClick={(e) => {
-            e.preventDefault();
-            setCollectTelemetry(!collectTelemetry);
-          }}
-        >
-          <Flex dir="row" align="center" width={"max-content"} gap={"8px"}>
-            <SensorsIcon colorMode={colorMode} />
-            Telemetry data
-            <div style={{ marginLeft: "16px" }}>
-              <Switch size="sm" isChecked={collectTelemetry} />
-            </div>
-          </Flex>
-        </MenuItem>
-        <MenuItem display={"flex"} gap={"8px"} color={"red"}>
-          <MdRestoreIcon />
-          Reset progress
-        </MenuItem>
-      </MenuList>
-    </Menu>
-  );
-}
+import Progressbar from "../Progressbar";
+import NavBarMenu from "../NavBarMenus";
 
 export default function NavBar({ urlPath }: { urlPath: string }) {
   const {

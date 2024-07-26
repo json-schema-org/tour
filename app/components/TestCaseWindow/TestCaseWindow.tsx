@@ -34,7 +34,9 @@ function TestCaseItem({
           <span
             className={styles.TestCaseResultValue}
             style={{
-              color: testCase.actual ? "#00B83F" : "red",
+              color: testCase.actual
+                ? "hsl(var(--success))"
+                : "hsl(var(--error))",
             }}
           >
             {testCase.actual ? "valid" : "invalid"}

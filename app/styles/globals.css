@@ -30,6 +30,8 @@ html {
   --background2-light: var(--text-light) / 0.05;
   --border-color-light: var(--text-light) / 0.334;
   --link-color-light: 240 100% 50%;
+  --error-light: 0 100% 50%;
+  --success-light: 120 50% 50%;
 
   /* Dark Mode colors */
 
@@ -39,6 +41,8 @@ html {
   --background2-dark: var(--text-dark) / 0.05;
   --border-color-dark: var(--text-dark) / 0.2;
   --link-color-dark: 240 100% 87%;
+  --error-dark: 0 100% 50%;
+  --success-dark: 120 100% 50%;
 }
 
 :root[data-theme="dark"] {
@@ -48,6 +52,8 @@ html {
   --background2: var(--background2-dark);
   --link-color: var(--link-color-dark);
   --primary: var(--primary-dark);
+  --error: var(--error-dark);
+  --success: var(--success-dark);
 }
 
 :root[data-theme="light"] {
@@ -57,6 +63,8 @@ html {
   --background2: var(--background2-light);
   --link-color: var(--link-color-light);
   --primary: var(--primary-light);
+  --error: var(--error-light);
+  --success: var(--success-light);
 }
 
 /* html[data-theme="dark"] svg {
