@@ -34,7 +34,7 @@ export default async function Content({
   params: { markdownPath: string[] };
 }) {
   const urlPath = params.markdownPath.join("/");
-  const { mdPath, nextStepPath, stepIndex, totalSteps, codePath } =
+  const { mdPath, nextStepPath, stepIndex, codePath, chapterIndex } =
     contentManager.getPageMeta(urlPath);
   const { Page, metadata, codeFile } = parseLessonFolder(mdPath, codePath);
 
@@ -43,7 +43,12 @@ export default async function Content({
       <ContentViewer>
         <Page />
       </ContentViewer>
-      <EditorNOutput codeFile={codeFile} nextStepPath={nextStepPath} />
+      <EditorNOutput
+        codeFile={codeFile}
+        nextStepPath={nextStepPath}
+        stepIndex={stepIndex}
+        chapterIndex={chapterIndex}
+      />
     </div>
   );
 }

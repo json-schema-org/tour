@@ -28,11 +28,11 @@
 }
 
 .passed {
-  background-color: #00d548;
-  box-shadow: 0 0 6px 1px #00d548;
+  background-color: hsl(var(--success));
+  box-shadow: 0 0 6px 1px hsl(var(--success));
 }
 
 .failed {
-  background-color: red;
-  box-shadow: 0 0 6px 1px red;
+  background-color: hsl(var(--error));
+  box-shadow: 0 0 6px 1px hsl(var(--error));
 }

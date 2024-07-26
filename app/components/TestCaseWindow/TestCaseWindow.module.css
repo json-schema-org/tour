@@ -1,5 +1,5 @@
 .TestCasesHeader {
-  color: red;
+  color: hsl(var(--error));
   font-weight: bold;
 }
 

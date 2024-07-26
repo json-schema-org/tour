@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import { color } from "framer-motion";
 
 const Button = {
   variants: {
@@ -16,35 +17,36 @@ const Button = {
       },
     },
     success: {
-      color: "green.300",
+      color: "hsl(var(--success))",
 
-      borderColor: "green",
+      borderColor: "hsl(var(--success))",
       borderWidth: "1px",
       _disabled: {
-        color: "green.700",
+        color: "hsl(var(--success) / 0.6)",
       },
       _hover: {
-        bg: "green.100",
+        bg: "hsl(var(--success))",
+        color: "black",
         _disabled: {
-          color: "green.700",
+          color: "hsl(var(--success) / 0.4)",
         },
       },
       _active: {
-        bg: "green.200",
+        bg: "hsl(var(--success))",
       },
     },
     error: {
-      color: "red",
-
-      borderColor: "red",
+      color: "hsl(var(--error))",
+      borderColor: "hsl(var(--error))",
       borderWidth: "1px",
       _disabled: {
-        color: "red.700",
+        color: "hsl(var(--error) / 0.6)",
       },
       _hover: {
-        bg: "red.100",
+        bg: "hsl(var(--error))",
+        color: "white",
         _disabled: {
-          color: "red.700",
+          color: "hsl(var(--error) / 0.4)",
         },
       },
       _active: {
@@ -117,6 +119,24 @@ const Tooltip = {
   },
 };
 
+const Popover = {
+  baseStyle: {
+    body: {
+      bg: "hsl(var(--background))",
+      borderBottomLeftRadius: "16px",
+      borderBottomRightRadius: "16px",
+    },
+    header: {
+      bg: "hsl(var(--background))",
+      borderTopLeftRadius: "16px",
+      borderTopRightRadius: "16px",
+    },
+    content: {
+      borderRadius: "16px",
+    },
+  },
+};
+
 export const theme = extendTheme({
   config: {
     initialColorMode: "system",
@@ -130,6 +150,6 @@ export const theme = extendTheme({
       },
     },
   },
-  components: { Button, Menu, Switch, Drawer, Tooltip },
+  components: { Button, Menu, Switch, Drawer, Tooltip, Popover },
   fonts: {},
 });
