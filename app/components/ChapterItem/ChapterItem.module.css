@@ -41,13 +41,14 @@
 
   bottom: 0px;
 }
-.active::after,
-.completed::after {
+
+.completedChapterItemWrapper::after,
+.activeChapterItemWrapper::after {
   background-color: hsl(var(--primary));
 }
 
-.active::before,
-.completed::before {
+.activeChapterItemWrapper::before,
+.completedChapterItemWrapper::before {
   background-color: hsl(var(--primary));
 }
 .chapterItem:first-child .chapterItemWrapper::before {
@@ -94,7 +95,7 @@
   text-decoration: underline;
 }
 .activeStep {
-  border-left-width: 2px;
+  border-left-width: 3px;
   border-left-color: hsl(var(--primary));
   color: hsl(var(--primary));
   font-weight: bold;
@@ -102,10 +103,6 @@
 .active {
   background-color: hsl(var(--primary));
   color: hsl(var(--background));
-}
-
-.completed {
-  background-color: hsl(var(--secondary));
 }
 
 .neutral {

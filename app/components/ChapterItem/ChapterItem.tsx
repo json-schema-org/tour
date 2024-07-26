@@ -66,7 +66,8 @@ export default function ChapterItem({
         className={cx(
           styles.chapterItemWrapper,
           !isOpen && styles.closed,
-          isCompleted && styles.completed
+          isCompleted && styles.completedChapterItemWrapper,
+          isActive && styles.activeChapterItemWrapper
         )}
         onClick={onToggle}
       >
