@@ -20,7 +20,7 @@ export default function RootLayout({
       <head>
         <meta
           name="google-site-verification"
-          content="LsHgkHvmmMhqHAlY5aZO7HYwsa6jsRgpE1gpRp9V_V4"
+          content="45PV3wwrdtxUK6KI1fti1HoYTYSDEbSthaMIXKdG1s8"
         />
       </head>
       <body className={GeistSans.className}>
