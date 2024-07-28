@@ -1,0 +1,64 @@
+---
+title: Extending Closed Schemas with unevaluatedProperties
+description: Extending Closed Schemas in JSON Schema Objects using the unevaluatedProperties keyword
+keywords:  extending closed schemas,unevaluatedProperties , JSON Schema, JSON Schema objects
+---
+
+
+# Extending Closed Schemas
+
+Previously in the Objects module, we learned to `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same *subschema* as itself. 
+
+So, `additionalProperties` can restrict you from "extending" a schema using combining keywords such as `allOf`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail. 
+
+```json highlightLineStart={11}
+{
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "street_address": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" }
+      },
+      "required": ["street_address", "city", "state"],
+      "additionalProperties": false
+    }
+  ],
+  "properties": {
+    "type": { "enum": [ "residential", "business" ] }
+  },
+  "required": ["type"]
+}
+```
+The above schema will not allow you to define `type` property. because `additionalProperties` is set to `false`. The reason is, `additionalProperties` only recognizes properties declared in the same subschema. 
+
+
+## Unevaluated Properties
+
+The challenge we saw with `additionalProperties` can be solved using the `unevaluatedProperties` keyword. This keyword allows you to define properties that are not evaluated by the current schema. 
+
+```json highlightLineStart={15}
+{
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "street_address": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" }
+      },
+      "required": ["street_address", "city", "state"],    }
+  ],
+  "properties": {
+    "type": { "enum": [ "residential", "business" ] }
+  },
+  "unevaluatedProperties": false,
+  "required": ["type"]
+}
+```
+
+## Task 
+
+You are give the same schema in the text editor. Add `unevaluatedProperties` to the schema to allow the only `number` as an additional property. 
+
