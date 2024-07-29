@@ -1,32 +1,15 @@
-import Ajv from "ajv/dist/2020.js";
-// @ts-ignore
-import betterAjvErrors from "better-ajv-errors";
-export function ajv(data: any, schema: any) {
-  const ajv = new Ajv({ allErrors: true, verbose: true }); // options can be passed, e.g. {allErrors: true}
-  const validate = ajv.compile(schema);
-  const valid = validate(data);
-  const errors = betterAjvErrors(schema, data, validate.errors, {
-    indent: 2,
-  });
-  return { valid, errors };
-
-  //   {
-  //     instancePath: '/1',
-  //     schemaPath: '#/items/type',
-  //     keyword: 'type',
-  //     params: { type: 'string' },
-  //     message: 'must be string'
-  //   },
-}
-
 import {
   validate,
   registerSchema,
   setMetaSchemaOutputFormat,
   unregisterSchema,
   SchemaObject,
+  OutputUnit,
 } from "@hyperjump/json-schema/draft-2020-12";
 import { BASIC } from "@hyperjump/json-schema/experimental";
+
+import { annotate } from "@hyperjump/json-schema/annotations/experimental";
+import * as AnnotatedInstance from "@hyperjump/json-schema/annotated-instance/experimental";
 
 setMetaSchemaOutputFormat(BASIC);
 export const schemaUrl = "http://tour.json-schema.org/";
@@ -46,11 +29,45 @@ export async function hyperjumpValidate(data: any, schema: any) {
   }
 }
 
-import { validator as schemaSafeValidator } from "@exodus/schemasafe";
-
-export function schemaSafeValidate(data: any, schema: any) {
-  const validate = schemaSafeValidator(schema, { includeErrors: true });
-  const valid = validate(data);
-
-  return { valid, errors: validate.errors };
+export async function hyperjumpCheckAnnotations(
+  data: any,
+  schema: any,
+  requiredAnnotations: string[]
+): Promise<OutputUnit> {
+  console.log(data, schema, requiredAnnotations);
+  const annotationSchemaUrl = "http://tour2.json-schemad.org/";
+  const dialectId = "https://json-schema.org/draft/2020-12/schema";
+  if (!("$schema" in schema)) {
+    schema["$schema"] = dialectId;
+  }
+  try {
+    // registerSchema(schema as SchemaObject, annotationSchemaUrl);
+    // const instance = await annotate(annotationSchemaUrl, data as SchemaObject);
+    const missingAnnotations: string[] = [];
+    for (const annotation of requiredAnnotations) {
+      let values = Object.keys(schema).filter((key) => key === annotation);
+      console.log(values);
+      if (values.length === 0) {
+        missingAnnotations.push(annotation);
+      }
+    }
+    if (missingAnnotations.length > 0) {
+      throw new Error(
+        `Schema does not contain the following annotations: ${missingAnnotations.join(
+          ", "
+        )}`
+      );
+    }
+    return {
+      valid: true,
+      keyword: "",
+      instanceLocation: "",
+      absoluteKeywordLocation: "",
+    };
+  } catch (e) {
+    console.log(e);
+    throw e;
+  } finally {
+    // unregisterSchema(annotationSchemaUrl);
+  }
 }

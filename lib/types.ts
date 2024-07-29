@@ -42,6 +42,7 @@ export type CodeFile = {
   code: Object;
   testCases: TestCase[];
   solution: Object;
+  expectedAnnotations?: string[];
 };
 export type CodeFileExports = {
   exports: CodeFile;

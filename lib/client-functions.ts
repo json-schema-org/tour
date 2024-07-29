@@ -1,7 +1,7 @@
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { OutputReducerAction } from "./reducers";
 import { CodeFile, TestCaseResult } from "./types";
-import { hyperjumpValidate, schemaSafeValidate } from "./validators";
+import { hyperjumpCheckAnnotations, hyperjumpValidate } from "./validators";
 
 export async function validateCode(
   codeString: string,
@@ -18,10 +18,21 @@ export async function validateCode(
     const totalTestCases = testCases.length;
     for (let i = 0; i < testCases.length; i++) {
       const dataTestCase = testCases[i];
+
       const validationResult = await hyperjumpValidate(
         dataTestCase.input,
         schemaCode
       );
+      if (codeFile.expectedAnnotations) {
+        // Check if the expected annotations are present in the schema
+        // If not, throw an error
+        // This is a separate check from the validation
+        const annotationCheckResult = await hyperjumpCheckAnnotations(
+          dataTestCase.input,
+          schemaCode,
+          codeFile.expectedAnnotations
+        );
+      }
 
       if (validationResult.valid !== dataTestCase.expected) {
         testCaseResults.push({
