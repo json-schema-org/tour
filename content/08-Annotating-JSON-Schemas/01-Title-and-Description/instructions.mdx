@@ -1,0 +1,33 @@
+---
+title: Title and Description
+description: Learn how to add a title and description to your JSON Schema.
+keywords: JSON Schema, title, description, annotations
+---
+
+
+# Annotating JSON Schemas
+
+JSON Schema includes a few keywords, that aren't strictly used for validation, but are used to describe parts of a schema. None of these "annotation" keywords are required, but they are encouraged for good practice, and can make your schema "self-documenting".
+
+## Title and Description
+
+The `title` and `description` keywords are used to provide a human-readable title and description of the schema. 
+
+These keywords are **not used for validation**, but can be used by tools and software to provide more information about the schema.
+
+Here's an example of a schema with a title and description:
+
+```json highlightLineStart={2} highlightLineEnd={3}
+{
+  "title": "Person",
+  "description": "A person in the system",
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "age": {"type": "integer"}
+  }
+}
+```
+
+# Task 
+Add `title` and `description` to the schema given to you in the side editor. You can use any title and description you like.
