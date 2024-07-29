@@ -123,3 +123,23 @@ export function isChapterCompleted(chapterIndex: number, totalSteps: number) {
   }
   return true;
 }
+
+export function hasNestedProperty(obj: any, path: string) {
+  console.log(obj, path);
+  const keys = path.split(".");
+
+  let current = obj;
+  for (const key of keys) {
+    if (
+      current === undefined ||
+      current === null ||
+      !Object.prototype.hasOwnProperty.call(current, key)
+    ) {
+      return false;
+    }
+    current = current[key];
+  }
+
+  // If we've made it through all the keys, the property exists
+  return true;
+}

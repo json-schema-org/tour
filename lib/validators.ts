@@ -10,6 +10,7 @@ import { BASIC } from "@hyperjump/json-schema/experimental";
 
 import { annotate } from "@hyperjump/json-schema/annotations/experimental";
 import * as AnnotatedInstance from "@hyperjump/json-schema/annotated-instance/experimental";
+import { hasNestedProperty } from "./client-functions";
 
 setMetaSchemaOutputFormat(BASIC);
 export const schemaUrl = "http://tour.json-schema.org/";
@@ -35,7 +36,7 @@ export async function hyperjumpCheckAnnotations(
   requiredAnnotations: string[]
 ): Promise<OutputUnit> {
   console.log(data, schema, requiredAnnotations);
-  const annotationSchemaUrl = "http://tour2.json-schemad.org/";
+  // const annotationSchemaUrl = "http://tour2.json-schemad.org/";
   const dialectId = "https://json-schema.org/draft/2020-12/schema";
   if (!("$schema" in schema)) {
     schema["$schema"] = dialectId;
@@ -45,9 +46,7 @@ export async function hyperjumpCheckAnnotations(
     // const instance = await annotate(annotationSchemaUrl, data as SchemaObject);
     const missingAnnotations: string[] = [];
     for (const annotation of requiredAnnotations) {
-      let values = Object.keys(schema).filter((key) => key === annotation);
-      console.log(values);
-      if (values.length === 0) {
+      if (!hasNestedProperty(schema, annotation)) {
         missingAnnotations.push(annotation);
       }
     }
