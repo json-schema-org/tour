@@ -1,0 +1,68 @@
+---
+title: deprecated, readOnly, and writeOnly
+description: Learn how to use the deprecated, readOnly, and writeOnly keywords in JSON Schema
+keywords:  deprecated, readOnly, writeOnly, JSON Schema
+---
+
+# Deprecated, readOnly, and writeOnly
+
+In this lesson, we will learn about the `deprecated`, `readOnly`, and `writeOnly` keywords in JSON Schema.
+
+## Deprecated
+
+The `deprecated` keyword is a **boolean** that indicates that the instance value the keyword applies to **should not be used and may be removed in the future**.
+
+```json
+{
+  "type": "string",
+  "deprecated": true
+}
+```
+
+In the above example, the schema is marked as deprecated. This means that the schema should not be used.
+
+## readOnly and writeOnly
+
+The boolean keywords `readOnly` and `writeOnly` are typically used in an API context.
+
+`readOnly` indicates that a value should not be modified. It could be used to indicate that a **PUT** request that changes a value would result in a **400 Bad Request** response. 
+
+`writeOnly` indicates that a value may be set, but will remain hidden. In could be used to indicate you can set a value with a **PUT** request, but it would not be included when retrieving that record with a **GET** request.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "readOnly": true
+    },
+    "age": {
+      "type": "number",
+      "writeOnly": true
+    }
+  }
+}
+```
+
+Here, the `name` property is marked as `readOnly`, and the `age` property is marked as `writeOnly`.
+
+
+## Task 
+
+```json
+{
+  "name":{
+    "firstName":"John",
+    "lastName":"Doe"
+  },
+  "age":25
+}
+
+``` 
+You are given schema of the above JSON object. 
+- Add `deprecated` keyword to the schema. 
+- Add `readOnly` in the schema to the `name` property 
+- Add `writeOnly` to the `age` property.
+  
+You can use any value for these keywords.
