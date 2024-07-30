@@ -10,7 +10,8 @@
     "build": "tsx ./scripts/generateOutline.ts && next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx ./scripts/generateOutline.ts && vitest"
+    "test": "tsx ./scripts/generateOutline.ts && vitest",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\""
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -35,6 +36,7 @@
     "gray-matter": "^4.0.3",
     "next": "^14.2.5",
     "next-mdx-remote": "^4.4.1",
+    "prettier": "^3.3.3",
     "react": "^18",
     "react-dom": "^18",
     "react-syntax-highlighter": "^15.5.0",
