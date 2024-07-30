@@ -1,0 +1,50 @@
+---
+title: format and examples
+description: Learn to use the examples and format keywords in JSON Schema
+keywords: examples, format, JSON Schema
+---
+
+# Format 
+
+The `format` keyword allows for basic semantic identification of certain kinds of string values that are commonly used. 
+
+For example, because JSON doesn't have a "DateTime" type, dates need to be encoded as strings. `format` allows the schema author to indicate that the string value should be interpreted as a date.
+
+Some common formats include:
+- Date and time formats: `date-time`, `date`, `time`, `duration`
+- Email formats: `email`, `idn-email`
+- Hostname formats: `hostname`, `idn-hostname`
+- IP address formats: `ipv4`, `ipv6`
+- Resource identifier formats: `uuid`, `uri`, `uri-reference`, `iri`, `iri-reference`
+
+View more about the formats [here](https://json-schema.org/understanding-json-schema/reference/string#built-in-formats)
+
+```json highlightLineStart={3}
+{
+  "type": "string",
+  "format": "date-time"
+}
+```
+# Examples 
+
+The `examples` keyword is used to provide an array of example values that are valid against the schema.
+
+```json highlightLineStart={4}
+{
+  "type": "string",
+  "format":"date",
+  "examples": ["2021-12-31", "2022-01-01"]
+}
+```
+## Task
+
+```json
+{
+  "name": "John Doe",
+  "email": "John.Doe@example.com"
+}
+```
+
+You are given a schema of the above JSON object in the side editor. 
+- Add a `format` to the `email` property.
+- Add `example` to the `email` property.
