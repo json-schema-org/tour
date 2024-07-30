@@ -19,7 +19,7 @@ export default async function sitemap() {
 
   const sitemapItems: SitemapItem[] = pathList.map((path) => {
     return {
-      url: `https://json-schema-org.github.io/tour/${contentManager.getPathWithPrefix(
+      url: `https://tour.json-schema.org/${contentManager.getPathWithPrefix(
         path.markdownPath.join("/")
       )}`,
       lastModified: new Date(),
