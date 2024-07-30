@@ -1,4 +1,8 @@
-import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
+import {
+  InvalidSchemaError,
+  registerSchema,
+  unregisterSchema,
+} from "@hyperjump/json-schema/draft-2020-12";
 import { OutputReducerAction } from "./reducers";
 import { CodeFile, TestCaseResult } from "./types";
 import { hyperjumpCheckAnnotations, hyperjumpValidate } from "./validators";
@@ -16,23 +20,15 @@ export async function validateCode(
     const testCaseResults: TestCaseResult[] = [];
     let validationStatus: "valid" | "invalid" | "neutral" = "valid";
     const totalTestCases = testCases.length;
+
     for (let i = 0; i < testCases.length; i++) {
       const dataTestCase = testCases[i];
 
       const validationResult = await hyperjumpValidate(
         dataTestCase.input,
         schemaCode,
+        codeFile.externalSchema,
       );
-      if (codeFile.expectedAnnotations) {
-        // Check if the expected annotations are present in the schema
-        // If not, throw an error
-        // This is a separate check from the validation
-        const annotationCheckResult = await hyperjumpCheckAnnotations(
-          dataTestCase.input,
-          schemaCode,
-          codeFile.expectedAnnotations,
-        );
-      }
 
       if (validationResult.valid !== dataTestCase.expected) {
         testCaseResults.push({
@@ -54,6 +50,9 @@ export async function validateCode(
           passed: true,
         });
       }
+    }
+    if (codeFile.expectedAnnotations) {
+      await hyperjumpCheckAnnotations(schemaCode, codeFile.expectedAnnotations);
     }
 
     if (validationStatus === "valid") {

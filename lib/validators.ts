@@ -8,34 +8,40 @@ import {
 } from "@hyperjump/json-schema/draft-2020-12";
 import { BASIC } from "@hyperjump/json-schema/experimental";
 
-import { annotate } from "@hyperjump/json-schema/annotations/experimental";
-import * as AnnotatedInstance from "@hyperjump/json-schema/annotated-instance/experimental";
 import { hasNestedProperty } from "./client-functions";
 
 setMetaSchemaOutputFormat(BASIC);
 export const schemaUrl = "http://tour.json-schema.org/";
 
-export async function hyperjumpValidate(data: any, schema: any) {
+export async function hyperjumpValidate(
+  data: any,
+  schema: any,
+  externalSchema?: any,
+) {
   if (!("$schema" in schema)) {
     schema["$schema"] = "https://json-schema.org/draft/2020-12/schema";
   }
   try {
     registerSchema(schema as SchemaObject, schemaUrl);
+    if (externalSchema) {
+      registerSchema(externalSchema as SchemaObject, externalSchema.$id);
+    }
     const output = await validate(schemaUrl, data as SchemaObject, BASIC);
     return output;
   } catch (e) {
     throw e;
   } finally {
     unregisterSchema(schemaUrl);
+    if (externalSchema) {
+      unregisterSchema(externalSchema.$id);
+    }
   }
 }
 
 export async function hyperjumpCheckAnnotations(
-  data: any,
   schema: any,
   requiredAnnotations: string[],
 ): Promise<OutputUnit> {
-  console.log(data, schema, requiredAnnotations);
   // const annotationSchemaUrl = "http://tour2.json-schemad.org/";
   const dialectId = "https://json-schema.org/draft/2020-12/schema";
   if (!("$schema" in schema)) {

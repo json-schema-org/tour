@@ -1,0 +1,57 @@
+---
+title: $id and $schema
+description: Learn how to use the $id and $schema keywords in JSON Schema
+keywords:  $id, $schema, JSON Schema
+---
+
+# $schema 
+In JSON Schema, `$schema` is a **string** that defines the version of the JSON Schema standard that the schema is written in. 
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "string"
+}
+```
+In the above example, the schema is written in the JSON Schema draft 2020-12. you can find the latest version of JSON Schema [here](https://json-schema.org/specification-links).
+
+For the tour, we have used the JSON Schema draft 2020-12.
+
+# $id 
+
+The `$id` keyword is a **string** that defines the URI of the schema. 
+
+```json
+{
+  "$id": "https://example.com/person.schema.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
+```
+
+In the above example, the schema is given a URI of `https://example.com/person.schema.json`.
+
+The schema URI can be used to reference the schema from other schemas using the `$ref` keyword.
+```json
+{
+  "$ref": "https://example.com/person.schema.json"
+}
+```
+
+# Task
+
+We have defined a simple schema as below. 
+
+```json
+{
+  "$id":"https://example.com/string",
+  "type": "string"
+}
+```
+Reference this schema using the `$ref` keyword in the schema given to you in the side editor.
+
+
