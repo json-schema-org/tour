@@ -5,7 +5,7 @@ import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SmallBtn from "../SmallBtn";
 import { CodeFile } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
@@ -31,7 +31,7 @@ export default function CodeEditor({
   chapterIndex: number;
 }) {
   const { colorMode } = useColorMode();
-  const monaco = useMonaco();
+  const [monaco, setMonaco] = useState<any>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -79,6 +79,10 @@ export default function CodeEditor({
           height={"100%"}
           onChange={(codeString) => setCodeString(codeString ? codeString : "")}
           options={{ minimap: { enabled: false }, fontSize: 14 }}
+          onMount={(editor, monaco) => {
+            setMonaco(monaco);
+            // editor.focus();
+          }}
         />
       </div>
       <div className={styles.buttonsWrapper}>
