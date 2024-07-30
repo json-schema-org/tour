@@ -1,0 +1,45 @@
+---
+title: comment and default
+description: Learn how to use the comment and default keywords in JSON Schema
+keywords:  comment, default, JSON Schema
+---
+
+# Comment 
+
+To add comments in  your JSON Schema, use the `$comment` keyword. The `$comment` keyword is a **string** that provides additional information about the schema. 
+
+```json highlightLineStart={3}
+{
+  "type": "string",
+  "$comment": "This is a comment"
+}
+```
+
+# Default
+
+You can set a default value for a property using the `default` keyword. The `default` keyword is used to provide a default value for a property. 
+
+```json highlightLineStart={3}
+{
+  "type": "string",
+  "default": "Hello World"
+}
+```
+
+> **Remember:** These keywords are not used for validation purposes. They are used to provide additional information about the schema.
+
+## Task
+
+```json
+{
+  "name": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "age": 25
+}
+```
+
+You are given schema of the above JSON object. 
+- Add any comment to the `name` property.
+- Set any default value to the `age` property.
