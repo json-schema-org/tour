@@ -14,6 +14,7 @@ import InfoBox from "../InfoBox";
 import GoodToKnowBox from "../GoodToKnowBox/GoodToKnowBox";
 import rehypeExternalLinks from "rehype-external-links";
 import styles from "./Mdx.module.css";
+import SideEditorLink from "../SideEditorLink";
 
 function createHeading(level: number): any {
   const headingSizes: {
@@ -86,6 +87,7 @@ const customComponents = {
   InfoBox,
   GoodToKnowBox,
   CodeSnippet,
+  SideEditorLink,
 };
 export function CustomMDX(props: MDXRemoteProps) {
   return (

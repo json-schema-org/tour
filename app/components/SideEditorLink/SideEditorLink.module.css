@@ -1,0 +1,7 @@
+.main {
+  cursor: pointer;
+  color: hsl(var(--link-color));
+}
+.main:hover {
+  text-decoration: underline;
+}
