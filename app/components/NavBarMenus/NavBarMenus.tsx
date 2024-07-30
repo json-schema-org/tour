@@ -22,6 +22,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import navBarStyles from "../NavBar/NavBar.module.css";
+import style from "react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark";
 
 export default function NavBarMenu() {
   const { colorMode } = useColorMode();
@@ -61,7 +62,13 @@ export default function NavBarMenu() {
               Reset progress
             </MenuItem>
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent
+            rootProps={{
+              style: {
+                transform: "scale(0)",
+              },
+            }}
+          >
             <PopoverArrow />
             <PopoverCloseButton />
             <PopoverHeader>Confirmation!</PopoverHeader>
