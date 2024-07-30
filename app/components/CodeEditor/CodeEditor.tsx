@@ -12,6 +12,7 @@ import { OutputReducerAction } from "@/lib/reducers";
 import { validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
+import { useEditorStore } from "@/lib/stores";
 
 export default function CodeEditor({
   codeString,
@@ -33,6 +34,7 @@ export default function CodeEditor({
   const { colorMode } = useColorMode();
   const [monaco, setMonaco] = useState<any>(null);
   const router = useRouter();
+  const editorStore = useEditorStore();
 
   useEffect(() => {
     if (monaco) {
@@ -81,7 +83,8 @@ export default function CodeEditor({
           options={{ minimap: { enabled: false }, fontSize: 14 }}
           onMount={(editor, monaco) => {
             setMonaco(monaco);
-            // editor.focus();
+            editorStore.setEditor(editor);
+            editorStore.setMonaco(monaco);
           }}
         />
       </div>
