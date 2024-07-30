@@ -57,7 +57,7 @@ export default function CodeEditor({
           codeFile,
           dispatchOutput,
           stepIndex,
-          chapterIndex
+          chapterIndex,
         );
       }
     };
@@ -90,7 +90,7 @@ export default function CodeEditor({
                 codeFile,
                 dispatchOutput,
                 stepIndex,
-                chapterIndex
+                chapterIndex,
               )
             }
             variant={"default"}

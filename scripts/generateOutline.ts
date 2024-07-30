@@ -27,7 +27,7 @@ function generateOutline(): ContentOutline {
   files.forEach((file, chapterNumber) => {
     if (file.isDirectory()) {
       const { metadata } = parseMdxMetadata(
-        `${contentFolderName}/${file.name}/${indexFileName}`
+        `${contentFolderName}/${file.name}/${indexFileName}`,
       );
 
       const chapter: Chapter = {
@@ -42,7 +42,7 @@ function generateOutline(): ContentOutline {
       chapterFiles = chapterFiles.filter((file) => file.name !== indexFileName);
       chapterFiles.forEach((chapterFile, stepNumber) => {
         const { metadata } = parseMdxMetadata(
-          `${contentFolderName}/${file.name}/${chapterFile.name}/${instructionsFileName}`
+          `${contentFolderName}/${file.name}/${chapterFile.name}/${instructionsFileName}`,
         );
 
         const step = {

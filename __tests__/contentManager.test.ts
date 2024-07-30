@@ -78,7 +78,7 @@ describe("ContentManager", () => {
     const instructionsFilePath =
       contentManager.getInstructionsFilePath(urlPath);
     expect(instructionsFilePath).toBe(
-      `content/chapter1/step1/${instructionsFileName}`
+      `content/chapter1/step1/${instructionsFileName}`,
     );
   });
 
@@ -86,7 +86,7 @@ describe("ContentManager", () => {
     const urlPath = "chapter1/step1";
     const codeFilePath = contentManager.getCodeFilePath(urlPath);
     expect(codeFilePath).toBe(
-      `content/chapter1/step1/${contentManager.codeFileName}`
+      `content/chapter1/step1/${contentManager.codeFileName}`,
     );
   });
 

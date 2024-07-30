@@ -59,7 +59,7 @@ test("content folder structure", async () => {
     const regExResult = folderNameRegEx.exec(file);
     if (regExResult === null) {
       assert.fail(
-        `Folder name ${file} does not match the expected pattern: ${folderNameRegEx.source}`
+        `Folder name ${file} does not match the expected pattern: ${folderNameRegEx.source}`,
       );
     }
 
@@ -72,12 +72,12 @@ test("content folder structure", async () => {
       if (chapterFile === "index.mdx") {
         const indexFile = fs.readFileSync(
           path.join(contentFolder, file, chapterFile),
-          "utf-8"
+          "utf-8",
         );
         const { data } = matter(indexFile);
         if (!data.title) {
           assert.fail(
-            `Chapter ${file} does not contain a title as meta field in index.mdx file`
+            `Chapter ${file} does not contain a title as meta field in index.mdx file`,
           );
         } else {
           continue;
@@ -86,38 +86,43 @@ test("content folder structure", async () => {
 
       if (!folderNameRegEx.exec(chapterFile)) {
         assert.fail(
-          `Lesson folder name ${chapterFile} does not match the expected pattern: ${folderNameRegEx.source}`
+          `Lesson folder name ${chapterFile} does not match the expected pattern: ${folderNameRegEx.source}`,
         );
       }
 
       const lessonFolderFiles = fs.readdirSync(
-        path.join(contentFolder, file, chapterFile)
+        path.join(contentFolder, file, chapterFile),
       );
 
       if (!lessonFolderFiles.includes(instructionsFileName)) {
         assert.fail(
-          `Lesson ${file}/${chapterFile} does not contain an ${instructionsFileName} file`
+          `Lesson ${file}/${chapterFile} does not contain an ${instructionsFileName} file`,
         );
       }
       if (!lessonFolderFiles.includes(contentManager.codeFileName)) {
         assert.fail(
-          `Lesson ${file}/${chapterFile} does not contain a ${contentManager.codeFileName} file`
+          `Lesson ${file}/${chapterFile} does not contain a ${contentManager.codeFileName} file`,
         );
       }
 
       const { codeFile, metadata } = parseLessonFolder(
         path.join(contentFolder, file, chapterFile, instructionsFileName),
-        path.join(contentFolder, file, chapterFile, contentManager.codeFileName)
+        path.join(
+          contentFolder,
+          file,
+          chapterFile,
+          contentManager.codeFileName,
+        ),
       );
 
       const metadataValidation = await hyperjumpValidate(
         metadata,
-        metadataSchema
+        metadataSchema,
       );
 
       const codeFileValidation = await hyperjumpValidate(
         codeFile,
-        codeFileSchema
+        codeFileSchema,
       );
 
       if (!metadataValidation.valid) {
@@ -126,8 +131,8 @@ test("content folder structure", async () => {
           `Metadata for ${file}/${chapterFile} is invalid: \n ${JSON.stringify(
             metadataValidation.errors![0],
             null,
-            2
-          )}`
+            2,
+          )}`,
         );
       }
 
@@ -136,8 +141,8 @@ test("content folder structure", async () => {
           `Code file for ${file}/${chapterFile} is invalid: \n ${JSON.stringify(
             codeFileValidation.errors![0],
             null,
-            2
-          )}`
+            2,
+          )}`,
         );
       }
     }

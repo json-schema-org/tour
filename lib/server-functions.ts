@@ -28,7 +28,7 @@ export function getCodeFileExports(fullFilePath: string) {
   const fileContent = fs.readFileSync(fullFilePath, "utf-8");
   const dynmicFunction = new Function(
     "module",
-    transpileTypeScriptToJavaScript(fileContent)
+    transpileTypeScriptToJavaScript(fileContent),
   );
   const moduleExports: {} | CodeFileExports = {};
   dynmicFunction(moduleExports);

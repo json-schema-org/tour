@@ -16,14 +16,14 @@ export default function TestCaseTab({
     <div
       className={classnames(
         styles.testCaseTab,
-        isActive && styles.activeTestCaseTab
+        isActive && styles.activeTestCaseTab,
       )}
       onClick={() => setIsActive(index)}
     >
       <div
         className={classnames(
           styles.dot,
-          passed ? styles.passed : styles.failed
+          passed ? styles.passed : styles.failed,
         )}
       />
       Case {index + 1}

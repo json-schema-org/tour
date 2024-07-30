@@ -7,17 +7,16 @@ const code: any = {
     age: {
       type: "integer",
     },
-    status: {
-    },
-  }
+    status: {},
+  },
 };
 
 const solution = structuredClone(code);
 solution.properties.status = {
-  "not":{
+  not: {
     type: "null",
-  }
-}
+  },
+};
 const testCases: any[] = [
   {
     input: {
@@ -39,7 +38,7 @@ const testCases: any[] = [
     input: {
       name: "person",
       age: 23,
-      status:[]
+      status: [],
     },
     expected: true,
   },
@@ -67,7 +66,6 @@ const testCases: any[] = [
     },
     expected: false,
   },
-    
 ];
 module.exports = {
   code,

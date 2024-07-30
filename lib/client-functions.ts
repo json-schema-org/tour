@@ -8,7 +8,7 @@ export async function validateCode(
   codeFile: CodeFile,
   dispatchOutput: React.Dispatch<OutputReducerAction>,
   stepIndex: number,
-  chapterIndex: number
+  chapterIndex: number,
 ) {
   const testCases = codeFile.testCases;
   try {
@@ -21,7 +21,7 @@ export async function validateCode(
 
       const validationResult = await hyperjumpValidate(
         dataTestCase.input,
-        schemaCode
+        schemaCode,
       );
       if (codeFile.expectedAnnotations) {
         // Check if the expected annotations are present in the schema
@@ -30,7 +30,7 @@ export async function validateCode(
         const annotationCheckResult = await hyperjumpCheckAnnotations(
           dataTestCase.input,
           schemaCode,
-          codeFile.expectedAnnotations
+          codeFile.expectedAnnotations,
         );
       }
 
@@ -96,7 +96,7 @@ export function completeStep(chapterIndex: number, stepIndex: number) {
   if (typeof window === "undefined") return false;
   const key = `chapter-${chapterIndex}-step-${stepIndex}`;
   const progress = JSON.parse(
-    localStorage.getItem("progress") ? localStorage.getItem("progress")! : "{}"
+    localStorage.getItem("progress") ? localStorage.getItem("progress")! : "{}",
   );
   progress[key] = "completed";
 
@@ -110,7 +110,7 @@ export function isStepCompleted(chapterIndex: number, stepIndex: number) {
 
   const key = `chapter-${chapterIndex}-step-${stepIndex}`;
   const progress = JSON.parse(
-    localStorage.getItem("progress") ? localStorage.getItem("progress")! : "{}"
+    localStorage.getItem("progress") ? localStorage.getItem("progress")! : "{}",
   );
   return progress[key] === "completed";
 }

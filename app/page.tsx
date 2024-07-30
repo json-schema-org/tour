@@ -28,7 +28,7 @@ export default function Home() {
         <Link
           href={
             contentManager.getPathWithPrefix(
-              outline[0].steps[0].fullPath
+              outline[0].steps[0].fullPath,
             ) as string
           }
         >

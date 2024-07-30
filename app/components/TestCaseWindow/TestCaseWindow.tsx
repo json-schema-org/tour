@@ -73,7 +73,7 @@ export default function TestCasesWindow({
   };
   const numberOfFailedTestCases = useMemo(
     () => testCaseResult.filter((testCase) => !testCase.passed).length,
-    [testCaseResult]
+    [testCaseResult],
   );
   const [isLeftDisabled, setIsLeftDisabled] = useState(true);
   const [isRightDisabled, setIsRightDisabled] = useState(false);
@@ -122,7 +122,7 @@ export default function TestCasesWindow({
             onClick={scrollLeft}
             className={cx(
               styles.scrollButton,
-              isLeftDisabled ? styles.disabledScrollBtn : ""
+              isLeftDisabled ? styles.disabledScrollBtn : "",
             )}
           >
             <CkChevronLeft colorMode={colorMode} />
@@ -149,7 +149,7 @@ export default function TestCasesWindow({
             onClick={scrollRight}
             className={cx(
               styles.scrollButton,
-              isRightDisabled ? styles.disabledScrollBtn : ""
+              isRightDisabled ? styles.disabledScrollBtn : "",
             )}
           >
             <CkChevronRight colorMode={colorMode} />

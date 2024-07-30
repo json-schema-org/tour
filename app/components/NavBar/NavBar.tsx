@@ -39,7 +39,7 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const outlineBtnRef = React.useRef(null);
   const [progress, setProgress] = useState(
-    ((stepIndex + 1) / totalSteps) * 100
+    ((stepIndex + 1) / totalSteps) * 100,
   );
 
   useEffect(() => {

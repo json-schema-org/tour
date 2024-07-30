@@ -20,7 +20,7 @@ export default function EditorNOutput({
   chapterIndex: number;
 }) {
   const [codeString, setCodeString] = useState(
-    JSON.stringify(codeFile.code, null, 2)
+    JSON.stringify(codeFile.code, null, 2),
   );
 
   const showSolution = () => {
@@ -47,7 +47,7 @@ export default function EditorNOutput({
   };
 
   const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent> | MouseEvent
+    e: React.MouseEvent<HTMLDivElement, MouseEvent> | MouseEvent,
   ) => {
     if (!isDraggingRef.current) return;
 

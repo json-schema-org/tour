@@ -32,7 +32,7 @@ function StepItem({
         className={cx(
           styles.stepItem,
           isActive && activeStepIndex === index ? styles.activeStep : "",
-          isCompleted && styles.completedStep
+          isCompleted && styles.completedStep,
         )}
       >
         {step.title}
@@ -67,14 +67,14 @@ export default function ChapterItem({
           styles.chapterItemWrapper,
           !isOpen && styles.closed,
           isCompleted && styles.completedChapterItemWrapper,
-          isActive && styles.activeChapterItemWrapper
+          isActive && styles.activeChapterItemWrapper,
         )}
         onClick={onToggle}
       >
         <div
           className={cx(
             styles.chapterItemNumber,
-            isActive ? styles.active : styles.neutral
+            isActive ? styles.active : styles.neutral,
           )}
         >
           {isCompleted ? (

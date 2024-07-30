@@ -112,7 +112,7 @@ export default class ContentManager {
     const nextStepPath = this.getPathWithPrefix(this.getNextStepPath(urlPath));
 
     const previousStepPath = this.getPathWithPrefix(
-      this.getPreviousStepPath(urlPath)
+      this.getPreviousStepPath(urlPath),
     );
     const outline = this.getOutline();
 

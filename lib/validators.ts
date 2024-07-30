@@ -33,7 +33,7 @@ export async function hyperjumpValidate(data: any, schema: any) {
 export async function hyperjumpCheckAnnotations(
   data: any,
   schema: any,
-  requiredAnnotations: string[]
+  requiredAnnotations: string[],
 ): Promise<OutputUnit> {
   console.log(data, schema, requiredAnnotations);
   // const annotationSchemaUrl = "http://tour2.json-schemad.org/";
@@ -53,8 +53,8 @@ export async function hyperjumpCheckAnnotations(
     if (missingAnnotations.length > 0) {
       throw new Error(
         `Schema does not contain the following annotations: ${missingAnnotations.join(
-          ", "
-        )}`
+          ", ",
+        )}`,
       );
     }
     return {

@@ -1,37 +1,31 @@
 const code: any = {
-   "$defs": {
-    "next": {
-    }
+  $defs: {
+    next: {},
   },
   type: "object",
   properties: {
     name: {
       type: "string",
     },
-    next:{
+    next: {
       $ref: "#/$defs/next",
-    }
+    },
   },
 };
 
 const solution = structuredClone(code);
 solution.$defs.next = {
-  type:"object",
+  type: "object",
   properties: {
     value: {
       type: ["string"],
     },
-    next:{
-      oneOf:[
-        {$ref: "#/$defs/next"},
-        {type:"null"}
-      ]
+    next: {
+      oneOf: [{ $ref: "#/$defs/next" }, { type: "null" }],
     },
-    
   },
-  required:["next","value"]
-
-}
+  required: ["next", "value"],
+};
 const testCases: any[] = [
   {
     input: {
@@ -46,13 +40,12 @@ const testCases: any[] = [
               value: "fourth",
               next: {
                 value: "fifth",
-                next: null
-              }
-            }
-          }
-        }
-      }
-      
+                next: null,
+              },
+            },
+          },
+        },
+      },
     },
     expected: true,
   },
@@ -69,31 +62,29 @@ const testCases: any[] = [
               value: "fourth",
               next: {
                 value: "fifth",
-                next: null
-              }
-            }
-          }
-        }
-      }
-      
+                next: null,
+              },
+            },
+          },
+        },
+      },
     },
     expected: false,
   },
   {
     input: {
       name: "person",
-      next: {value: "first", next: null}
+      next: { value: "first", next: null },
     },
     expected: true,
   },
   {
     input: {
       name: "person",
-      next: "test"
+      next: "test",
     },
     expected: false,
   },
-    
 ];
 module.exports = {
   code,

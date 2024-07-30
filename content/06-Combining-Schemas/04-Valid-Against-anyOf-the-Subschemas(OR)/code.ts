@@ -10,18 +10,17 @@ const code: any = {
     employeeType: {
       enum: ["full-time", "part-time"],
     },
-  }
+  },
 };
 
 const solution = structuredClone(code);
 solution.anyOf = [
   {
-    required:["salary"],
+    required: ["salary"],
   },
   {
-    required:["hourlyRate"],
+    required: ["hourlyRate"],
   },
-  
 ];
 
 const testCases: any[] = [
@@ -34,7 +33,7 @@ const testCases: any[] = [
     },
     expected: true,
   },
-  
+
   {
     input: {
       name: "person",
@@ -62,8 +61,6 @@ const testCases: any[] = [
     },
     expected: false,
   },
-  
-  
 ];
 module.exports = {
   code,

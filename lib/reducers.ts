@@ -7,12 +7,12 @@ export type OutputReducerAction = {
 
 export type OutputReducer = (
   state: OutputResult,
-  action: OutputReducerAction
+  action: OutputReducerAction,
 ) => OutputResult;
 
 export function outputReducer(
   state: OutputResult,
-  action: OutputReducerAction
+  action: OutputReducerAction,
 ): OutputResult {
   switch (action.type) {
     case "valid":
