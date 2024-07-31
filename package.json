@@ -6,7 +6,7 @@
   "scripts": {
     "next-dev": "next dev",
     "content-watch": "nodemon --ext ts,mdx --watch ./content --ignore ./content/outline.json  --exec \"tsx ./scripts/generateOutline.ts\"",
-    "dev": "concurrently \"yarn run next-dev\" \"yarn run content-watch\"",
+    "dev": "concurrently \"pnpm run next-dev\" \"pnpm run content-watch\"",
     "build": "tsx ./scripts/generateOutline.ts && next build",
     "start": "next start",
     "lint": "next lint",
