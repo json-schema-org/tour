@@ -4,8 +4,8 @@ function Icon({ colorMode }: { colorMode?: "dark" | "light" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="26"
-      height="26"
+      width="22"
+      height="22"
       fill="none"
       style={{
         filter: colorMode === "dark" ? "invert(1)" : "invert(0)",

@@ -55,8 +55,8 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
           <Image
             src={colorMode == "light" ? JSONSchemaIcon : JSONSchemaIconDark}
             alt="JSON Schema Logo"
-            width={40}
-            height={40}
+            width={32}
+            height={32}
           />
           <div className={cx(styles.title, outfitFont.className)}>
             A Tour of JSON Schema
