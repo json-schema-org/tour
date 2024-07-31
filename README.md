@@ -19,7 +19,7 @@ To start the development server, run the following command:
 pnpm dev
 ```
 
-> when you run `yarn dev`, a file named `outline.json` will be created in th `/content` directory. This file is used to generate the table of contents for the website.
+> when you run `pnpm dev`, a file named `outline.json` will be created in th `/content` directory. This file is used to generate the table of contents for the website.
 
 (make sure you run tests before pushing your changes)
 To run the tests, run the following command:
