@@ -8,6 +8,20 @@ import { Providers } from "./providers";
 export const metadata: Metadata = {
   title: "Tour Of Json Schema",
   description: "A Tour of Json Schema",
+  icons: [
+    {
+      rel: "icon",
+      type: "image/x-icon",
+      url: "/logos/icon.ico",
+      media: "(prefers-color-scheme: dark)",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      url: "/logos/icon-black.ico",
+      media: "(prefers-color-scheme: light)",
+    },
+  ],
 };
 
 export default function RootLayout({
