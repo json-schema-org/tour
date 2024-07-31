@@ -10,13 +10,13 @@ The project is built using next.js.
 After cloning the repository, run the following command to install the dependencies:
 
 ```bash
-yarn install
+pnpm install
 ```
 
 To start the development server, run the following command:
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 > when you run `yarn dev`, a file named `outline.json` will be created in th `/content` directory. This file is used to generate the table of contents for the website.
@@ -25,7 +25,7 @@ yarn dev
 To run the tests, run the following command:
 
 ```bash 
-yarn test
+pnpm test
 ```
 
 
