@@ -1,0 +1,4 @@
+.feedbackSubmitted {
+  color: hsl(var(--text) / 0.5);
+  font-size: small;
+}

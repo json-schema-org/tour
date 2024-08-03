@@ -1,5 +1,5 @@
 import styles from "./ContentViewer.module.css";
-
+import Feedback from "../Feedback";
 export default function ContentViewer({
   children,
 }: {
@@ -7,7 +7,9 @@ export default function ContentViewer({
 }) {
   return (
     <div className={styles.contentWrapper}>
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>
+        {children} <Feedback />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,7 @@
+.main {
+  cursor: pointer;
+}
+
+.main:hover .path {
+  fill: hsl(var(--text));
+}
