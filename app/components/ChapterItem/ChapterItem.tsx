@@ -16,17 +16,20 @@ function StepItem({
   isActive,
   activeStepIndex,
   isCompleted,
+  onClose,
 }: {
   step: ChapterStep;
   index: number;
   isActive: boolean;
   activeStepIndex: number;
   isCompleted: boolean;
+  onClose: () => void;
 }) {
   return (
     <Link
       href={("/" + contentManager.getPathWithPrefix(step.fullPath)) as string}
       key={step.title}
+      onClick={onClose}
     >
       <li
         className={cx(
@@ -48,6 +51,7 @@ export default function ChapterItem({
   title,
   steps,
   activeStepIndex,
+  onClose,
 }: {
   index: number;
   isCompleted: boolean;
@@ -55,6 +59,7 @@ export default function ChapterItem({
   title: string;
   steps: ChapterStep[];
   activeStepIndex: number;
+  onClose: () => void;
 }) {
   const { isOpen, onToggle, onOpen } = useDisclosure();
   useEffect(() => {
@@ -99,6 +104,7 @@ export default function ChapterItem({
                 key={step.title}
                 isCompleted={isStepCompleted(index, stepIndex)}
                 activeStepIndex={activeStepIndex}
+                onClose={onClose}
               />
             ))}
           </ul>

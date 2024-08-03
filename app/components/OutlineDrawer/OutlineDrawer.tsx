@@ -53,6 +53,7 @@ export default function OutlineDrawer({
                     title={item.title}
                     steps={item.steps}
                     activeStepIndex={activeStepIndex}
+                    onClose={onClose}
                   />
                 ))}
               </ul>
