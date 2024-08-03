@@ -101,6 +101,7 @@ export default function CodeEditor({
               )
             }
             variant={"default"}
+            tooltip="Shift + Enter"
           >
             Validate
           </SmallBtn>
