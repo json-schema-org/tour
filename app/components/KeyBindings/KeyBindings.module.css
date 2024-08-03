@@ -1,12 +1,15 @@
 .key {
   font-family: monospace;
-  padding: 2px 6px;
+
+  padding: 1px 5px;
+  font-weight: bold;
   border-radius: 6px;
-  background-color: hsl(var(--background));
+  background-color: hsl(var(--text));
   text-transform: capitalize;
-  border: 1px solid hsl(var(--text) / 0.4);
-  border-bottom: 2px solid hsl(var(--text) / 0.6);
+  border: 1px solid hsl(var(--background) / 0.4);
+  border-bottom: 2px solid hsl(var(--background) / 0.6);
   font-size: small;
+  color: hsl(var(--background));
 }
 
 .keysWrapper {
