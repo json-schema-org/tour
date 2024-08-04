@@ -40,7 +40,7 @@ We will create two subschemas 1. `minStringLength` and 2. `alphaNumeric` and the
 }
 ```
 
-The above schema ensures that the `name` property is valid against both the `minStringLength` and `alphaNumeric` subschemas. in other words, the `name` property must have a minimum length of 5 characters and must contain only alphanumeric characters.  
+The above [schema](https://json-schema.org/learn/glossary#schema) ensures that the `name` property is valid against both the `minStringLength` and `alphaNumeric` subschemas. in other words, the `name` property must have a minimum length of 5 characters and must contain only alphanumeric characters.  
 
 > **Note:** It is **not necessary** to define subschemas using `$defs` and `$ref`. You can directly define the subschemas inline as well.
 

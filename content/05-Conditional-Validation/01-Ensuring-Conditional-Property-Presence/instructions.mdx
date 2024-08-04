@@ -16,7 +16,7 @@ Conditional validation involves applying validation rules based on the presence 
 **For Example:**
 - **dependentRequired**: if a property `A` is present, then property `B` must be present. 
 
-- **dependentSchemas**: if a property `A` is present, then apply a sub-schema `B`.
+- **dependentSchemas**: if a property `A` is present, then apply a [sub-schema](https://json-schema.org/learn/glossary#subschema) `B`.
 
 - **if-then-else**: if a sub-schema `A` is valid then sub-schema `B` must be valid, else sub-schema `C` must be valid.
 
@@ -50,7 +50,7 @@ To achieve this, you can use the `dependentRequired` [keyword](https://json-sche
 }
 ```
 
-In the above schema, the `age` property is required if the `name` property is present. If the `name` property is not present, the `age` property is not required.
+In the above [schema](https://json-schema.org/learn/glossary#schema), the `age` property is required if the `name` property is present. If the `name` property is not present, the `age` property is not required.
 
 
 ## Task 
