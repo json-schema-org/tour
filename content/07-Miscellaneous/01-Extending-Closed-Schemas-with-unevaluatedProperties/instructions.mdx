@@ -9,7 +9,7 @@ keywords:  extending closed schemas,unevaluatedProperties , JSON Schema, JSON Sc
 
 Previously in the Objects module, we learned to `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself. 
 
-So, `additionalProperties` can restrict you from "extending" a schema using combining keywords such as `allOf`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail. 
+So, `additionalProperties` can restrict you from "extending" a schema using combining [keywords](https://json-schema.org/learn/glossary#subschema) such as `allOf`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail. 
 
 ```json highlightLineStart={11}
 {
