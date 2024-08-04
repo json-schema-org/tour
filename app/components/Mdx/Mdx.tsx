@@ -41,7 +41,7 @@ function createHeading(level: number): any {
         as={`h${level}` as As}
         size={headingSizes[level]}
         lineHeight={"tallest"}
-        letterSpacing={level <= 2 ? "tighter" : ""}
+        letterSpacing={level <= 2 ? "tight" : ""}
         className={styles.heading}
       >
         {children}
