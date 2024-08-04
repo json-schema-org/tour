@@ -7,7 +7,7 @@ keywords:  extending closed schemas,unevaluatedProperties , JSON Schema, JSON Sc
 
 # Extending Closed Schemas
 
-Previously in the Objects module, we learned to `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same *subschema* as itself. 
+Previously in the Objects module, we learned to `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself. 
 
 So, `additionalProperties` can restrict you from "extending" a schema using combining keywords such as `allOf`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail. 
 
@@ -31,7 +31,7 @@ So, `additionalProperties` can restrict you from "extending" a schema using comb
   "required": ["type"]
 }
 ```
-The above schema will not allow you to define `type` property. because `additionalProperties` is set to `false`. The reason is, `additionalProperties` only recognizes properties declared in the same subschema. 
+The above schema will not allow you to define `type` property. because `additionalProperties` is set to `false`. The reason is, `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema). 
 
 
 ## Unevaluated Properties

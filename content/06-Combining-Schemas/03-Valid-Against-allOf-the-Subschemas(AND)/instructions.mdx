@@ -7,9 +7,9 @@ keywords:  $defs, $ref, JSON Schema, subschemas,
 
 # Valid Against allOf the Subschemas (AND) 
 
-When you want to ensure that an [_instance_](https://json-schema.org/learn/glossary#instance) is valid against **all of** the subschemas, you can use the `allOf` keyword. 
+When you want to ensure that an [_instance_](https://json-schema.org/learn/glossary#instance) is valid against **all of** the [subschemas](https://json-schema.org/learn/glossary#subschema), you can use the `allOf` keyword. 
 
-You can think of `allOf` as an **AND operation** between subschemas. if one of the subschemas fails, the [_instance_](https://json-schema.org/learn/glossary#instance) is considered invalid.
+You can think of `allOf` as an **AND operation** between [subschemas](https://json-schema.org/learn/glossary#subschema). if one of the [subschemas](https://json-schema.org/learn/glossary#subschema) fails, the [_instance_](https://json-schema.org/learn/glossary#instance) is considered invalid.
 
 
 
@@ -19,7 +19,7 @@ You can think of `allOf` as an **AND operation** between subschemas. if one of t
 }
 ```
 
-We will create two subSchemas 1. `minStringLength` and 2. `alphaNumeric` and then combine them using `allOf` in the `name` property.
+We will create two [subschemas](https://json-schema.org/learn/glossary#subschema) 1. `minStringLength` and 2. `alphaNumeric` and then combine them using `allOf` in the `name` property.
 
 ```json highlightLineStart={10} highlightLineEnd={13}
 {
@@ -40,9 +40,9 @@ We will create two subSchemas 1. `minStringLength` and 2. `alphaNumeric` and the
 }
 ```
 
-The above schema ensures that the `name` property is valid against both the `minStringLength` and `alphaNumeric` subschemas. in other words, the `name` property must have a minimum length of 5 characters and must contain only alphanumeric characters.  
+The above schema ensures that the `name` property is valid against both the `minStringLength` and `alphaNumeric` [subschemas](https://json-schema.org/learn/glossary#subschema). in other words, the `name` property must have a minimum length of 5 characters and must contain only alphanumeric characters.  
 
-> **Note:** It is **not necessary** to define subschemas using `$defs` and `$ref`. You can directly define the subschemas inline as well.
+> **Note:** It is **not necessary** to define [subschemas](https://json-schema.org/learn/glossary#subschema) using `$defs` and `$ref`. You can directly define the [subschemas](https://json-schema.org/learn/glossary#subschema) inline as well.
 
 ## Task 
 
@@ -53,7 +53,7 @@ The above schema ensures that the `name` property is valid against both the `min
 }
 ```
 
-For the given JSON document, you are provided with a schema in the <SideEditorLink/>. the schema has defined a subschemas `ageLimit`.
+For the given JSON document, you are provided with a schema in the <SideEditorLink/>. the schema has defined a [subschemas](https://json-schema.org/learn/glossary#subschema) `ageLimit`.
 Your task is to: 
-- Define a inline subschema that checks if the `age` is of type `integer`
-- Combine the `ageLimit` and the inline subschema using `allOf` in the `age` property.
+- Define a inline [subschemas](https://json-schema.org/learn/glossary#subschema) that checks if the `age` is of type `integer`
+- Combine the `ageLimit` and the inline [subschemas](https://json-schema.org/learn/glossary#subschema) using `allOf` in the `age` property.

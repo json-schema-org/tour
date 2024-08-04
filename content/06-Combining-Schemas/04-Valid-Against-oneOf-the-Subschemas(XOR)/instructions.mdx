@@ -6,9 +6,9 @@ keywords: "oneOf, properties, conditional validation"
 
 # Valid Against oneOf the Subschemas (XOR)
 
-When you want to ensure that an [_instance_](https://json-schema.org/learn/glossary#instance) is valid against **exactly one of** the subschemas, you can use the `oneOf` keyword.
+When you want to ensure that an [_instance_](https://json-schema.org/learn/glossary#instance) is valid against **exactly one of** the [subschemas](https://json-schema.org/learn/glossary#subschema), you can use the `oneOf` keyword.
 
-You can think of `oneOf` as an **XOR operation** between subschemas. If more than one subschema is valid, the [_instance_](https://json-schema.org/learn/glossary#instance) is considered invalid.
+You can think of `oneOf` as an **XOR operation** between [subschemas](https://json-schema.org/learn/glossary#subschema). If more than one [subschema](https://json-schema.org/learn/glossary#subschema) is valid, the [_instance_](https://json-schema.org/learn/glossary#instance) is considered invalid.
 
 ## Example
 
@@ -33,7 +33,7 @@ Let's add a new property `dateOfBirth` to the JSON document.
 
 ## Schema Definition
 
-To apply these conditions you can use `oneOf` keyword. `oneOf` ensures that **exactly one of** the specified *subschemas* is valid. 
+To apply these conditions you can use `oneOf` keyword. `oneOf` ensures that **exactly one of** the specified [subschemas](https://json-schema.org/learn/glossary#subschema) is valid. 
 
 We will combine using `oneOf` and `required`, to ensure that only one of the properties is present in the JSON document.
 

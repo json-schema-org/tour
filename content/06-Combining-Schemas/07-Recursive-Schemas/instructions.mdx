@@ -71,5 +71,5 @@ You are given an incomplete JSON Schema in the right <SideEditorLink/>.
 Define the `next` schema using recursive schemas. here `next` is a linked list of values.
 
 > **Hint:**
-> - inside `$defs` define a subschema `next` that refers to itself and `null` as the base case.
+> - inside `$defs` define a [subschemas](https://json-schema.org/learn/glossary#subschema) `next` that refers to itself and `null` as the base case.
 > - You will define `next` property inside the `$defs/next` schema. the value of `next`property can be either `null` or the `next` schema itself.  you can use `anyOf` keyword to define multiple schemas.
