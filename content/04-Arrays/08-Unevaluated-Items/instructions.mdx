@@ -11,16 +11,16 @@ keywords: unevaluatedItems, array, validation, JSON Schema, additionalItems
 
 So far, we have used `items`, `prefixItems` and `contains` [keywords](https://json-schema.org/learn/glossary#keyword) to define [subschemas](https://json-schema.org/learn/glossary#subschema) for the elements of an array. However, sometimes you many want to handle the items that are unevaluated by these keywords.
 
-In such cases, you can use the `unevaluatedItems` keyword to define a [subschema](https://json-schema.org/learn/glossary#subschema) for the unevaluated items in the array.
+In such cases, you can use the `unevaluatedItems` keyword to define a subschema for the unevaluated items in the array.
 
-- By definition, the `unevaluatedItems` [subschema](https://json-schema.org/learn/glossary#subschema) is always applied after `prefixItems`, `items`, and `contains` [subschemas](https://json-schema.org/learn/glossary#subschema).
+- By definition, the `unevaluatedItems` subschema is always applied after `prefixItems`, `items`, and `contains` subschemas.
 - As its name implies, `unevaluatedItems` applies to any array index that has not been previously evaluated.
 
 
 
 ## Example
 
-Consider, we have defined array items with `prefixItems`. When you have items more than the defined `prefixItems`, you can use `unevaluatedItems` to define a [subschemas](https://json-schema.org/learn/glossary#subschema) for the remaining items.
+Consider, we have defined array items with `prefixItems`. When you have items more than the defined `prefixItems`, you can use `unevaluatedItems` to define a subschemas for the remaining items.
 
 
 ```json
