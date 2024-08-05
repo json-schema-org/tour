@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "A Tour of JSON Schema",
     description: "A Tour of JSON Schema, Learn JSON Schema by Examples",
     images: {
-      url: "/logos/icon.ico", // Must be an absolute URL
+      url: "/logos/metaicon.png", // Must be an absolute URL
       width: 91,
       height: 90,
     },
