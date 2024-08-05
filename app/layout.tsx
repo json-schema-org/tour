@@ -25,12 +25,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://tour.json-schema.org"),
   openGraph: {
     title: "A Tour of JSON Schema",
-    description: "A Tour of JSON Schema, Learn JSON Schema by Example",
+    description: "A Tour of JSON Schema, Learn JSON Schema by Examples",
     images: {
-      url: "/icons/icon.ico", // Must be an absolute URL
+      url: "/logos/icon.ico", // Must be an absolute URL
       width: 91,
       height: 90,
     },
+    url: "",
   },
 };
 
