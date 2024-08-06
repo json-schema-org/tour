@@ -45,12 +45,14 @@ To achieve this, you can use the `dependentRequired` [keyword](https://json-sche
   "type": "object",
   "properties": {...},
   "dependentRequired": {
-    "age": ["name"]
+    "name": ["age"]
   }
 }
 ```
 
-In the above [schema](https://json-schema.org/learn/glossary#schema), the `age` property is required if the `name` property is present. If the `name` property is not present, the `age` property is not required.
+In the above schema, we specify that if the `name` property is present, then the `age` property must also be present.
+
+The value of the `dependentRequired` keyword is an object. Each entry in the object maps from the name of a property, *p*, to an array of strings listing properties that are required if *p* is present.
 
 
 ## Task 
