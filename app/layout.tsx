@@ -13,7 +13,6 @@ export const metadata: Metadata = {
       rel: "icon",
       type: "image/png",
       url: "/logos/icon-black.ico",
-      media: "(prefers-color-scheme: light)",
     },
   ],
   metadataBase: new URL("https://tour.json-schema.org"),
