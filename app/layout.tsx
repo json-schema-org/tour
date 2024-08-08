@@ -4,7 +4,7 @@ import { Open_Sans } from "next/font/google";
 import "./styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 import { Providers } from "./providers";
-
+import { GoogleAnalytics } from "@next/third-parties/google";
 export const metadata: Metadata = {
   title: "Tour Of Json Schema",
   description: "A Tour of Json Schema",
@@ -48,6 +48,7 @@ export default function RootLayout({
           content="45PV3wwrdtxUK6KI1fti1HoYTYSDEbSthaMIXKdG1s8"
         />
       </head>
+      <GoogleAnalytics gaId="G-X3SVRNR6WN" />
       <body className={GeistSans.className}>
         <Providers>
           <main>{children}</main>

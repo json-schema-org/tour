@@ -26,6 +26,7 @@
     "@mdx-js/react": "^3.0.1",
     "@monaco-editor/react": "^4.6.0",
     "@next/mdx": "^14.2.3",
+    "@next/third-parties": "^14.2.5",
     "@types/mdx": "^2.0.13",
     "ajv": "^8.13.0",
     "better-ajv-errors": "^1.2.0",
