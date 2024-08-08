@@ -15,6 +15,12 @@ export const metadata: Metadata = {
       url: "/logos/icon-black.ico",
       media: "(prefers-color-scheme: light)",
     },
+    {
+      rel: "icon",
+      type: "image/x-icon",
+      url: "/logos/icon.ico",
+      media: "(prefers-color-scheme: dark)",
+    },
   ],
   metadataBase: new URL("https://tour.json-schema.org"),
   openGraph: {
