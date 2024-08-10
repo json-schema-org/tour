@@ -70,3 +70,48 @@ the content of each step is stored in the `/content` directory with the followin
 ```
 
 The instructions.mdx file holds the content the users sees, and the code.ts file holds template code and the logic to validate user provided schemas
+
+## MDX Components Guide
+
+### GoodToKnowBox 
+
+A box that displays a tips or any messages in a box. 
+
+**Props:**
+- `title`: The title of the box (default: "Good to know")
+- `children`: The content of the box
+
+**Example:**
+```md
+<GoodToKnowBox title="Tips">
+  This is a good to know box
+</GoodToKnowBox>
+```
+### CodeSnippet
+
+A code block that displays the code with syntax highlighting.
+
+**Props:**
+- `highlightLineStart`: The line number to start highlighting
+- `highlightLineEnd`: The line number to end highlighting (default: highlight only one line)
+- `startingLineNumber`: The starting line number of the code block (default: 1)
+- `showLineNumbers`: Whether to show line numbers (default: true) 
+
+**Example:**
+```md
+<CodeSnippet highlightLineStart={1} highlightLineEnd={2}>
+{
+  "name": "John Doe",
+}
+</CodeSnippet>
+```
+### SideEditorLink
+
+A link that focuses the editor on the right side of the screen.
+
+**Props:** None 
+
+**Example:**
+```md
+<SideEditorLink />
+```
