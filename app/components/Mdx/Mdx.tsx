@@ -11,7 +11,7 @@ import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import { MDXComponents } from "mdx/types";
 import CodeSnippet from "../CodeSnippet/CodeSnippet";
 import InfoBox from "../InfoBox";
-import GoodToKnowBox from "../GoodToKnowBox/GoodToKnowBox";
+import GoodToKnowBox from "../GoodToKnowBox";
 import rehypeExternalLinks from "rehype-external-links";
 import styles from "./Mdx.module.css";
 import SideEditorLink from "../SideEditorLink";
@@ -84,7 +84,6 @@ export const components: MDXComponents = {
 };
 
 const customComponents = {
-  InfoBox,
   GoodToKnowBox,
   CodeSnippet,
   SideEditorLink,
