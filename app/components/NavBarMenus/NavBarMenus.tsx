@@ -1,11 +1,9 @@
 import { outfitFont } from "@/app/styles/fonts";
 import MdRestoreIcon from "@/app/styles/icons/MdRestore";
-import SensorsIcon from "@/app/styles/icons/Sensors";
 
 import SettingsIcon from "@/app/styles/icons/SettingsIcon";
 import {
   Button,
-  Flex,
   Menu,
   MenuButton,
   MenuItem,
@@ -17,16 +15,14 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
-  Switch,
   useColorMode,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import navBarStyles from "../NavBar/NavBar.module.css";
-import style from "react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark";
 
 export default function NavBarMenu() {
   const { colorMode } = useColorMode();
-  const [collectTelemetry, setCollectTelemetry] = React.useState(false);
+
   const [isCleared, setIsCleared] = useState(false);
 
   return (
@@ -35,22 +31,6 @@ export default function NavBarMenu() {
         <SettingsIcon colorMode={colorMode} />
       </MenuButton>
       <MenuList width={"min-content"} className={outfitFont.className}>
-        <MenuItem
-          display={"flex"}
-          gap={"8px"}
-          onClick={(e) => {
-            e.preventDefault();
-            setCollectTelemetry(!collectTelemetry);
-          }}
-        >
-          <Flex dir="row" align="center" width={"max-content"} gap={"8px"}>
-            <SensorsIcon colorMode={colorMode} />
-            Telemetry data
-            <div style={{ marginLeft: "16px" }}>
-              <Switch size="sm" isChecked={collectTelemetry} />
-            </div>
-          </Flex>
-        </MenuItem>
         <Popover
           placement="left"
           gutter={12}
