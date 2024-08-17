@@ -23,7 +23,7 @@ The `$id` [keyword](https://json-schema.org/learn/glossary#keyword) is a **strin
 
 ```json
 {
-  "$id": "https://example.com/person.schema.json",
+  "$id": "https://example.com/person",
   "type": "object",
   "properties": {
     "name": {
@@ -33,12 +33,12 @@ The `$id` [keyword](https://json-schema.org/learn/glossary#keyword) is a **strin
 }
 ```
 
-In the above example, the schema is given a URI of `https://example.com/person.schema.json`.
+In the above example, the schema is given a URI of `https://example.com/person`.
 
 The schema URI can be used to reference the schema from other schemas using the `$ref` keyword.
 ```json
 {
-  "$ref": "https://example.com/person.schema.json"
+  "$ref": "https://example.com/person"
 }
 ```
 
