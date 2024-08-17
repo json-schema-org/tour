@@ -11,7 +11,7 @@ const code: any = {
 
 const solution = structuredClone(code);
 solution.properties.performanceRating = {
-  enum: [0, 1, 2, 3, 4, 5, null],
+  enum: [1, 2, 3, 4, 5, null],
 };
 
 const testCases: any[] = [
@@ -29,7 +29,7 @@ const testCases: any[] = [
       age: 23,
       performanceRating: 0,
     },
-    expected: true,
+    expected: false,
   },
   {
     input: {
