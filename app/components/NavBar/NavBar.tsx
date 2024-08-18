@@ -22,6 +22,7 @@ import OutlineDrawer from "../OutlineDrawer";
 import { contentManager } from "@/lib/contentManager";
 import Progressbar from "../Progressbar";
 import NavBarMenu from "../NavBarMenus";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function NavBar({ urlPath }: { urlPath: string }) {
   const {
@@ -111,7 +112,12 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
         <NavBarMenu />
         <button
           className={styles.menuButton}
-          onClick={onOpen}
+          onClick={() => {
+            onOpen();
+            sendGAEvent("event", "buttonClicked", {
+              value: "Outline Drawer",
+            });
+          }}
           ref={outlineBtnRef}
         >
           <OutlineMenuIcon colorMode={colorMode} />
