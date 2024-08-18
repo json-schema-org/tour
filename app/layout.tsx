@@ -42,6 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <GoogleAnalytics gaId="G-X3SVRNR6WN" />
       <body className={GeistSans.className}>
         <Providers>
           <main>{children}</main>
