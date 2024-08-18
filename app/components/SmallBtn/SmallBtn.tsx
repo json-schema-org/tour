@@ -1,4 +1,5 @@
 import { Button, Tooltip } from "@chakra-ui/react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function SmallBtn({
   children,
@@ -17,7 +18,12 @@ export default function SmallBtn({
     <Tooltip label={tooltip} aria-label={tooltip} placement="top">
       <Button
         variant={variant}
-        onClick={onClick}
+        onClick={() => {
+          onClick();
+          sendGAEvent("event", "buttonClicked", {
+            value: children?.toString(),
+          });
+        }}
         size={"xs"}
         width={"min-content"}
         textTransform={"uppercase"}
