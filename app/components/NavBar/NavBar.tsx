@@ -67,6 +67,9 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
           <button
             className={styles.backBtn}
             onClick={() => {
+              sendGAEvent("event", "buttonClicked", {
+                value: "back navigation",
+              });
               if (previousStepPath) {
                 router.push("/" + previousStepPath);
               } else {
@@ -80,7 +83,12 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
             dir="row"
             align="center"
             gap={"8px"}
-            onClick={onOpen}
+            onClick={() => {
+              onOpen();
+              sendGAEvent("event", "buttonClicked", {
+                value: "Outline Drawer (from breadcrumb)",
+              });
+            }}
             cursor={"pointer"}
           >
             <div className={styles.chapterTitle}>
