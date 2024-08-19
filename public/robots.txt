@@ -4,4 +4,8 @@ Disallow: /nogooglebot/
 User-agent: *
 Allow: /
 
+User-agent: Googlebot-Mobile
+Disallow: /
+
+
 Sitemap: https://tour.json-schema.org/content/sitemap.xml
