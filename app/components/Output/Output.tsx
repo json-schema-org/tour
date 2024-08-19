@@ -10,6 +10,7 @@ import KeyBindings from "../KeyBindings/KeyBindings";
 import { Flex, ListItem, UnorderedList } from "@chakra-ui/react";
 import CodeSnippet from "../CodeSnippet/CodeSnippet";
 import Link from "next/link";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const SchemaError = ({ schemaPath }: { schemaPath: string }) => {
   const errorTitle = "Invalid Type or Keyword";
@@ -147,7 +148,12 @@ function Output({
             <div className={styles.footer}>
               Stuck?{" "}
               <button
-                onClick={showSolution}
+                onClick={() => {
+                  showSolution();
+                  sendGAEvent("event", "buttonClicked", {
+                    value: "View Solution",
+                  });
+                }}
                 style={{
                   color: "hsl(var(--link-color))",
                   textDecoration: "underline",
