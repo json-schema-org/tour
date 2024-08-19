@@ -7,8 +7,8 @@ const code: any = {
     age: {
       type: "integer",
     },
-    phoneNumber: {},
     postalCode: {},
+    phoneNumber: {},
     countryCode: {},
   },
 };
