@@ -13,6 +13,7 @@ import { validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useEditorStore } from "@/lib/stores";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function CodeEditor({
   codeString,
@@ -53,6 +54,9 @@ export default function CodeEditor({
     const handleKeyDown = (event: KeyboardEvent) => {
       // event.preventDefault();
       if (event.key == "Enter" && event.shiftKey) {
+        sendGAEvent("event", "buttonClicked", {
+          value: "Validate (through shortcut)",
+        });
         event.preventDefault(); // Prevent default behavior
         validateCode(
           codeString,
