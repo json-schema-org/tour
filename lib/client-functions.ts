@@ -6,6 +6,7 @@ import {
 import { OutputReducerAction } from "./reducers";
 import { CodeFile, TestCaseResult } from "./types";
 import { hyperjumpCheckAnnotations, hyperjumpValidate } from "./validators";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export async function validateCode(
   codeString: string,
@@ -58,6 +59,9 @@ export async function validateCode(
     if (validationStatus === "valid") {
       dispatchOutput({ type: "valid", payload: {} });
       completeStep(chapterIndex, stepIndex);
+      sendGAEvent("event", "validation", {
+        validation_result: "passed",
+      });
     } else {
       const sortedResults = testCaseResults.sort((a, b) => {
         if (a.passed === b.passed) {
@@ -69,6 +73,9 @@ export async function validateCode(
         type: "invalid",
         payload: { testCaseResults: sortedResults, totalTestCases },
       });
+      sendGAEvent("event", "validation", {
+        validation_result: "failed",
+      });
     }
   } catch (e) {
     if ((e as Error).message === "Invalid Schema") {
@@ -76,10 +83,16 @@ export async function validateCode(
         type: "invalidSchema",
         payload: { errors: e as InvalidSchemaError },
       });
+      sendGAEvent("event", "validation", {
+        validation_result: "failed - invalid schema",
+      });
     } else {
       dispatchOutput({
         type: "syntaxError",
         payload: { errors: (e as Error).message },
+      });
+      sendGAEvent("event", "validation", {
+        validation_result: "failed - syntax error",
       });
     }
   }
