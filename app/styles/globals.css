@@ -42,7 +42,7 @@ html {
   --border-color-dark: var(--text-dark) / 0.2;
   --link-color-dark: 240 100% 87%;
   --error-dark: 0 100% 50%;
-  --success-dark: 120 100% 50%;
+  --success-dark: 120 90% 45%;
 }
 
 :root[data-theme="dark"] {

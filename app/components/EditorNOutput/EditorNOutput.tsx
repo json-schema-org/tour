@@ -92,6 +92,7 @@ export default function EditorNOutput({
           nextStepPath={nextStepPath}
           stepIndex={stepIndex}
           chapterIndex={chapterIndex}
+          outputResult={output}
         />
       </Box>
       <div

@@ -6,8 +6,8 @@ import { GeistMono } from "geist/font/mono";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import SmallBtn from "../SmallBtn";
-import { CodeFile } from "@/lib/types";
+import MyBtn from "../MyBtn";
+import { CodeFile, OutputResult } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
 import { validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
@@ -23,6 +23,7 @@ export default function CodeEditor({
   nextStepPath,
   stepIndex,
   chapterIndex,
+  outputResult,
 }: {
   codeString: string;
   setCodeString: (codeString: string) => void;
@@ -31,6 +32,7 @@ export default function CodeEditor({
   nextStepPath: string | undefined;
   stepIndex: number;
   chapterIndex: number;
+  outputResult: OutputResult;
 }) {
   const { colorMode } = useColorMode();
   const [monaco, setMonaco] = useState<any>(null);
@@ -93,8 +95,8 @@ export default function CodeEditor({
         />
       </div>
       <div className={styles.buttonsWrapper}>
-        <Flex dir="row" gap={"8px"}>
-          <SmallBtn
+        <Flex dir="row" gap={"8px"} alignItems={"end"}>
+          <MyBtn
             onClick={async () =>
               validateCode(
                 codeString,
@@ -104,13 +106,15 @@ export default function CodeEditor({
                 chapterIndex,
               )
             }
-            variant={"default"}
+            variant={
+              outputResult.validityStatus === "valid" ? "success" : "default"
+            }
             tooltip="Shift + Enter"
           >
             Validate
-          </SmallBtn>
+          </MyBtn>
 
-          <SmallBtn
+          <MyBtn
             onClick={() => {
               setCodeString(JSON.stringify(codeFile.code, null, 2));
               dispatchOutput({ type: "RESET" });
@@ -118,18 +122,27 @@ export default function CodeEditor({
             variant={"error"}
           >
             Reset
-          </SmallBtn>
+          </MyBtn>
         </Flex>
-        <SmallBtn
+        <MyBtn
           onClick={() => {
             if (nextStepPath) router.push("/" + nextStepPath);
           }}
-          variant={"success"}
+          variant={
+            outputResult.validityStatus === "valid" ? "default" : "success"
+          }
           isDisabled={!nextStepPath}
+          size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
         >
-          Next
-          <FiChevronRight />
-        </SmallBtn>
+          Next <span style={{ marginLeft: "4px" }}></span>
+          <FiChevronRight
+            color={
+              outputResult.validityStatus === "valid"
+                ? "white"
+                : "hsl(var(--success))"
+            }
+          />
+        </MyBtn>
       </div>
     </>
   );

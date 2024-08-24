@@ -3,7 +3,7 @@ import styles from "./Output.module.css";
 import classnames from "classnames";
 import { OutputResult } from "@/lib/types";
 import FailedTestCasesWindow from "../TestCaseWindow/TestCaseWindow";
-import SmallBtn from "../SmallBtn/SmallBtn";
+import MyBtn from "../MyBtn";
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { schemaUrl } from "@/lib/validators";
 import KeyBindings from "../KeyBindings/KeyBindings";
@@ -92,9 +92,9 @@ function Output({
       <Flex dir="row" gap={1} paddingTop={2}>
         {" "}
         Please click the{" "}
-        <SmallBtn variant="default" onClick={() => {}}>
+        <MyBtn variant="default" onClick={() => {}}>
           validate
-        </SmallBtn>{" "}
+        </MyBtn>{" "}
         button or use <KeyBindings keys={["Shift", "Enter"]} /> to view the
         output
       </Flex>
