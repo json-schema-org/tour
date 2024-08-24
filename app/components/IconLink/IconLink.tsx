@@ -20,7 +20,7 @@ export default function Icon() {
     <link
       rel="icon"
       type="image/svg+xml"
-      href={isDarkMode ? "/logos/icon.ico" : "/logos/icon-black.ico"}
+      href={"/logos/icon-black.ico"}
       id="light-scheme-icon"
     />
   );
