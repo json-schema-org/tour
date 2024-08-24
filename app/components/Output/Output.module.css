@@ -45,7 +45,7 @@
 }
 
 .validMessage {
-  color: green;
+  color: hsl(var(--success));
   font-size: large;
 }
 
