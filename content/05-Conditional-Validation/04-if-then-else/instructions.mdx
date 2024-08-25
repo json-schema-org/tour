@@ -35,7 +35,8 @@ You can use the `if-then-else` [keyword](https://json-schema.org/learn/glossary#
   },
   "if": {"properties": {"isFullTime": {"const": true}}},
   "then": {"required": ["salary"]},
-  "else": {"required": ["hourlyRate"] }
+  "else": {"required": ["hourlyRate"] },
+  "required": ["isFullTime"]
 }
 ```
 

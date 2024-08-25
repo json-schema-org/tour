@@ -17,7 +17,7 @@ const code: any = {
     },
   },
 
-  required: ["name"],
+  required: ["name", "isStudent"],
 };
 
 let solution = structuredClone(code);
