@@ -62,6 +62,9 @@ export async function validateCode(
       sendGAEvent("event", "validation", {
         validation_result: "passed",
       });
+      if (localStorage.getItem("points")) {
+        localStorage.setItem("points", (parseInt(localStorage.getItem("points")!) + 10).toString());
+      }
     } else {
       const sortedResults = testCaseResults.sort((a, b) => {
         if (a.passed === b.passed) {
@@ -76,6 +79,10 @@ export async function validateCode(
       sendGAEvent("event", "validation", {
         validation_result: "failed",
       });
+
+      if (localStorage.getItem("points")) {
+        localStorage.setItem("points", (parseInt(localStorage.getItem("points")!) - 10).toString());
+      }
     }
   } catch (e) {
     if ((e as Error).message === "Invalid Schema") {
@@ -86,6 +93,9 @@ export async function validateCode(
       sendGAEvent("event", "validation", {
         validation_result: "failed - invalid schema",
       });
+      if (localStorage.getItem("points")) {
+        localStorage.setItem("points", (parseInt(localStorage.getItem("points")!) - 10).toString());
+      }
     } else {
       dispatchOutput({
         type: "syntaxError",
@@ -94,6 +104,9 @@ export async function validateCode(
       sendGAEvent("event", "validation", {
         validation_result: "failed - syntax error",
       });
+      if (localStorage.getItem("points")) {
+        localStorage.setItem("points", (parseInt(localStorage.getItem("points")!) - 10).toString());
+      }
     }
   }
 }

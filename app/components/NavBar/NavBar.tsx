@@ -100,6 +100,11 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
             <div className={styles.lessonTitle}>
               Lesson {stepIndex + 1}: {stepTitle}
             </div>
+            <div 
+             className={styles.points}
+            >
+            {localStorage.getItem('points') ? localStorage.getItem('points') : 0} Points
+              </div>
           </Flex>
         </div>
       </div>
