@@ -138,7 +138,7 @@ const Popover = {
 
 export const theme = extendTheme({
   config: {
-    initialColorMode: "system",
+    initialColorMode: "light",
     useSystemColorMode: true,
   },
   styles: {

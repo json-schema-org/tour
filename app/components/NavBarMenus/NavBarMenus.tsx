@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import navBarStyles from "../NavBar/NavBar.module.css";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function NavBarMenu() {
   const { colorMode } = useColorMode();
@@ -27,7 +28,14 @@ export default function NavBarMenu() {
 
   return (
     <Menu closeOnSelect={false} gutter={4}>
-      <MenuButton className={navBarStyles.menuButton}>
+      <MenuButton
+        className={navBarStyles.menuButton}
+        onClick={() => {
+          sendGAEvent("event", "buttonClicked", {
+            value: "Settings",
+          });
+        }}
+      >
         <SettingsIcon colorMode={colorMode} />
       </MenuButton>
       <MenuList width={"min-content"} className={outfitFont.className}>

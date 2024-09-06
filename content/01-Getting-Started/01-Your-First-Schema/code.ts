@@ -4,6 +4,9 @@ const code: any = {
     name: {
       type: "string",
     },
+    age: {
+      type: "number",
+    },
   },
 };
 
