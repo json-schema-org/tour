@@ -1,8 +1,12 @@
+
 const code: any = {
   type: "object",
   properties: {
     name: {
       type: "string",
+    },
+    age: {
+      type: "number",
     },
   },
 };
