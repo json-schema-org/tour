@@ -104,12 +104,28 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
         </div>
       </div>
       <div className={styles.rightContentWrapper}>
-        <Link href="https://github.com/json-schema-org/tour" target="_blank">
+        <Link
+          href="https://github.com/json-schema-org/tour"
+          target="_blank"
+          onClick={() => {
+            sendGAEvent("event", "buttonClicked", {
+              value: "Github Link",
+            });
+          }}
+        >
           <button className={styles.menuButton}>
             <GithubIcon colorMode={colorMode} />
           </button>
         </Link>
-        <button className={styles.menuButton} onClick={toggleColorMode}>
+        <button
+          className={styles.menuButton}
+          onClick={() => {
+            toggleColorMode();
+            sendGAEvent("event", "buttonClicked", {
+              value: "Theme Toggle",
+            });
+          }}
+        >
           {colorMode === "light" ? (
             <SunIcon colorMode={colorMode} />
           ) : (
