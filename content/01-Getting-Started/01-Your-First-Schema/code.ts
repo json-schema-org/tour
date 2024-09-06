@@ -1,4 +1,3 @@
-
 const code: any = {
   type: "object",
   properties: {
