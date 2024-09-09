@@ -24,6 +24,7 @@ solution = {
         const: true,
       },
     },
+    "required": ["isStudent"],
   },
   then: {
     required: ["age"],
@@ -69,6 +70,12 @@ const testCases = [
     },
     expected: true,
   },
+  {
+    input: {
+      name: "John Doe"
+    },
+    expected: true,
+  }
 ];
 
 module.exports = {
