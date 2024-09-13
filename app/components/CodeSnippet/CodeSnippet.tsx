@@ -31,7 +31,6 @@ export default function CodeSnippet({
     return <span className={styles.inlineCode}>{children}</span>;
   }
   if (children[children.length - 1] === "\n") children = children.slice(0, -1);
-  // remove the last \n from children
 
   if (highlightLineStart && !highlightLineEnd) {
     highlightLineEnd = highlightLineStart;
