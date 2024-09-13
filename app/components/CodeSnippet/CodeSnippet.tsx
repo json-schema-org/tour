@@ -38,13 +38,7 @@ export default function CodeSnippet({
   }
 
   return (
-    <div
-      className={styles.codeSnippetContainer}
-      onCopy={(e) => {
-        e.preventDefault();
-        e.clipboardData.setData("text/plain", children);
-      }}
-    >
+    <div className={styles.codeSnippetContainer}>
       <div
         className={styles.copyButton}
         onClick={() => {
