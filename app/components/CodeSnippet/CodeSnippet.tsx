@@ -2,9 +2,7 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {
   nightOwl,
-  atelierCaveLight,
   arduinoLight,
-  atelierEstuaryLight,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import styles from "./CodeSnippet.module.css";
 import { CSSProperties, useState } from "react";
@@ -38,13 +36,7 @@ export default function CodeSnippet({
   }
 
   return (
-    <div
-      className={styles.codeSnippetContainer}
-      onCopy={(e) => {
-        e.preventDefault();
-        e.clipboardData.setData("text/plain", children);
-      }}
-    >
+    <div className={styles.codeSnippetContainer}>
       <div
         className={styles.copyButton}
         onClick={() => {
@@ -71,9 +63,10 @@ export default function CodeSnippet({
         customStyle={{
           paddingInline: 0,
           paddingBlock: "10px",
+          whiteSpace: "pre", // This ensures code is not unnecessarily wrapped
         }}
-        wrapLines={true}
-        wrapLongLines={true}
+        wrapLines={false}  // Disable wrapping of lines
+        wrapLongLines={false}  // Prevent tokens from being wrapped
         lineNumberStyle={{
           color: "hsl(var(--text) / 0.6)",
           paddingRight: "12px",
