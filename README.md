@@ -115,3 +115,5 @@ A link that focuses the editor on the right side of the screen.
 ```md
 <SideEditorLink />
 ```
+**Props:**
+- `text` (optional): the default text is "side editor". You can pass a custom text to the component.
