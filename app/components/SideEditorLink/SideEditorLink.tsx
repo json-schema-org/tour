@@ -10,7 +10,6 @@ export default function SideEditorLink({
   text: string;
 }) {
   const editorStore = useEditorStore();
-  console.log(text);
   return (
     <span
       className={styles.main}
