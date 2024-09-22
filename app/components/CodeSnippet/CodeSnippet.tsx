@@ -63,10 +63,10 @@ export default function CodeSnippet({
         customStyle={{
           paddingInline: 0,
           paddingBlock: "10px",
-          whiteSpace: "pre-wrap", // Keeps the original formatting while preventing overflow issues
+          whiteSpace: "pre-wrap",
         }}
-        wrapLines={true}  // Allows line-level styling
-        wrapLongLines={false}  // Prevents individual words or tokens from wrapping unnecessarily
+        wrapLines={true}  
+        wrapLongLines={false}  
         lineNumberStyle={{
           color: "hsl(var(--text) / 0.6)",
           paddingRight: "12px",
