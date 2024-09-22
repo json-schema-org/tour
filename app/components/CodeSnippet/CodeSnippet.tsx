@@ -65,8 +65,8 @@ export default function CodeSnippet({
           paddingBlock: "10px",
           whiteSpace: "pre-wrap",
         }}
-        wrapLines={true}  
-        wrapLongLines={false}  
+        wrapLines={true}
+        wrapLongLines={false}
         lineNumberStyle={{
           color: "hsl(var(--text) / 0.6)",
           paddingRight: "12px",
@@ -75,11 +75,13 @@ export default function CodeSnippet({
         startingLineNumber={startingLineNumber}
         lineProps={(lineNumber) => {
           let style: CSSProperties = {
-            opacity: colorMode === "dark" ? 0.9 : 1,
+            display: "block",
+            width: "100%",
             paddingRight: "16px",
             paddingLeft: "4px",
-            whiteSpace: "pre-wrap", 
+            opacity: colorMode === "dark" ? 0.9 : 1,
           };
+
           if (
             highlightLineStart &&
             highlightLineEnd &&
@@ -95,6 +97,7 @@ export default function CodeSnippet({
               }`,
             };
           }
+
           return { style };
         }}
       >
