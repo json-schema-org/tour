@@ -5,8 +5,8 @@ import React from "react";
 import styles from "./SideEditorLink.module.css";
 
 export default function SideEditorLink({
-  text="side editor"
-}:{
+  text = "side editor",
+}: {
   text: string;
 }) {
   const editorStore = useEditorStore();
