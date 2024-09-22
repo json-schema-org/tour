@@ -63,7 +63,6 @@ export default function CodeSnippet({
         customStyle={{
           paddingInline: 0,
           paddingBlock: "10px",
-          whiteSpace: "pre-wrap",
         }}
         wrapLines={true}
         wrapLongLines={false}
