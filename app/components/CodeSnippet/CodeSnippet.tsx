@@ -75,7 +75,6 @@ export default function CodeSnippet({
         lineProps={(lineNumber) => {
           let style: CSSProperties = {
             display: "block",
-            width: "100%",
             paddingRight: "16px",
             paddingLeft: "4px",
             opacity: colorMode === "dark" ? 0.9 : 1,
