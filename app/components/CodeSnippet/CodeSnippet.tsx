@@ -63,10 +63,10 @@ export default function CodeSnippet({
         customStyle={{
           paddingInline: 0,
           paddingBlock: "10px",
-          whiteSpace: "pre", // This ensures code is not unnecessarily wrapped
+          whiteSpace: "pre-wrap", // Keeps the original formatting while preventing overflow issues
         }}
-        wrapLines={false}  // Disable wrapping of lines
-        wrapLongLines={false}  // Prevent tokens from being wrapped
+        wrapLines={true}  // Allows line-level styling
+        wrapLongLines={false}  // Prevents individual words or tokens from wrapping unnecessarily
         lineNumberStyle={{
           color: "hsl(var(--text) / 0.6)",
           paddingRight: "12px",
@@ -78,6 +78,7 @@ export default function CodeSnippet({
             opacity: colorMode === "dark" ? 0.9 : 1,
             paddingRight: "16px",
             paddingLeft: "4px",
+            whiteSpace: "pre-wrap", 
           };
           if (
             highlightLineStart &&
