@@ -63,7 +63,6 @@ export default function CodeSnippet({
         customStyle={{
           paddingInline: 0,
           paddingBlock: "10px",
-          whiteSpace: "pre-wrap",
         }}
         wrapLines={true}
         wrapLongLines={false}
@@ -76,7 +75,6 @@ export default function CodeSnippet({
         lineProps={(lineNumber) => {
           let style: CSSProperties = {
             display: "block",
-            width: "100%",
             paddingRight: "16px",
             paddingLeft: "4px",
             opacity: colorMode === "dark" ? 0.9 : 1,
