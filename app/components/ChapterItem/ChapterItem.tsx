@@ -34,6 +34,7 @@ function StepItem({
       <li
         className={cx(
           styles.stepItem,
+          isActive && isCompleted && activeStepIndex === index ? styles.activeAndCompletedStep : "",
           isActive && activeStepIndex === index ? styles.activeStep : "",
           isCompleted && styles.completedStep,
         )}

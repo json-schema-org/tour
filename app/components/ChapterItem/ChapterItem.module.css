@@ -115,3 +115,9 @@
   color: hsl(var(--text) / 0.5);
   border-left-color: hsl(var(--primary));
 }
+
+.activeAndCompletedStep {
+  font-style: italic;
+  color: hsl(var(--primary));
+  border-left-color: hsl(var(--primary));
+}
