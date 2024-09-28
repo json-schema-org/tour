@@ -24,7 +24,7 @@ solution = {
         const: true,
       },
     },
-    "required": ["isStudent"],
+    required: ["isStudent"],
   },
   then: {
     required: ["age"],
@@ -72,10 +72,10 @@ const testCases = [
   },
   {
     input: {
-      name: "John Doe"
+      name: "John Doe",
     },
     expected: true,
-  }
+  },
 ];
 
 module.exports = {
