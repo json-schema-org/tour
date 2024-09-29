@@ -94,12 +94,7 @@
 .stepItem:hover {
   text-decoration: underline;
 }
-.activeStep {
-  border-left-width: 3px;
-  border-left-color: hsl(var(--primary));
-  color: hsl(var(--primary));
-  font-weight: bold;
-}
+
 .active {
   background-color: hsl(var(--primary));
   color: hsl(var(--background));
@@ -116,8 +111,9 @@
   border-left-color: hsl(var(--primary));
 }
 
-.activeAndCompletedStep {
-  font-style: italic;
-  color: hsl(var(--primary));
+.activeStep {
+  border-left-width: 3px;
   border-left-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+  font-weight: bold;
 }
