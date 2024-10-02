@@ -1,27 +1,40 @@
 .main {
   display: flex;
   flex-direction: column;
-  height: inherit;
-
-  justify-content: space-between;
+  /* height: inherit; */
+  /* justify-content: space-between; */
+  height: 100%;
   align-items: center;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  gap: 64px;
+  height:85%;
+  gap: 50px;
   justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+@media screen and (max-width:400px) {
+  .wrapper{
+    gap: 2px;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .wrapper{
+    padding: 30px;
+  }
 }
 
 .titleWrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-right: 5em;
 }
+
 .title {
   font-size: 6rem;
   font-weight: 900;
@@ -31,16 +44,29 @@
   text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.25);
 }
 
+@media screen and (max-width:700px){
+  .title{
+    font-size: 3rem;
+    text-align: center;
+  }
+}
+@media screen and (max-width:300px){
+  .title{
+    font-size: 2.5rem;
+    text-align: center;
+  }
+}
+
 .title > div {
   line-height: 115%;
   letter-spacing: -2px;
 }
+
 .jsonSchemaTitle {
   color: hsl(var(--primary));
   text-decoration: underline;
   text-decoration-thickness: 0.075em;
   /* add some gap between the underline and text */
-
   text-underline-offset: 0.15em;
 }
 .subtitle1 {
@@ -52,7 +78,6 @@
 }
 .subtitle2 {
   font-size: 1.3rem;
-
   color: hsl(var(--text) / 0.5);
 }
 .subtitleWrapper {
@@ -61,6 +86,28 @@
   gap: 0px;
   justify-content: center;
 }
+
+@media screen and (max-width:700px){
+  .subtitleWrapper{
+    text-align: center;
+    margin-top: 5%;
+  }
+}
+
+@media screen and (max-width:300px){
+  .subtitleWrapper{
+    text-align: center;
+    margin-top: 5%;
+    gap:5px;
+  }
+  .subtitle1{
+    font-size: 20px;
+  }
+  .subtitle2{
+    font-size: 1rem;
+  }
+}
+
 
 .mainBtn {
   font-weight: 800;
@@ -80,6 +127,27 @@
   padding-right: 18px;
 }
 
+@media screen and (max-width:700px) {
+  .mainBtn{
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width:400px) {
+  .mainBtn{
+    font-size: 0.8em;
+    margin-top: 30%;
+  }
+}
+
+@media screen and (max-width:220px) {
+  .mainBtn{
+    font-size: 0.2em;
+    margin-top: 6%;
+    padding: 5px 5px;
+  }
+}
+
 .mainBtn:hover {
   gap: 24px;
   padding: 8px 18px;
@@ -91,9 +159,18 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  padding-bottom: 8px;
+  width: 100%;
+  padding: 20px;
+  height: 15%;
 }
 
 .footerText {
   font-weight: 700;
+  text-align: center;
+}
+
+@media screen and (max-width:200px) {
+  .footerText {
+    margin-top: 30%;
+  }
 }
