@@ -4,7 +4,15 @@
   align-items: center;
   gap: 1em;
   position: relative;
+  width: 100%;
 }
+
+@media screen and (max-width:700px) {
+  .footerLinks {
+    flex-direction: column;
+  }
+}
+
 .footerLink {
   color: hsl(var(--primary));
   text-decoration: underline;
