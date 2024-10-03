@@ -1,3 +1,14 @@
+# Process to Open a Pull Request
+
+1. Find an issue that is open and is tagged with `Available` tag.
+2. Ask for the issue to be assigned to you. (Please do not work on an issue that is not assigned to you)
+3. Once the issue is assigned to you, fork the repository.
+4. Create a new branch in your forked repository.
+5. Make the necessary changes in your forked repository.
+6. Create a pull request to the main repository.
+7. Wait for the review and approval of the pull request.
+  
+
 # Guidelines for contributing to the JSON Schema project
 
 ## Issues
@@ -18,13 +29,3 @@ Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged
 
 All official channels including the mailing list, GitHub organization, Slack server, and IRC channels, follow our [Code of Conduct](https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md).
 
-# Process to Open a Pull Request
-
-1. Find an issue that is open and is tagged with `Available` tag.
-2. Ask for the issue to be assigned to you. (Please do not work on an issue that is not assigned to you)
-3. Once the issue is assigned to you, fork the repository.
-4. Create a new branch in your forked repository.
-5. Make the necessary changes in your forked repository.
-6. Create a pull request to the main repository.
-7. Wait for the review and approval of the pull request.
-  
