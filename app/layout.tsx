@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 import "./styles/globals.css";
 import { GeistSans } from "geist/font/sans";
-import { Providers } from "./providers";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import IconLink from "./components/IconLink";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Tour Of Json Schema",
@@ -35,9 +35,7 @@ export default function RootLayout({
         <IconLink />
       </head>
       <body className={GeistSans.className}>
-        <Providers>
-          <main>{children}</main>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
