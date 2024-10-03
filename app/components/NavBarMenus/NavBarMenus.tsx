@@ -16,6 +16,7 @@ import {
   PopoverHeader,
   PopoverTrigger,
   useColorMode,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import navBarStyles from "../NavBar/NavBar.module.css";
@@ -24,7 +25,9 @@ import { sendGAEvent } from "@next/third-parties/google";
 export default function NavBarMenu() {
   const { colorMode } = useColorMode();
 
-  const [isCleared, setIsCleared] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toast = useToast();
 
   return (
     <Menu closeOnSelect={false} gutter={4}>
@@ -42,7 +45,9 @@ export default function NavBarMenu() {
         <Popover
           placement="left"
           gutter={12}
-          onOpen={() => setIsCleared(false)}
+          onOpen={() =>  setIsOpen(true)}
+          onClose={() => setIsOpen(false)}
+          isOpen={isOpen}
         >
           <PopoverTrigger>
             <MenuItem display={"flex"} gap={"8px"} color={"hsl(var(--error))"}>
@@ -61,23 +66,26 @@ export default function NavBarMenu() {
             <PopoverCloseButton />
             <PopoverHeader>Confirmation!</PopoverHeader>
             <PopoverBody>
-              {isCleared
-                ? "Your Progress is cleared"
-                : "Are you sure you want to reset your progress?"}
+              Are you sure you want to reset your progress?
               <Button
-                colorScheme={isCleared ? "green" : "red"}
-                backgroundColor={
-                  isCleared ? "hsl(var(--success))" : "hsl(var(--error))"
-                }
+                colorScheme="red"
+                backgroundColor="hsl(var(--error))"
                 size="sm"
                 width={"100%"}
                 mt={2}
                 onClick={() => {
                   localStorage.removeItem("progress");
-                  setIsCleared(true);
+                  setIsOpen(false);
+                  toast({
+                    title: "Progress Cleared",
+                    description: "Your progress has been cleared",
+                    variant: "success",
+                    duration: 3000,
+                    isClosable: true,
+                  });
                 }}
               >
-                {isCleared ? "Done!" : "RESET"}
+                RESET
               </Button>
             </PopoverBody>
           </PopoverContent>
