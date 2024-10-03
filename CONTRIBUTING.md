@@ -1,6 +1,6 @@
 # Process to Open a Pull Request
 
-1. Find an issue that is open and is tagged with `Available` tag.
+1. Find an issue that is open and has  an `Available` tag.
 2. Ask for the issue to be assigned to you. (Please do not work on an issue that is not assigned to you)
 3. Once the issue is assigned to you, fork the repository.
 4. Create a new branch in your forked repository.
