@@ -5,9 +5,11 @@ import typescript from "typescript";
 import { contentManager } from "./contentManager";
 
 import { CodeFileExports, Metadata } from "./types";
+import path from "path";
 
 export function parseLessonFolder(fullFilePath: string, codePath: string) {
-  const file = fs.readFileSync(fullFilePath, "utf-8");
+  const absolutePath=path.join(process.cwd(),fullFilePath)
+  const file = fs.readFileSync(absolutePath, "utf-8");
 
   const { content, data } = matter(file);
   const Page = () => CustomMDX({ source: content });
@@ -25,10 +27,11 @@ function transpileTypeScriptToJavaScript(tsCode: string) {
 }
 
 export function getCodeFileExports(fullFilePath: string) {
-  const fileContent = fs.readFileSync(fullFilePath, "utf-8");
+  const absolutePath=path.join(process.cwd(),fullFilePath)
+  const file = fs.readFileSync(absolutePath, "utf-8");
   const dynmicFunction = new Function(
     "module",
-    transpileTypeScriptToJavaScript(fileContent),
+    transpileTypeScriptToJavaScript(file),
   );
   const moduleExports: {} | CodeFileExports = {};
   dynmicFunction(moduleExports);

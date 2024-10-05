@@ -30,8 +30,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleAnalytics gaId="G-X3SVRNR6WN" />
       <head>
+        <GoogleAnalytics gaId="G-X3SVRNR6WN" />
         <IconLink />
       </head>
       <body className={GeistSans.className}>
