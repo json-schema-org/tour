@@ -45,7 +45,7 @@ export default function NavBarMenu() {
         <Popover
           placement="left"
           gutter={12}
-          onOpen={() =>  setIsOpen(true)}
+          onOpen={() => setIsOpen(true)}
           onClose={() => setIsOpen(false)}
           isOpen={isOpen}
         >
@@ -79,7 +79,7 @@ export default function NavBarMenu() {
                   toast({
                     title: "Progress Cleared",
                     description: "Your progress has been cleared",
-                    variant: "success",
+                    status: "success",
                     duration: 3000,
                     isClosable: true,
                   });
