@@ -142,10 +142,10 @@ const Alert = {
       container: {
         bg: "hsl(var(--success) / 0.6)",
         color: "hsl(var(--text) / 0.8)",
-      }
+      },
     },
-  }
-}
+  },
+};
 
 export const theme = extendTheme({
   config: {
