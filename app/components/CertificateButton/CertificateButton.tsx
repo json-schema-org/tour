@@ -37,7 +37,7 @@ export default function CertificateButton() {
   const [isTheTourCompletedState, setIsTheTourCompletedState] =
     useState(isTheTourCompleted());
   useEffect(() => {
-    setIsTheTourCompletedState(!isTheTourCompleted());
+    setIsTheTourCompletedState(isTheTourCompleted());
   }, [isTheTourCompleted()]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
