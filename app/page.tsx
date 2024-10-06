@@ -1,13 +1,10 @@
 import styles from "./styles/page.module.css";
-import Link from "next/link";
 import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
-import RightArrow from "./styles/icons/RightArrow";
 import CompanyLogos from "./components/CommunityLinks/CommunityLinks";
-import { contentManager } from "@/lib/contentManager";
+import HomePage from "./components/HomePage/HomePage";
 
 export default function Home() {
-  const outline = contentManager.getOutline();
   return (
     <div className={cx(styles.main, outfitFont.className)}>
       <div className={styles.wrapper}>
@@ -25,18 +22,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Link
-          href={
-            contentManager.getPathWithPrefix(
-              outline[0].steps[0].fullPath,
-            ) as string
-          }
-        >
-          <button className={styles.mainBtn}>
-            START NOW
-            <RightArrow />
-          </button>
-        </Link>
+        <HomePage/>
       </div>
       <div className={styles.footer}>
         <div className={cx(styles.footerText, interFont.className)}>

@@ -1,0 +1,25 @@
+.column{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.HomePageLinks{
+  width: 440px;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  gap: 4em;
+  position: relative;
+  color: hsl(var(--primary));
+}
+
+.HomePageLinkTitle{
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-color: hsl(var(--primary) / 0.3);
+}
+
+.HomePageLinkTitle:hover {
+  text-decoration-color: hsl(var(--primary));
+}
