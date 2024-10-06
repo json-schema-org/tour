@@ -37,7 +37,7 @@ export default function CertificateButton() {
   const [isTheTourCompletedState, setIsTheTourCompletedState] =
     useState(isTheTourCompleted());
   useEffect(() => {
-    setIsTheTourCompletedState(isTheTourCompleted());
+    setIsTheTourCompletedState(!isTheTourCompleted());
   }, [isTheTourCompleted()]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -71,7 +71,7 @@ export default function CertificateButton() {
             <Box mb={4}>We will email you your certificate</Box>
             <Flex direction="column" gap={4}>
               <Input
-                placeholder="Name"
+                placeholder="Full Name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
               />
