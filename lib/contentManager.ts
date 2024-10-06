@@ -101,6 +101,16 @@ export default class ContentManager {
   public getTotalSteps(chapterIndex: number) {
     return this.getOutline()[chapterIndex].steps.length;
   }
+
+  public getNumberOfStepsFromAllChapters() {
+    let totalSteps = 0;
+    let totalChapters = this.getTotalChapters();
+    for (let i = 0; i < totalChapters; i++) {
+      totalSteps += this.getTotalSteps(i);
+    }
+    return totalSteps;
+  }
+
   public getInstructionsFilePath(urlPath: string) {
     return `${contentFolderName}/${urlPath}/${instructionsFileName}`;
   }
