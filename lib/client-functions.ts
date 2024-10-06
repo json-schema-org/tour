@@ -7,7 +7,6 @@ import { OutputReducerAction } from "./reducers";
 import { CodeFile, TestCaseResult } from "./types";
 import { hyperjumpCheckAnnotations, hyperjumpValidate } from "./validators";
 import { sendGAEvent } from "@next/third-parties/google";
-import { contentManager } from "./contentManager";
 
 export async function validateCode(
   codeString: string,
@@ -135,13 +134,6 @@ export function isChapterCompleted(chapterIndex: number, totalSteps: number) {
     }
   }
   return true;
-}
-
-
-export function isTheTourCompleted() {
-  const totalStepsForAllChapters = contentManager.getNumberOfStepsFromAllChapters();
-  const completedSteps = Object.keys(JSON.parse(localStorage.getItem("progress")!)).length;
-  return totalStepsForAllChapters === completedSteps;
 }
 
 export function hasNestedProperty(obj: any, path: string) {

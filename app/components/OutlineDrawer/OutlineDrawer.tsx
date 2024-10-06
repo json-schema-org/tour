@@ -6,14 +6,11 @@ import {
   DrawerHeader,
   DrawerCloseButton,
   DrawerBody,
-  Button,
 } from "@chakra-ui/react";
 import styles from "./OutlineDrawer.module.css";
 import { ContentOutline } from "@/lib/types";
 import ChapterItem from "../ChapterItem";
 import { isChapterCompleted } from "@/lib/client-functions";
-import Link from "next/link";
-import CertificateButton from "../CertificateButton/CertificateButton";
 
 export default function OutlineDrawer({
   isOpen,
@@ -42,11 +39,7 @@ export default function OutlineDrawer({
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader display={"flex"} justifyContent={"space-between"}>
-            
-            Outline
-            <CertificateButton  />
-            </DrawerHeader>
+          <DrawerHeader>Outline</DrawerHeader>
 
           <DrawerBody>
             <nav>

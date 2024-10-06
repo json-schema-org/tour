@@ -6,13 +6,14 @@ import Dislike from "@/app/styles/icons/BiDislike";
 import { Flex } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import styles from "./Feedback.module.css";
-import { googleSheetAPIRoute } from "@/lib/contentVariables";
 
 export default function Feedback() {
+  const APIRoute =
+    "https://script.google.com/macros/s/AKfycbz0f87eDgEghSelILb3RSdHe-Rr7HKAdMxx8tvTq4fNAfJt0fZ7t-G-p1BrVEQM2Mws/exec";
   const [isSubmitted, setIsSubmitted] = useState(false);
   const pathname = usePathname();
   const submitFeedback = async (feedback: string) => {
-    await fetch(googleSheetAPIRoute, {
+    await fetch(APIRoute, {
       method: "POST",
       body: JSON.stringify({
         feedback: feedback,
