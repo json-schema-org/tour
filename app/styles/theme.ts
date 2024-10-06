@@ -136,6 +136,16 @@ const Popover = {
   },
 };
 
+const Modal = {
+  baseStyle: {
+    dialog: {
+      bg: "hsl(var(--background))",
+      color: "hsl(var(--text))",
+      borderRadius: "16px"
+    }
+  }
+}
+
 export const theme = extendTheme({
   config: {
     initialColorMode: "light",
@@ -149,6 +159,6 @@ export const theme = extendTheme({
       },
     },
   },
-  components: { Button, Menu, Switch, Drawer, Tooltip, Popover },
+  components: { Button, Menu, Switch, Drawer, Tooltip, Popover, Modal },
   fonts: {},
 });
