@@ -1,12 +1,25 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const Button = {
+
+  baseStyle: {
+    boxShadow: "-4px 4px 0px 0",
+    border: "1px solid hsl(var(--background)/0.5)",
+    _hover: {
+      transform: "translateX(-2px) translateY(2px)",
+      boxShadow: "-2px 2px 0px 0",
+    },
+    _active: {
+      transform: "translateX(-4px) translateY(4px)",
+      boxShadow: "0px 0px 0px 0",
+    }
+  },
   variants: {
     default: {
       color: "white",
       bg: "hsl(var(--primary))",
       _hover: {
-        bg: "hsl(var(--primary) / 0.8)",
+        bg: "hsl(var(--primary))",
         _disabled: {
           bg: "hsl(var(--primary) / 0.6)",
         },
@@ -16,40 +29,42 @@ const Button = {
       },
     },
     success: {
-      color: "hsl(var(--success))",
 
-      borderColor: "hsl(var(--success))",
       borderWidth: "1px",
+      bg: "hsl(var(--success))",
+      color: "black",
+      boxShadow: "-4px 4px 0px 0 hsl(var(--text))",
       _disabled: {
         color: "hsl(var(--success) / 0.6)",
       },
       _hover: {
-        bg: "hsl(var(--success))",
-        color: "black",
+        boxShadow: "-2px 2px 0px 0 hsl(var(--text))",
+
         _disabled: {
           color: "hsl(var(--success) / 0.4)",
         },
       },
       _active: {
-        bg: "hsl(var(--success))",
+        bg: "hsl(var(--success)/0.8)",
+        boxShadow: "0px 0px 0px 0 hsl(var(--text))",
+
       },
     },
     error: {
-      color: "hsl(var(--error))",
-      borderColor: "hsl(var(--error))",
+
       borderWidth: "1px",
+      bg: "hsl(var(--error))",
+      color: "white",
       _disabled: {
         color: "hsl(var(--error) / 0.6)",
       },
       _hover: {
-        bg: "hsl(var(--error))",
-        color: "white",
         _disabled: {
           color: "hsl(var(--error) / 0.4)",
         },
       },
       _active: {
-        bg: "red.200",
+        bg: "hsl(var(--error) / 0.4)",
       },
     },
   },

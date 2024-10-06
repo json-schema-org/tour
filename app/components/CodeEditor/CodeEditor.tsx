@@ -139,7 +139,7 @@ export default function CodeEditor({
             color={
               outputResult.validityStatus === "valid"
                 ? "white"
-                : "hsl(var(--success))"
+                : "hsl(var(--background))"
             }
           />
         </MyBtn>
