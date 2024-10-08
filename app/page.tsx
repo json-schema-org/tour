@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage/HomePage";
 export default function Home() {
   return (
     <div className={cx(styles.main, outfitFont.className)}>
+      <div className={styles.background}></div>
       <div className={styles.wrapper}>
         <div className={styles.titleWrapper}>
           <div className={styles.title}>

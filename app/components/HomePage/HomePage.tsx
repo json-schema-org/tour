@@ -5,8 +5,9 @@ import Link from "next/link"
 export default function () {
   const outline = contentManager.getOutline()
 
-  const firstColumn = outline.slice(0, 4)
-  const secondColumn = outline.slice(4, 8)
+  const half = Math.ceil(outline.length / 2)
+  const firstColumn = outline.slice(0, half)
+  const secondColumn = outline.slice(half)
 
   return (
     <div className={styles.HomePageLinks}>
@@ -20,8 +21,8 @@ export default function () {
       </div>
       <div className={styles.column}>
         {secondColumn.map((ele, index) => (
-          <Link key={index + 5} className={styles.HomePageLink} href={contentManager.getPathWithPrefix(ele.steps[0].fullPath) as string}>
-            <span>{index + 5}. </span>
+          <Link key={index + half + 1} className={styles.HomePageLink} href={contentManager.getPathWithPrefix(ele.steps[0].fullPath) as string}>
+            <span>{index + half + 1}. </span>
             <span className={styles.HomePageLinkTitle}>{ele.title}</span>
           </Link>
         ))}

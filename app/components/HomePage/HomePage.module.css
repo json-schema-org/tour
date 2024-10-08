@@ -11,6 +11,7 @@
   align-items: center;
   gap: 4em;
   position: relative;
+  margin-top: 2em;
   color: hsl(var(--primary));
 }
 
