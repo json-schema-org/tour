@@ -6,16 +6,15 @@
   justify-content: space-between;
   align-items: center;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 .background {
   position: absolute;
   background-color: hsl(var(--backgroundImage));
-  top: -9em;
-  height: 640px;
-  width: 120%;
-  rotate: -8.17deg;
+  top: -18vh;
+  height: 75vh;
+  width: 150vw;
+  transform: rotate(-8.17deg);
   z-index: -1;
   overflow: hidden;
 }
