@@ -43,10 +43,9 @@ export default function OutlineDrawer({
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader display={"flex"} justifyContent={"space-between"}>
-            
             Outline
-            <CertificateButton  />
-            </DrawerHeader>
+            <CertificateButton />
+          </DrawerHeader>
 
           <DrawerBody>
             <nav>

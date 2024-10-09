@@ -141,10 +141,10 @@ const Modal = {
     dialog: {
       bg: "hsl(var(--background))",
       color: "hsl(var(--text))",
-      borderRadius: "16px"
-    }
-  }
-}
+      borderRadius: "16px",
+    },
+  },
+};
 
 export const theme = extendTheme({
   config: {
