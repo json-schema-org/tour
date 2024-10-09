@@ -22,7 +22,8 @@
   color: white;
   height: max-content;
   width: 100%;
-  padding-block: 64px;
+  padding-top: 64px;
+  padding-bottom: 96px;
 
   align-items: center;
 }
