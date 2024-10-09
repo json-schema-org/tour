@@ -24,16 +24,13 @@
   width: 100%;
   padding-top: 64px;
   padding-bottom: 96px;
-
   align-items: center;
 }
 
 .titleWrapper {
   display: flex;
   flex-direction: column;
-
-  /* justify-content: center; */
-  /* align-items: center; */
+  gap: 8px;
 }
 .title {
   font-size: 5rem;
