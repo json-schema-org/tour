@@ -32,7 +32,6 @@ html {
   --link-color-light: 240 100% 50%;
   --error-light: 0 100% 50%;
   --success-light: 120 50% 50%;
-  --backgroundImage-light: 232 66% 50%;
 
   /* Dark Mode colors */
 
@@ -44,7 +43,6 @@ html {
   --link-color-dark: 240 100% 87%;
   --error-dark: 0 100% 50%;
   --success-dark: 120 90% 45%;
-  --backgroundImage-dark: 232 78% 35%;
 }
 
 :root[data-theme="dark"] {
@@ -56,7 +54,6 @@ html {
   --primary: var(--primary-dark);
   --error: var(--error-dark);
   --success: var(--success-dark);
-  --backgroundImage: var(--backgroundImage-dark)
 }
 
 :root[data-theme="light"] {
@@ -68,7 +65,7 @@ html {
   --primary: var(--primary-light);
   --error: var(--error-light);
   --success: var(--success-light);
-  --backgroundImage: var(--backgroundImage-light)
+  --backgroundImage: var(--backgroundImage-light);
 }
 
 /* html[data-theme="dark"] svg {
