@@ -2,7 +2,7 @@ import styles from "./styles/page.module.css";
 import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
 import CompanyLogos from "./components/CommunityLinks/CommunityLinks";
-import HomePage from "./components/HomePage/HomePage";
+import HomePage from "./components/HomePageLinks/HomePageLinks";
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <HomePage/>
+        <HomePage />
       </div>
       <div className={styles.footer}>
         <div className={cx(styles.footerText, interFont.className)}>
