@@ -32,10 +32,10 @@ jobs:
           private-key: ${{ secrets.PRIVATE_KEY }}
 
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: pnpm install --immutable
         
       - name: Serve App Locally
-        run: yarn run dev &
+        run: pnpm run dev &
 
       - name: Wait for App to Start
         run: sleep 20
@@ -57,7 +57,7 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
             
       - name: Install Octokit
-        run: yarn add @octokit/core@5.1.0 
+        run: pnpm add @octokit/core@5.1.0 
       
       # This will create an issue with the link checker report if it does not exist, otherwise it will update the existing issue.
 
