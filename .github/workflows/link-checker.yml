@@ -32,7 +32,7 @@ jobs:
           private-key: ${{ secrets.PRIVATE_KEY }}
 
       - name: Install Dependencies
-        run: pnpm install --immutable
+        run: pnpm install --frozen-lockfile
         
       - name: Serve App Locally
         run: pnpm run dev &
