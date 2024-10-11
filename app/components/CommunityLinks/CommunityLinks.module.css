@@ -6,12 +6,12 @@
   position: relative;
 }
 .footerLink {
-  color: hsl(var(--primary));
+  color: hsl(var(--text));
   text-decoration: underline;
   text-underline-offset: 0.15em;
-  text-decoration-color: hsl(var(--primary) / 0.3);
+  text-decoration-color: hsl(var(--primary) / 0.5);
 }
 
 .footerLink:hover {
-  text-decoration-color: hsl(var(--primary));
+  text-decoration-color: hsl(var(--text));
 }
