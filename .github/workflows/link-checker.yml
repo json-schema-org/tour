@@ -1,8 +1,11 @@
 name: Link Checker
+
 on:
   repository_dispatch:
   workflow_dispatch:
-  schedule: '0 0 1 * *' # Run at midnight on the first of every month
+  schedule: 
+    - cron: '0 0 1 * *' # Run at midnight on the first of every month
+    
 jobs: 
   linkChecker:
     name: Check and report broken links
