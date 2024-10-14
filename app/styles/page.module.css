@@ -2,8 +2,12 @@
   display: flex;
   flex-direction: column;
   height: inherit;
+<<<<<<< HEAD
   position: relative;
   justify-content: space-between;
+=======
+
+>>>>>>> d44da61ca32635759333a7e80f475c76a1253ee8
   align-items: center;
   overflow-x: hidden;
 }
@@ -23,8 +27,20 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 64px;
-  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+.backgroundClipWrapper {
+  display: flex;
+  flex-direction: column;
+  background: hsl(var(--primary));
+  clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 75%, 100% 0);
+  color: white;
+  height: max-content;
+  width: 100%;
+  padding-top: 64px;
+  padding-bottom: 96px;
   align-items: center;
   color: white;
 }
@@ -33,11 +49,15 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-right: 5em;
 }
 .title {
+<<<<<<< HEAD
   font-size: 6rem;
   font-weight: 800;
+=======
+  font-size: 5rem;
+  font-weight: 900;
+>>>>>>> d44da61ca32635759333a7e80f475c76a1253ee8
   display: flex;
   flex-direction: column;
   gap: 0px;
@@ -51,7 +71,6 @@
   text-decoration: underline;
   text-decoration-thickness: 0.075em;
   /* add some gap between the underline and text */
-
   text-underline-offset: 0.15em;
 }
 .subtitle1 {
@@ -69,29 +88,6 @@
   flex-direction: column;
   gap: 0px;
   justify-content: center;
-}
-
-.mainBtn {
-  font-weight: 800;
-  font-size: 1.4em;
-  background-color: hsl(var(--primary));
-  color: white;
-  display: flex;
-  justify-self: center;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  transition:
-    gap 0.2s,
-    padding 0.2s;
-  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.25);
-  padding-right: 18px;
-}
-
-.mainBtn:hover {
-  gap: 24px;
-  padding: 8px 18px;
 }
 
 .footer {

@@ -68,7 +68,11 @@ html {
   --primary: var(--primary-light);
   --error: var(--error-light);
   --success: var(--success-light);
+<<<<<<< HEAD
   --backgroundImage: var(--backgroundImage-light)
+=======
+  --backgroundImage: var(--backgroundImage-light);
+>>>>>>> d44da61ca32635759333a7e80f475c76a1253ee8
 }
 
 /* html[data-theme="dark"] svg {

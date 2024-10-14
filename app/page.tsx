@@ -2,28 +2,39 @@ import styles from "./styles/page.module.css";
 import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
 import CompanyLogos from "./components/CommunityLinks/CommunityLinks";
+<<<<<<< HEAD
 import HomePage from "./components/HomePage/HomePage";
+=======
+import HomePageLinks from "./components/HomePageLinks/HomePageLinks";
+import { Flex } from "@chakra-ui/react";
+>>>>>>> d44da61ca32635759333a7e80f475c76a1253ee8
 
 export default function Home() {
   return (
     <div className={cx(styles.main, outfitFont.className)}>
       <div className={styles.background}></div>
       <div className={styles.wrapper}>
-        <div className={styles.titleWrapper}>
-          <div className={styles.title}>
-            <div>A Tour of</div>
-            <div className={styles.jsonSchemaTitle}>JSON Schema</div>
-          </div>
-          <div className={styles.subtitleWrapper}>
-            <div className={styles.subtitle1}>
-              Build more. Break less. Empower others.
+        <div className={styles.backgroundClipWrapper}>
+          <div className={styles.titleWrapper}>
+            <div className={styles.title}>
+              <div>A Tour of</div>
+              <div className={styles.jsonSchemaTitle}>JSON Schema</div>
             </div>
-            <div className={styles.subtitle2}>
-              Ensure confident & reliable use of JSON data with JSON Schema
+            <div className={styles.subtitleWrapper}>
+              <div className={styles.subtitle1}>
+                Build more. Break less. Empower others.
+              </div>
+              <div className={styles.subtitle2}>
+                Ensure confident & reliable use of JSON data with JSON Schema
+              </div>
             </div>
           </div>
         </div>
+<<<<<<< HEAD
         <HomePage/>
+=======
+        <HomePageLinks />
+>>>>>>> d44da61ca32635759333a7e80f475c76a1253ee8
       </div>
       <div className={styles.footer}>
         <div className={cx(styles.footerText, interFont.className)}>

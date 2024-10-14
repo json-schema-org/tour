@@ -137,13 +137,15 @@ export function isChapterCompleted(chapterIndex: number, totalSteps: number) {
   return true;
 }
 
-
 export function isTheTourCompleted() {
-  const totalStepsForAllChapters = contentManager.getNumberOfStepsFromAllChapters();
+  const totalStepsForAllChapters =
+    contentManager.getNumberOfStepsFromAllChapters();
   if (!localStorage.getItem("progress")) {
     return false;
   }
-  const completedSteps = Object.keys(JSON.parse(localStorage.getItem("progress")!)).length;
+  const completedSteps = Object.keys(
+    JSON.parse(localStorage.getItem("progress")!),
+  ).length;
   return totalStepsForAllChapters === completedSteps;
 }
 
