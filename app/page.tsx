@@ -2,17 +2,13 @@ import styles from "./styles/page.module.css";
 import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
 import CompanyLogos from "./components/CommunityLinks/CommunityLinks";
-<<<<<<< HEAD
-import HomePage from "./components/HomePage/HomePage";
-=======
 import HomePageLinks from "./components/HomePageLinks/HomePageLinks";
-import { Flex } from "@chakra-ui/react";
->>>>>>> d44da61ca32635759333a7e80f475c76a1253ee8
+import CheckpointRedirect from "./components/CheckPointRedirect/CheckPointRedirect";
 
 export default function Home() {
   return (
     <div className={cx(styles.main, outfitFont.className)}>
-      <div className={styles.background}></div>
+      <CheckpointRedirect/>
       <div className={styles.wrapper}>
         <div className={styles.backgroundClipWrapper}>
           <div className={styles.titleWrapper}>
@@ -30,11 +26,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <HomePage/>
-=======
         <HomePageLinks />
->>>>>>> d44da61ca32635759333a7e80f475c76a1253ee8
       </div>
       <div className={styles.footer}>
         <div className={cx(styles.footerText, interFont.className)}>
