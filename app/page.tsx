@@ -3,11 +3,12 @@ import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
 import CompanyLogos from "./components/CommunityLinks/CommunityLinks";
 import HomePageLinks from "./components/HomePageLinks/HomePageLinks";
-import { Flex } from "@chakra-ui/react";
+import CheckpointRedirect from "./components/CheckPointRedirect/CheckPointRedirect";
 
 export default function Home() {
   return (
     <div className={cx(styles.main, outfitFont.className)}>
+      <CheckpointRedirect/>
       <div className={styles.wrapper}>
         <div className={styles.backgroundClipWrapper}>
           <div className={styles.titleWrapper}>
