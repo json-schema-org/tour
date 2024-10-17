@@ -4,6 +4,7 @@ import styles from "./layout.module.css";
 import NavBar from "@/app/components/NavBar";
 import { contentManager } from "@/lib/contentManager";
 import { usePathname } from "next/navigation";
+import { setCheckpoint } from "@/lib/progressSaving";
 
 export default function PageLayout({
   children,
@@ -12,7 +13,7 @@ export default function PageLayout({
   params: { markdownPath: string[] };
 }) {
   const urlPath = usePathname().replace("/content", "").substring(1);
-
+  setCheckpoint(urlPath)
   return (
     <div className={styles.wrapper}>
       <NavBar urlPath={urlPath} />

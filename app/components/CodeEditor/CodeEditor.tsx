@@ -14,6 +14,7 @@ import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useEditorStore } from "@/lib/stores";
 import { sendGAEvent } from "@next/third-parties/google";
+import { getCode, setCode } from "@/lib/progressSaving";
 
 export default function CodeEditor({
   codeString,
@@ -76,6 +77,18 @@ export default function CodeEditor({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [codeString]);
+ 
+  useEffect(() => {
+    const savedCode = getCode(chapterIndex, stepIndex);
+    if (savedCode && savedCode !== codeString) {
+      setCodeString(savedCode);
+    }
+  }, [chapterIndex, stepIndex]);
+
+  useEffect(() => {
+    setCode(chapterIndex, stepIndex, codeString);
+  }, [codeString, chapterIndex, stepIndex]);
+
   return (
     <>
       <div className={ctx(styles.codeEditor, GeistMono.className)}>
@@ -85,7 +98,9 @@ export default function CodeEditor({
           theme={colorMode === "light" ? "light" : "my-theme"}
           value={codeString}
           height={"100%"}
-          onChange={(codeString) => setCodeString(codeString ? codeString : "")}
+          onChange={(codeString) => 
+            setCodeString(codeString ? codeString : "")
+          }
           options={{ minimap: { enabled: false }, fontSize: 14 }}
           onMount={(editor, monaco) => {
             setMonaco(monaco);
