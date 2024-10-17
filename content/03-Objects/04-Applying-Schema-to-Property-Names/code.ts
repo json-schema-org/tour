@@ -7,7 +7,7 @@ const solution = {
   minProperties: 2,
   propertyNames: {
     pattern: "^[A-Z]+$",
-    minimumLength: 3,
+    minLength: 3,
   },
   additionalProperties: {
     type: ["string", "integer"],
@@ -21,6 +21,13 @@ const testCases = [
       AGE: 16,
     },
     expected: true,
+  },
+  {
+    input: {
+      NAME: "JOhN DOE",
+      PH: "97232748274",
+    },
+    expected: false,
   },
   {
     input: {
