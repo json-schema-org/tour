@@ -5,7 +5,7 @@ export function setCheckpoint(path: string) {
   localStorage.setItem("checkPoint", JSON.stringify(checkpoint));
 }
 
-export function getcheckPoint(){
+export function getCheckPoint(){
   if (typeof window === "undefined") return false;
 
   const checkpoint = localStorage.getItem('checkPoint')
@@ -16,9 +16,7 @@ export function getcheckPoint(){
   return null
 }
 
-export function setCode(chapter:number, lesson: number, code:string){
-  if (typeof window === "undefined") return false;
-
+export function persistCode(chapter:number, lesson: number, code:string){
   const codeData = JSON.parse(localStorage.getItem('codeData') || '{}');
 
   const key = `${chapter}.${lesson}`
@@ -28,9 +26,7 @@ export function setCode(chapter:number, lesson: number, code:string){
   localStorage.setItem('codeData',JSON.stringify(codeData))
 }
 
-export function getCode(chapter: number,lesson:number){    
-  if (typeof window === "undefined") return false;
-
+export function getCode(chapter: number,lesson:number){
   const codeData = JSON.parse(localStorage.getItem('codeData') || '{}');
 
   const key = `${chapter}.${lesson}`;
@@ -38,9 +34,7 @@ export function getCode(chapter: number,lesson:number){
   return codeData[key]
 }
 
-export function resetCode(chapter: number, lesson: number){    
-  if (typeof window === "undefined") return false;
-
+export function resetCode(chapter: number, lesson: number){  
   const codeData = JSON.parse(localStorage.getItem('codeData') || '{}');
 
   const key = `${chapter}.${lesson}`;

@@ -14,7 +14,7 @@ import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useEditorStore } from "@/lib/stores";
 import { sendGAEvent } from "@next/third-parties/google";
-import { getCode, setCode } from "@/lib/progressSaving";
+import { getCode, persistCode } from "@/lib/progressSaving";
 
 export default function CodeEditor({
   codeString,
@@ -86,7 +86,7 @@ export default function CodeEditor({
   }, [chapterIndex, stepIndex]);
 
   useEffect(() => {
-    setCode(chapterIndex, stepIndex, codeString);
+    persistCode(chapterIndex, stepIndex, codeString);
   }, [codeString, chapterIndex, stepIndex]);
 
   return (

@@ -2,14 +2,14 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { getcheckPoint } from '@/lib/progressSaving'
+import { getCheckPoint } from '@/lib/progressSaving'
 
 
 export default function CheckpointRedirect() {
   const router = useRouter()
 
   useEffect(() => {
-    const checkpoint = getcheckPoint()
+    const checkpoint = getCheckPoint()
     if (checkpoint) {
       router.push(`content/${checkpoint}`)
     }
