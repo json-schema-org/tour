@@ -62,9 +62,57 @@ const testCases = [
     input: {
       name: "John Doe",
       age: 30,
-      address: [1600, "Pennsylvania", "A", "NW"],
+      address: [1600, "Pennsylvania", "Avenue", "NW"],
     },
-    expected: false,
+    expected: true,
+  },
+  {
+    input: {
+      name: "John Doe",
+      age: 30,
+      address: [1600, "Pennsylvania", "Avenue", "NE"],
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "John Doe",
+      age: 30,
+      address: [1600, "Pennsylvania", "Avenue", "SW"],
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "John Doe",
+      age: 30,
+      address: [1600, "Pennsylvania", "Avenue", "SE"],
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "John Doe",
+      age: 30,
+      address: [1600, "Pennsylvania", "Avenue", "SE"],
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "John Doe",
+      age: 30,
+      address: [1600, "Pennsylvania", "Street", "SE"],
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "John Doe",
+      age: 30,
+      address: [1600, "Pennsylvania", "Boulevard", "SE"],
+    },
+    expected: true,
   },
   {
     input: {
