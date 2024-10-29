@@ -7,13 +7,11 @@
   justify-content: center;
   height: 100vh;
   text-align: center;
-  background-color: #ffffff;
-  color: #000000;
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: bold;
+  font-size: 4rem;
+  font-weight: bolder;
   margin-bottom: 0.5rem;
 }
 
@@ -27,12 +25,10 @@
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: bold;
-  color: #ffffff;
-  background-color: #1e3a8a;
   border-radius: 0.25rem;
   text-decoration: none;
 }
 
 .button:hover {
-  background-color: #1a2e6b;
+  opacity: 0.9;
 }
