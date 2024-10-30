@@ -13,7 +13,7 @@ export default function PageLayout({
   params: { markdownPath: string[] };
 }) {
   const urlPath = usePathname().replace("/content", "").substring(1);
-  setCheckpoint(urlPath)
+  setCheckpoint(urlPath);
   return (
     <div className={styles.wrapper}>
       <NavBar urlPath={urlPath} />

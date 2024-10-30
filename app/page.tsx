@@ -8,7 +8,7 @@ import CheckpointRedirect from "./components/CheckPointRedirect/CheckPointRedire
 export default function Home() {
   return (
     <div className={cx(styles.main, outfitFont.className)}>
-      <CheckpointRedirect/>
+      <CheckpointRedirect />
       <div className={styles.wrapper}>
         <div className={styles.backgroundClipWrapper}>
           <div className={styles.titleWrapper}>

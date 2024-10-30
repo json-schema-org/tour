@@ -77,7 +77,7 @@ export default function CodeEditor({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [codeString]);
- 
+
   useEffect(() => {
     const savedCode = getCode(chapterIndex, stepIndex);
     if (savedCode && savedCode !== codeString) {
@@ -98,9 +98,7 @@ export default function CodeEditor({
           theme={colorMode === "light" ? "light" : "my-theme"}
           value={codeString}
           height={"100%"}
-          onChange={(codeString) => 
-            setCodeString(codeString ? codeString : "")
-          }
+          onChange={(codeString) => setCodeString(codeString ? codeString : "")}
           options={{ minimap: { enabled: false }, fontSize: 14 }}
           onMount={(editor, monaco) => {
             setMonaco(monaco);

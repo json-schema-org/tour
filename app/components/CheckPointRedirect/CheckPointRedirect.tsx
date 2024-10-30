@@ -1,19 +1,18 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { getCheckPoint } from '@/lib/progressSaving'
-
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { getCheckPoint } from "@/lib/progressSaving";
 
 export default function CheckpointRedirect() {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    const checkpoint = getCheckPoint()
+    const checkpoint = getCheckPoint();
     if (checkpoint) {
-      router.push(`content/${checkpoint}`)
+      router.push(`content/${checkpoint}`);
     }
-  }, [router])
+  }, [router]);
 
-  return null
+  return null;
 }

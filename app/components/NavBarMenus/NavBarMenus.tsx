@@ -76,7 +76,7 @@ export default function NavBarMenu() {
                 mt={2}
                 onClick={() => {
                   localStorage.removeItem("progress");
-                  localStorage.removeItem("codeData")
+                  localStorage.removeItem("codeData");
                   setIsOpen(false);
                   toast({
                     title: "Progress Cleared",
@@ -85,7 +85,7 @@ export default function NavBarMenu() {
                     duration: 3000,
                     isClosable: true,
                   });
-                  window.location.reload()
+                  window.location.reload();
                 }}
               >
                 RESET
