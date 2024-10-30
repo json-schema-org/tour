@@ -98,7 +98,7 @@ export default function CodeEditor({
           theme={colorMode === "light" ? "light" : "my-theme"}
           value={codeString}
           height={"100%"}
-          onChange={(codeString) => setCodeString(codeString ? codeString : "")}
+          onChange={(codeString) => setCodeString(codeString ?? "")}
           options={{ minimap: { enabled: false }, fontSize: 14 }}
           onMount={(editor, monaco) => {
             setMonaco(monaco);
