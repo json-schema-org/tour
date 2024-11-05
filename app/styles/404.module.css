@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 5rem;
+}
+
+.message {
+  font-size: 1em;
+}
