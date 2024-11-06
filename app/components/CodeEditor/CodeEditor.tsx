@@ -12,9 +12,8 @@ import { OutputReducerAction } from "@/lib/reducers";
 import { validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
-import { useEditorStore } from "@/lib/stores";
+import { useCodeStore, useEditorStore } from "@/lib/stores";
 import { sendGAEvent } from "@next/third-parties/google";
-import { getCode, persistCode } from "@/lib/progressSaving";
 
 export default function CodeEditor({
   codeString,
@@ -39,6 +38,7 @@ export default function CodeEditor({
   const [monaco, setMonaco] = useState<any>(null);
   const router = useRouter();
   const editorStore = useEditorStore();
+  const codeStore = useCodeStore();
 
   useEffect(() => {
     if (monaco) {
@@ -79,15 +79,22 @@ export default function CodeEditor({
   }, [codeString]);
 
   useEffect(() => {
-    const savedCode = getCode(chapterIndex, stepIndex);
+    const savedCode = codeStore.getCode(chapterIndex, stepIndex);
+    // const savedCode = getCode(chapterIndex, stepIndex);
     if (savedCode && savedCode !== codeString) {
       setCodeString(savedCode);
     }
   }, [chapterIndex, stepIndex]);
 
   useEffect(() => {
-    persistCode(chapterIndex, stepIndex, codeString);
+    codeStore.persistCode(chapterIndex, stepIndex, codeString);
   }, [codeString, chapterIndex, stepIndex]);
+
+  useEffect(() => {
+    if(Object.keys(codeStore.codeData).length == 0 ){
+      setCodeString(JSON.stringify(codeFile.code, null, 2));
+    }
+  },[codeStore]);
 
   return (
     <>
