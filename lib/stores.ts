@@ -14,39 +14,39 @@ export const useEditorStore = create<Store>()((set) => ({
   setMonaco: (monaco) => set({ monaco }),
 }));
 
-type CodeData = {
+type UserSolutionsByLesson = {
   [key: string]: string | null;
 };
 
-type CodeStore = {
-  codeData: CodeData;
-  persistCode: (chapter: number, lesson: number, code: string) => void;
-  getCode: (chapter: number, lesson: number) => string | null;
+type UserSolutionStore = {
+  userSolutionsByLesson: UserSolutionsByLesson;
+  saveUserSolutionForLesson: (chapter: number, lesson: number, code: string) => void;
+  getSavedUserSolutionByLesson: (chapter: number, lesson: number) => string | null;
   clearAllCode: () => void;
 };
 
-export const useCodeStore = create<CodeStore>()((set, get) => ({
-  codeData:
+export const useUserSolutionStore = create<UserSolutionStore>()((set, get) => ({
+  userSolutionsByLesson:
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("codeData") ?? "{}")
       : {},
 
-  persistCode: (chapter: number, lesson: number, code: string) => {
+      saveUserSolutionForLesson: (chapter: number, lesson: number, code: string) => {
     const key = `${chapter}.${lesson}`;
     set((state) => {
-      const newCodeData = { ...state.codeData, [key]: code };
-      localStorage.setItem("codeData", JSON.stringify(newCodeData));
-      return { codeData: newCodeData };
+      const NewUserSolutionsByLesson = { ...state.userSolutionsByLesson, [key]: code };
+      localStorage.setItem("codeData", JSON.stringify(NewUserSolutionsByLesson));
+      return { userSolutionsByLesson: NewUserSolutionsByLesson };
     });
   },
 
-  getCode: (chapter: number, lesson: number) => {
+  getSavedUserSolutionByLesson: (chapter: number, lesson: number) => {
     const key = `${chapter}.${lesson}`;
-    return get().codeData[key] ?? null;
+    return get().userSolutionsByLesson[key] ?? null;
   },
 
   clearAllCode: () => {
     localStorage.removeItem("codeData");
-    set({ codeData: {} });
+    set({ userSolutionsByLesson: {} });
   },
 }));
