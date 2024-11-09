@@ -57,6 +57,16 @@ const testCases = [
   {
     input: {
       name: "John Doe",
+      age: 30,
+      postalCode: "123456",
+      phoneNumber: "12345678901",
+      countryCode: "IN",
+    },
+    expected: true,
+  },
+  {
+    input: {
+      name: "John Doe",
       age: "30",
       postalCode: "123456",
       phoneNumber: "1234567890",
@@ -139,7 +149,7 @@ const testCases = [
 const solution = structuredClone(code);
 solution.properties.phoneNumber = {
   type: "string",
-  pattern: "^[0-9]{10}$",
+  pattern: "^[0-9]{10,}$",
 };
 
 solution.properties.postalCode = {
