@@ -10,7 +10,7 @@ export default function CheckpointRedirect() {
   useEffect(() => {
     const checkpoint = getCheckPoint();
     if (checkpoint) {
-      router.push(`content/${checkpoint}`);
+      router.push(`/${checkpoint}`);
     }
   }, [router]);
 
