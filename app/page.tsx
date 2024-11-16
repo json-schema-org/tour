@@ -3,12 +3,15 @@ import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
 import CompanyLogos from "./components/CommunityLinks/CommunityLinks";
 import HomePageLinks from "./components/HomePageLinks/HomePageLinks";
-import CheckpointRedirect from "./components/CheckPointRedirect/CheckPointRedirect";
+import dynamic from "next/dynamic";
+// import CheckpointRedirect from "./components/CheckPointRedirect/CheckPointRedirect";
+
+const CheckpointRedirect = dynamic(() => import("./components/CheckPointRedirect/CheckPointRedirect"),{ssr: false})
+
 
 export default function Home() {
   return (
     <div className={cx(styles.main, outfitFont.className)}>
-      <CheckpointRedirect />
       <div className={styles.wrapper}>
         <div className={styles.backgroundClipWrapper}>
           <div className={styles.titleWrapper}>
@@ -26,7 +29,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <HomePageLinks />
+        <div className={styles.homePageContent}>
+          <HomePageLinks />
+          <div className={styles.continueBtn}>
+            <CheckpointRedirect />
+          </div>
+        </div>
       </div>
       <div className={styles.footer}>
         <div className={cx(styles.footerText, interFont.className)}>

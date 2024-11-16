@@ -23,7 +23,6 @@ import { contentManager } from "@/lib/contentManager";
 import Progressbar from "../Progressbar";
 import NavBarMenu from "../NavBarMenus";
 import { sendGAEvent } from "@next/third-parties/google";
-import { setCheckpoint } from "@/lib/progressSaving";
 
 export default function NavBar({ urlPath }: { urlPath: string }) {
   const {
@@ -53,9 +52,7 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
   return (
     <div className={styles.navBar}>
       <div className={styles.leftContentWrapper}>
-        <Link className={styles.logoTitle} href="/" onClick={() => {
-          setCheckpoint("/")
-        }}>
+        <Link className={styles.logoTitle} href="/">
           <Image
             src={colorMode == "light" ? JSONSchemaIcon : JSONSchemaIconDark}
             alt="JSON Schema Logo"
@@ -77,7 +74,6 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
                 router.push("/" + previousStepPath);
               } else {
                 router.push("/");
-                setCheckpoint("/")
               }
             }}
           >

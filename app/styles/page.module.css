@@ -66,7 +66,14 @@
   gap: 0px;
   justify-content: center;
 }
-
+.homePageContent{
+  display: flex;
+  align-items: center;
+}
+.continueBtn{
+  position: absolute;
+  margin-left: 500px;
+}
 .footer {
   display: flex;
   flex-direction: column;
