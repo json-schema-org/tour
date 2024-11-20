@@ -2,7 +2,6 @@
 import React from "react";
 import styles from "./layout.module.css";
 import NavBar from "@/app/components/NavBar";
-import { contentManager } from "@/lib/contentManager";
 import { usePathname } from "next/navigation";
 import { setCheckpoint } from "@/lib/progressSaving";
 
