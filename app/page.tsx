@@ -33,7 +33,7 @@ export default function Home() {
         </div>
         <div className={styles.homePageLinksWrapper}>
           <HomePageLinks />
-          <div className={styles.continueBtn}>
+          <div className={styles.continueBtnWrapper}>
             <CheckpointRedirect />
           </div>
         </div>

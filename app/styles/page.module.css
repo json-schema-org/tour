@@ -70,7 +70,7 @@
   display: flex;
   align-items: center;
 }
-.continueBtn {
+.continueBtnWrapper {
   position: absolute;
   margin-left: 500px;
 }
