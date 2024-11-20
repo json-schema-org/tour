@@ -1,16 +1,12 @@
 import styles from "./styles/page.module.css";
 import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
-import CompanyLogos from "./components/CommunityLinks/CommunityLinks";
-import HomePageLinks from "./components/HomePageLinks/HomePageLinks";
+import CompanyLogos from "./components/CommunityLinks";
+import HomePageLinks from "./components/HomePageLinks";
 import dynamic from "next/dynamic";
-// import CheckpointRedirect from "./components/CheckPointRedirect/CheckPointRedirect";
-
-const CheckpointRedirect = dynamic(
-  () => import("./components/ContinueBtn/ContinueBtn"),
-  { ssr: false },
-);
-
+const ContinueBtn = dynamic(() => import("./components/ContinueBtn"), {
+  ssr: false,
+});
 export default function Home() {
   return (
     <div className={cx(styles.main, outfitFont.className)}>
@@ -34,7 +30,7 @@ export default function Home() {
         <div className={styles.homePageLinksWrapper}>
           <HomePageLinks />
           <div className={styles.continueBtnWrapper}>
-            <CheckpointRedirect />
+            <ContinueBtn />
           </div>
         </div>
       </div>
