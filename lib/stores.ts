@@ -20,8 +20,15 @@ type UserSolutionsByLesson = {
 
 type UserSolutionStore = {
   userSolutionsByLesson: UserSolutionsByLesson;
-  saveUserSolutionForLesson: (chapter: number, lesson: number, code: string) => void;
-  getSavedUserSolutionByLesson: (chapter: number, lesson: number) => string | null;
+  saveUserSolutionForLesson: (
+    chapter: number,
+    lesson: number,
+    code: string,
+  ) => void;
+  getSavedUserSolutionByLesson: (
+    chapter: number,
+    lesson: number,
+  ) => string | null;
   clearAllCode: () => void;
 };
 
@@ -31,11 +38,21 @@ export const useUserSolutionStore = create<UserSolutionStore>()((set, get) => ({
       ? JSON.parse(localStorage.getItem("codeData") ?? "{}")
       : {},
 
-      saveUserSolutionForLesson: (chapter: number, lesson: number, code: string) => {
+  saveUserSolutionForLesson: (
+    chapter: number,
+    lesson: number,
+    code: string,
+  ) => {
     const key = `${chapter}.${lesson}`;
     set((state) => {
-      const NewUserSolutionsByLesson = { ...state.userSolutionsByLesson, [key]: code };
-      localStorage.setItem("codeData", JSON.stringify(NewUserSolutionsByLesson));
+      const NewUserSolutionsByLesson = {
+        ...state.userSolutionsByLesson,
+        [key]: code,
+      };
+      localStorage.setItem(
+        "codeData",
+        JSON.stringify(NewUserSolutionsByLesson),
+      );
       return { userSolutionsByLesson: NewUserSolutionsByLesson };
     });
   },

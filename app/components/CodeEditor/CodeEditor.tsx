@@ -79,21 +79,28 @@ export default function CodeEditor({
   }, [codeString]);
 
   useEffect(() => {
-    const savedCode = userSolutionStore.getSavedUserSolutionByLesson(chapterIndex, stepIndex);
+    const savedCode = userSolutionStore.getSavedUserSolutionByLesson(
+      chapterIndex,
+      stepIndex,
+    );
     if (savedCode && savedCode !== codeString) {
       setCodeString(savedCode);
     }
   }, [chapterIndex, stepIndex]);
 
   useEffect(() => {
-    userSolutionStore.saveUserSolutionForLesson(chapterIndex, stepIndex, codeString);
+    userSolutionStore.saveUserSolutionForLesson(
+      chapterIndex,
+      stepIndex,
+      codeString,
+    );
   }, [codeString, chapterIndex, stepIndex]);
 
   useEffect(() => {
-    if(Object.keys(userSolutionStore.userSolutionsByLesson).length == 0 ){
+    if (Object.keys(userSolutionStore.userSolutionsByLesson).length == 0) {
       setCodeString(JSON.stringify(codeFile.code, null, 2));
     }
-  },[userSolutionStore]);
+  }, [userSolutionStore]);
 
   return (
     <>
