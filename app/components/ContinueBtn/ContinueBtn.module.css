@@ -1,0 +1,12 @@
+.continueBtn {
+  display: flex;
+  gap: 5px;
+}
+
+.rightIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+}

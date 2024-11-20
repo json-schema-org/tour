@@ -66,7 +66,14 @@
   gap: 0px;
   justify-content: center;
 }
-
+.homePageLinksWrapper {
+  display: flex;
+  align-items: center;
+}
+.continueBtnWrapper {
+  position: absolute;
+  margin-left: 500px;
+}
 .footer {
   display: flex;
   flex-direction: column;

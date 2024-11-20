@@ -12,7 +12,7 @@ import { OutputReducerAction } from "@/lib/reducers";
 import { validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
-import { useEditorStore } from "@/lib/stores";
+import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
 import { sendGAEvent } from "@next/third-parties/google";
 
 export default function CodeEditor({
@@ -38,6 +38,7 @@ export default function CodeEditor({
   const [monaco, setMonaco] = useState<any>(null);
   const router = useRouter();
   const editorStore = useEditorStore();
+  const userSolutionStore = useUserSolutionStore();
 
   useEffect(() => {
     if (monaco) {
@@ -76,6 +77,31 @@ export default function CodeEditor({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [codeString]);
+
+  useEffect(() => {
+    const savedCode = userSolutionStore.getSavedUserSolutionByLesson(
+      chapterIndex,
+      stepIndex,
+    );
+    if (savedCode && savedCode !== codeString) {
+      setCodeString(savedCode);
+    }
+  }, [chapterIndex, stepIndex]);
+
+  useEffect(() => {
+    userSolutionStore.saveUserSolutionForLesson(
+      chapterIndex,
+      stepIndex,
+      codeString,
+    );
+  }, [codeString, chapterIndex, stepIndex]);
+
+  useEffect(() => {
+    if (Object.keys(userSolutionStore.userSolutionsByLesson).length == 0) {
+      setCodeString(JSON.stringify(codeFile.code, null, 2));
+    }
+  }, [userSolutionStore]);
+
   return (
     <>
       <div className={ctx(styles.codeEditor, GeistMono.className)}>
@@ -85,7 +111,7 @@ export default function CodeEditor({
           theme={colorMode === "light" ? "light" : "my-theme"}
           value={codeString}
           height={"100%"}
-          onChange={(codeString) => setCodeString(codeString ? codeString : "")}
+          onChange={(codeString) => setCodeString(codeString ?? "")}
           options={{ minimap: { enabled: false }, fontSize: 14 }}
           onMount={(editor, monaco) => {
             setMonaco(monaco);

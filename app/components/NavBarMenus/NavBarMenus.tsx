@@ -21,6 +21,7 @@ import {
 import React, { useState } from "react";
 import navBarStyles from "../NavBar/NavBar.module.css";
 import { sendGAEvent } from "@next/third-parties/google";
+import { useUserSolutionStore } from "@/lib/stores";
 
 export default function NavBarMenu() {
   const { colorMode } = useColorMode();
@@ -28,6 +29,8 @@ export default function NavBarMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toast = useToast();
+
+  const userSolutionStore = useUserSolutionStore();
 
   return (
     <Menu closeOnSelect={false} gutter={4}>
@@ -75,6 +78,7 @@ export default function NavBarMenu() {
                 mt={2}
                 onClick={() => {
                   localStorage.removeItem("progress");
+                  userSolutionStore.clearAllCode();
                   setIsOpen(false);
                   toast({
                     title: "Progress Cleared",
