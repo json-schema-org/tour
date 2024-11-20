@@ -6,8 +6,10 @@ import HomePageLinks from "./components/HomePageLinks/HomePageLinks";
 import dynamic from "next/dynamic";
 // import CheckpointRedirect from "./components/CheckPointRedirect/CheckPointRedirect";
 
-const CheckpointRedirect = dynamic(() => import("./components/CheckPointRedirect/CheckPointRedirect"),{ssr: false})
-
+const CheckpointRedirect = dynamic(
+  () => import("./components/ContinueBtn/ContinueBtn"),
+  { ssr: false },
+);
 
 export default function Home() {
   return (
@@ -29,7 +31,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className={styles.homePageContent}>
+        <div className={styles.homePageLinksWrapper}>
           <HomePageLinks />
           <div className={styles.continueBtn}>
             <CheckpointRedirect />

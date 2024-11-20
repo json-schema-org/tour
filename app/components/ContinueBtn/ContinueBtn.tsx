@@ -2,10 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { getCheckPoint } from "@/lib/progressSaving";
-import styles from "./CheckpointRedirect.module.css"
+import styles from "./ContinueBtn.module.css";
 import RightArrow from "@/app/styles/icons/RightArrow";
+import { Button } from "@chakra-ui/react";
 
-export default function CheckpointRedirect() {
+export default function ContinueBtn() {
   const router = useRouter();
   const checkpoint = getCheckPoint();
 
@@ -14,20 +15,25 @@ export default function CheckpointRedirect() {
     if (checkpoint) {
       router.push(`/${checkpoint}`);
     }
-  }
+  };
 
   return (
     <>
       {checkpoint && (
-        <button className={styles.button} onClick={handleClick}>
+        <Button
+          variant={"default"}
+          onClick={handleClick}
+          size={"sm"}
+          className={styles.continueBtn}
+        >
           Continue
           <div className={styles.rightIcon}>
             <RightArrow />
           </div>
-        </button>
+        </Button>
       )}
     </>
-  )
+  );
 
   return null;
 }

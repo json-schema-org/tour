@@ -66,11 +66,11 @@
   gap: 0px;
   justify-content: center;
 }
-.homePageContent{
+.homePageLinksWrapper {
   display: flex;
   align-items: center;
 }
-.continueBtn{
+.continueBtn {
   position: absolute;
   margin-left: 500px;
 }
