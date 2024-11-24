@@ -93,7 +93,7 @@ export default function ChapterItem({
           <div>{title}</div>
         </div>
       </button>
-      <Collapse in={isOpen} unmountOnExit>
+      <Collapse in={isOpen} unmountOnExit animateOpacity>
         {
           <ul>
             {steps.map((step, stepIndex) => (
