@@ -5,7 +5,7 @@ import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import MyBtn from "../MyBtn";
 import { CodeFile, OutputResult } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
@@ -39,6 +39,48 @@ export default function CodeEditor({
   const router = useRouter();
   const editorStore = useEditorStore();
   const userSolutionStore = useUserSolutionStore();
+  const [formatTimer, setFormatTimer] = useState<NodeJS.Timeout | null>(null);
+  const editorRef = useRef<any>(null);
+
+  const tryFormatCode = useCallback(async () => {
+    try {
+      if (!editorRef.current) return;
+
+      const currentCode = editorRef.current.getValue();
+      console.log(currentCode)
+      JSON.parse(currentCode);
+
+      await editorRef.current.getAction('editor.action.formatDocument').run();
+
+      setCodeString(editorRef.current.getValue());
+    } catch (e) {
+      // If invalid JSON, do nothing
+      return;
+    }
+  }, [setCodeString]);
+
+  const handleCodeChange = useCallback((newCode: string | undefined) => {
+    const code = newCode ?? "";
+    setCodeString(code);
+
+    if (formatTimer) {
+      clearTimeout(formatTimer);
+    }
+
+    const timer = setTimeout(() => {
+      tryFormatCode();
+    }, 1000);
+
+    setFormatTimer(timer);
+  }, [setCodeString, formatTimer, tryFormatCode]);
+
+  useEffect(() => {
+    return () => {
+      if (formatTimer) {
+        clearTimeout(formatTimer);
+      }
+    };
+  }, [formatTimer]);
 
   useEffect(() => {
     if (monaco) {
@@ -55,12 +97,11 @@ export default function CodeEditor({
   }, [monaco, colorMode]);
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // event.preventDefault();
       if (event.key == "Enter" && event.shiftKey) {
         sendGAEvent("event", "buttonClicked", {
           value: "Validate (through shortcut)",
         });
-        event.preventDefault(); // Prevent default behavior
+        event.preventDefault();
         validateCode(
           codeString,
           codeFile,
@@ -111,10 +152,15 @@ export default function CodeEditor({
           theme={colorMode === "light" ? "light" : "my-theme"}
           value={codeString}
           height={"100%"}
-          onChange={(codeString) => setCodeString(codeString ?? "")}
-          options={{ minimap: { enabled: false }, fontSize: 14 }}
+          onChange={handleCodeChange}
+          options={{minimap: { enabled: false },
+          fontSize: 14,
+          formatOnPaste: true,
+          formatOnType: true
+        }}
           onMount={(editor, monaco) => {
             setMonaco(monaco);
+            editorRef.current = editor;
             editorStore.setEditor(editor);
             editorStore.setMonaco(monaco);
           }}
