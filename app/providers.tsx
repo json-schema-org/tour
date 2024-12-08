@@ -1,7 +1,7 @@
 "use client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./styles/theme";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   // useEffect(() => {
@@ -9,6 +9,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
   //     window.location.href = "/mobile";
   //   }
   // }, []);
+  const [isHydrated, setIsHydrated] = useState(false);
+  
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
-  return <ChakraProvider theme={theme}>{children}</ChakraProvider>;
+  return isHydrated?<ChakraProvider theme={theme}>{children}</ChakraProvider>:null;
 }
