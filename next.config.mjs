@@ -25,6 +25,12 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  experimental: {
+    turbo: {
+      optimizeCss: true, 
+      transitivePackages: true
+    },
+  }
 };
 
 export default withMDX(nextConfig);
