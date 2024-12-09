@@ -12,15 +12,25 @@ So, `additionalProperties` can restrict you from "extending" a schema using comb
 
 ```json highlightLineStart={11}
 {
-  "type": "object",
+  "$ref": "https://example.com/address",
   "properties": {
-    "street_address": { "type": "string" },
-    "city": { "type": "string" },
-    "state": { "type": "string" }
+    "type": { "enum": ["residential", "business"] }
   },
-  "required": ["street_address", "city", "state"],
-  "additionalProperties": false
+  "required": ["type"],
+  "additionalProperties": false,
+  "definitions": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "street_address": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" }
+      },
+      "required": ["street_address", "city", "state"]
+    }
+  }
 }
+
 
 ```
 
