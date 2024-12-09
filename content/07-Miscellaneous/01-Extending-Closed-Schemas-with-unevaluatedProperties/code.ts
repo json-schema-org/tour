@@ -1,22 +1,18 @@
 const code: any = {
-  allOf: [
-    {
-      type: "object",
-      properties: {
-        street_address: { type: "string" },
-        city: { type: "string" },
-        state: { type: "string" },
-      },
-      required: ["street_address", "city", "state"],
-    },
-  ],
+  $ref: "https://example.com/address",
   properties: {
+    street_address: { type: "string" },
+    city: { type: "string" },
+    state: { type: "string" },
     type: { enum: ["residential", "business"] },
   },
-  required: ["type"],
+  required: ["street_address", "city", "state", "type"],
+  additionalProperties: false
 };
 
 let solution = structuredClone(code);
+
+
 solution.unevaluatedProperties = {
   type: "number",
 };
@@ -39,7 +35,7 @@ const testCases = [
       type: "business",
       zip: 20500,
     },
-    expected: true,
+    expected: true, 
   },
   {
     input: {
@@ -47,9 +43,9 @@ const testCases = [
       city: "Washington",
       state: "DC",
       type: "business",
-      zip: "20500",
+      zip: "20500", 
     },
-    expected: false,
+    expected: false, 
   },
   {
     input: {
@@ -57,7 +53,7 @@ const testCases = [
       city: "Washington",
       state: "DC",
       type: "business",
-      zip: null,
+      zip: null, 
     },
     expected: false,
   },
