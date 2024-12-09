@@ -1,64 +1,21 @@
 ---
 title: Extending Closed Schemas with unevaluatedProperties
 description: Extending Closed Schemas in JSON Schema Objects using the unevaluatedProperties keyword
-keywords:  extending closed schemas,unevaluatedProperties , JSON Schema, JSON Schema objects
+keywords: extending closed schemas, unevaluatedProperties, JSON Schema, JSON Schema objects
 ---
-
 
 # Extending Closed Schemas
 
-Previously in the Objects module, we learned to `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself. 
+Previously in the Objects module, we learned about `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself.
 
-So, `additionalProperties` can restrict you from "extending" a schema using combining [keywords](https://json-schema.org/learn/glossary#subschema) such as `allOf`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail. 
+This limitation can restrict you from "extending" a schema using combining [keywords](https://json-schema.org/learn/glossary#subschema) such as `$ref`. In the following example, we use `$ref` to extend the address schema (`https://example.com/address`) by adding a `type` property while controlling additional properties. This approach showcases how `unevaluatedProperties` resolves the challenges of extending schemas.
 
-```json highlightLineStart={11}
+```json highlightLineStart={6,13,16}
 {
-  "allOf": [
-    {
-      "type": "object",
-      "properties": {
-        "street_address": { "type": "string" },
-        "city": { "type": "string" },
-        "state": { "type": "string" }
-      },
-      "required": ["street_address", "city", "state"],
-      "additionalProperties": false
-    }
-  ],
+  "$ref": "https://example.com/address",
   "properties": {
     "type": { "enum": [ "residential", "business" ] }
   },
-  "required": ["type"]
+  "required": ["type"],
+  "unevaluatedProperties": false
 }
-```
-The above [schema](https://json-schema.org/learn/glossary#schema) will not allow you to define `type` property. because `additionalProperties` is set to `false`. The reason is, `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema). 
-
-
-## Unevaluated Properties
-
-The challenge we saw with `additionalProperties` can be solved using the `unevaluatedProperties` keyword. This keyword allows you to define properties that are not evaluated by the current schema. 
-
-```json highlightLineStart={15}
-{
-  "allOf": [
-    {
-      "type": "object",
-      "properties": {
-        "street_address": { "type": "string" },
-        "city": { "type": "string" },
-        "state": { "type": "string" }
-      },
-      "required": ["street_address", "city", "state"],    }
-  ],
-  "properties": {
-    "type": { "enum": [ "residential", "business" ] }
-  },
-  "unevaluatedProperties": false,
-  "required": ["type"]
-}
-```
-
-## Task 
-
-You are give the same schema in the <SideEditorLink/>. Add `unevaluatedProperties` to the schema to allow the only `number` as an additional property. 
-
