@@ -168,7 +168,10 @@ export function hasNestedProperty(obj: any, path: string) {
   // If we've made it through all the keys, the property exists
   return true;
 }
-export async function tryFormattingCode(editorRef: any, setCodeString: (code:string) => void)  {
+export async function tryFormattingCode(
+  editorRef: any,
+  setCodeString: (code: string) => void,
+) {
   try {
     if (!editorRef.current) return;
     const currentCode = editorRef.current.getValue();
