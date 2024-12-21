@@ -9,7 +9,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import MyBtn from "../MyBtn";
 import { CodeFile, OutputResult } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
-import { validateCode } from "@/lib/client-functions";
+import { tryFormattingCode, validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
@@ -39,48 +39,7 @@ export default function CodeEditor({
   const router = useRouter();
   const editorStore = useEditorStore();
   const userSolutionStore = useUserSolutionStore();
-  const [formatTimer, setFormatTimer] = useState<NodeJS.Timeout | null>(null);
   const editorRef = useRef<any>(null);
-
-  const tryFormatCode = useCallback(async () => {
-    try {
-      if (!editorRef.current) return;
-
-      const currentCode = editorRef.current.getValue();
-      console.log(currentCode)
-      JSON.parse(currentCode);
-
-      await editorRef.current.getAction('editor.action.formatDocument').run();
-
-      setCodeString(editorRef.current.getValue());
-    } catch (e) {
-      // If invalid JSON, do nothing
-      return;
-    }
-  }, [setCodeString]);
-
-  const handleCodeChange = useCallback((newCode: string | undefined) => {
-    const code = newCode ?? "";
-    setCodeString(code);
-
-    if (formatTimer) {
-      clearTimeout(formatTimer);
-    }
-
-    const timer = setTimeout(() => {
-      tryFormatCode();
-    }, 1000);
-
-    setFormatTimer(timer);
-  }, [setCodeString, formatTimer, tryFormatCode]);
-
-  useEffect(() => {
-    return () => {
-      if (formatTimer) {
-        clearTimeout(formatTimer);
-      }
-    };
-  }, [formatTimer]);
 
   useEffect(() => {
     if (monaco) {
@@ -102,6 +61,7 @@ export default function CodeEditor({
           value: "Validate (through shortcut)",
         });
         event.preventDefault();
+        tryFormattingCode(editorRef, setCodeString);
         validateCode(
           codeString,
           codeFile,
@@ -152,12 +112,14 @@ export default function CodeEditor({
           theme={colorMode === "light" ? "light" : "my-theme"}
           value={codeString}
           height={"100%"}
-          onChange={handleCodeChange}
-          options={{minimap: { enabled: false },
-          fontSize: 14,
-          formatOnPaste: true,
-          formatOnType: true
-        }}
+          onChange={(codeString) => setCodeString(codeString ?? "")}
+          options={{
+            minimap: { enabled: false },
+
+            fontSize: 14,
+            formatOnPaste: true,
+            formatOnType: true,
+          }}
           onMount={(editor, monaco) => {
             setMonaco(monaco);
             editorRef.current = editor;
@@ -169,15 +131,16 @@ export default function CodeEditor({
       <div className={styles.buttonsWrapper}>
         <Flex dir="row" gap={"8px"} alignItems={"end"}>
           <MyBtn
-            onClick={async () =>
+            onClick={async () => {
+              tryFormattingCode(editorRef, setCodeString);
               validateCode(
                 codeString,
                 codeFile,
                 dispatchOutput,
                 stepIndex,
                 chapterIndex,
-              )
-            }
+              );
+            }}
             variant={
               outputResult.validityStatus === "valid" ? "success" : "default"
             }
