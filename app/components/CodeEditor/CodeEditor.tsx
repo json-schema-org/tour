@@ -3,7 +3,7 @@
 import styles from "./CodeEditor.module.css";
 import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
-import Editor, { useMonaco } from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 import MyBtn from "../MyBtn";
