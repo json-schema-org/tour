@@ -9,7 +9,7 @@ export default function CompanyLogos() {
     return [
       { title: "Github", link: "https://github.com/json-schema-org" },
       { title: "Slack", link: "https://json-schema.org/slack" },
-      { title: "Twitter", link: "https://x.com/jsonschema" },
+      { title: "X", link: "https://x.com/jsonschema" },
       {
         title: "Youtube",
         link: "https://www.youtube.com/@JSONSchemaOrgOfficial",
