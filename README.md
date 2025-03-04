@@ -29,7 +29,7 @@ The project is built using **Next.js**, a React framework for building server-re
 
 ### Prerequisites
 
-- **Node.js**: Ensure you have Node.js installed (v16 or higher).
+- **Node.js**: Ensure you have Node.js installed (v20 or higher).
 - **pnpm**: The project uses `pnpm` as the package manager.
 
 ### Installation
