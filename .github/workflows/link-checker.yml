@@ -3,8 +3,6 @@ name: Link Checker
 on:
   repository_dispatch:
   workflow_dispatch:
-  pull_request:
-    types: [opened, synchronize, reopened]
   schedule: 
     - cron: '0 0 1 * *' # Run at midnight on the first of every month
     
