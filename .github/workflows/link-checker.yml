@@ -18,13 +18,14 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: Corepack enable
-        run: corepack enable
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      # Replace corepack with direct PNPM installation
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Get Token 
         uses: actions/create-github-app-token@v1
