@@ -3,13 +3,13 @@
 import styles from "./CodeEditor.module.css";
 import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
-import Editor, { useMonaco } from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import MyBtn from "../MyBtn";
 import { CodeFile, OutputResult } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
-import { validateCode } from "@/lib/client-functions";
+import { tryFormattingCode, validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
@@ -39,6 +39,7 @@ export default function CodeEditor({
   const router = useRouter();
   const editorStore = useEditorStore();
   const userSolutionStore = useUserSolutionStore();
+  const editorRef = useRef<any>(null);
 
   useEffect(() => {
     if (monaco) {
@@ -55,12 +56,12 @@ export default function CodeEditor({
   }, [monaco, colorMode]);
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // event.preventDefault();
       if (event.key == "Enter" && event.shiftKey) {
         sendGAEvent("event", "buttonClicked", {
           value: "Validate (through shortcut)",
         });
-        event.preventDefault(); // Prevent default behavior
+        event.preventDefault();
+        tryFormattingCode(editorRef, setCodeString);
         validateCode(
           codeString,
           codeFile,
@@ -112,9 +113,16 @@ export default function CodeEditor({
           value={codeString}
           height={"100%"}
           onChange={(codeString) => setCodeString(codeString ?? "")}
-          options={{ minimap: { enabled: false }, fontSize: 14 }}
+          options={{
+            minimap: { enabled: false },
+
+            fontSize: 14,
+            formatOnPaste: true,
+            formatOnType: true,
+          }}
           onMount={(editor, monaco) => {
             setMonaco(monaco);
+            editorRef.current = editor;
             editorStore.setEditor(editor);
             editorStore.setMonaco(monaco);
           }}
@@ -123,15 +131,16 @@ export default function CodeEditor({
       <div className={styles.buttonsWrapper}>
         <Flex dir="row" gap={"8px"} alignItems={"end"}>
           <MyBtn
-            onClick={async () =>
+            onClick={async () => {
+              tryFormattingCode(editorRef, setCodeString);
               validateCode(
                 codeString,
                 codeFile,
                 dispatchOutput,
                 stepIndex,
                 chapterIndex,
-              )
-            }
+              );
+            }}
             variant={
               outputResult.validityStatus === "valid" ? "success" : "default"
             }

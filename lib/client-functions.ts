@@ -168,3 +168,18 @@ export function hasNestedProperty(obj: any, path: string) {
   // If we've made it through all the keys, the property exists
   return true;
 }
+export async function tryFormattingCode(
+  editorRef: any,
+  setCodeString: (code: string) => void,
+) {
+  try {
+    if (!editorRef.current) return;
+    const currentCode = editorRef.current.getValue();
+    JSON.parse(currentCode);
+    await editorRef.current.getAction("editor.action.formatDocument").run();
+    setCodeString(editorRef.current.getValue());
+  } catch (e) {
+    // If invalid JSON, do nothing
+    return;
+  }
+}
