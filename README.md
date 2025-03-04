@@ -1,60 +1,93 @@
 # Tour of JSON Schema
 
-This repository contains the code for the Tour of JSON Schema project.
-https://tour.json-schema.org
+Welcome to the **Tour of JSON Schema** project! This repository hosts the codebase for an interactive learning platform designed to help users understand and master JSON Schema. You can access the live version of the project at [https://tour.json-schema.org](https://tour.json-schema.org).
 
-# Development
+---
 
-The project is built using next.js.
+## Table of Contents
 
-After cloning the repository, run the following command to install the dependencies:
+- [Tour of JSON Schema](#tour-of-json-schema)
+  - [Table of Contents](#table-of-contents)
+  - [Development Setup](#development-setup)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [Content Creation](#content-creation)
+    - [Writing MDX](#writing-mdx)
+    - [VSCode Extensions](#vscode-extensions)
+    - [File Structure](#file-structure)
+  - [MDX Components Guide](#mdx-components-guide)
+    - [GoodToKnowBox](#goodtoknowbox)
+    - [CodeSnippet](#codesnippet)
+    - [SideEditorLink](#sideeditorlink)
+  - [Contributing](#contributing)
 
-```bash
-pnpm install
-```
+---
 
-To start the development server, run the following command:
+## Development Setup
 
-```bash
-pnpm dev
-```
+The project is built using **Next.js**, a React framework for building server-rendered applications. Below are the steps to set up your development environment:
 
-> when you run `pnpm dev`, a file named `outline.json` will be created in th `/content` directory. This file is used to generate the table of contents for the website.
+### Prerequisites
 
-(make sure you run tests before pushing your changes)
-To run the tests, run the following command:
+- **Node.js**: Ensure you have Node.js installed (v16 or higher).
+- **pnpm**: The project uses `pnpm` as the package manager.
 
-```bash 
-pnpm test
-```
+### Installation
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/tour-of-json-schema.git
+   cd tour-of-json-schema
+   ```
 
-# Content
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. Start the development server:
+   ```bash
+   pnpm dev
+   ```
+
+   > **Note**: Running `pnpm dev` will generate a file named `outline.json` in the `/content` directory. This file is used to dynamically generate the table of contents for the website.
+
+4. Run tests before pushing changes:
+   ```bash
+   pnpm test
+   ```
+
+---
+
+## Content Creation
+
+The content for the Tour of JSON Schema is written in **MDX**, a markdown format that supports JSX syntax. This allows us to embed React components directly into the documentation, making it highly interactive and engaging.
 
 ### Writing MDX
 
-The content written in [MDX](https://mdxjs.com/), a markdown format that supports JSX syntax. This allows us to embed React components in the docs. See the [GitHub Markdown Guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) for a quick overview of markdown syntax.
+MDX combines the simplicity of Markdown with the power of React. Here are some resources to get started:
+- [MDX Documentation](https://mdxjs.com/)
+- [GitHub Markdown Guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
-### VSCode
+### VSCode Extensions
 
-#### Extensions
+For a smoother development experience, we recommend installing the following extensions in Visual Studio Code:
 
-We recommend the following extensions for VSCode users:
+- **MDX**: Provides syntax highlighting and IntelliSense for MDX files.
+  - Marketplace Link: [MDX Extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx)
+- **Prettier**: Automatically formats your MDX files on save.
+  - Marketplace Link: [Prettier Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-- [MDX](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx): Intellisense and syntax highlighting for MDX.
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): Format MDX files on save.
+### File Structure
 
-## File Structure
-
-the content of each step is stored in the `/content` directory with the following structure:
+The content is organized in the `/content` directory with the following structure:
 
 ```
-
 ├── 01-introduction
-│   ├── index.mdx
+│   ├── index.mdx                # Overview of the section
 │   ├── 01-welcome
-│       ├── instructions.mdx
-│       ├── code.ts
+│       ├── instructions.mdx     # Instructions for the step
+│       ├── code.ts              # Template code and validation logic
 │   ├── 02-what-is-json-schema
 │       ├── instructions.mdx
 │       ├── code.ts
@@ -66,54 +99,88 @@ the content of each step is stored in the `/content` directory with the followin
 │   ├── 02-arrays
 │       ├── instructions.mdx
 │       ├── code.ts
-
 ```
 
-The instructions.mdx file holds the content the users sees, and the code.ts file holds template code and the logic to validate user provided schemas
+- Each section (e.g., `01-introduction`) has an `index.mdx` file that serves as an overview.
+- Each step within a section contains:
+  - `instructions.mdx`: The content displayed to the user.
+  - `code.ts`: Contains template code and logic to validate user-provided schemas.
+
+---
 
 ## MDX Components Guide
 
-### GoodToKnowBox 
+The project includes custom React components to enhance the interactivity and readability of the content. Below is a guide to the available components:
 
-A box that displays a tips or any messages in a box. 
+### GoodToKnowBox
+
+A styled box for displaying tips, notes, or additional information.
 
 **Props:**
-- `title`: The title of the box (default: "Good to know")
-- `children`: The content of the box
+- `title` (optional): The title of the box. Defaults to "Good to know".
+- `children`: The content of the box.
 
 **Example:**
 ```md
-<GoodToKnowBox title="Tips">
-  This is a good to know box
+<GoodToKnowBox title="Pro Tip">
+  Use `$ref` to reuse schema definitions and keep your JSON Schema DRY.
 </GoodToKnowBox>
 ```
+
+---
+
 ### CodeSnippet
 
-A code block that displays the code with syntax highlighting.
+A code block with syntax highlighting and optional line highlighting.
 
 **Props:**
-- `highlightLineStart`: The line number to start highlighting
-- `highlightLineEnd`: The line number to end highlighting (default: highlight only one line)
-- `startingLineNumber`: The starting line number of the code block (default: 1)
-- `showLineNumbers`: Whether to show line numbers (default: true) 
+- `highlightLineStart`: The starting line number to highlight.
+- `highlightLineEnd` (optional): The ending line number to highlight. Defaults to `highlightLineStart`.
+- `startingLineNumber` (optional): The starting line number for the code block. Defaults to `1`.
+- `showLineNumbers` (optional): Whether to display line numbers. Defaults to `true`.
 
 **Example:**
 ```md
-<CodeSnippet highlightLineStart={1} highlightLineEnd={2}>
+<CodeSnippet highlightLineStart={3} highlightLineEnd={5}>
 {
-  "name": "John Doe",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "age": { "type": "integer" }
+  }
 }
 </CodeSnippet>
 ```
+
+---
+
 ### SideEditorLink
 
 A link that focuses the editor on the right side of the screen.
 
-**Props:** None 
+**Props:**
+- `text` (optional): Custom text for the link. Defaults to "side editor".
 
 **Example:**
 ```md
-<SideEditorLink />
+<SideEditorLink text="Open the editor to try this example" />
 ```
-**Props:**
-- `text` (optional): the default text is "side editor". You can pass a custom text to the component.
+
+---
+
+## Contributing
+
+We welcome contributions from the community! If you'd like to contribute, please follow these guidelines:
+
+1. Fork the repository and create a new branch for your changes.
+2. Ensure your changes pass all tests by running:
+   ```bash
+   pnpm test
+   ```
+3. Submit a pull request with a detailed description of your changes.
+
+> **Note**: Always run tests before submitting a pull request to ensure your changes do not introduce regressions.
+
+---
+
+Thank you for contributing to the **Tour of JSON Schema** project! Together, we can make JSON Schema more accessible and easier to learn for everyone.
