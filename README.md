@@ -36,7 +36,7 @@ The project is built using **Next.js**, a React framework for building server-re
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/tour-of-json-schema.git
+   git clone https://github.com/json-schema-org/tour
    cd tour-of-json-schema
    ```
 
