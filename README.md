@@ -56,7 +56,7 @@ The project is built using **Next.js**, a React framework for building server-re
    ```bash
    pnpm test
    ```
-> [!NOTE]
+> [!CAUTION]
 > Always run tests before submitting a pull request to ensure your changes do not introduce regressions.
 
 
