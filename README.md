@@ -11,6 +11,7 @@ Welcome to the **Tour of JSON Schema** project! This repository hosts the codeba
   - [Development Setup](#development-setup)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
+    - [Contributing](#contributing)
   - [Content Creation](#content-creation)
     - [Writing MDX](#writing-mdx)
     - [VSCode Extensions](#vscode-extensions)
@@ -19,7 +20,6 @@ Welcome to the **Tour of JSON Schema** project! This repository hosts the codeba
     - [GoodToKnowBox](#goodtoknowbox)
     - [CodeSnippet](#codesnippet)
     - [SideEditorLink](#sideeditorlink)
-  - [Contributing](#contributing)
 
 ---
 
@@ -56,6 +56,14 @@ The project is built using **Next.js**, a React framework for building server-re
    ```bash
    pnpm test
    ```
+> [!NOTE]
+> Always run tests before submitting a pull request to ensure your changes do not introduce regressions.
+
+
+### Contributing
+
+Please Read the [Contributing Guide](CONTRIBUTING.md) for detailed instructions on how to contribute to the project.
+
 
 ---
 
@@ -165,22 +173,6 @@ A link that focuses the editor on the right side of the screen.
 ```md
 <SideEditorLink text="Open the editor to try this example" />
 ```
-
----
-
-## Contributing
-
-We welcome contributions from the community! If you'd like to contribute, please follow these guidelines:
-
-1. Fork the repository and create a new branch for your changes.
-2. Ensure your changes pass all tests by running:
-   ```bash
-   pnpm test
-   ```
-3. Submit a pull request with a detailed description of your changes.
-
-> **Note**: Always run tests before submitting a pull request to ensure your changes do not introduce regressions.
-
 ---
 
 Thank you for contributing to the **Tour of JSON Schema** project! Together, we can make JSON Schema more accessible and easier to learn for everyone.
