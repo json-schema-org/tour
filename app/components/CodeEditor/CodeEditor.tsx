@@ -7,8 +7,6 @@ import Editor from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 import MyBtn from "../MyBtn";
-import { CodeFile, OutputResult } from "@/lib/types";
-import { OutputReducerAction } from "@/lib/reducers";
 import { tryFormattingCode, validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
@@ -24,22 +22,14 @@ export default function CodeEditor({
   stepIndex,
   chapterIndex,
   outputResult,
-}: {
-  codeString: string;
-  setCodeString: (codeString: string) => void;
-  codeFile: CodeFile;
-  dispatchOutput: React.Dispatch<OutputReducerAction>;
-  nextStepPath: string | undefined;
-  stepIndex: number;
-  chapterIndex: number;
-  outputResult: OutputResult;
 }) {
   const { colorMode } = useColorMode();
-  const [monaco, setMonaco] = useState<any>(null);
+  const [monaco, setMonaco] = useState(null);
+  const [isValidating, setIsValidating] = useState(false);
   const router = useRouter();
   const editorStore = useEditorStore();
   const userSolutionStore = useUserSolutionStore();
-  const editorRef = useRef<any>(null);
+  const editorRef = useRef(null);
 
   useEffect(() => {
     if (monaco) {
@@ -54,26 +44,30 @@ export default function CodeEditor({
       monaco.editor.setTheme(colorMode === "light" ? "light" : "my-theme");
     }
   }, [monaco, colorMode]);
+
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event) => {
       if (event.key == "Enter" && event.shiftKey) {
         sendGAEvent("event", "buttonClicked", {
           value: "Validate (through shortcut)",
         });
         event.preventDefault();
-        tryFormattingCode(editorRef, setCodeString);
-        validateCode(
-          codeString,
-          codeFile,
-          dispatchOutput,
-          stepIndex,
-          chapterIndex,
-        );
+        setIsValidating(true);
+        setTimeout(() => {
+          tryFormattingCode(editorRef, setCodeString);
+          validateCode(
+            codeString,
+            codeFile,
+            dispatchOutput,
+            stepIndex,
+            chapterIndex,
+          );
+          setIsValidating(false);
+        }, 500);
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
-
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
@@ -111,11 +105,10 @@ export default function CodeEditor({
           defaultValue={codeString}
           theme={colorMode === "light" ? "light" : "my-theme"}
           value={codeString}
-          height={"100%"}
+          height="100%"
           onChange={(codeString) => setCodeString(codeString ?? "")}
           options={{
             minimap: { enabled: false },
-
             fontSize: 14,
             formatOnPaste: true,
             formatOnType: true,
@@ -129,24 +122,29 @@ export default function CodeEditor({
         />
       </div>
       <div className={styles.buttonsWrapper}>
-        <Flex dir="row" gap={"8px"} alignItems={"end"}>
+        <Flex dir="row" gap="8px" alignItems="end">
           <MyBtn
-            onClick={async () => {
-              tryFormattingCode(editorRef, setCodeString);
-              validateCode(
-                codeString,
-                codeFile,
-                dispatchOutput,
-                stepIndex,
-                chapterIndex,
-              );
+            onClick={() => {
+              setIsValidating(true);
+              setTimeout(() => {
+                tryFormattingCode(editorRef, setCodeString);
+                validateCode(
+                  codeString,
+                  codeFile,
+                  dispatchOutput,
+                  stepIndex,
+                  chapterIndex,
+                );
+                setIsValidating(false);
+              }, 500);
             }}
+            isDisabled={isValidating}
             variant={
               outputResult.validityStatus === "valid" ? "success" : "default"
             }
             tooltip="Shift + Enter"
           >
-            Validate
+            {isValidating ? "Validating..." : "Validate"}
           </MyBtn>
 
           <MyBtn
@@ -154,7 +152,7 @@ export default function CodeEditor({
               setCodeString(JSON.stringify(codeFile.code, null, 2));
               dispatchOutput({ type: "RESET" });
             }}
-            variant={"error"}
+            variant="error"
           >
             Reset
           </MyBtn>
