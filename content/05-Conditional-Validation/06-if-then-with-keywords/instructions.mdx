@@ -1,15 +1,15 @@
 ---
 title: "Expanding If-Then-Else"
 description: "Learn how to use the if-then-else keyword in JSON Schema to apply conditional validation using more than just constants."
-keywords: "if-then-else, conditional validation, JSON Schema, not, minimum, subschema, keyword"
+keywords: "if-then-else, conditional validation, JSON Schema, not, minimum, subschema"
 ---
 
 # Expanding If-Then-Else
 So far, you've learned how to use if-then-else for conditionals. This lesson will show how they can be combined with different validation rules, not just constants!
 
-# Using the not Keyword
-The not keyword allows you to negate a condition (or any schema rule), meaning a property must not match a specified type or constraint. For example, the following schema ensures that the name property can be anything except a string:
-```json
+## Using with  not Keyword
+The `not` keyword allows you to negate a condition (or any schema rule), meaning a property must not match a specified type or constraint. For example, the following schema ensures that the name property can be anything except a string:
+```json highlightLineStart={5} highlightLineEnd={5}
 {
   "type": "object",
   "properties": {
@@ -20,7 +20,7 @@ The not keyword allows you to negate a condition (or any schema rule), meaning a
 }
 ```
 
-Using the not keyword with the if-else keyword can look something like this:
+Using the `not` keyword with the `if-else` keyword can look something like this:
 
 **Example Schema**
 ```json highlightLineStart={15} highlightLineEnd={23}
@@ -65,7 +65,7 @@ This demonstrates that conditionals in JSON Schema can be combined with various 
 }
 ```
 
-You are given the [schema](https://json-schema.org/learn/glossary#schema) for the same JSON document in the <SideEditorLink/>. Modify the schema to enforce the below condition:
+You are given the [schema](https://json-schema.org/learn/glossary#schema) for the same JSON document in the <SideEditorLink/>. Modify the schema to enforce the below condition using `if-then-else`:
 
 - **If** `grade` is **greater that or equal to 8**, **then** the `recommendationLetter` field must be present, and the `personalStatement` field must **NOT** be present.
 - Else if `grade` is **lower than 8**, **then** the `personalStatement` field must be present, and the `recommendationLetter` field must **NOT** be present..
