@@ -12,6 +12,8 @@ import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
 import { sendGAEvent } from "@next/third-parties/google";
+import { CodeFile, OutputResult } from "@/lib/types";
+import { OutputReducerAction } from "@/lib/reducers";
 
 export default function CodeEditor({
   codeString,
@@ -22,14 +24,23 @@ export default function CodeEditor({
   stepIndex,
   chapterIndex,
   outputResult,
+}: {
+  codeString: string;
+  setCodeString: (codeString: string) => void;
+  codeFile: CodeFile;
+  dispatchOutput: React.Dispatch<OutputReducerAction>;
+  nextStepPath: string | undefined;
+  stepIndex: number;
+  chapterIndex: number;
+  outputResult: OutputResult;
 }) {
   const { colorMode } = useColorMode();
-  const [monaco, setMonaco] = useState(null);
+  const [monaco, setMonaco] = useState<any>(null);
   const [isValidating, setIsValidating] = useState(false);
   const router = useRouter();
   const editorStore = useEditorStore();
   const userSolutionStore = useUserSolutionStore();
-  const editorRef = useRef(null);
+  const editorRef = useRef<any>(null);
 
   useEffect(() => {
     if (monaco) {
@@ -52,18 +63,7 @@ export default function CodeEditor({
           value: "Validate (through shortcut)",
         });
         event.preventDefault();
-        setIsValidating(true);
-        setTimeout(() => {
-          tryFormattingCode(editorRef, setCodeString);
-          validateCode(
-            codeString,
-            codeFile,
-            dispatchOutput,
-            stepIndex,
-            chapterIndex,
-          );
-          setIsValidating(false);
-        }, 500);
+        handleValidate();
       }
     };
 
@@ -97,6 +97,21 @@ export default function CodeEditor({
     }
   }, [userSolutionStore]);
 
+  const handleValidate = () => {
+    setIsValidating(true);
+    setTimeout(() => {
+      tryFormattingCode(editorRef, setCodeString);
+      validateCode(
+        codeString,
+        codeFile,
+        dispatchOutput,
+        stepIndex,
+        chapterIndex,
+      );
+      setIsValidating(false);
+    }, 500);
+  };
+
   return (
     <>
       <div className={ctx(styles.codeEditor, GeistMono.className)}>
@@ -124,24 +139,11 @@ export default function CodeEditor({
       <div className={styles.buttonsWrapper}>
         <Flex dir="row" gap="8px" alignItems="end">
           <MyBtn
-            onClick={() => {
-              setIsValidating(true);
-              setTimeout(() => {
-                tryFormattingCode(editorRef, setCodeString);
-                validateCode(
-                  codeString,
-                  codeFile,
-                  dispatchOutput,
-                  stepIndex,
-                  chapterIndex,
-                );
-                setIsValidating(false);
-              }, 500);
-            }}
-            isDisabled={isValidating}
+            onClick={() => handleValidate()}
             variant={
               outputResult.validityStatus === "valid" ? "success" : "default"
             }
+            isDisabled={isValidating}
             tooltip="Shift + Enter"
           >
             {isValidating ? "Validating..." : "Validate"}
