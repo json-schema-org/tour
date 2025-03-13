@@ -58,6 +58,7 @@ export default function CertificateButton() {
           variant={"default"}
           className={styles.certificateButton}
           onClick={isTheTourCompletedState ? onOpen : () => {}}
+          isDisabled={!isTheTourCompletedState}
         >
           {isTheTourCompletedState ? "" : <LockIcon />} Get Your Certificate
         </Button>
