@@ -1,29 +1,26 @@
-const code: any =  {
+const code: any = {
   type: "object",
   properties: {
     name: {
-      type: "string"
+      type: "string",
     },
     age: {
-      type: "integer"
+      type: "integer",
     },
     grade: {
       type: "number",
       minimum: 0,
-      maximum: 10
+      maximum: 10,
     },
     recommendationLetter: {
-      type: "string"
+      type: "string",
     },
     personalStatement: {
-      type: "string"
-    }
+      type: "string",
+    },
   },
-  required: [
-    "name",
-    "grade"
-  ],
-}
+  required: ["name", "grade"],
+};
 
 let solution = structuredClone(code);
 solution = {
@@ -32,20 +29,16 @@ solution = {
     properties: {
       grade: {
         minimum: 8,
-      }
-    }
+      },
+    },
   },
   then: {
-    required: [
-      "recommendationLetter"
-    ],
-    not: { required: ["personalStatement"] }
+    required: ["recommendationLetter"],
+    not: { required: ["personalStatement"] },
   },
   else: {
-    required: [
-      "personalStatement"
-    ],
-    not: { required: ["recommendationLetter"] }
+    required: ["personalStatement"],
+    not: { required: ["recommendationLetter"] },
   },
 };
 const testCases = [
@@ -54,8 +47,8 @@ const testCases = [
       name: "John Doe",
       age: 20,
       grade: 8,
-      recommendationLetter: "Dr. Smith's letter",   
-  },
+      recommendationLetter: "Dr. Smith's letter",
+    },
     expected: true,
   },
   {
@@ -63,7 +56,7 @@ const testCases = [
       name: "John Doe",
       age: 20,
       grade: 5,
-      personalStatement: "I love engineering..", 
+      personalStatement: "I love engineering..",
     },
     expected: true,
   },
@@ -87,7 +80,7 @@ const testCases = [
     input: {
       name: "John Doe",
       age: 20,
-      grade: 5, 
+      grade: 5,
     },
     expected: false,
   },
@@ -95,9 +88,9 @@ const testCases = [
     input: {
       name: "John Doe",
       age: 20,
-      grade: 5, 
+      grade: 5,
       recommendationLetter: "",
-      personalStatement: ""
+      personalStatement: "",
     },
     expected: false,
   },
@@ -105,9 +98,9 @@ const testCases = [
     input: {
       name: "John Doe",
       age: 20,
-      grade: 8, 
+      grade: 8,
       recommendationLetter: "",
-      personalStatement: ""
+      personalStatement: "",
     },
     expected: false,
   },
@@ -122,7 +115,7 @@ const testCases = [
   {
     input: {
       age: 20,
-      grade: 8, 
+      grade: 8,
     },
     expected: false,
   },
