@@ -128,32 +128,28 @@ const EditorControls = ({
           Reset
         </MyBtn>
       </Flex>
-      {
-        nextStepPath?(
-          <>
+      {nextStepPath ? (
+        <>
           <MyBtn
-        onClick={() => {
-          if (nextStepPath) router.push("/" + nextStepPath);
-        }}
-        variant={
-          outputResult.validityStatus === "valid" ? "default" : "success"
-        }
-        isDisabled={!nextStepPath}
-        size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
-      >
-        Next <span style={{ marginLeft: "4px" }}></span>
-        <FiChevronRight
-          color={
-            outputResult.validityStatus === "valid"
-              ? "white"
-              : "hsl(var(--success))"
-          }
-        />
-      </MyBtn>
-          </>
-        ):
-        <CertificateButton/>
-      }
+            onClick={() => router.push("/" + nextStepPath)}
+            variant={
+              outputResult.validityStatus === "valid" ? "default" : "success"
+            }
+            size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
+          >
+            Next <span style={{ marginLeft: "4px" }}></span>
+            <FiChevronRight
+              color={
+                outputResult.validityStatus === "valid"
+                  ? "white"
+                  : "hsl(var(--success))"
+              }
+            />
+          </MyBtn>
+        </>
+      ) : (
+        <CertificateButton />
+      )}
     </div>
   );
 };
