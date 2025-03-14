@@ -14,6 +14,7 @@ import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
 import { sendGAEvent } from "@next/third-parties/google";
 import { CodeFile, OutputResult } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
+import CertificateButton from "../CertificateButton/CertificateButton";
 
 export default function CodeEditor({
   codeString,
@@ -57,7 +58,7 @@ export default function CodeEditor({
   }, [monaco, colorMode]);
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key == "Enter" && event.shiftKey) {
         sendGAEvent("event", "buttonClicked", {
           value: "Validate (through shortcut)",
@@ -159,14 +160,13 @@ export default function CodeEditor({
             Reset
           </MyBtn>
         </Flex>
-        <MyBtn
-          onClick={() => {
-            if (nextStepPath) router.push("/" + nextStepPath);
-          }}
+        {
+          nextStepPath ? (
+            <MyBtn
+          onClick={() => router.push("/" + nextStepPath)}
           variant={
             outputResult.validityStatus === "valid" ? "default" : "success"
           }
-          isDisabled={!nextStepPath}
           size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
         >
           Next <span style={{ marginLeft: "4px" }}></span>
@@ -178,6 +178,8 @@ export default function CodeEditor({
             }
           />
         </MyBtn>
+          ) : <CertificateButton/>
+        }
       </div>
     </>
   );
