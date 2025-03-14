@@ -3,7 +3,7 @@
 import styles from "./CodeEditor.module.css";
 import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
-import Editor, { EditorProps, Monaco } from "@monaco-editor/react";
+import Editor, { Monaco } from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 import MyBtn from "../MyBtn";
@@ -120,7 +120,7 @@ const EditorControls = ({
           isDisabled={isValidating}
           tooltip="Shift + Enter"
         >
-          {isValidating ? "Validating..." : "Validate"}
+          {isValidating ? "Validating ..." : "Validate"}
         </MyBtn>
 
         <MyBtn onClick={resetCode} variant="error">
