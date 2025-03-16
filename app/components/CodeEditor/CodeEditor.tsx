@@ -7,7 +7,11 @@ import Editor, { Monaco } from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 import MyBtn from "../MyBtn";
-import { tryFormattingCode, validateCode } from "@/lib/client-functions";
+import {
+  isTheTourCompleted,
+  tryFormattingCode,
+  validateCode,
+} from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
@@ -109,6 +113,11 @@ const EditorControls = ({
   outputResult: OutputResult;
 }) => {
   const router = useRouter();
+  const [isTheTourCompletedState, setIsTheTourCompletedState] =
+    useState(isTheTourCompleted());
+  useEffect(() => {
+    setIsTheTourCompletedState(isTheTourCompleted());
+  }, [isTheTourCompleted()]);
 
   return (
     <div className={styles.buttonsWrapper}>
@@ -128,27 +137,27 @@ const EditorControls = ({
           Reset
         </MyBtn>
       </Flex>
-      {nextStepPath ? (
+      {!nextStepPath || isTheTourCompletedState ? (
         <>
-          <MyBtn
-            onClick={() => router.push("/" + nextStepPath)}
-            variant={
-              outputResult.validityStatus === "valid" ? "default" : "success"
-            }
-            size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
-          >
-            Next <span style={{ marginLeft: "4px" }}></span>
-            <FiChevronRight
-              color={
-                outputResult.validityStatus === "valid"
-                  ? "white"
-                  : "hsl(var(--success))"
-              }
-            />
-          </MyBtn>
+          <CertificateButton />
         </>
       ) : (
-        <CertificateButton />
+        <MyBtn
+          onClick={() => router.push("/" + nextStepPath)}
+          variant={
+            outputResult.validityStatus === "valid" ? "default" : "success"
+          }
+          size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
+        >
+          Next <span style={{ marginLeft: "4px" }}></span>
+          <FiChevronRight
+            color={
+              outputResult.validityStatus === "valid"
+                ? "white"
+                : "hsl(var(--success))"
+            }
+          />
+        </MyBtn>
       )}
     </div>
   );
