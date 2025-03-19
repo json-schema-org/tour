@@ -18,6 +18,7 @@
 
 
 .myBtn:hover .nextIcon{
-  color: black !important;
+  color: red !important;
   fill: black !important;
+  background-color: magenta !important;
 }
