@@ -31,6 +31,7 @@ export default function MyBtn({
         textTransform={"uppercase"}
         isDisabled={isDisabled}
         fontWeight={"bold"}
+        className="myBtn"
       >
         {children}
       </Button>

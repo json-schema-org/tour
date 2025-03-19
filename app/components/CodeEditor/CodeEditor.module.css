@@ -15,3 +15,9 @@
   padding-left: 16px;
   padding-right: 32px;
 }
+
+
+.myBtn:hover .nextIcon{
+  color: black !important;
+  fill: black !important;
+}
