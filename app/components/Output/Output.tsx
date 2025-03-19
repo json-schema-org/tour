@@ -67,7 +67,7 @@ const SchemaError = ({ schemaPath }: { schemaPath: string }) => {
         <b>Details:</b> {errorDetails}
       </div>
       <div style={{ marginTop: "10px" }}>
-        <div>Possible Fixes:</div>
+        <b>Possible Fixes:</b>
         <UnorderedList>
           {possibleFixes.map((fix, index) => (
             <ListItem key={index}>{fix}</ListItem>
