@@ -15,10 +15,3 @@
   padding-left: 16px;
   padding-right: 32px;
 }
-
-
-.myBtn:hover .nextIcon{
-  color: red !important;
-  fill: black !important;
-  background-color: magenta !important;
-}
