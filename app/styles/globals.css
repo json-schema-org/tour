@@ -75,8 +75,3 @@ html {
 main {
   height: 100%;
 }
-
-
-.myBtn:hover .nextIcon{
-  fill: black !important;
-}
