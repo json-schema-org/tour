@@ -1,0 +1,86 @@
+.menuButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  transition: 0.2s ease-in-out;
+}
+
+.menuButton:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.menuList {
+  min-width: 150px;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: var(--chakra-colors-gray-100);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  color: var(--chakra-colors-red-600);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.menuItem:hover {
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.dialog {
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 9999;
+  width: 350px;
+  height: 210px;
+  text-align: center;
+  top: 40px;
+  right: 30px;
+}
+
+.dialogTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.dialogText {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.resetButton {
+  background-color: hsl(var(--error));
+  color: white;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.resetButton:hover {
+  background-color: hsl(var(--error));
+}
+
+.cancelButton {
+  background-color: var(--chakra-colors-gray-200) !important;
+  color: black !important;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: 0.2s ease-in-out;
+}
+
+.cancelButton:hover {
+  background-color: var(--chakra-colors-gray-300);
+}
