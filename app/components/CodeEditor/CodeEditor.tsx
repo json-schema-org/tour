@@ -114,7 +114,7 @@ const EditorControls = ({
 }) => {
   const router = useRouter();
   const [isTheTourCompletedState, setIsTheTourCompletedState] = useState(false);
-  
+
   useEffect(() => {
     setIsTheTourCompletedState(isTheTourCompleted());
   }, []);
@@ -138,9 +138,7 @@ const EditorControls = ({
         </MyBtn>
       </Flex>
       {!nextStepPath || isTheTourCompletedState ? (
-        <>
-          <CertificateButton />
-        </>
+        <CertificateButton />
       ) : (
         <MyBtn
           onClick={() => router.push("/" + nextStepPath)}
