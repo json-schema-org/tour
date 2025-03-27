@@ -113,11 +113,11 @@ const EditorControls = ({
   outputResult: OutputResult;
 }) => {
   const router = useRouter();
-  const [isTheTourCompletedState, setIsTheTourCompletedState] =
-    useState(isTheTourCompleted());
+  const [isTheTourCompletedState, setIsTheTourCompletedState] = useState(false);
+  
   useEffect(() => {
     setIsTheTourCompletedState(isTheTourCompleted());
-  }, [isTheTourCompleted()]);
+  }, []);
 
   return (
     <div className={styles.buttonsWrapper}>
