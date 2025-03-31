@@ -137,7 +137,7 @@ const EditorControls = ({
           Reset
         </MyBtn>
       </Flex>
-      {!nextStepPath || isTheTourCompletedState ? (
+      {!nextStepPath && isTheTourCompletedState ? (
         <CertificateButton />
       ) : (
         <MyBtn
