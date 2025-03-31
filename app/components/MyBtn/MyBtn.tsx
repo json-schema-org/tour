@@ -1,6 +1,5 @@
 import { Button, Tooltip } from "@chakra-ui/react";
 import { sendGAEvent } from "@next/third-parties/google";
-import styles from "./MyBtn.module.css";
 
 export default function MyBtn({
   children,
@@ -32,7 +31,6 @@ export default function MyBtn({
         textTransform={"uppercase"}
         isDisabled={isDisabled}
         fontWeight={"bold"}
-        className={styles.myBtn}
       >
         {children}
       </Button>

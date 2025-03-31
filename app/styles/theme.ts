@@ -17,7 +17,6 @@ const Button = {
     },
     success: {
       color: "hsl(var(--success))",
-
       borderColor: "hsl(var(--success))",
       borderWidth: "1px",
       _disabled: {
@@ -26,6 +25,9 @@ const Button = {
       _hover: {
         bg: "hsl(var(--success))",
         color: "black",
+        "& svg path": {
+          fill: "black", 
+        },
         _disabled: {
           color: "hsl(var(--success) / 0.4)",
         },
