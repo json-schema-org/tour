@@ -11,6 +11,7 @@ Welcome to the **Tour of JSON Schema** project! This repository hosts the codeba
   - [Development Setup](#development-setup)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
+    - [Figma Design](#figma-design)
     - [Contributing](#contributing)
   - [Content Creation](#content-creation)
     - [Writing MDX](#writing-mdx)
@@ -59,6 +60,9 @@ The project is built using **Next.js**, a React framework for building server-re
 > [!CAUTION]
 > Always run tests before submitting a pull request to ensure your changes do not introduce regressions.
 
+### Figma Design
+
+You can view the Figma design for the project at [this link](https://www.figma.com/design/w8ow79jE7lJucJt2zZTbcz/Tour-of-JSON-Schema?node-id=2303-39&t=CH9j0oDmVft8uTWX-0).
 
 ### Contributing
 
