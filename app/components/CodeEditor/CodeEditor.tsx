@@ -33,10 +33,17 @@ const useEditorTheme = (monaco: Monaco, colorMode: "dark" | "light") => {
 };
 
 // Custom hook for keyboard shortcuts
-const useValidationShortcut = (
-  handleValidate: () => void,
-  codeString: string,
-) => {
+const useEditorShortcuts = ({
+  handleValidate,
+  handleReset,
+  handleNext,
+  codeString,
+}: {
+  handleValidate: () => void;
+  handleReset: () => void;
+  handleNext: () => void;
+  codeString: string;
+}) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Enter" && event.shiftKey) {
@@ -46,13 +53,33 @@ const useValidationShortcut = (
         event.preventDefault();
         handleValidate();
       }
+      
+      if (
+        event.key.toLowerCase() === "r" &&
+        event.altKey &&
+        event.shiftKey
+      ) {
+        sendGAEvent("event", "buttonClicked", {
+          value: "Reset Code (through shortcut)",
+        });
+        event.preventDefault();
+        handleReset();
+      }
+    
+      if (event.key === "ArrowRight" && event.shiftKey) {
+        sendGAEvent("event", "buttonClicked", {
+          value: "Next Lesson (through shortcut)",
+        });
+        event.preventDefault();
+        handleNext();
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleValidate, codeString]);
+  }, [handleValidate, handleReset, handleNext, codeString]);
 };
 
 // Custom hook for code persistence
@@ -100,15 +127,15 @@ const EditorControls = ({
   resetCode,
   nextStepPath,
   outputResult,
+  handleNext,
 }: {
   handleValidate: () => void;
   isValidating: boolean;
   resetCode: () => void;
   nextStepPath: string | undefined;
   outputResult: OutputResult;
+  handleNext: () => void;
 }) => {
-  const router = useRouter();
-
   return (
     <div className={styles.buttonsWrapper}>
       <Flex dir="row" gap="8px" alignItems="end">
@@ -123,27 +150,22 @@ const EditorControls = ({
           {isValidating ? "Validating ..." : "Validate"}
         </MyBtn>
 
-        <MyBtn onClick={resetCode} variant="error">
+        <MyBtn onClick={resetCode} variant="error" tooltip="Alt + Shift + R">
           Reset
         </MyBtn>
       </Flex>
       <MyBtn
-        onClick={() => {
-          if (nextStepPath) router.push("/" + nextStepPath);
-        }}
+        onClick={handleNext}
         variant={
           outputResult.validityStatus === "valid" ? "default" : "success"
         }
         isDisabled={!nextStepPath}
         size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
+        tooltip="Shift + →"
       >
         Next <span style={{ marginLeft: "4px" }}></span>
         <FiChevronRight
-          color={
-            outputResult.validityStatus === "valid"
-              ? "white"
-              : "hsl(var(--success))"
-          }
+          color="currentColor"
         />
       </MyBtn>
     </div>
@@ -174,6 +196,7 @@ export default function CodeEditor({
   const [isValidating, setIsValidating] = useState(false);
   const editorStore = useEditorStore();
   const editorRef = useRef<any>(null);
+  const router = useRouter();
 
   // Apply custom hooks
   useEditorTheme(monaco, colorMode);
@@ -193,7 +216,22 @@ export default function CodeEditor({
     }, 500);
   };
 
-  useValidationShortcut(handleValidate, codeString);
+  const resetCode = () => {
+    setCodeString(JSON.stringify(codeFile.code, null, 2));
+    dispatchOutput({ type: "RESET" });
+  };
+
+  const handleNext = () => {
+    if (nextStepPath) router.push("/" + nextStepPath);
+  };
+
+  useEditorShortcuts({
+    handleValidate,
+    handleReset: resetCode,
+    handleNext,
+    codeString,
+  });
+
   useCodePersistence(
     chapterIndex,
     stepIndex,
@@ -201,11 +239,6 @@ export default function CodeEditor({
     setCodeString,
     codeFile,
   );
-
-  const resetCode = () => {
-    setCodeString(JSON.stringify(codeFile.code, null, 2));
-    dispatchOutput({ type: "RESET" });
-  };
 
   const handleEditorMount = (editor: any, monaco: Monaco) => {
     setMonaco(monaco);
@@ -240,6 +273,7 @@ export default function CodeEditor({
         resetCode={resetCode}
         nextStepPath={nextStepPath}
         outputResult={outputResult}
+        handleNext={handleNext}
       />
     </>
   );
