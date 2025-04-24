@@ -1,20 +1,18 @@
 .content {
   display: flex;
   flex-direction: column;
-
   overflow-y: auto;
   flex: 1;
-  padding-right: 14px;
-  padding-bottom: 12px;
-  padding-left: 14px;
+  padding: 14px;
+  height: 100%;
+  width: 100%;
 }
+
 .contentWrapper {
   border-right: 1px solid hsl(var(--border-color));
-
   display: flex;
   flex-direction: column;
-
   height: 100%;
-  flex: 1;
-  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
