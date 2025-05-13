@@ -36,7 +36,9 @@ export default function NavBarMenu() {
     <Menu closeOnSelect={false} gutter={4}>
       <MenuButton
         className={navBarStyles.menuButton}
+        onBlur={() => setIsOpen(false)}
         onClick={() => {
+          
           sendGAEvent("event", "buttonClicked", {
             value: "Settings",
           });
@@ -51,6 +53,7 @@ export default function NavBarMenu() {
           onOpen={() => setIsOpen(true)}
           onClose={() => setIsOpen(false)}
           isOpen={isOpen}
+          closeOnBlur={false}
         >
           <PopoverTrigger>
             <MenuItem display={"flex"} gap={"8px"} color={"hsl(var(--error))"}>
@@ -62,6 +65,7 @@ export default function NavBarMenu() {
             rootProps={{
               style: {
                 transform: "scale(0)",
+                display: isOpen ? "inherit" : "none",
               },
             }}
           >
@@ -79,7 +83,6 @@ export default function NavBarMenu() {
                 onClick={() => {
                   localStorage.removeItem("progress");
                   userSolutionStore.clearAllCode();
-                  setIsOpen(false);
                   toast({
                     title: "Progress Cleared",
                     description: "Your progress has been cleared",
@@ -87,6 +90,7 @@ export default function NavBarMenu() {
                     duration: 3000,
                     isClosable: true,
                   });
+                  setIsOpen(false);
                 }}
               >
                 RESET
