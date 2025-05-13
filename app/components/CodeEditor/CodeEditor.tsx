@@ -7,10 +7,7 @@ import Editor, { Monaco } from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 import MyBtn from "../MyBtn";
-import {
-  tryFormattingCode,
-  validateCode,
-} from "@/lib/client-functions";
+import { tryFormattingCode, validateCode } from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
