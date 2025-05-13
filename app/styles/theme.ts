@@ -26,7 +26,7 @@ const Button = {
         bg: "hsl(var(--success))",
         color: "black",
         "& svg path": {
-          fill: "black", 
+          fill: "black",
         },
         _disabled: {
           color: "hsl(var(--success) / 0.4)",
