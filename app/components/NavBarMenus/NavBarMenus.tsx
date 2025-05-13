@@ -36,8 +36,9 @@ export default function NavBarMenu() {
     <Menu closeOnSelect={false} gutter={4}>
       <MenuButton
         className={navBarStyles.menuButton}
+        onBlur={() => setIsOpen(false)}
         onClick={() => {
-          setIsOpen(false);
+          
           sendGAEvent("event", "buttonClicked", {
             value: "Settings",
           });
@@ -52,8 +53,6 @@ export default function NavBarMenu() {
           onOpen={() => setIsOpen(true)}
           onClose={() => setIsOpen(false)}
           isOpen={isOpen}
-          openDelay={0}
-          closeDelay={1500}
           closeOnBlur={false}
         >
           <PopoverTrigger>
