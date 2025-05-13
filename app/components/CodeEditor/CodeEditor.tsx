@@ -113,12 +113,6 @@ const EditorControls = ({
   outputResult: OutputResult;
 }) => {
   const router = useRouter();
-  const [isTheTourCompletedState, setIsTheTourCompletedState] = useState(false);
-
-  useEffect(() => {
-    setIsTheTourCompletedState(isTheTourCompleted());
-  }, []);
-
   return (
     <div className={styles.buttonsWrapper}>
       <Flex dir="row" gap="8px" alignItems="end">
@@ -137,7 +131,7 @@ const EditorControls = ({
           Reset
         </MyBtn>
       </Flex>
-      {!nextStepPath && isTheTourCompletedState ? (
+      {!nextStepPath ? (
         <CertificateButton />
       ) : (
         <MyBtn

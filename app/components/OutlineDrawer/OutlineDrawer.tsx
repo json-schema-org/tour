@@ -42,7 +42,7 @@ export default function OutlineDrawer({
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader display={"flex"} justifyContent={"space-between"}>
+          <DrawerHeader display={"flex"} justifyContent={"space-between"} paddingRight={12}>
             Outline
             <CertificateButton />
           </DrawerHeader>
