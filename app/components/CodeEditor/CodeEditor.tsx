@@ -8,7 +8,6 @@ import { Flex, useColorMode } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 import MyBtn from "../MyBtn";
 import {
-  isTheTourCompleted,
   tryFormattingCode,
   validateCode,
 } from "@/lib/client-functions";
