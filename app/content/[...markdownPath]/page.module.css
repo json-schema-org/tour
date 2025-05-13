@@ -1,7 +1,41 @@
 .mainArea {
   display: flex;
   flex-direction: row;
-  flex: 12;
+  height: calc(100vh - 60px);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.leftPane {
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
+  min-width: 300px;
+  max-width: 70%;
+  display: flex;
+}
+
+.rightPane {
+  flex: 1;
+  height: 100%;
+  min-width: 300px;
+  overflow: hidden;
+  display: flex;
+}
+
+.divider {
+  width: 4px;
+  height: 100%;
+  background-color: hsl(var(--border-color));
+  cursor: col-resize;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.divider:hover {
+  background-color: hsl(var(--primary) / 0.75);
+}
+
+.divider:active {
+  background-color: hsl(var(--primary) / 0.75);
 }
