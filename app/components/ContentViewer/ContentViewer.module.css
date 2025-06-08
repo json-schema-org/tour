@@ -7,6 +7,7 @@
   padding-right: 14px;
   padding-bottom: 12px;
   padding-left: 14px;
+  margin-top: 50px;
 }
 .contentWrapper {
   border-right: 1px solid hsl(var(--border-color));

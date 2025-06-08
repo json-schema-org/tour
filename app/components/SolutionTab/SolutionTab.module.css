@@ -1,0 +1,10 @@
+.container {
+  height: 70vh;
+  width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+
+}
+

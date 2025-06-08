@@ -1,5 +1,7 @@
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 
+export type TabType = "description" | "solution";
+
 export type ChapterStep = {
   title: string;
   fileName: string;
@@ -59,4 +61,5 @@ export type OutputResult = {
   testCaseResults?: TestCaseResult[];
   totalTestCases?: number;
   errors?: InvalidSchemaError | string;
+  selectedTab?: TabType;
 };

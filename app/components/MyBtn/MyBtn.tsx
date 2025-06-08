@@ -8,6 +8,7 @@ export default function MyBtn({
   isDisabled,
   tooltip,
   size = "xs",
+  position = "right",
 }: {
   children: React.ReactNode;
   variant: "success" | "error" | "default";
@@ -15,6 +16,7 @@ export default function MyBtn({
   isDisabled?: boolean;
   tooltip?: string;
   size?: "xs" | "sm" | "md" | "lg";
+  position?: "left" | "right";
 }) {
   return (
     <Tooltip label={tooltip} aria-label={tooltip} placement="top">
@@ -31,6 +33,7 @@ export default function MyBtn({
         textTransform={"uppercase"}
         isDisabled={isDisabled}
         fontWeight={"bold"}
+        style={{float: position}}
       >
         {children}
       </Button>

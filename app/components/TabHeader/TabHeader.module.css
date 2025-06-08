@@ -1,0 +1,41 @@
+.wrapper {
+  width: 100%;
+  padding: 12px 16px;
+  position: fixed;
+  top: 40px;
+  margin: 12px 0;
+}
+
+.tabContainer {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563; 
+  position: relative;
+}
+
+.tabButton {
+  position: relative;
+  padding-bottom: 8px;
+  color: #6b7280; 
+  background: none;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: hsl(var(--text));
+}
+
+.activeTab {
+    color: hsl(var(--text));
+}
+
+.underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color:hsl(var(--text));
+}

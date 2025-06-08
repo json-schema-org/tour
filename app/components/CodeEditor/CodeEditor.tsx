@@ -170,14 +170,14 @@ export default function CodeEditor({
   chapterIndex: number;
   outputResult: OutputResult;
 }) {
-  const { colorMode } = useColorMode();
-  const [monaco, setMonaco] = useState<any>(null);
-  const [isValidating, setIsValidating] = useState(false);
-  const editorStore = useEditorStore();
-  const editorRef = useRef<any>(null);
+    const { colorMode } = useColorMode();
+    const [monaco, setMonaco] = useState<any>(null);
+    const [isValidating, setIsValidating] = useState(false);
+    const editorStore = useEditorStore();
+    const editorRef = useRef<any>(null);
 
-  // Apply custom hooks
-  useEditorTheme(monaco, colorMode);
+    // Apply custom hooks
+    useEditorTheme(monaco, colorMode);
 
   const handleValidate = () => {
     setIsValidating(true);

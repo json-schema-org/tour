@@ -2,8 +2,9 @@ import { contentManager } from "@/lib/contentManager";
 import styles from "./page.module.css";
 import React from "react";
 import { parseLessonFolder } from "@/lib/server-functions";
-import ContentViewer from "@/app/components/ContentViewer";
 import EditorNOutput from "@/app/components/EditorNOutput";
+import TabHeader from "@/app/components/TabHeader/TabHeader";
+import Tabs from "@/app/components/Tabs/Tabs";
 
 export function generateMetadata({
   params,
@@ -37,12 +38,14 @@ export default async function Content({
   const { mdPath, nextStepPath, stepIndex, codePath, chapterIndex } =
     contentManager.getPageMeta(urlPath);
   const { Page, metadata, codeFile } = parseLessonFolder(mdPath, codePath);
-
   return (
     <div className={styles.mainArea}>
-      <ContentViewer>
-        <Page />
-      </ContentViewer>
+      <div className={styles.tabContainer}>
+        <Tabs
+          Page={<Page />}
+          solution={JSON.stringify(codeFile.solution, null, 2)}
+        />
+      </div>
       <EditorNOutput
         codeFile={codeFile}
         nextStepPath={nextStepPath}

@@ -7,6 +7,7 @@ import { Box } from "@chakra-ui/react";
 import Output from "../Output";
 import { CodeFile } from "@/lib/types";
 import { outputReducer } from "@/lib/reducers";
+import { useUserSolutionStore } from "@/lib/stores";
 
 export default function EditorNOutput({
   codeFile,
@@ -19,9 +20,7 @@ export default function EditorNOutput({
   stepIndex: number;
   chapterIndex: number;
 }) {
-  const [codeString, setCodeString] = useState(
-    JSON.stringify(codeFile.code, null, 2),
-  );
+  const { setCodeString, codeString } = useUserSolutionStore();
 
   const showSolution = () => {
     setCodeString(JSON.stringify(codeFile.solution, null, 2));
@@ -64,6 +63,9 @@ export default function EditorNOutput({
   };
 
   useEffect(() => {
+    // Load the initial code
+    setCodeString(JSON.stringify(codeFile.code, null, 2));
+
     const topHeight = localStorage.getItem("verticalTopHeight");
     if (topHeight) {
       setTopWidth(Number(topHeight));

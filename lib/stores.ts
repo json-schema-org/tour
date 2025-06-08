@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { TabType } from "./types";
 
 type Store = {
   editor: any;
@@ -30,6 +31,8 @@ type UserSolutionStore = {
     lesson: number,
   ) => string | null;
   clearAllCode: () => void;
+  codeString: string;
+  setCodeString: (code: string) => void;
 };
 
 export const useUserSolutionStore = create<UserSolutionStore>()((set, get) => ({
@@ -65,5 +68,10 @@ export const useUserSolutionStore = create<UserSolutionStore>()((set, get) => ({
   clearAllCode: () => {
     localStorage.removeItem("codeData");
     set({ userSolutionsByLesson: {} });
+  },
+
+  codeString: "",
+  setCodeString: (code: string) => {
+    set({ codeString: code });
   },
 }));
