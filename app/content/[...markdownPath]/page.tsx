@@ -3,7 +3,6 @@ import styles from "./page.module.css";
 import React from "react";
 import { parseLessonFolder } from "@/lib/server-functions";
 import EditorNOutput from "@/app/components/EditorNOutput";
-import TabHeader from "@/app/components/TabHeader/TabHeader";
 import Tabs from "@/app/components/Tabs/Tabs";
 
 export function generateMetadata({

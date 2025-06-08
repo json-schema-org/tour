@@ -1,5 +1,4 @@
 "use client";
-import { useUserSolutionStore } from "@/lib/stores";
 import styles from "./TabHeader.module.css";
 
 type TabHeaderProps = {

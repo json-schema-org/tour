@@ -11,14 +11,13 @@
   gap: 1.5rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #4b5563; 
   position: relative;
+  color: hsl(var(--text));
 }
 
 .tabButton {
   position: relative;
   padding-bottom: 8px;
-  color: #6b7280; 
   background: none;
   font-size: 16px;
   border: none;
