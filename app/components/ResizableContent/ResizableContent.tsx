@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import styles from "@/app/content/[...markdownPath]/page.module.css";
-import ContentViewer from "./ContentViewer";
-import EditorNOutput from "./EditorNOutput";
+import styles from "./ResizableContent.module.css";
+import ContentViewer from "../ContentViewer";
+import EditorNOutput from "../EditorNOutput";
 
 interface ResizableContentProps {
   content: React.ReactNode;
@@ -67,7 +67,13 @@ export default function ResizableContent({
       <div className={styles.leftPane} style={{ width: `${leftWidth}px` }}>
         <ContentViewer>{content}</ContentViewer>
       </div>
-      <div className={styles.divider} onMouseDown={handleMouseDown} />
+      <div 
+        className={styles.divider} 
+        onMouseDown={handleMouseDown}
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="Resize content"
+      />
       <div className={styles.rightPane}>
         <EditorNOutput
           codeFile={codeFile}

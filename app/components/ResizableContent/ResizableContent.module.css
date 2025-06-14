@@ -1,0 +1,82 @@
+.mainArea {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.leftPane {
+  height: 100%;
+  overflow: hidden;
+  min-width: 300px;
+  max-width: 70%;
+  display: flex;
+}
+
+.rightPane {
+  flex: 1;
+  height: 100%;
+  min-width: 300px;
+  overflow: hidden;
+  display: flex;
+}
+
+.divider {
+  width: 4px;
+  height: 100%;
+  background-color: hsl(var(--border-color) / 0.5);
+  cursor: col-resize;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+  border-left: 1px solid hsl(var(--border-color));
+  border-right: 1px solid hsl(var(--border-color));
+}
+
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background-color: hsl(var(--primary) / 0.3);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.divider:hover::after,
+.divider:active::after {
+  opacity: 1;
+  background-color: hsl(var(--primary) / 0.5);
+}
+
+.divider:hover,
+.divider:active {
+  background-color: hsl(var(--primary) / 0.2);
+  border-left: 1px solid hsl(var(--primary) / 0.4);
+  border-right: 1px solid hsl(var(--primary) / 0.4);
+}
+
+.mainArea ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.mainArea ::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+.mainArea ::-webkit-scrollbar-thumb {
+  background: hsl(var(--border-color));
+  border-radius: 4px;
+}
+
+.mainArea ::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}

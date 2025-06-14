@@ -1,7 +1,7 @@
 import { contentManager } from "@/lib/contentManager";
 import React from "react";
 import { parseLessonFolder } from "@/lib/server-functions";
-import ResizableContent from "@/app/components/ResizableContent";
+import ResizableContent from "@/app/components/ResizableContent/ResizableContent";
 
 export function generateMetadata({
   params,
