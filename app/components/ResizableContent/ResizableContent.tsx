@@ -5,9 +5,14 @@ import styles from "./ResizableContent.module.css";
 import ContentViewer from "../ContentViewer";
 import EditorNOutput from "../EditorNOutput";
 
+interface CodeFile {
+  name: string;
+  content: string;
+}
+
 interface ResizableContentProps {
   content: React.ReactNode;
-  codeFile: any;
+  codeFile: CodeFile;
   nextStepPath: string | undefined;
   stepIndex: number;
   chapterIndex: number;
