@@ -14,6 +14,7 @@ import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
 import { sendGAEvent } from "@next/third-parties/google";
 import { CodeFile, OutputResult } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
+import CertificateButton from "../CertificateButton/CertificateButton";
 
 // Custom hook for editor theme setup
 const useEditorTheme = (monaco: Monaco, colorMode: "dark" | "light") => {
@@ -108,7 +109,6 @@ const EditorControls = ({
   outputResult: OutputResult;
 }) => {
   const router = useRouter();
-
   return (
     <div className={styles.buttonsWrapper}>
       <Flex dir="row" gap="8px" alignItems="end">
@@ -127,25 +127,26 @@ const EditorControls = ({
           Reset
         </MyBtn>
       </Flex>
-      <MyBtn
-        onClick={() => {
-          if (nextStepPath) router.push("/" + nextStepPath);
-        }}
-        variant={
-          outputResult.validityStatus === "valid" ? "default" : "success"
-        }
-        isDisabled={!nextStepPath}
-        size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
-      >
-        Next <span style={{ marginLeft: "4px" }}></span>
-        <FiChevronRight
-          color={
-            outputResult.validityStatus === "valid"
-              ? "white"
-              : "hsl(var(--success))"
+      {!nextStepPath ? (
+        <CertificateButton />
+      ) : (
+        <MyBtn
+          onClick={() => router.push("/" + nextStepPath)}
+          variant={
+            outputResult.validityStatus === "valid" ? "default" : "success"
           }
-        />
-      </MyBtn>
+          size={outputResult.validityStatus === "valid" ? "sm" : "xs"}
+        >
+          Next <span style={{ marginLeft: "4px" }}></span>
+          <FiChevronRight
+            color={
+              outputResult.validityStatus === "valid"
+                ? "white"
+                : "hsl(var(--success))"
+            }
+          />
+        </MyBtn>
+      )}
     </div>
   );
 };
