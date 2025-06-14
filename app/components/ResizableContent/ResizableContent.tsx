@@ -4,11 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./ResizableContent.module.css";
 import ContentViewer from "../ContentViewer";
 import EditorNOutput from "../EditorNOutput";
-
-interface CodeFile {
-  name: string;
-  content: string;
-}
+import { CodeFile } from "@/lib/types";
 
 interface ResizableContentProps {
   content: React.ReactNode;
