@@ -25,7 +25,7 @@ The `multipleOf` [keyword](https://json-schema.org/learn/glossary#keyword) is us
 
 ```json
 {
-  "type": "number",
+  "type": "integer",
   "multipleOf": 5
 }
 ```
@@ -35,5 +35,5 @@ Now, try to modify the JSON schema given in the <SideEditorLink/> such that `hou
 **Constraints**
 - `hourlyWage` should be a **multiple of 0.25**
 - `hourlyWage` should have **minimum value of 0** and **maximum value of 100**
-
+> **Note**: hourlyWage is a decimal number, so you need to use the `number` type.
 
