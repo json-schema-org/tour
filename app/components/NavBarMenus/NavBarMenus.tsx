@@ -38,7 +38,6 @@ export default function NavBarMenu() {
         className={navBarStyles.menuButton}
         onBlur={() => setIsOpen(false)}
         onClick={() => {
-          
           sendGAEvent("event", "buttonClicked", {
             value: "Settings",
           });

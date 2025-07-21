@@ -58,7 +58,16 @@ export async function validateCode(
     }
 
     if (validationStatus === "valid") {
-      dispatchOutput({ type: "valid", payload: {} });
+      const sortedResults = testCaseResults.sort((a, b) => {
+        if (a.passed === b.passed) {
+          return 0; // If both are the same, their order doesn't change
+        }
+        return a.passed ? 1 : -1; // If a.passed is true, put a after b; if false, put a before b
+      });
+      dispatchOutput({
+        type: "valid",
+        payload: { testCaseResults: sortedResults, totalTestCases },
+      });
       completeStep(chapterIndex, stepIndex);
       sendGAEvent("event", "validation", {
         validation_result: "passed",

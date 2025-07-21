@@ -16,7 +16,12 @@ export function outputReducer(
 ): OutputResult {
   switch (action.type) {
     case "valid":
-      return { ...state, validityStatus: "valid" };
+      return {
+        ...state,
+        validityStatus: "valid",
+        testCaseResults: action.payload.testCaseResults,
+        totalTestCases: action.payload.totalTestCases,
+      };
     case "syntaxError":
       return {
         ...state,
