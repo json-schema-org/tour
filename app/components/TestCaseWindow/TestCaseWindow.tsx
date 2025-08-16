@@ -110,12 +110,14 @@ export default function TestCasesWindow({
 
   return (
     <div className={styles.TestCasesWindow}>
-      <div className={styles.TestCasesHeaderWrapper}>
-        <span className={styles.TestCasesHeader}>Invalid Schema!</span>
-        <span className={styles.TestCasesSubtitle}>
-          {numberOfFailedTestCases} out of {totalTestCases} test cases failed
-        </span>
-      </div>
+      {numberOfFailedTestCases > 0 && (
+        <div className={styles.TestCasesHeaderWrapper}>
+          <span className={styles.TestCasesHeader}>Invalid Schema!</span>
+          <span className={styles.TestCasesSubtitle}>
+            {numberOfFailedTestCases} out of {totalTestCases} test cases failed
+          </span>
+        </div>
+      )}
       <Flex dir="row" gap={2}>
         {!areBothDisabled && (
           <button

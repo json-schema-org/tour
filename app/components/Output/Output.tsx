@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Output.module.css";
 import classnames from "classnames";
 import { OutputResult } from "@/lib/types";
-import FailedTestCasesWindow from "../TestCaseWindow/TestCaseWindow";
+import TestCasesWindow from "../TestCaseWindow/TestCaseWindow";
 import MyBtn from "../MyBtn";
 import { InvalidSchemaError } from "@hyperjump/json-schema/draft-2020-12";
 import { schemaUrl } from "@/lib/validators";
@@ -101,12 +101,18 @@ function Output({
     );
   } else if (outputResult.validityStatus == "valid") {
     outputBodyContent = (
-      <div className={styles.valid}>
-        <b className={styles.validMessage}>Valid Schema!</b>
-        <span className={styles.validSmallMessage}>
-          Let&apos;s move on to the next step
-        </span>
-      </div>
+      <>
+        <div className={styles.valid}>
+          <b className={styles.validMessage}>Valid Schema!</b>
+          <span className={styles.validSmallMessage}>
+            Let&apos;s move on to the next step
+          </span>
+        </div>
+        <TestCasesWindow
+          testCaseResult={outputResult.testCaseResults!}
+          totalTestCases={outputResult.totalTestCases!}
+        />
+      </>
     );
   } else if (outputResult.validityStatus == "syntaxError") {
     outputBodyContent = (
@@ -128,7 +134,7 @@ function Output({
     );
   } else {
     outputBodyContent = (
-      <FailedTestCasesWindow
+      <TestCasesWindow
         testCaseResult={outputResult.testCaseResults!}
         totalTestCases={outputResult.totalTestCases!}
       />
