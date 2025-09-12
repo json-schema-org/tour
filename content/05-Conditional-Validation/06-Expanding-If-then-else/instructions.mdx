@@ -46,7 +46,8 @@ Using the `not` keyword with the `if-else` keyword can look something like this:
   "then": { 
     "not": { "required": ["unemploymentBenefits"] 
     } 
-  }
+  },
+  "required": ["status"]
 }
 ```
 - If `status` is `"employed"`, the `unemploymentBenefits` field **must not** be present.  
