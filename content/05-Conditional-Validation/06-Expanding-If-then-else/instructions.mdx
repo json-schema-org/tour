@@ -41,13 +41,13 @@ Using the `not` keyword with the `if-else` keyword can look something like this:
   "if": { 
     "properties": {
        "status": { "const": "employed" } 
-    } 
+    }, 
+    "required": ["status"]
   },
   "then": { 
     "not": { "required": ["unemploymentBenefits"] 
     } 
-  },
-  "required": ["status"]
+  }
 }
 ```
 - If `status` is `"employed"`, the `unemploymentBenefits` field **must not** be present.  
