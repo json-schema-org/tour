@@ -8,6 +8,11 @@ import { CodeFile, TestCaseResult } from "./types";
 import { hyperjumpCheckAnnotations, hyperjumpValidate } from "./validators";
 import { sendGAEvent } from "@next/third-parties/google";
 import { contentManager } from "./contentManager";
+import {
+  saveValidationResult,
+  getValidationResult,
+  hasValidationResult,
+} from "./progressSaving";
 
 export async function validateCode(
   codeString: string,
@@ -53,17 +58,29 @@ export async function validateCode(
         });
       }
     }
+
     if (codeFile.expectedAnnotations) {
       await hyperjumpCheckAnnotations(schemaCode, codeFile.expectedAnnotations);
     }
 
+    const sortedResults = testCaseResults.sort((a, b) => {
+      if (a.passed === b.passed) {
+        return 0;
+      }
+      return a.passed ? 1 : -1;
+    });
+
+    // Save validation result to localStorage BEFORE dispatching
+    saveValidationResult(
+      chapterIndex,
+      stepIndex,
+      codeString,
+      sortedResults,
+      totalTestCases,
+      validationStatus,
+    );
+
     if (validationStatus === "valid") {
-      const sortedResults = testCaseResults.sort((a, b) => {
-        if (a.passed === b.passed) {
-          return 0; // If both are the same, their order doesn't change
-        }
-        return a.passed ? 1 : -1; // If a.passed is true, put a after b; if false, put a before b
-      });
       dispatchOutput({
         type: "valid",
         payload: { testCaseResults: sortedResults, totalTestCases },
@@ -72,13 +89,7 @@ export async function validateCode(
       sendGAEvent("event", "validation", {
         validation_result: "passed",
       });
-    } else {
-      const sortedResults = testCaseResults.sort((a, b) => {
-        if (a.passed === b.passed) {
-          return 0; // If both are the same, their order doesn't change
-        }
-        return a.passed ? 1 : -1; // If a.passed is true, put a after b; if false, put a before b
-      });
+    } else { 
       dispatchOutput({
         type: "invalid",
         payload: { testCaseResults: sortedResults, totalTestCases },
@@ -88,6 +99,9 @@ export async function validateCode(
       });
     }
   } catch (e) {
+    // Save error state as well
+    saveValidationResult(chapterIndex, stepIndex, codeString, [], 0, "invalid");
+
     if ((e as Error).message === "Invalid Schema") {
       dispatchOutput({
         type: "invalidSchema",
@@ -193,3 +207,45 @@ export async function tryFormattingCode(
     return;
   }
 }
+
+export function restorePreviousValidation(
+  chapterIndex: number,
+  stepIndex: number,
+  dispatchOutput: React.Dispatch<OutputReducerAction>,
+  setCodeString?: (code: string) => void
+): { restored: boolean; code?: string } {
+  if (typeof window === "undefined") return { restored: false };
+  
+  const validationResult = getValidationResult(chapterIndex, stepIndex);
+  
+  if (validationResult) {
+    // Restore code if setter provided
+    if (setCodeString) {
+      setCodeString(validationResult.code);
+    }
+    
+    // Restore validation results
+    if (validationResult.validationStatus === "valid") {
+      dispatchOutput({
+        type: "valid",
+        payload: { 
+          testCaseResults: validationResult.testCaseResults, 
+          totalTestCases: validationResult.totalTestCases 
+        },
+      });
+    } else if (validationResult.validationStatus === "invalid") {
+      dispatchOutput({
+        type: "invalid",
+        payload: { 
+          testCaseResults: validationResult.testCaseResults, 
+          totalTestCases: validationResult.totalTestCases 
+        },
+      });
+    }
+    
+    return { restored: true, code: validationResult.code };
+  }
+  
+  return { restored: false };
+}
+export { hasValidationResult } from "./progressSaving";

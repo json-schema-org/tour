@@ -5,9 +5,14 @@ import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
 import Editor, { Monaco } from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import MyBtn from "../MyBtn";
-import { tryFormattingCode, validateCode } from "@/lib/client-functions";
+import {
+  tryFormattingCode,
+  validateCode,
+  restorePreviousValidation,
+  hasValidationResult,
+} from "@/lib/client-functions";
 import FiChevronRight from "@/app/styles/icons/HiChevronRightGreen";
 import { useRouter } from "next/navigation";
 import { useUserSolutionStore, useEditorStore } from "@/lib/stores";
@@ -94,6 +99,39 @@ const useCodePersistence = (
   }, [userSolutionStore]);
 };
 
+// Custom hook for validation restoration
+const useValidationRestore = (
+  chapterIndex: number,
+  stepIndex: number,
+  dispatchOutput: React.Dispatch<OutputReducerAction>,
+  setCodeString: (value: string) => void,
+) => {
+  const [isRestored, setIsRestored] = useState(false);
+
+  useEffect(() => {
+    // Restore previous validation on component mount or when lesson changes
+    if (!isRestored && hasValidationResult(chapterIndex, stepIndex)) {
+      try {
+        const { restored } = restorePreviousValidation(
+          chapterIndex, 
+          stepIndex, 
+          dispatchOutput, 
+          setCodeString
+        );
+        if (restored) {
+          setIsRestored(true);
+          console.log('✅ Previous validation restored for lesson:', chapterIndex, stepIndex);
+        }
+      } catch (error) {
+        console.error('Failed to restore validation:', error);
+      }
+    }
+  }, [chapterIndex, stepIndex, isRestored, dispatchOutput, setCodeString]);
+
+  return { isRestored };
+};
+
+
 // EditorControls component for the buttons section
 const EditorControls = ({
   handleValidate,
@@ -179,7 +217,7 @@ export default function CodeEditor({
   // Apply custom hooks
   useEditorTheme(monaco, colorMode);
 
-  const handleValidate = () => {
+  const handleValidate = useCallback(() => {
     setIsValidating(true);
     setTimeout(() => {
       tryFormattingCode(editorRef, setCodeString);
@@ -192,7 +230,7 @@ export default function CodeEditor({
       );
       setIsValidating(false);
     }, 500);
-  };
+  }, [codeString, codeFile, dispatchOutput, stepIndex, chapterIndex]);
 
   useValidationShortcut(handleValidate, codeString);
   useCodePersistence(
@@ -203,21 +241,43 @@ export default function CodeEditor({
     codeFile,
   );
 
+  const { isRestored } = useValidationRestore(
+    chapterIndex,
+    stepIndex,
+    dispatchOutput,
+    setCodeString,
+  );
+
   const resetCode = () => {
     setCodeString(JSON.stringify(codeFile.code, null, 2));
     dispatchOutput({ type: "RESET" });
   };
 
-  const handleEditorMount = (editor: any, monaco: Monaco) => {
-    setMonaco(monaco);
+  const handleEditorMount = (editor: monaco.editor.IStandaloneCodeEditor, monacoInstance: Monaco) => {
+    setMonaco(monacoInstance);
 
     editorRef.current = editor;
     editorStore.setEditor(editor);
-    editorStore.setMonaco(monaco);
+    editorStore.setMonaco(monacoInstance);
   };
 
   return (
     <>
+      {isRestored && (
+        <div
+          style={{
+            padding: "8px 12px",
+            backgroundColor: "#e8f5e8",
+            borderLeft: "3px solid #4caf50",
+            marginBottom: "8px",
+            fontSize: "14px",
+            color: "#2e7d32",
+          }}
+        >
+          ✅ Previous submission restored
+        </div>
+      )}
+
       <div className={ctx(styles.codeEditor, GeistMono.className)}>
         <Editor
           language="json"
