@@ -29,7 +29,7 @@ You can use the `if-then` keyword to enforce this condition.
 {
   "type": "object",
   "properties": {...},
-  "if": {"properties": {"isFullTime": {"const": true}}},
+  "if": {"properties": {"isFullTime": {"const": true}}, "required": ["isFullTime"]},
   "then": {"required": ["salary"]},
 }
 ```

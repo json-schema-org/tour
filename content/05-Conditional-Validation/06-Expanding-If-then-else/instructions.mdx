@@ -41,7 +41,8 @@ Using the `not` keyword with the `if-else` keyword can look something like this:
   "if": { 
     "properties": {
        "status": { "const": "employed" } 
-    } 
+    }, 
+    "required": ["status"]
   },
   "then": { 
     "not": { "required": ["unemploymentBenefits"] 
