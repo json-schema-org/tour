@@ -25,6 +25,27 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  
+  // Turbopack configuration
+  experimental: {
+    turbo: {
+      rules: {
+        // Configure how Turbopack handles different file types
+        '*.mdx': {
+          loaders: ['@mdx-js/loader'],
+          as: '*.js',
+        },
+      },
+      resolveAlias: {
+        // Add any necessary path aliases for Turbopack
+        '@': './',
+        '@/app': './app',
+        '@/lib': './lib',
+        '@/content': './content',
+        '@/public': './public',
+      },
+    },
+  },
 };
 
 export default withMDX(nextConfig);

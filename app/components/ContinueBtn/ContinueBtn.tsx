@@ -5,13 +5,20 @@ import { getCheckPoint } from "@/lib/progressSaving";
 import styles from "./ContinueBtn.module.css";
 import RightArrow from "@/app/styles/icons/RightArrow";
 import { Button } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 
 export default function ContinueBtn() {
   const router = useRouter();
-  const checkpoint = getCheckPoint();
+  const [checkpoint, setCheckpoint] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const savedCheckpoint = getCheckPoint();
+    setCheckpoint(savedCheckpoint);
+  }, []);
 
   const handleClick = () => {
-    const checkpoint = getCheckPoint();
     if (checkpoint) {
       router.push(`/${checkpoint}`);
     }
@@ -19,7 +26,7 @@ export default function ContinueBtn() {
 
   return (
     <>
-      {checkpoint && (
+      {isClient && checkpoint && (
         <Button
           variant={"default"}
           onClick={handleClick}

@@ -151,7 +151,7 @@ const Modal = {
 export const theme = extendTheme({
   config: {
     initialColorMode: "light",
-    useSystemColorMode: true,
+    useSystemColorMode: false, // Disabled to prevent hydration mismatches with Turbopack
   },
   styles: {
     global: {

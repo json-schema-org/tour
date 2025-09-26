@@ -3,10 +3,7 @@ import cx from "classnames";
 import { interFont, outfitFont } from "./styles/fonts";
 import CompanyLogos from "./components/CommunityLinks";
 import HomePageLinks from "./components/HomePageLinks";
-import dynamic from "next/dynamic";
-const ContinueBtn = dynamic(() => import("./components/ContinueBtn"), {
-  ssr: false,
-});
+import ContinueBtn from "./components/ContinueBtn";
 export default function Home() {
   return (
     <div className={cx(styles.main, outfitFont.className)}>

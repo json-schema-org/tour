@@ -3,8 +3,15 @@
 import styles from "./CodeEditor.module.css";
 import ctx from "classnames";
 import { GeistMono } from "geist/font/mono";
-import Editor, { Monaco } from "@monaco-editor/react";
+import { Monaco } from "@monaco-editor/react";
 import { Flex, useColorMode } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
+
+// Dynamic import of Monaco Editor to prevent SSR hydration issues
+const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
+  ssr: false,
+  loading: () => <div style={{ height: "400px", display: "flex", alignItems: "center", justifyContent: "center" }}>Loading editor...</div>
+});
 import { useEffect, useState, useRef } from "react";
 import MyBtn from "../MyBtn";
 import { tryFormattingCode, validateCode } from "@/lib/client-functions";
@@ -219,7 +226,7 @@ export default function CodeEditor({
   return (
     <>
       <div className={ctx(styles.codeEditor, GeistMono.className)}>
-        <Editor
+        <MonacoEditor
           language="json"
           defaultValue={codeString}
           theme={colorMode === "light" ? "light" : "my-theme"}
