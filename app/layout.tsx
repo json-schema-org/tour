@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import "./styles/globals.css";
 import { GeistSans } from "geist/font/sans";
+import { ColorModeScript } from "@chakra-ui/react";
+import { theme } from "./styles/theme";
 import { Providers } from "./providers";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import IconLink from "./components/IconLink";
@@ -29,14 +31,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <GoogleAnalytics gaId="G-X3SVRNR6WN" />
       <head>
         <IconLink />
       </head>
-      <body className={GeistSans.className}>
+      <body suppressHydrationWarning>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
-          <main>{children}</main>
+          <main className={GeistSans.className}>{children}</main>
         </Providers>
       </body>
     </html>

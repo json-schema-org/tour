@@ -45,7 +45,7 @@ html {
   --success-dark: 120 90% 45%;
 }
 
-:root[data-theme="dark"] {
+html[data-theme="dark"] {
   --background: var(--background-dark);
   --text: var(--text-dark);
   --border-color: var(--border-color-dark);
@@ -56,7 +56,7 @@ html {
   --success: var(--success-dark);
 }
 
-:root[data-theme="light"] {
+html[data-theme="light"] {
   --background: var(--background-light);
   --text: var(--text-light);
   --border-color: var(--border-color-light);
