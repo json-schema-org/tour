@@ -68,7 +68,7 @@ This demonstrates that conditionals in JSON Schema can be combined with various 
 
 You are given the [schema](https://json-schema.org/learn/glossary#schema) for the same JSON document in the <SideEditorLink/>. Modify the schema to enforce the below condition using `if-then-else`:
 
-- **If** `grade` is **greater that or equal to 8**, **then** the `recommendationLetter` field must be present, and the `personalStatement` field must **NOT** be present.
+- **If** `grade` is **greater than or equal to 8**, **then** the `recommendationLetter` field must be present, and the `personalStatement` field must **NOT** be present.
 - Else if `grade` is **lower than 8**, **then** the `personalStatement` field must be present, and the `recommendationLetter` field must **NOT** be present..
 
 > **Hint:** Use the `minimum` keyword to specify the constraint of greater than or equal to 8.
