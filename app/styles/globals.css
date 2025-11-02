@@ -2,6 +2,8 @@ body {
   /* padding: 16px; */
   height: 100%;
   margin: 0;
+  background-color: hsl(var(--background));
+  color: hsl(var(--text));
 }
 html {
   height: 100%;
