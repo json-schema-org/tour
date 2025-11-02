@@ -31,12 +31,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <GoogleAnalytics gaId="G-X3SVRNR6WN" />
       <head>
         <IconLink />
       </head>
-      <body suppressHydrationWarning>
+      <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
           <main className={GeistSans.className}>{children}</main>
