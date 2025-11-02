@@ -2,6 +2,8 @@ body {
   /* padding: 16px; */
   height: 100%;
   margin: 0;
+  background-color: hsl(var(--background));
+  color: hsl(var(--text));
 }
 html {
   height: 100%;
@@ -45,7 +47,7 @@ html {
   --success-dark: 120 90% 45%;
 }
 
-html[data-theme="dark"] {
+:root[data-theme="dark"] {
   --background: var(--background-dark);
   --text: var(--text-dark);
   --border-color: var(--border-color-dark);
@@ -56,7 +58,7 @@ html[data-theme="dark"] {
   --success: var(--success-dark);
 }
 
-html[data-theme="light"] {
+:root[data-theme="light"] {
   --background: var(--background-light);
   --text: var(--text-light);
   --border-color: var(--border-color-light);
