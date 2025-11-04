@@ -2,3 +2,24 @@
   display: flex;
   flex-direction: column;
 }
+
+/* 
+  No results message styling
+  Displayed when search query returns no matching chapters or lessons
+*/
+.noResults {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--chakra-colors-gray-500);
+}
+
+.noResults p:first-child {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.noResults p:last-child {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
