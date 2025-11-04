@@ -1,3 +1,4 @@
+// Stores validation results for a specific lesson in localStorage
 interface ValidationResult {
   code: string;
   testCaseResults: any[];
@@ -8,6 +9,10 @@ interface ValidationResult {
   stepIndex: number;
 }
 
+/**
+ * Save validation results to localStorage for a specific lesson
+ * This allows restoring validation state when user revisits the lesson
+ */
 export function saveValidationResult(
   chapterIndex: number, 
   stepIndex: number, 
@@ -38,6 +43,9 @@ export function saveValidationResult(
   }
 }
 
+/**
+ * Retrieve saved validation results for a specific lesson
+ */
 export function getValidationResult(chapterIndex: number, stepIndex: number): ValidationResult | null {
   if (typeof window === "undefined") return null;
   
@@ -55,6 +63,9 @@ export function getValidationResult(chapterIndex: number, stepIndex: number): Va
   return null;
 }
 
+/**
+ * Check if a validation result exists for a specific lesson
+ */
 export function hasValidationResult(chapterIndex: number, stepIndex: number): boolean {
   if (typeof window === "undefined") return false;
   
@@ -62,6 +73,9 @@ export function hasValidationResult(chapterIndex: number, stepIndex: number): bo
   return localStorage.getItem(key) !== null;
 }
 
+/**
+ * Clear saved validation result for a specific lesson
+ */
 export function clearValidationResult(chapterIndex: number, stepIndex: number): boolean {
   if (typeof window === "undefined") return false;
   

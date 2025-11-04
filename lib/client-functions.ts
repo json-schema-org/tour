@@ -63,6 +63,7 @@ export async function validateCode(
       await hyperjumpCheckAnnotations(schemaCode, codeFile.expectedAnnotations);
     }
 
+    // Sort results: failed tests first, passed tests last
     const sortedResults = testCaseResults.sort((a, b) => {
       if (a.passed === b.passed) {
         return 0;
@@ -70,7 +71,7 @@ export async function validateCode(
       return a.passed ? 1 : -1;
     });
 
-    // Save validation result to localStorage BEFORE dispatching
+    // Persist validation results to localStorage for restoration on revisit
     saveValidationResult(
       chapterIndex,
       stepIndex,
@@ -99,7 +100,7 @@ export async function validateCode(
       });
     }
   } catch (e) {
-    // Save error state as well
+    // Persist error state for restoration on revisit
     saveValidationResult(chapterIndex, stepIndex, codeString, [], 0, "invalid");
 
     if ((e as Error).message === "Invalid Schema") {
@@ -208,6 +209,10 @@ export async function tryFormattingCode(
   }
 }
 
+/**
+ * Restore previous validation results when revisiting a lesson
+ * Automatically restores both code and validation state from localStorage
+ */
 export function restorePreviousValidation(
   chapterIndex: number,
   stepIndex: number,
@@ -219,12 +224,12 @@ export function restorePreviousValidation(
   const validationResult = getValidationResult(chapterIndex, stepIndex);
   
   if (validationResult) {
-    // Restore code if setter provided
+    // Restore user's submitted code
     if (setCodeString) {
       setCodeString(validationResult.code);
     }
     
-    // Restore validation results
+    // Restore validation output state
     if (validationResult.validationStatus === "valid") {
       dispatchOutput({
         type: "valid",
