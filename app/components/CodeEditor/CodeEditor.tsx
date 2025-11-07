@@ -97,12 +97,14 @@ const useCodePersistence = (
 // EditorControls component for the buttons section
 const EditorControls = ({
   handleValidate,
+  handleBeautify,
   isValidating,
   resetCode,
   nextStepPath,
   outputResult,
 }: {
   handleValidate: () => void;
+  handleBeautify: () => void;
   isValidating: boolean;
   resetCode: () => void;
   nextStepPath: string | undefined;
@@ -125,6 +127,10 @@ const EditorControls = ({
 
         <MyBtn onClick={resetCode} variant="error">
           Reset
+        </MyBtn>
+
+        <MyBtn onClick={handleBeautify} variant="secondary">
+          Beautify
         </MyBtn>
       </Flex>
       {!nextStepPath ? (
@@ -208,6 +214,8 @@ export default function CodeEditor({
     dispatchOutput({ type: "RESET" });
   };
 
+  const handleBeautify = () => tryFormattingCode(editorRef, setCodeString);
+
   const handleEditorMount = (editor: any, monaco: Monaco) => {
     setMonaco(monaco);
 
@@ -237,6 +245,7 @@ export default function CodeEditor({
       </div>
       <EditorControls
         handleValidate={handleValidate}
+        handleBeautify={handleBeautify}
         isValidating={isValidating}
         resetCode={resetCode}
         nextStepPath={nextStepPath}

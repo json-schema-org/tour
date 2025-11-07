@@ -10,7 +10,7 @@ export default function MyBtn({
   size = "xs",
 }: {
   children: React.ReactNode;
-  variant: "success" | "error" | "default";
+  variant: "success" | "error" | "default" | "secondary";
   onClick: () => void;
   isDisabled?: boolean;
   tooltip?: string;
