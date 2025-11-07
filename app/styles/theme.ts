@@ -15,6 +15,19 @@ const Button = {
         bg: "hsl(var(--primary) / 0.6)",
       },
     },
+    secondary: {
+      color: "hsl(var(--text))",
+      bg: "hsl(var(--background2))",
+      borderColor: "hsl(var(--border-color))",
+      borderWidth: "1px",
+      _hover: {
+        bg: "hsl(var(--primary) / 0.12)",
+        borderColor: "hsl(var(--primary))",
+      },
+      _active: {
+        bg: "hsl(var(--primary) / 0.2)",
+      },
+    },
     success: {
       color: "hsl(var(--success))",
       borderColor: "hsl(var(--success))",
