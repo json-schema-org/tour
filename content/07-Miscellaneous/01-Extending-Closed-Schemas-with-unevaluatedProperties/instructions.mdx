@@ -1,60 +1,65 @@
 ---
 title: Extending Closed Schemas with unevaluatedProperties
-description: "Learn how to extend closed schemas in JSON Schema objects using the unevaluatedProperties keyword to allow additional properties, overcoming the limitations of additionalProperties in subschemas."
-keywords: "extending closed schemas, unevaluatedProperties, JSON Schema, JSON Schema objects, additionalProperties, subschemas, allOf, combining keywords"
+description: "Learn how to extend closed schemas in JSON Schema using the unevaluatedProperties keyword with $ref, enabling safe schema composition while maintaining type safety."
+keywords: "extending closed schemas, unevaluatedProperties, JSON Schema, $ref, $defs, additionalProperties, subschemas, schema composition"
 ---
-
 
 # Extending Closed Schemas
 
-Previously in the Objects module, we learned to `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself. 
+Previously in the Objects module, we learned about `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself. 
 
-So, `additionalProperties` can restrict you from "extending" a schema using combining [keywords](https://json-schema.org/learn/glossary#subschema) such as `allOf`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail. 
+So, `additionalProperties` can restrict you from "extending" a schema using combining [keywords](https://json-schema.org/learn/glossary#keyword) such as `$ref`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail.
 
-```json highlightLineStart={11}
+## The Problem with `additionalProperties`
+
+Let's say we have a reusable address schema in `$defs` that we want to extend. If we try to use `additionalProperties` to keep it closed, we run into issues:
+```json highlightLineStart={6}
 {
-  "allOf": [
-    {
+  "$ref": "#/$defs/address",
+  "properties": {
+    "type": { "enum": ["residential", "business"] }
+  },
+  "additionalProperties": false,
+  "required": ["type"],
+  "$defs": {
+    "address": {
       "type": "object",
       "properties": {
         "street_address": { "type": "string" },
         "city": { "type": "string" },
         "state": { "type": "string" }
       },
-      "required": ["street_address", "city", "state"],
-      "additionalProperties": false
+      "required": ["street_address", "city", "state"]
     }
-  ],
-  "properties": {
-    "type": { "enum": [ "residential", "business" ] }
-  },
-  "required": ["type"]
+  }
 }
 ```
-The above [schema](https://json-schema.org/learn/glossary#schema) will not allow you to define `type` property. because `additionalProperties` is set to `false`. The reason is, `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema). 
 
+This [schema](https://json-schema.org/learn/glossary#schema) will **reject data you intented to be valid** because `additionalProperties: false` only sees the `type` property defined locally. It doesn't recognize the properties from the referenced schema (`street_address`, `city`, `state`), so it would incorrectly treat them as "additional" properties and reject them.
 
 ## Unevaluated Properties
 
-The challenge we saw with `additionalProperties` can be solved using the `unevaluatedProperties` keyword. This keyword allows you to define properties that are not evaluated by the current schema. 
+The challenge we saw with `additionalProperties` can be solved using the `unevaluatedProperties` keyword. This keyword allows you to define properties that are not evaluated by the current schema.
 
-```json highlightLineStart={15}
+```json highlightLineStart={6}
 {
-  "allOf": [
-    {
+  "$ref": "#/$defs/address",
+  "properties": {
+    "type": { "enum": ["residential", "business"] }
+  },
+  "unevaluatedProperties": false,
+  "required": ["type"],
+  "$defs": {
+    "address": {
       "type": "object",
       "properties": {
         "street_address": { "type": "string" },
         "city": { "type": "string" },
         "state": { "type": "string" }
       },
-      "required": ["street_address", "city", "state"],    }
-  ],
-  "properties": {
-    "type": { "enum": [ "residential", "business" ] }
-  },
-  "unevaluatedProperties": false,
-  "required": ["type"]
+      "required": ["street_address", "city", "state"]
+    }
+  }
 }
 ```
 

@@ -1,6 +1,12 @@
 const code: any = {
-  allOf: [
-    {
+  $ref: "#/$defs/address",
+  properties: {
+    type: { enum: ["residential", "business"] },
+  },
+  unevaluatedProperties: false,
+  required: ["type"],
+  $defs: {
+    address: {
       type: "object",
       properties: {
         street_address: { type: "string" },
@@ -9,11 +15,7 @@ const code: any = {
       },
       required: ["street_address", "city", "state"],
     },
-  ],
-  properties: {
-    type: { enum: ["residential", "business"] },
   },
-  required: ["type"],
 };
 
 let solution = structuredClone(code);
