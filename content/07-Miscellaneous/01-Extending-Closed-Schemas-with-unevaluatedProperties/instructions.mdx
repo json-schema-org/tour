@@ -6,9 +6,9 @@ keywords: "extending closed schemas, unevaluatedProperties, JSON Schema, $ref, $
 
 # Extending Closed Schemas
 
-Previously in the Objects , we learned about `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself. 
+Previously in the Objects module, we learned about `additionalProperties`. However, it is important to note that `additionalProperties` only recognizes properties declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself. 
 
-So, `additionalProperties` can restrict you from "extending" a schema using combining keywords such as `$ref`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail.
+So, `additionalProperties` can restrict you from "extending" a schema using combining [keywords](https://json-schema.org/learn/glossary#keyword) such as `$ref`. In the following example, we can see how the `additionalProperties` can cause attempts to extend the address schema example to fail.
 
 ## The Problem with `additionalProperties`
 
@@ -35,7 +35,7 @@ Let's say we have a reusable address schema in `$defs` that we want to extend. I
 }
 ```
 
-This [schema](https://json-schema.org/learn/glossary#schema) will **reject valid data** because `additionalProperties: false` only sees the `type` property defined locally. It doesn't recognize the properties from the referenced schema (`street_address`, `city`, `state`), so it would incorrectly treat them as "additional" properties and reject them.
+This [schema](https://json-schema.org/learn/glossary#schema) will **reject data you intented to be valid** because `additionalProperties: false` only sees the `type` property defined locally. It doesn't recognize the properties from the referenced schema (`street_address`, `city`, `state`), so it would incorrectly treat them as "additional" properties and reject them.
 
 ## Unevaluated Properties
 
