@@ -44,15 +44,20 @@ So `reading` and `Reading` are considered different values.
 </GoodToKnowBox>
 
 <GoodToKnowBox>
-There is another nice `keyword` we have which can be used instead of `enum` i.e `oneOf` [keyword](https://json-schema.org/understanding-json-schema/reference/combining#oneOf), this `keyword` validates the given data against exactly one of the given `values/subschemas`
+There is another nice `keyword` we have which can be used instead of `enum` i.e `oneOf` [keyword](https://json-schema.org/understanding-json-schema/reference/combining#oneOf), this `keyword` validates the given data against exactly one of the given `subschemas` and not the values
 
 **Example:**
 
 ```json 
 {
   "department": {
-    "oneOf": ["engineering", "marketing", 
-            "sales", "HR", "finance"]
+    "oneOf": [
+      { type: "string", const: "engineering" },
+      { type: "string", const: "marketing" },
+      { type: "string", const: "sales" },
+      { type: "string", const: "HR" },
+      { type: "string", const: "finance" }
+    ]
   }
 }
 ```
