@@ -42,3 +42,18 @@ Values defined in `enum` are case-sensitive.
 
 So `reading` and `Reading` are considered different values.
 </GoodToKnowBox>
+
+<GoodToKnowBox>
+There is another nice `keyword` we have which can be used instead of `enum` i.e `oneOf` [keyword](https://json-schema.org/understanding-json-schema/reference/combining#oneOf), this `keyword` validates the given data against exactly one of the given `values/subschemas`
+
+**Example:**
+
+```json 
+{
+  "department": {
+    "oneOf": ["engineering", "marketing", 
+            "sales", "HR", "finance"]
+  }
+}
+```
+</GoodToKnowBox>
