@@ -44,21 +44,45 @@ So `reading` and `Reading` are considered different values.
 </GoodToKnowBox>
 
 <GoodToKnowBox>
-There is another nice `keyword` we have which can be used instead of `enum` i.e `oneOf` [keyword](https://json-schema.org/understanding-json-schema/reference/combining#oneOf), this `keyword` validates the given data against exactly one of the given `subschemas` and not the values
+Instead of using `enum`, you can also use `anyOf` or `oneOf` to validate your data against a set of subschemas. They work similarly, but there's a key difference in how strict they are.
+
+### anyOf (Recommended)
+
+Generally `anyof` [keyword](https://json-schema.org/understanding-json-schema/reference/combining#anyOf)  is preferred as it validate data against **any** (one or more) of the given subschemas.
 
 **Example:**
-
-```json 
+```json
 {
   "department": {
-    "oneOf": [
-      { type: "string", const: "engineering" },
-      { type: "string", const: "marketing" },
-      { type: "string", const: "sales" },
-      { type: "string", const: "HR" },
-      { type: "string", const: "finance" }
+    "anyOf": [
+      { "const": "engineering" },
+      { "const": "marketing" },
+      { "const": "sales" },
+      { "const": "HR" },
+      { "const": "finance" }
     ]
   }
 }
 ```
+
+### oneOf 
+
+The `oneOf` [keyword](https://json-schema.org/understanding-json-schema/reference/combining#oneOf) is stricter—it validates only when your data matches exactly one subschema. Since it has to check all possibilities to ensure only one matches, ***it can take longer to process***.
+
+**Example:**
+```json
+{
+  "department": {
+    "oneOf": [
+      { "const": "engineering" },
+      { "const": "marketing" },
+      { "const": "sales" },
+      { "const": "HR" },
+      { "const": "finance" }
+    ]
+  }
+}
+```
+
+In this department example, both approaches work identically since each value can only match one const at a time. But stick with `anyOf` as a general practice—it'll save you trouble down the road when your schemas get more complex.
 </GoodToKnowBox>
