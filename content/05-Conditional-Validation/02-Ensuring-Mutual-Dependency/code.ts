@@ -59,6 +59,12 @@ const testCases = [
     },
     expected: false,
   },
+  {
+    input: {
+      name: "John Doe",
+    },
+    expected: true,
+  },
 ];
 
 module.exports = {
