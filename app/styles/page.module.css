@@ -1,10 +1,9 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  height: inherit;
+
   align-items: center;
-  height: 100%;
-  padding-inline: 12px;
 }
 
 .wrapper {
@@ -86,8 +85,4 @@
 
 .footerText {
   font-weight: 700;
-}
-
-.message {
-  font-weight: 500;
 }
