@@ -16,7 +16,6 @@ import { CodeFile, OutputResult } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
 import CertificateButton from "../CertificateButton/CertificateButton";
 
-// Custom hook for editor theme setup
 const useEditorTheme = (monaco: Monaco, colorMode: "dark" | "light") => {
   useEffect(() => {
     if (monaco) {
@@ -33,7 +32,6 @@ const useEditorTheme = (monaco: Monaco, colorMode: "dark" | "light") => {
   }, [monaco, colorMode]);
 };
 
-// Custom hook for keyboard shortcuts
 const useValidationShortcut = (
   handleValidate: () => void,
   codeString: string,
@@ -56,7 +54,6 @@ const useValidationShortcut = (
   }, [handleValidate, codeString]);
 };
 
-// Custom hook for code persistence
 const useCodePersistence = (
   chapterIndex: number,
   stepIndex: number,
@@ -66,7 +63,6 @@ const useCodePersistence = (
 ) => {
   const userSolutionStore = useUserSolutionStore();
 
-  // Load saved code
   useEffect(() => {
     const savedCode = userSolutionStore.getSavedUserSolutionByLesson(
       chapterIndex,
@@ -77,24 +73,16 @@ const useCodePersistence = (
     }
   }, [chapterIndex, stepIndex]);
 
-  // Save code changes
-  useEffect(() => {
-    userSolutionStore.saveUserSolutionForLesson(
-      chapterIndex,
-      stepIndex,
-      codeString,
-    );
-  }, [codeString, chapterIndex, stepIndex]);
 
-  // Initialize code if no saved solutions
   useEffect(() => {
     if (Object.keys(userSolutionStore.userSolutionsByLesson).length === 0) {
       setCodeString(JSON.stringify(codeFile.code, null, 2));
     }
   }, [userSolutionStore]);
+
+  return userSolutionStore;
 };
 
-// EditorControls component for the buttons section
 const EditorControls = ({
   handleValidate,
   isValidating,
@@ -160,6 +148,9 @@ export default function CodeEditor({
   stepIndex,
   chapterIndex,
   outputResult,
+  solutionRequested,
+  resetSolution,
+  hasValidated,
 }: {
   codeString: string;
   setCodeString: (codeString: string) => void;
@@ -169,6 +160,9 @@ export default function CodeEditor({
   stepIndex: number;
   chapterIndex: number;
   outputResult: OutputResult;
+  solutionRequested: boolean;
+  resetSolution: () => void;
+  hasValidated: boolean;
 }) {
   const { colorMode } = useColorMode();
   const [monaco, setMonaco] = useState<any>(null);
@@ -176,8 +170,17 @@ export default function CodeEditor({
   const editorStore = useEditorStore();
   const editorRef = useRef<any>(null);
 
-  // Apply custom hooks
+  const [activeView, setActiveView] = useState<'code' | 'solution'>('code');
+
   useEditorTheme(monaco, colorMode);
+
+  const userSolutionStore = useCodePersistence(
+    chapterIndex,
+    stepIndex,
+    codeString,
+    setCodeString,
+    codeFile,
+  );
 
   const handleValidate = () => {
     setIsValidating(true);
@@ -195,42 +198,84 @@ export default function CodeEditor({
   };
 
   useValidationShortcut(handleValidate, codeString);
-  useCodePersistence(
-    chapterIndex,
-    stepIndex,
-    codeString,
-    setCodeString,
-    codeFile,
-  );
 
   const resetCode = () => {
-    setCodeString(JSON.stringify(codeFile.code, null, 2));
+    const initialCode = JSON.stringify(codeFile.code, null, 2);
+    setCodeString(initialCode);
     dispatchOutput({ type: "RESET" });
+
+    resetSolution();
+    setActiveView('code');
+
+    userSolutionStore.saveUserSolutionForLesson(chapterIndex, stepIndex, initialCode);
   };
 
   const handleEditorMount = (editor: any, monaco: Monaco) => {
     setMonaco(monaco);
-
     editorRef.current = editor;
     editorStore.setEditor(editor);
     editorStore.setMonaco(monaco);
   };
 
+  const handleCodeChange = (newCode: string | undefined) => {
+    if (activeView === 'code' && newCode !== undefined) {
+      setCodeString(newCode);
+      userSolutionStore.saveUserSolutionForLesson(
+        chapterIndex,
+        stepIndex,
+        newCode
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (solutionRequested && activeView !== 'solution') {
+      setActiveView('solution');
+    }
+    if (!solutionRequested && activeView === 'solution') {
+      setActiveView('code');
+    }
+  }, [solutionRequested]);
+
+  const isSolutionView = activeView === 'solution';
+  const editorContent = isSolutionView
+    ? JSON.stringify(codeFile.solution, null, 2)
+    : codeString;
+
   return (
     <>
+      <div className={styles.tabBar}>
+        <button
+          className={ctx(styles.tabButton, activeView === 'code' && styles.activeTab)}
+          onClick={() => setActiveView('code')}
+        >
+          My Code
+        </button>
+
+        {solutionRequested && (
+          <button
+            className={ctx(styles.tabButton, activeView === 'solution' && styles.activeTab)}
+            onClick={() => setActiveView('solution')}
+          >
+            Solution
+          </button>
+        )}
+      </div>
+
       <div className={ctx(styles.codeEditor, GeistMono.className)}>
         <Editor
           language="json"
-          defaultValue={codeString}
+          value={editorContent}
+          key={activeView}
           theme={colorMode === "light" ? "light" : "my-theme"}
-          value={codeString}
           height="100%"
-          onChange={(codeString) => setCodeString(codeString ?? "")}
+          onChange={handleCodeChange}
           options={{
             minimap: { enabled: false },
             fontSize: 14,
             formatOnPaste: true,
             formatOnType: true,
+            readOnly: isSolutionView,
           }}
           onMount={handleEditorMount}
         />

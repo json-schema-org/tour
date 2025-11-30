@@ -4,6 +4,7 @@
   overflow-y: auto;
   padding-bottom: 32px;
 }
+
 .buttonsWrapper {
   position: absolute;
   bottom: 8px;
@@ -14,4 +15,37 @@
   width: 100%;
   padding-left: 16px;
   padding-right: 32px;
+}
+
+
+.tabBar {
+  display: flex;
+  background-color: var(--code-editor-background);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 10px;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  margin-bottom: -1px;
+}
+
+.tabButton:hover {
+  color: var(--text-color);
+}
+
+.activeTab {
+  color: var(--primary-color) !important;
+  border-bottom-color: var(--primary-color);
+}
+
+.codeEditor {
+  flex: 1;
 }

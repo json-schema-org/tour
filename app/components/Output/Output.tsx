@@ -81,9 +81,13 @@ const SchemaError = ({ schemaPath }: { schemaPath: string }) => {
 function Output({
   outputResult,
   showSolution,
+  solutionRequested,
+  hasValidated,
 }: {
   outputResult: OutputResult;
   showSolution: () => void;
+  solutionRequested: boolean;
+  hasValidated: boolean;
 }) {
   let outputBodyContent;
 
@@ -92,7 +96,7 @@ function Output({
       <Flex dir="row" gap={1} paddingTop={2}>
         {" "}
         Please click the{" "}
-        <MyBtn variant="default" onClick={() => {}}>
+        <MyBtn variant="default" onClick={() => { }}>
           validate
         </MyBtn>{" "}
         button or use <KeyBindings keys={["Shift", "Enter"]} /> to view the
@@ -149,26 +153,25 @@ function Output({
 
       <div className={classnames(styles.outputBody)}>
         {outputBodyContent}
-        {outputResult.validityStatus !== "neutral" &&
-          outputResult.validityStatus !== "valid" && (
-            <div className={styles.footer}>
-              Stuck?{" "}
-              <button
-                onClick={() => {
-                  showSolution();
-                  sendGAEvent("event", "buttonClicked", {
-                    value: "View Solution",
-                  });
-                }}
-                style={{
-                  color: "hsl(var(--link-color))",
-                  textDecoration: "underline",
-                }}
-              >
-                View Solution
-              </button>
-            </div>
-          )}
+        {hasValidated && !solutionRequested && (
+          <div className={styles.footer}>
+            Stuck?{" "}
+            <button
+              onClick={() => {
+                showSolution();
+                sendGAEvent("event", "buttonClicked", {
+                  value: "View Solution",
+                });
+              }}
+              style={{
+                color: "hsl(var(--link-color))",
+                textDecoration: "underline",
+              }}
+            >
+              View Solution
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

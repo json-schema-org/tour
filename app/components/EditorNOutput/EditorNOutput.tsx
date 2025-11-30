@@ -23,8 +23,21 @@ export default function EditorNOutput({
     JSON.stringify(codeFile.code, null, 2),
   );
 
+  // Tracks if the user has requested to view the solution
+  const [solutionRequested, setSolutionRequested] = useState(false);
+
+  // NEW STATE: Tracks if the user has validated at least once
+  const [hasValidated, setHasValidated] = useState(false);
+
+  // Function to show solution
   const showSolution = () => {
-    setCodeString(JSON.stringify(codeFile.solution, null, 2));
+    setSolutionRequested(true);
+  };
+
+  // Function to reset the solution visibility state
+  const resetSolution = () => {
+    setSolutionRequested(false);
+    setHasValidated(false);
   };
 
   const [output, dispatchOutput] = useReducer(outputReducer, {
@@ -32,7 +45,7 @@ export default function EditorNOutput({
     errors: "",
     testCaseResults: [],
   });
-  const [topWidth, setTopWidth] = useState(400); // Initial width of the left div
+  const [topWidth, setTopWidth] = useState(400);
   const dividerRef = useRef<HTMLDivElement>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -70,6 +83,12 @@ export default function EditorNOutput({
     }
   }, []);
 
+  useEffect(() => {
+    if (output.validityStatus !== "neutral") {
+      setHasValidated(true);
+    }
+  }, [output.validityStatus]);
+
   return (
     <div
       className={styles.codeEditorNOutput}
@@ -93,6 +112,9 @@ export default function EditorNOutput({
           stepIndex={stepIndex}
           chapterIndex={chapterIndex}
           outputResult={output}
+          solutionRequested={solutionRequested}
+          resetSolution={resetSolution}
+          hasValidated={hasValidated}
         />
       </Box>
       <div
@@ -104,7 +126,12 @@ export default function EditorNOutput({
         className={styles.outputWrapper}
         style={{ height: `calc(100% - ${topWidth}px - 6px)` }}
       >
-        <Output outputResult={output} showSolution={showSolution} />
+        <Output
+          outputResult={output}
+          showSolution={showSolution}
+          solutionRequested={solutionRequested}
+          hasValidated={hasValidated}
+        />
       </div>
     </div>
   );
