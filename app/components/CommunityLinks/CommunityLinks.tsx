@@ -2,7 +2,6 @@ import React from "react";
 import { useMemo } from "react";
 import { useColorMode } from "@chakra-ui/react";
 import styles from "./CommunityLinks.module.css";
-import Link from "next/link";
 
 export default function CompanyLogos() {
   const linkInfo = useMemo(() => {
@@ -24,9 +23,15 @@ export default function CompanyLogos() {
   return (
     <div className={styles.footerLinks}>
       {linkInfo.map((info) => (
-        <Link key={info.title} href={info.link} className={styles.footerLink}>
+        <a
+          key={info.title}
+          href={info.link}
+          className={styles.footerLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {info.title}
-        </Link>
+        </a>
       ))}
     </div>
   );
