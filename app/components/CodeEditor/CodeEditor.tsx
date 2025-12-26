@@ -15,6 +15,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { CodeFile, OutputResult } from "@/lib/types";
 import { OutputReducerAction } from "@/lib/reducers";
 import CertificateButton from "../CertificateButton/CertificateButton";
+import { DRAFT_2020_12_METASCHEMA_FLAT } from "@/lib/schemas";
 
 // Custom hook for editor theme setup
 const useEditorTheme = (monaco: Monaco, colorMode: "dark" | "light") => {
@@ -210,6 +211,19 @@ export default function CodeEditor({
 
   const handleEditorMount = (editor: any, monaco: Monaco) => {
     setMonaco(monaco);
+
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+    validate: true,
+    allowComments: true,
+    enableSchemaRequest: true,
+    schemas: [
+      {
+        uri: "https://json-schema.org/draft/2020-12/schema",
+        fileMatch: ["*"], 
+        schema: DRAFT_2020_12_METASCHEMA_FLAT,
+      },
+    ],
+  });
 
     editorRef.current = editor;
     editorStore.setEditor(editor);
