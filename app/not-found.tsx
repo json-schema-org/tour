@@ -2,7 +2,6 @@ import styles from "./styles/404.module.css";
 import cx from "classnames";
 import { interFont } from "./styles/fonts";
 import Link from "next/link";
-import { Button } from "@chakra-ui/react";
 
 export default function Custom404() {
   return (
@@ -15,11 +14,10 @@ export default function Custom404() {
           The page you are looking for does not exist!
         </p>
       </div>
-      <Link href={"/"}>
-        <Button variant={"default"} borderRadius={"8px"}>
-          BACK TO HOME
-        </Button>
+      <Link href="/" className={styles.link}>
+        BACK TO HOME
       </Link>
+
     </div>
   );
 }
