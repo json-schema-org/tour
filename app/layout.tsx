@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 
 import "./styles/globals.css";
 import { GeistSans } from "geist/font/sans";
-import { ColorModeScript } from "@chakra-ui/react";
-import { theme } from "./styles/theme";
 import { Providers } from "./providers";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import IconLink from "./components/IconLink";
+import { ColorModeScriptClient } from "./components/ColorModeScriptClient";
 
 export const metadata: Metadata = {
   title: "Tour Of Json Schema",
@@ -37,7 +36,7 @@ export default function RootLayout({
         <IconLink />
       </head>
       <body>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <ColorModeScriptClient />
         <Providers>
           <main className={GeistSans.className}>{children}</main>
         </Providers>
