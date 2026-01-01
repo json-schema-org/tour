@@ -211,6 +211,14 @@ export default function CodeEditor({
   const handleEditorMount = (editor: any, monaco: Monaco) => {
     setMonaco(monaco);
 
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+      validate: true,
+      allowComments: true,
+      enableSchemaRequest: false,
+      schemaValidation: "ignore",
+      schemaRequest: "ignore",
+    });
+
     editorRef.current = editor;
     editorStore.setEditor(editor);
     editorStore.setMonaco(monaco);
