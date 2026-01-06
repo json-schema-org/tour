@@ -23,28 +23,24 @@ export type Metadata = {
 };
 
 export type TestCase = {
-  input: Object;
-  expected: Boolean;
+  input: unknown;
+  expected: boolean;
 };
 
-// type schemaSafeError = {
-//   instanceLocation: string;
-//   keywordLocation: string;
-// };
-
 export type TestCaseResult = TestCase & {
-  actual: Boolean;
-  errors?: string | undefined;
-  passed: Boolean;
+  actual: boolean;
+  errors?: string;
+  passed: boolean;
 };
 
 export type CodeFile = {
-  code: Object;
+  code: unknown;
   testCases: TestCase[];
-  solution: Object;
+  solution: unknown;
   expectedAnnotations?: string[];
   externalSchema?: any;
 };
+
 export type CodeFileExports = {
   exports: CodeFile;
 };
