@@ -1,0 +1,65 @@
+---
+title: Closing Tuples with unevaluatedItems
+description: "Learn how to close tuple arrays in JSON Schema using the unevaluatedItems keyword when working with schema composition like $ref."
+keywords: "closing tuples, unevaluatedItems, JSON Schema, arrays, tuples, prefixItems, $ref, schema composition"
+---
+
+# Closing Tuples with unevaluatedItems
+
+In the Arrays module, we learned about using `items: false` to close a tuple and prevent additional items. However, `items` only recognizes `prefixItems` declared in the same [subschema](https://json-schema.org/learn/glossary#subschema) as itself.
+
+This becomes a problem when you want to close a tuple that's defined in a referenced schema using `$ref`.
+
+## The Problem with items
+
+Consider a coordinate tuple defined in `$defs` that we want to reference and close:
+
+```json
+{
+  "$ref": "#/$defs/coordinate",
+  "items": false,
+  "$defs": {
+    "coordinate": {
+      "type": "array",
+      "prefixItems": [
+        { "type": "number" },
+        { "type": "number" }
+      ]
+    }
+  }
+}
+```
+
+This **will not work as expected**. The `items: false` keyword only sees `prefixItems` in its own subschema (there are none), so it would reject ALL items, making the schema unusable.
+
+## The Solution: unevaluatedItems
+
+The `unevaluatedItems` keyword solves this problem. It considers all `prefixItems` across the entire schema, including those in referenced schemas.
+
+```json highlightLineStart={3}
+{
+  "$ref": "#/$defs/coordinate",
+  "unevaluatedItems": false,
+  "$defs": {
+    "coordinate": {
+      "type": "array",
+      "prefixItems": [
+        { "type": "number" },
+        { "type": "number" }
+      ]
+    }
+  }
+}
+```
+
+Now the schema correctly:
+- Allows exactly two number items (from the referenced coordinate tuple)
+- Rejects any additional items beyond the defined tuple
+
+This is the key difference: `unevaluatedItems` looks at what items have been "evaluated" by any part of the schema, while `items` only looks at the local `prefixItems`.
+
+## Task
+
+You are given a coordinate tuple schema that defines latitude and longitude. Your task is to **close the tuple** so that no additional items can be added beyond the two coordinates.
+
+> **Hint:** Add `unevaluatedItems` set to `false` to prevent any extra items in the array.
