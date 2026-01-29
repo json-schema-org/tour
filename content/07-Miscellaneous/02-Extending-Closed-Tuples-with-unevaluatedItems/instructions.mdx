@@ -34,7 +34,7 @@ This **will not work as expected**. The `items: false` keyword only sees `prefix
 
 ## The Solution: unevaluatedItems
 
-The `unevaluatedItems` keyword solves this problem. It considers all `prefixItems` across the entire schema, including those in referenced schemas.
+The `unevaluatedItems` keyword solves this problem. It considers annotations produced by subschemas in its evaluation scope. In this example, the `$ref` and `unevaluatedItems` are in the same schema object, so the tuple items evaluated by the referenced schema are visible to `unevaluatedItems`.
 
 ```json highlightLineStart={3}
 {
@@ -56,7 +56,7 @@ Now the schema correctly:
 - Allows exactly two number items (from the referenced coordinate tuple)
 - Rejects any additional items beyond the defined tuple
 
-This is the key difference: `unevaluatedItems` looks at what items have been "evaluated" by any part of the schema, while `items` only looks at the local `prefixItems`.
+This is the key difference: `unevaluatedItems` only uses annotations from the same evaluation path (roughly, subschemas "below" it). If the tuple is evaluated in a different branch (for example, inside an `allOf` alongside `unevaluatedItems`), it won't see those `prefixItems`.
 
 ## Task
 
