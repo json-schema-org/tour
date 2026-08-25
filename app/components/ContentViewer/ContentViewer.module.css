@@ -1,20 +1,29 @@
 .content {
   display: flex;
   flex-direction: column;
-
   overflow-y: auto;
   flex: 1;
-  padding-right: 14px;
-  padding-bottom: 12px;
-  padding-left: 14px;
+  padding-right: clamp(10px, 2vw, 16px);
+  padding-bottom: 16px;
+  padding-left: clamp(10px, 2vw, 16px);
+  padding-top: 8px;
+  box-sizing: border-box;
 }
-.contentWrapper {
-  border-right: 1px solid hsl(var(--border-color));
 
+.contentWrapper {
+  border-right: none;
   display: flex;
   flex-direction: column;
-
   height: 100%;
   flex: 1;
-  height: 100%;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
+
+@media (min-width: 1024px) {
+  .contentWrapper {
+    border-right: 1px solid hsl(var(--border-color));
+  }
+}
+

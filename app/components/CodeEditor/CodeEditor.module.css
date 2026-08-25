@@ -1,17 +1,27 @@
 .codeEditor {
-  padding: 8px;
+  padding: 8px 8px 48px 8px;
   height: 100%;
   overflow-y: auto;
-  padding-bottom: 32px;
+  box-sizing: border-box;
 }
+
 .buttonsWrapper {
   position: absolute;
   bottom: 8px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   gap: 8px;
   width: 100%;
-  padding-left: 16px;
-  padding-right: 32px;
+  padding-left: 12px;
+  padding-right: 24px;
+  box-sizing: border-box;
+  z-index: 10;
+  pointer-events: none;
 }
+
+.buttonsWrapper > * {
+  pointer-events: auto;
+}
+

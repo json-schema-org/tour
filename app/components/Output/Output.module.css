@@ -1,7 +1,5 @@
 .output {
   width: 100%;
-
-  /* padding: 16px; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -9,51 +7,82 @@
   overflow-y: hidden;
   border-left: none;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .title {
   font-size: small;
-  padding: 0.2em 1em;
+  font-weight: 600;
+  padding: 0.35em 1em;
 }
 
 .header {
   background-color: hsl(var(--background2));
   width: 100%;
-  border-bottom: 1px solid rgba(152, 152, 152, 0.668);
+  border-bottom: 1px solid hsl(var(--border-color));
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   user-select: none;
+  flex-shrink: 0;
 }
+
 .invalid {
-  color: red;
+  color: hsl(var(--error));
 }
 
 .outputBody {
   width: 100%;
-  padding: 4px 16px;
-  overflow-y: scroll;
+  padding: 10px 14px;
+  overflow-y: auto;
   height: 100%;
-  white-space: pre-wrap;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
+
+.neutralMessage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  padding-top: 4px;
+  color: hsl(var(--text));
+}
+
+.inlineValidateBadge {
+  display: inline-flex;
+  align-items: center;
+  background-color: hsl(var(--primary));
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
 .valid {
   display: flex;
   gap: 12px;
-  align-items: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .validMessage {
   color: hsl(var(--success));
-  font-size: large;
+  font-size: 1.1rem;
 }
 
 .validSmallMessage {
-  font-size: small;
+  font-size: 0.85rem;
+  opacity: 0.85;
 }
+
 .neutral {
-  color: black;
+  color: hsl(var(--text));
 }
 
 .keyBindingsWrapper {
@@ -61,19 +90,22 @@
   display: flex;
   justify-content: center;
 }
+
 .footer {
   margin-top: auto;
-  font-size: small;
-  padding: 0.2em 0.2em;
+  font-size: 0.85rem;
+  padding: 8px 0 2px 0;
 }
 
 .schemaErrorContainer {
   margin: 10px 0;
 }
+
 .schemaErrorDetails {
   margin-block: 10px;
 }
 
 .schemaErrorFixList {
-  margin-top: "200px";
+  margin-top: 10px;
 }
+

@@ -1,9 +1,13 @@
 .footerLinks {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1em;
+  gap: clamp(0.6em, 2vw, 1em);
   position: relative;
+  max-width: 100%;
+  padding-inline: 12px;
+  box-sizing: border-box;
 }
 .footerLink {
   color: hsl(var(--text));

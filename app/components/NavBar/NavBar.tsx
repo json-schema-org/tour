@@ -82,7 +82,7 @@ export default function NavBar({ urlPath }: { urlPath: string }) {
           <Flex
             dir="row"
             align="center"
-            gap={"8px"}
+            className={styles.breadcrumbWrapper}
             onClick={() => {
               onOpen();
               sendGAEvent("event", "buttonClicked", {

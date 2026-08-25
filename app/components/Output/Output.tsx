@@ -89,15 +89,13 @@ function Output({
 
   if (outputResult.validityStatus == "neutral") {
     outputBodyContent = (
-      <Flex dir="row" gap={1} paddingTop={2}>
-        {" "}
-        Please click the{" "}
-        <MyBtn variant="default" onClick={() => {}}>
-          validate
-        </MyBtn>{" "}
-        button or use <KeyBindings keys={["Shift", "Enter"]} /> to view the
-        output
-      </Flex>
+      <div className={styles.neutralMessage}>
+        <span>Please click the</span>
+        <span className={styles.inlineValidateBadge}>VALIDATE</span>
+        <span>button or use</span>
+        <KeyBindings keys={["Shift", "Enter"]} />
+        <span>to view the output</span>
+      </div>
     );
   } else if (outputResult.validityStatus == "valid") {
     outputBodyContent = (

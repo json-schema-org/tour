@@ -5,6 +5,8 @@ import { parseLessonFolder } from "@/lib/server-functions";
 import ContentViewer from "@/app/components/ContentViewer";
 import EditorNOutput from "@/app/components/EditorNOutput";
 
+import ResponsiveTourWorkspace from "@/app/components/ResponsiveTourWorkspace";
+
 export function generateMetadata({
   params,
 }: {
@@ -39,17 +41,13 @@ export default async function Content({
   const { Page, metadata, codeFile } = parseLessonFolder(mdPath, codePath);
 
   return (
-    <div className={styles.mainArea}>
-      <ContentViewer>
-        <Page />
-      </ContentViewer>
-      <EditorNOutput
-        codeFile={codeFile}
-        nextStepPath={nextStepPath}
-        stepIndex={stepIndex}
-        chapterIndex={chapterIndex}
-      />
-    </div>
+    <ResponsiveTourWorkspace
+      pageContent={<Page />}
+      codeFile={codeFile}
+      nextStepPath={nextStepPath}
+      stepIndex={stepIndex}
+      chapterIndex={chapterIndex}
+    />
   );
 }
 export async function generateStaticParams() {

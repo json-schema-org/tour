@@ -1,9 +1,10 @@
 .main {
   display: flex;
   flex-direction: column;
-  height: inherit;
-
+  min-height: 100%;
   align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .wrapper {
@@ -22,18 +23,24 @@
   color: white;
   height: max-content;
   width: 100%;
-  padding-top: 64px;
-  padding-bottom: 96px;
+  padding-top: clamp(32px, 5vw, 64px);
+  padding-bottom: clamp(60px, 8vw, 96px);
+  padding-inline: clamp(16px, 4vw, 32px);
   align-items: center;
+  box-sizing: border-box;
 }
 
 .titleWrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  max-width: 900px;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 .title {
-  font-size: 5rem;
+  font-size: clamp(2.25rem, 6vw, 5rem);
   font-weight: 900;
   display: flex;
   flex-direction: column;
@@ -41,48 +48,81 @@
 }
 
 .title > div {
-  line-height: 115%;
-  letter-spacing: -2px;
+  line-height: 110%;
+  letter-spacing: -1px;
 }
+
 .jsonSchemaTitle {
   text-decoration: underline;
   text-decoration-thickness: 0.075em;
-  /* add some gap between the underline and text */
   text-underline-offset: 0.15em;
 }
+
 .subtitle1 {
-  font-size: x-large;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   font-weight: bold;
   display: flex;
   flex-direction: column;
   gap: 0px;
 }
+
 .subtitle2 {
-  font-size: 1.3rem;
+  font-size: clamp(0.95rem, 2vw, 1.3rem);
+  line-height: 1.4;
 }
+
 .subtitleWrapper {
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 4px;
   justify-content: center;
 }
+
 .homePageLinksWrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  padding: clamp(20px, 4vw, 40px) 16px;
+  width: 100%;
+  max-width: 1100px;
+  box-sizing: border-box;
+  gap: 20px;
+  position: relative;
 }
+
+@media (min-width: 992px) {
+  .homePageLinksWrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .continueBtnWrapper {
-  position: absolute;
-  margin-left: 500px;
+  display: flex;
+  justify-content: center;
 }
+
+@media (min-width: 992px) {
+  .continueBtnWrapper {
+    position: absolute;
+    right: 24px;
+  }
+}
+
 .footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4px;
-  padding-bottom: 8px;
+  gap: 8px;
+  padding: 16px 12px 24px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .footerText {
   font-weight: 700;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
+

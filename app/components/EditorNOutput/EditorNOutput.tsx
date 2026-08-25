@@ -32,41 +32,50 @@ export default function EditorNOutput({
     errors: "",
     testCaseResults: [],
   });
-  const [topWidth, setTopWidth] = useState(400); // Initial width of the left div
+  const [topWidth, setTopWidth] = useState(380);
   const dividerRef = useRef<HTMLDivElement>(null);
-
   const containerRef = useRef<HTMLDivElement>(null);
-  const isDraggingRef = useRef<HTMLDivElement | boolean>(false);
+  const isDraggingRef = useRef<boolean>(false);
 
-  const handleMouseDown = () => {
+  const startDragging = () => {
     isDraggingRef.current = true;
   };
 
-  const handleMouseUp = () => {
+  const stopDragging = () => {
     isDraggingRef.current = false;
   };
 
-  const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent> | MouseEvent,
-  ) => {
-    if (!isDraggingRef.current) return;
+  const updateHeight = (clientY: number) => {
+    if (!isDraggingRef.current || !containerRef.current) return;
 
-    const containerRect = containerRef.current!.getBoundingClientRect();
-    const newTopWidth = e.clientY - containerRect.top;
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const newHeight = clientY - containerRect.top;
+    const minHeight = 100;
+    const maxHeight = containerRect.height - 100;
 
-    if (newTopWidth > 32) {
-      setTopWidth(newTopWidth);
-      localStorage.setItem("verticalTopHeight", String(newTopWidth));
-    } else {
-      localStorage.setItem("verticalTopHeight", String(containerRect.top));
-      setTopWidth(containerRect.top);
+    const clampedHeight = Math.max(minHeight, Math.min(newHeight, maxHeight));
+    setTopWidth(clampedHeight);
+    localStorage.setItem("verticalTopHeight", String(clampedHeight));
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    updateHeight(e.clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length > 0) {
+      updateHeight(e.touches[0].clientY);
     }
   };
 
   useEffect(() => {
-    const topHeight = localStorage.getItem("verticalTopHeight");
-    if (topHeight) {
-      setTopWidth(Number(topHeight));
+    if (typeof window !== "undefined") {
+      const topHeight = localStorage.getItem("verticalTopHeight");
+      if (topHeight && Number(topHeight) > 100 && Number(topHeight) < window.innerHeight - 150) {
+        setTopWidth(Number(topHeight));
+      } else {
+        setTopWidth(Math.max(250, Math.floor(window.innerHeight * 0.45)));
+      }
     }
   }, []);
 
@@ -74,15 +83,18 @@ export default function EditorNOutput({
     <div
       className={styles.codeEditorNOutput}
       onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
+      onMouseUp={stopDragging}
+      onMouseLeave={stopDragging}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={stopDragging}
       ref={containerRef}
     >
       <Box
-        flex={6}
         height={`${topWidth}px`}
         position={"relative"}
         className="top"
+        minHeight={"100px"}
+        width={"100%"}
       >
         <CodeEditor
           codeString={codeString}
@@ -98,11 +110,12 @@ export default function EditorNOutput({
       <div
         ref={dividerRef}
         className={styles.divider}
-        onMouseDown={handleMouseDown}
+        onMouseDown={startDragging}
+        onTouchStart={startDragging}
       ></div>
       <div
         className={styles.outputWrapper}
-        style={{ height: `calc(100% - ${topWidth}px - 6px)` }}
+        style={{ height: `calc(100% - ${topWidth}px - 8px)` }}
       >
         <Output outputResult={output} showSolution={showSolution} />
       </div>
