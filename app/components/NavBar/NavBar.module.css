@@ -1,7 +1,7 @@
 .navBar {
   width: 100%;
   border-bottom: 1px solid hsl(var(--text) / 0.3);
-  padding: 8px 16px;
+  padding: 8px clamp(8px, 2vw, 16px);
   padding-bottom: 10px;
   display: flex;
   gap: 8px;
@@ -9,18 +9,30 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .logoTitle {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
+  text-decoration: none;
 }
 
 .title {
-  font-size: 1.2em;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 800;
+  white-space: nowrap;
 }
+
+@media (max-width: 640px) {
+  .title {
+    display: none;
+  }
+}
+
 .backBtn {
   border-radius: 8px;
   border: 1px solid hsl(var(--text) / 0.2);
@@ -30,24 +42,43 @@
   width: 32px;
   height: 32px;
   padding: 2px;
+  flex-shrink: 0;
 }
+
 .backBtn:hover {
   background-color: hsl(var(--text) / 0.1);
 }
+
 .leftContentWrapper {
   display: flex;
-  gap: 36px;
+  gap: clamp(8px, 2vw, 28px);
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  min-width: 0;
+  flex: 1;
 }
+
 .contentNavigation {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 16px;
+  gap: clamp(6px, 1.5vw, 12px);
+  min-width: 0;
+  flex: 1;
 }
+
+.breadcrumbWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 .breadcrumbIcon {
   height: 16px;
   width: 16px;
@@ -55,22 +86,52 @@
   justify-content: center;
   align-items: center;
   padding: 0;
+  flex-shrink: 0;
 }
+
 .chapterTitle {
   color: hsl(var(--text) / 0.5);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+}
+
+@media (max-width: 768px) {
+  .chapterTitle {
+    display: none;
+  }
+  .breadcrumbIcon {
+    display: none;
+  }
+}
+
+.lessonTitle {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  font-weight: 500;
 }
 
 .rightContentWrapper {
   display: flex;
-  gap: 8px;
+  gap: clamp(4px, 1vw, 8px);
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  flex-shrink: 0;
 }
+
 .menuButton {
   padding: 6px;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .menuButton:hover {
   background-color: hsl(var(--text) / 0.1);
 }
+
