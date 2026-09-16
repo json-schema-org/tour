@@ -56,7 +56,7 @@ const testCases: any[] = [
         value: "first",
         next: {
           value: "second",
-          nedxt: {
+          next: {
             value: "third",
             next: {
               value: "fourth",
