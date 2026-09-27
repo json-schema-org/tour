@@ -87,7 +87,7 @@
   list-style-type: none;
   padding: 4px;
   margin-left: 33px;
-  padding-left: 16px;
+  padding-left: 28px;
   border-left: 1px solid hsl(var(--text) / 0.5);
   color: hsl(var(--text) / 0.75);
 }
@@ -114,6 +114,7 @@
 .activeStep {
   border-left-width: 3px;
   border-left-color: hsl(var(--primary));
+  padding-left: 26px;
   color: hsl(var(--primary));
   font-weight: bold;
 }
