@@ -84,8 +84,6 @@ export default function TestCasesWindow({
     if (container) {
       const newScrollPosition = container.scrollLeft;
       const maxScroll = container.scrollWidth - container.clientWidth;
-      console.log(newScrollPosition, maxScroll);
-
       setScrollPosition(newScrollPosition);
       setIsLeftDisabled(newScrollPosition === 0);
       setIsRightDisabled(Math.round(newScrollPosition + 1) >= maxScroll);

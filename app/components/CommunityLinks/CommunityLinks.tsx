@@ -24,7 +24,13 @@ export default function CompanyLogos() {
   return (
     <div className={styles.footerLinks}>
       {linkInfo.map((info) => (
-        <Link key={info.title} href={info.link} className={styles.footerLink}>
+        <Link
+          key={info.title}
+          href={info.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.footerLink}
+        >
           {info.title}
         </Link>
       ))}

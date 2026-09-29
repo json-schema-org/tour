@@ -15,7 +15,6 @@ export default function SideEditorLink({
       className={styles.main}
       onClick={() => {
         const range = editorStore.editor.getModel().getFullModelRange();
-        console.log(range);
         editorStore.editor.setSelection(range);
         editorStore.editor.focus();
       }}

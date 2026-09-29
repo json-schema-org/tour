@@ -160,7 +160,6 @@ export function isTheTourCompleted() {
 }
 
 export function hasNestedProperty(obj: any, path: string) {
-  console.log(obj, path);
   const keys = path.split(".");
 
   let current = obj;
